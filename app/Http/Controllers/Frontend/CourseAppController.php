@@ -89,7 +89,7 @@ class CourseAppController extends Controller
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
             $data['Amount'] = 10;
-            $data['OrderID'] = 2357318;
+            $data['OrderID'] = 2357323;
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
@@ -119,11 +119,12 @@ class CourseAppController extends Controller
                     && $content["ResponseMessage"] === "OK") {
 
                     $url = "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=" . $content['PaymentID'] . "&lang=am";
-                    header('Location:'. $url);
-                    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-                    header('Access-Control-Allow-Credentials: true');
-                    header('Access-Control-Max-Age: 86400');
-                    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+                    redirect()->to($url)->send();
+//                    header('Location:'. $url);
+//                    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+//                    header('Access-Control-Allow-Credentials: true');
+//                    header('Access-Control-Max-Age: 86400');
+                   /* if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
                         if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
                             // may also be using PUT, PATCH, HEAD etc
@@ -133,7 +134,7 @@ class CourseAppController extends Controller
                             header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
 
                         exit(0);
-                    }
+                    }*/
 //                    echo "<script>window.onload = function () {window.open(".$url.")}</script>";
                 }
             } catch (RuntimeException $e) {
