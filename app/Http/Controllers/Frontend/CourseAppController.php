@@ -89,14 +89,14 @@ class CourseAppController extends Controller
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
             $data['Amount'] = 10;
-            $data['OrderID'] = 2357310;
-            $data["BackURL"]= "https://training.gtech.am/lesson";
+            $data['OrderID'] = 2357318;
+            $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
             $data['Description'] = $form['name'];
 //            $data['Card number'] = '4083060010454680';
             $data['Cardholder'] = 'TEST CARD VPOS';
-            $data['Currency'] = 'TEST Currency VPOS';
+            $data['Currency'] = 'AMD';
             $data['Opaque'] = 'TEST Opaque VPOS';
 //            $data['Exp.date'] = '06/24';
 //            $data['CVV'] = 281;
@@ -105,7 +105,7 @@ class CourseAppController extends Controller
 
             //get course name bay course id
             try {
-//
+                //
                 $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment";
                 $client = new \GuzzleHttp\Client();
 
@@ -114,11 +114,31 @@ class CourseAppController extends Controller
                 $statusCode = $response->getStatusCode();
                 $content = $response->getBody();
                 $content = json_decode($response->getBody(), true);
-                dd($content);
+
+                if ($content['ResponseCode'] === 1
+                    && $content["ResponseMessage"] === "OK") {
+dd($_SERVER['HTTP_ORIGIN']);
+                    $url = "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=" . $content['PaymentID'] . "&lang=am";
+                    header('Location:'. $url);
+                    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+                    header('Access-Control-Allow-Credentials: true');
+                    header('Access-Control-Max-Age: 86400');
+                    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+                            // may also be using PUT, PATCH, HEAD etc
+                            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+                            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+                        exit(0);
+                    }
+//                    echo "<script>window.onload = function () {window.open(".$url.")}</script>";
+                }
             } catch (RuntimeException $e) {
                 dd($e);
             }
-
 
 
 //            $courses = $this->service->getCoursesInfo(request('id'));
