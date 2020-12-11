@@ -117,7 +117,7 @@ class CourseAppController extends Controller
 
                 if ($content['ResponseCode'] === 1
                     && $content["ResponseMessage"] === "OK") {
-dd($_SERVER['HTTP_ORIGIN']);
+
                     $url = "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=" . $content['PaymentID'] . "&lang=am";
                     header('Location:'. $url);
                     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
