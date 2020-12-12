@@ -478,13 +478,14 @@
 
                 getPromiseResult(credentials)
                     .then(res => {
-                        axios.get('https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID+ '&lang=am', {
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            }
-                        })
-                            .then(response => {})
-                        console.log(res.payment.PaymentID);
+                        location.href = 'https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID+ '&lang=am';
+                        // axios.get('https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID+ '&lang=am', {
+                        //     headers: {
+                        //         'Content-Type': 'application/x-www-form-urlencoded'
+                        //     }
+                        // })
+                        //     .then(response => {})
+                        // console.log(res.payment.PaymentID);
                     })
                     .catch(error => {
                         console.log('error');
