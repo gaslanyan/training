@@ -171,21 +171,19 @@
                     })
             },
             getPaymentQuery(query) {
-                console.log(query.orderID);
-                console.log(query.responseCode);
-                console.log(query.paymentID);
-                console.log(query.opaque);
+
                 let credentials = {
                     PaymentID: query.paymentID,
                     Username: '3d19541048',
                     Password: 'lazY2k',
                 };
-                axios.post('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails', credentials)
-                    .then(response => {
-                        console.log(response)
+                getPaymentDetails(credentials)
+                    .then(res => {
                     })
-
-
+                    .catch(error => {
+                        console.log('error');
+                        // this.$store.commit("registerFailed", {error});
+                    });
             }
         },
         computed: {

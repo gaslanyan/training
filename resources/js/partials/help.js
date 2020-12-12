@@ -19,6 +19,19 @@ export function getPromiseResult(credentials) {
             })
     })
 }
+export function getPaymentDetails(credentials) {
+
+    return new Promise((res, rej) => {
+        axios.post('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails', credentials,
+        )
+            .then(response => {
+                res(response);
+            })
+            .catch(err => {
+                rej(texts.error);
+            })
+    })
+}
 
 export function langs(el, lng) {
 
