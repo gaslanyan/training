@@ -19,10 +19,17 @@ export function getPromiseResult(credentials) {
             })
     })
 }
+
 export function getPaymentDetails(credentials) {
 
     return new Promise((res, rej) => {
         axios.post('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails', credentials,
+            {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-type': 'application/json',
+                }
+            },
         )
             .then(response => {
                 res(response);
@@ -40,6 +47,6 @@ export function langs(el, lng) {
         pattern = /^[\u0530-\u058FF|\u0020-\u0040]*$/;
     else
         pattern = /^[\u0000-\u009F]*$/;
-    return (!pattern.test(el))? false: true;
+    return (!pattern.test(el)) ? false : true;
 }
 
