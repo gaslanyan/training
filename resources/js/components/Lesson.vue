@@ -205,7 +205,7 @@
                 if (this.$store.getters.currentUser.prof.member_of_palace === 1)
                     this.isOpened = true;
             }
-            if (!this.$route.query) {
+            if (this.$route.query) {
                 this.getPaymentQuery(this.$route.query);
             }
         },
