@@ -176,9 +176,9 @@
                 console.log(query.paymentID);
                 console.log(query.opaque);
                 let credentials = {
-                    PaymentID:query.paymentID,
-                    Username:'3d19541048',
-                    Password:'lazY2k',
+                    PaymentID: query.paymentID,
+                    Username: '3d19541048',
+                    Password: 'lazY2k',
                 };
                 axios.post('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails', credentials)
                     .then(response => {
@@ -205,7 +205,7 @@
                 if (this.$store.getters.currentUser.prof.member_of_palace === 1)
                     this.isOpened = true;
             }
-            if (this.$route.query) {
+            if (Object.keys(this.$route.query).length > 0) {
                 this.getPaymentQuery(this.$route.query);
             }
         },
