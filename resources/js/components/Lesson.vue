@@ -100,7 +100,7 @@
 </template>
 
 <script>
-    import {getPromiseResult} from '../partials/help';
+    import {getPromiseResult, getPaymentDetails} from '../partials/help';
     import pagetexts from './json/pages.json'
     import text from './json/registertexts.json';
 
