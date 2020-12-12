@@ -59,7 +59,7 @@
                                             <div class='d-flex justify-content-center'>
                                                 <div>
                                                     <button id="show-modal" class="text-uppercase enroll nav-link btn"
-                                                            @click="eventClick(course)">{{texts.pay}}
+                                                            @click="payment">{{texts.pay}}
                                                     </button>
                                                 </div>
                                             </div>
@@ -458,26 +458,33 @@
                 //     }
                 //     console.log('Correct them errors!');
                 // });
-                let data = {};
-                data.cvv = btoa(this.formCard.cvv);
-                data.number = btoa(this.formCard.number);
-                data.name = this.formCard.cvv;
-                data.month = this.formCard.month;
-                data.year = this.formCard.year;
-                data.account_id = this.currentUser.id;
-                data.course_id = this.course_id;
-                data.cost = this.cost;
+                // let data = {};
+                // data.cvv = btoa(this.formCard.cvv);
+                // data.number = btoa(this.formCard.number);
+                // data.name = this.formCard.cvv;
+                // data.month = this.formCard.month;
+                // data.year = this.formCard.year;
+                // data.account_id = this.currentUser.id;
+                // data.course_id = this.course_id;
+                // data.cost = this.cost;
 
                 let credentials = {
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
-                    form: data,
+                    // form: data,
                     url: "payment",
                     auth: true
                 };
 
                 getPromiseResult(credentials)
                     .then(res => {
+                        axios.get('https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID+ '&lang=am', {
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })
+                            .then(response => {})
+                        console.log(res.payment.PaymentID);
                     })
                     .catch(error => {
                         console.log('error');

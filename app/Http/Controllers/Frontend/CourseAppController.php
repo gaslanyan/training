@@ -9,7 +9,6 @@ use App\Models\Courses;
 use App\Models\Specialty;
 use App\Models\Videos;
 use App\Services\CourseService;
-use http\Exception\RuntimeException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 
@@ -93,7 +92,7 @@ class CourseAppController extends Controller
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
-            $data['Description'] = $form['name'];
+            $data['Description'] = 'name';
 //            $data['Card number'] = '4083060010454680';
             $data['Cardholder'] = 'TEST CARD VPOS';
             $data['Currency'] = 'AMD';
@@ -104,52 +103,53 @@ class CourseAppController extends Controller
 //            $data['Amount'] = $form['cost'];
 
             //get course name bay course id
-            try {
-                //
-                $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment";
-                $client = new \GuzzleHttp\Client();
+            //
+            $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment";
+            $client = new \GuzzleHttp\Client();
 
-                $response = $client->request('POST',
-                    $endpoint, ['form_params' => $data]);
-                $statusCode = $response->getStatusCode();
-                $content = $response->getBody();
+            $response = $client->request('POST',
+                $endpoint, ['form_params' => $data]);
+            $statusCode = $response->getStatusCode();
+            $content = $response->getBody();
+
                 $content = json_decode($response->getBody(), true);
 
-                if ($content['ResponseCode'] === 1
-                    && $content["ResponseMessage"] === "OK") {
+//                if ($content['ResponseCode'] === 1
+//                    && $content["ResponseMessage"] === "OK") {
 
-                    $url = "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=" . $content['PaymentID'] . "&lang=am";
-                    redirect()->to($url)->send();
-//                    header('Location:'. $url);
+//                    $url = "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=" . $content['PaymentID'] . "&lang=am";
+//                    redirect()->to($url)->send();
+
 //                    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
 //                    header('Access-Control-Allow-Credentials: true');
 //                    header('Access-Control-Max-Age: 86400');
-                   /* if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+//                    header('Location:' . $url);
+//                    return redirect()->away($url);
 
-                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-                            // may also be using PUT, PATCH, HEAD etc
-                            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-
-                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-                            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-
-                        exit(0);
-                    }*/
+//                    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+//dd($_SERVER['REQUEST_METHOD'] == 'OPTIONS');
+//                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+//                            // may also be using PUT, PATCH, HEAD etc
+//                            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+//
+//                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+//                            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+//                        dd($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']);
+//                        header('Location:' . $url);
+//                        exit(0);
+//                    }
 //                    echo "<script>window.onload = function () {window.open(".$url.")}</script>";
-                }
-            } catch (RuntimeException $e) {
-                dd($e);
-            }
+//                }
 
 
 //            $courses = $this->service->getCoursesInfo(request('id'));
-//
-//            return response()->json([
-//                'access_token' => request('token'),
-//                'courses' => $courses,
-//                'token_type' => 'bearer',
-//                'expires_in' => auth('api')->factory()->getTTL() * 60
-//            ]);
+
+            return response()->json([
+                'access_token' => request('token'),
+                'payment' => $content,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 60
+            ]);
         } catch (MethodNotAllowedHttpException$exception) {
 
             logger()->error($exception);
