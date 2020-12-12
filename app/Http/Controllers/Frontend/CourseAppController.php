@@ -88,7 +88,7 @@ class CourseAppController extends Controller
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
             $data['Amount'] = 10;
-            $data['OrderID'] = 2357323;
+            $data['OrderID'] = 2357330;
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
@@ -111,39 +111,7 @@ class CourseAppController extends Controller
                 $endpoint, ['form_params' => $data]);
             $statusCode = $response->getStatusCode();
             $content = $response->getBody();
-
-                $content = json_decode($response->getBody(), true);
-
-//                if ($content['ResponseCode'] === 1
-//                    && $content["ResponseMessage"] === "OK") {
-
-//                    $url = "https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=" . $content['PaymentID'] . "&lang=am";
-//                    redirect()->to($url)->send();
-
-//                    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-//                    header('Access-Control-Allow-Credentials: true');
-//                    header('Access-Control-Max-Age: 86400');
-//                    header('Location:' . $url);
-//                    return redirect()->away($url);
-
-//                    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-//dd($_SERVER['REQUEST_METHOD'] == 'OPTIONS');
-//                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-//                            // may also be using PUT, PATCH, HEAD etc
-//                            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-//
-//                        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-//                            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-//                        dd($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']);
-//                        header('Location:' . $url);
-//                        exit(0);
-//                    }
-//                    echo "<script>window.onload = function () {window.open(".$url.")}</script>";
-//                }
-
-
-//            $courses = $this->service->getCoursesInfo(request('id'));
-
+            $content = json_decode($response->getBody(), true);
             return response()->json([
                 'access_token' => request('token'),
                 'payment' => $content,
