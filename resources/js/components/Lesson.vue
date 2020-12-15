@@ -203,11 +203,14 @@
                 if (this.$store.getters.currentUser.prof.member_of_palace === 1)
                     this.isOpened = true;
             }
+
+        },
+        mounted() {
             console.log(Object.keys(this.$route.query).length);
             if (Object.keys(this.$route.query).length > 0) {
                 this.getPaymentQuery(this.$route.query);
             }
-        },
+        }
 
 
     }
