@@ -15,8 +15,15 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 class CourseAppController extends Controller
 {
 
+    /**
+     * @var CourseService
+     */
     protected $service;
 
+    /**
+     * CourseAppController constructor.
+     * @param CourseService $service
+     */
     public function __construct(CourseService $service)
     {
         $this->service = $service;
@@ -24,6 +31,9 @@ class CourseAppController extends Controller
 //        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getCourseBySpec()
     {
         try {
@@ -42,6 +52,9 @@ class CourseAppController extends Controller
         }
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getCourseTitleById()
     {
         try {
@@ -61,6 +74,9 @@ class CourseAppController extends Controller
         }
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getCourseInfo()
     {
         try {
@@ -80,6 +96,10 @@ class CourseAppController extends Controller
         }
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     function payment()
     {
         try {
@@ -125,6 +145,9 @@ class CourseAppController extends Controller
         }
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getBookById()
     {
         try {
@@ -142,6 +165,9 @@ class CourseAppController extends Controller
         }
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     function getTestsById()
     {
         try {
@@ -161,6 +187,9 @@ class CourseAppController extends Controller
     }
 
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function coursedetails()
     {
         $courses = Courses::where("id", '=', request('id'))->first();
@@ -218,6 +247,9 @@ class CourseAppController extends Controller
         return response()->json(['data' => $courses, 'specialities' => $specialties_obj]);
     }
 
+    /**
+     * @return bool
+     */
     public function finishedCount()
     {
         $isFinished = true;
@@ -239,6 +271,9 @@ class CourseAppController extends Controller
         return $isFinished;
     }
 
+    /**
+     * @return mixed
+     */
     public function guard()
     {
         return \Auth::Guard('api');

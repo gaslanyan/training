@@ -25,14 +25,17 @@ export function getPaymentDetails(credentials) {
     return new Promise((res, rej) => {
         axios.post('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails',
             credentials,
-            // {
+            {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json',
             //     headers: {
             //         'Access-Control-Allow-Origin': '*',
             //         'Access-Control-Allow-Headers' : 'Content-Type',
             //         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
             //         'Content-type': 'application/json',
             //     }
-            // },
+            },
         )
             .then(response => {
                 res(response);
