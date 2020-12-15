@@ -90,7 +90,7 @@ class CourseAppController extends Controller
             $data['Amount'] = 10;
             $data['OrderID'] = 2357344;
             $data["BackURL"] = "https://www.shmz.am/lesson";
-            $data['Username'] = '3d19541048';
+            $data['Username'] = '3d19541049';
             $data['Password'] = 'lazY2k';
             $data['Description'] = 'name';
 //            $data['Card number'] = '4083060010454680';
