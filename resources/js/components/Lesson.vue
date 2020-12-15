@@ -162,7 +162,7 @@
 
                 getPromiseResult(credentials)
                     .then(res => {
-                        location.href = `https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=${res.payment.PaymentID}&lang=am`;
+                        location.href = 'https://servicestest.ameriabank.am/VPOS/Payments/Pay?id='+res.payment.PaymentID+'&lang=am';
 
                     })
                     .catch(error => {
