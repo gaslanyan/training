@@ -173,7 +173,7 @@
             getPaymentQuery(query) {
 
                 let credentials = {
-                    PaymentID: query.paymentID,
+                    PaymentID: `${query.paymentID}`,
                     Username: '3d19541048',
                     Password: 'lazY2k',
                 };
