@@ -88,7 +88,7 @@ class CourseAppController extends Controller
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
             $data['Amount'] = 10;
-            $data['OrderID'] = 2357341;
+            $data['OrderID'] = 2357344;
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
@@ -118,8 +118,8 @@ class CourseAppController extends Controller
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
-        } catch (MethodNotAllowedHttpException$exception) {
-
+        } catch (MethodNotAllowedHttpException $exception) {
+            dd($exception);
             logger()->error($exception);
             return response()->json(['error' => true], 500);
         }
