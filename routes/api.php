@@ -17,7 +17,6 @@ Route::group(['prefix' => 'auth'],
     function ($router) {
         Route::post('register', 'Frontend\AuthController@register');
         Route::post('login', 'Frontend\AuthController@login');
-        Route::post('verify/{id}/{key}', 'Frontend\VerifyController@verify');
 
     });
 Route::group(['prefix' => 'auth',
@@ -26,7 +25,7 @@ Route::group(['prefix' => 'auth',
     Route::post('logout', 'Frontend\AuthController@logout');
     Route::post('refresh', 'Frontend\AuthController@refresh');
     Route::match(['put', 'patch'], 'avatar/{id}', 'Frontend\AccountController@avatar');
-    Route::match(['put', 'patch'],'update/{id}', 'Frontend\AccountController@update');
+    Route::match(['put', 'patch'], 'update/{id}', 'Frontend\AccountController@update');
     Route::match(['put', 'patch'], 'approve/{id}', 'Frontend\AccountController@editApprove');
     Route::post('me', 'Frontend\AuthController@me');
 
@@ -39,6 +38,7 @@ Route::group(['prefix' => 'auth',
     Route::post('getcoursebyspec', 'Frontend\CourseAppController@getCourseBySpec');
     Route::post('getcoursesinfo', 'Frontend\CourseAppController@getCourseInfo');
     Route::post('getbook', 'Frontend\CourseAppController@getBookById');
+    Route::post('books', 'Frontend\CourseAppController@getBooksById');
     Route::post('gettests', 'Frontend\CourseAppController@getTestsById');
     Route::post('payment', 'Frontend\CourseAppController@payment');
     Route::post('gettestsbyaid', 'Frontend\AccountCourseController@getTestsResult');
@@ -67,7 +67,6 @@ Route::post('comment', 'Frontend\PageController@savecomment');
 
 Route::post('regions', 'Frontend\AddressController@index');
 Route::post('prof', 'Frontend\ExpertController@profession');
-//Route::get('verify/{id}/{key}', 'Frontend\VerifyController@indax');
 Route::post('edu', 'Frontend\ExpertController@education');
 Route::post('educate/', 'Frontend\ExpertController@educate');
 Route::post('spec', 'Frontend\ExpertController@specialty');

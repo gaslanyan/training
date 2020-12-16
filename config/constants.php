@@ -21,4 +21,5 @@ return [
     'VILLAGE' => 'village',
     'TERRITORY' => 'territory',
     'RESIDENCE' => 'residence',
+    'BOOKS' => '/books/',
 ];

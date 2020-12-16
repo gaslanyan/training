@@ -46,10 +46,8 @@ class Repository implements RepositoryInterface
     // show the record with the given id
     public function show($id)
     {
-
-
         try {
-            return $this->model->findOrFail($id);
+            return $this->model->find($id);
         } catch (\Exception $exception) {
             dd($exception);
         }

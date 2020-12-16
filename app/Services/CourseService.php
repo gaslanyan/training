@@ -16,6 +16,7 @@ use App\Models\Profession;
 use App\Models\Tests;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Config;
 
 
 class CourseService
@@ -109,6 +110,32 @@ class CourseService
         if (!$book)
             throw new ModelNotFoundException('User not found by ID ');
         return $result;
+    }
+
+    public function getBook($id)
+    {
+        $path = public_path().Config::get('constants.UPLOADS').Config::get('constants.BOOKS').$id;
+        if(empty($path)) {
+            $d = new \DirectoryIterator(dirname(__FILE__));
+        } else {
+            $d = new \DirectoryIterator($path);
+        }
+
+        foreach($d as $f) {
+            if($f->isFile() && preg_match("/(\.jpe?g)$/", $f->getFilename())
+            ) {
+                $z = getimagesize($f->getPathname());
+                dd($z);
+
+            }
+//            elseif($f->isDir() && $f->getFilename() != '.' && $f->getFilename() != '..') {
+////                walkDir($f->getPathname());
+//            }
+        }
+//        $result = (!empty($book)) ? $book : __('messages.noting');
+//        if (!$book)
+//            throw new ModelNotFoundException('User not found by ID ');
+//        return $result;
     }
 
     public function getTestsById($id, $a_id)

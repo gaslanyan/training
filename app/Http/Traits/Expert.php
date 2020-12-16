@@ -10,6 +10,10 @@ use App\Models\Specialty;
 trait Expert
 {
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     static function getEducation($id)
     {
 
@@ -25,6 +29,11 @@ trait Expert
         }
     }
 //todo jnjel stugel
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     static function getEducate($id)
     {
 
@@ -38,8 +47,21 @@ trait Expert
         }
     }
 
+    /**
+     * APIs for font page
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     static function getSpecialty($id)
     {
+        /**
+         * get Specialty by id
+         *
+         * @response
+         * {"spec":[{"id":3,"name":"\u0534\u0535\u0542\u0531\u0533\u053b\u054f\u0531\u053f\u0531\u0546 \u0544\u0531\u054d\u0546\u0531\u0533\u053b\u054f\u0548\u0552\u0539\u0545\u0548\u0552\u0546\u0546\u0535\u0550"},{"id":7,"name":"\u0534\u0535\u0542\u0531\u0533\u053b\u054f\u0531\u053f\u0531\u0546 \u0546\u0535\u0542 \u0544\u0531\u054d\u0546\u0531\u0533\u053b\u054f\u0548\u0552\u0539\u0545\u0548\u0552\u0546\u0546\u0535\u0550"}]}
+         */
+
+
         try {
 //            $spec = [];
             $spec = Specialty::select('id', 'name')->where('type_id', $id)
@@ -54,6 +76,9 @@ trait Expert
         }
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     static function getProfession()
     {
         try {

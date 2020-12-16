@@ -64,7 +64,7 @@ Route::get('/backend/login/', 'Auth\LoginController@showLoginForm')->name('login
 Route::post('/backend/doLogin/', 'Auth\LoginController@doLogin')->name('doLogin');
 Route::get('/backend/logout/', 'Auth\LoginController@logout')->name('logout');
 Route::post('/backend/logout/', 'Auth\LoginController@logout')->name('logout');
-Route::get('/backend/verify/{key}', 'Auth\VerifyController@');
+
 //pages
 Route::get('/backend/dashboard/', 'Backend\DashboardController@index')->name('dashboard');
 Route::resource('/backend/admin', 'Backend\AdminController');

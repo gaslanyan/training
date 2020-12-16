@@ -108,7 +108,7 @@ class CourseAppController extends Controller
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
             $data['Amount'] = 10;
-            $data['OrderID'] = 2357352;
+            $data['OrderID'] = 2357353;
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
@@ -145,6 +145,27 @@ class CourseAppController extends Controller
         }
     }
 
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    function getBooksById()
+    {
+        try {
+            $book = $this->service->getBook(request('id'));
+            return response()->json([
+                'access_token' => request('token'),
+                'book' => $book,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 60
+            ]);
+        } catch (MethodNotAllowedHttpException$exception) {
+
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -164,7 +185,6 @@ class CourseAppController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
