@@ -22,7 +22,7 @@ export function getPromiseResult(credentials) {
 
 export function getPaymentDetails(credentials) {
     return new Promise((res, rej) => {
-        axios.post('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails',
+        axios.get('https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails',
             credentials,
             {
                 headers: {

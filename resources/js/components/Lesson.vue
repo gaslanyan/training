@@ -174,11 +174,15 @@
 
                 let credentials = {
                     PaymentID: `${query.paymentID}`,
-                    Username: '3d19541048',
-                    Password: 'lazY2k',
+                    account_id: this.currentUser.id,
+                    token: this.currentUser.token,
+                    // form: data,
+                    url: "getpayment",
+                    auth: true
                 };
-                getPaymentDetails(credentials)
+                getPromiseResult(credentials)
                     .then(res => {
+                        console.log(res)
                     })
                     .catch(error => {
                         console.log('error');
@@ -208,7 +212,7 @@
         mounted() {
             console.log(Object.keys(this.$route.query).length);
             if (Object.keys(this.$route.query).length > 0) {
-                
+
                 this.getPaymentQuery(this.$route.query);
             }
         }

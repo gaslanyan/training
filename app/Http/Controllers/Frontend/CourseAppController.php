@@ -145,6 +145,27 @@ class CourseAppController extends Controller
         }
     }
 
+    function getpayment()
+    {
+        $data['Username'] ='3d19541048';
+        $data['Password'] ='lazY2k';
+        $data['PaymentID'] =request('PaymentID');
+
+        $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('POST',
+            $endpoint, ['form_params' => $data]);
+        $statusCode = $response->getStatusCode();
+        $content = $response->getBody();
+        $content = json_decode($response->getBody(), true);
+        return response()->json([
+            'access_token' => request('token'),
+            'getpayment' => $content,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
+    }
 
     /**
      * @param $id
@@ -166,6 +187,7 @@ class CourseAppController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -185,6 +207,7 @@ class CourseAppController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+
     /**
      * @return \Illuminate\Http\JsonResponse
      */
