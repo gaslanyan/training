@@ -33,7 +33,7 @@ class MakeImagesFromPDFJob implements ShouldQueue
      */
     public function handle()
     {
-        $path = public_path() . Config::get('constants.UPLOADS') . "/books/" . $this->pdf->id.'/';
+        $path = public_path() . Config::get('constants.UPLOADS') . "/books/" . $this->pdf->id . '/';
         $pathToImage = $path . $this->pdf->path;
 
         if (!File::isDirectory($path)) {
@@ -44,7 +44,7 @@ class MakeImagesFromPDFJob implements ShouldQueue
             $pdf = new Pdf($pathToImage);
 
             foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
-                $pdf->setPage($pageNumber)->saveImage($path . '/' . $pageNumber . '.jpg');
+                $pdf->setPage($pageNumber)->saveImage($path . $pageNumber . '.jpg');
             }
         }
     }
