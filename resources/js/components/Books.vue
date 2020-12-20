@@ -26,15 +26,8 @@
         data() {
             return {
                 id: "",
-                path: '/uploads/books/',
                 images: [
                     null,
-                    '/uploads/books/1/01.jpg',
-                    '/uploads/books/1/02.jpg',
-                    '/uploads/books/1/03.jpg',
-                    '/uploads/books/1/04.jpg',
-                    '/uploads/books/1/05.jpg',
-                    '/uploads/books/1/06.jpg',
                 ],
                 text: text
             };
@@ -56,34 +49,43 @@
                 let credentials = {
                     id: this.$route.params.id,
                     token: this.currentUser.token,
-                    url: 'books',
+                    url: 'book',
                     auth: true
                 };
                 getPromiseResult(credentials)
                     .then(res => {
 
-                        // this.images = res;
-                        console.log(res);
+                        for (let i = 0; i < res.book.count; i++) {
+                            let name = i + 1;
+                            if (i < 10)
+                                name = "0" + name;
+                            this.images.push(`${res.book.path}/${name}.jpg`);
+
+                        }
 
                     })
                     .catch(error => {
-                        console.log('error');
-                        // this.$store.commit("registerFailed", {error});
+                        let msg = "", pattern = /\d+/,
+                            e = pattern.exec(error);
+                        switch (e[0]) {
+                            case '404':
+                                this.$router.push({path: '/404'});
+                                break;
+                            case '401':
+                                error = '401';
+                                msg = 'unauthorized';
+                                break;
+                            default:
+                                error = 'g';
+                                msg = 'loginFailed';
+                        }
                     })
 
-                // axios.get('/api/auth/books/' + id)
-                //     .then(function (response) {
-                //         console.log(response);
-                //
-                //     })
-                //     .catch(function (error) {
-                //         console.log(error);
-                //     });
 
             },
         },
         mounted() {
-            this.getBook();
+          this.getBook();
         }
 
     }

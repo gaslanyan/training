@@ -114,34 +114,20 @@ class CourseService
 
     public function getBook($id)
     {
-        $path = public_path().Config::get('constants.UPLOADS').Config::get('constants.BOOKS').$id;
-        if(empty($path)) {
-            $d = new \DirectoryIterator(dirname(__FILE__));
-        } else {
-            $d = new \DirectoryIterator($path);
-        }
-
-        foreach($d as $f) {
-            if($f->isFile() && preg_match("/(\.jpe?g)$/", $f->getFilename())
-            ) {
-                $z = getimagesize($f->getPathname());
-                dd($z);
-
-            }
-//            elseif($f->isDir() && $f->getFilename() != '.' && $f->getFilename() != '..') {
-////                walkDir($f->getPathname());
-//            }
-        }
-//        $result = (!empty($book)) ? $book : __('messages.noting');
-//        if (!$book)
-//            throw new ModelNotFoundException('User not found by ID ');
-//        return $result;
+        $path = public_path() . Config::get('constants.UPLOADS') . Config::get('constants.BOOKS') . $id;
+        $book = '';
+        if (file_exists($path)) {
+            $book = count(glob("$path/*.jpg"));;
+        } else
+            throw new ModelNotFoundException('Book not found by ID ');
+        return $book;
     }
 
     public function getTestsById($id, $a_id)
     {
         $tests = Tests::where('courses_id', $id)
-            ->get()->random(5);
+            ->get();
+        //->random(5)
         if (!empty($tests)) {
             $random_test = [];
             foreach ($tests as $index => $test) {

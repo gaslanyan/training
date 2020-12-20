@@ -38,12 +38,12 @@ Route::group(['prefix' => 'auth',
     Route::post('getcoursebyspec', 'Frontend\CourseAppController@getCourseBySpec');
     Route::post('getcoursesinfo', 'Frontend\CourseAppController@getCourseInfo');
     Route::post('getbook', 'Frontend\CourseAppController@getBookById');
-    Route::post('books', 'Frontend\CourseAppController@getBooksById');
+    Route::post('book', 'Frontend\CourseAppController@getBooksById');
     Route::post('gettests', 'Frontend\CourseAppController@getTestsById');
-    Route::post('payment', 'Frontend\CourseAppController@payment');
-    Route::post('getpayment', 'Frontend\CourseAppController@getpayment');
     Route::post('gettestsbyaid', 'Frontend\AccountCourseController@getTestsResult');
     Route::post('getresult', 'Frontend\AccountCourseController@getResult');
+    Route::post('payment', 'Frontend\CourseAppController@payment');
+    Route::post('getpayment', 'Frontend\CourseAppController@getPayment');
     Route::post('getcpcourse', 'Frontend\AccountCourseController@getCPCourse');
     Route::post('gettitle', 'Frontend\CourseAppController@getCourseTitleById');
     Route::post('finishedvideo', 'Frontend\CourseController@finishedCount');

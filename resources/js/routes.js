@@ -101,13 +101,13 @@ export const routes = [
         },
     },
     {
-        path: '/books/:id',
-        name: 'books',
+        path: '/book/:id',
+        name: 'book',
         component: Books,
         meta: {
             breadCrumbs: [{
-                to: '/books', // hyperlink
-                text: 'ԴԱՍԸՆԹԱՑՆԵՐ' // crumb text
+                to: '/book', // hyperlink
+                text: '    Գրքեր' // crumb text
             }]
         },
     },

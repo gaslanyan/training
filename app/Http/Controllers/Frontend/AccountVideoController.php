@@ -8,6 +8,12 @@ use App\Services\AccountVideoService;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+/**
+ * @group Account & Course
+ *
+ * APIs for a account course
+ * @package App\Http\Controllers\Frontend
+ */
 class AccountVideoController extends Controller
 {
     protected $service;
@@ -40,6 +46,24 @@ class AccountVideoController extends Controller
         }
     }
 
+    /**
+     * Add Video Point
+     *
+     * get the result by test
+     *
+     *
+     * @queryParam access_token token
+     * @queryParam point Get the video point by the user Example: 7.199989
+     * @queryParam user_id The account id to filter Example: 2
+     * @queryParam id The video id to filter by id Example: 3
+     *
+     *
+     * @response
+     * {
+     * "access_token": "",
+     * "video": false
+     * }
+     */
     public function addPointById(AccountVideoRequest $request)
     {
         try {

@@ -8,7 +8,7 @@
                         <div class="col-lg-12">
                            <div class="banner_content text-center">
                                 <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
-                                    <<router-link :to="{ name: 'home' }" class="nav-link">{{texts.home}}
+                                    <router-link :to="{ name: 'home' }" class="nav-link">{{texts.home}}
                                     </router-link>
                                     <router-link to="" class="nav-link">{{b.text}}</router-link>
 
@@ -45,9 +45,10 @@
                         </div>
                         <div class="attachment-mark" v-if="books">
                             <h4 class="title">{{texts.books}}</h4>
+
                             <template  v-for="book in books">
                                 <i class="fa fa-book text"></i>
-                                <router-link to="/books/1" class="text" target="_blank">{{book.title}}</router-link>
+                                <router-link :to="{name: 'book', params: { id: book.id }}" class="text" target="_blank">{{book.title}}</router-link>
 
                             </template>
                         </div>

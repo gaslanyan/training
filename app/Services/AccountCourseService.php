@@ -13,6 +13,7 @@ use App\Notifications\ManageUserStatus;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+
 class AccountCourseService
 {
     /**
@@ -30,10 +31,7 @@ class AccountCourseService
         $this->model = new Repository($accountCourse);
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
+
     public function getTestResult($id, $account_id, $model)
     {
 

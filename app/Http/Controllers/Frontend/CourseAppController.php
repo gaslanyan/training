@@ -9,9 +9,15 @@ use App\Models\Courses;
 use App\Models\Specialty;
 use App\Models\Videos;
 use App\Services\CourseService;
+use Illuminate\Support\Facades\Config;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
-
+/**
+ * @group Course
+ *
+ * APIs for a course
+ * @package App\Http\Controllers\Frontend
+ */
 class CourseAppController extends Controller
 {
 
@@ -97,14 +103,30 @@ class CourseAppController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * Payment- Init Payment Request
+     * Init Payment Request
+     *
+     * @queryParam ClientID The client ID Example:
+     * @queryParam Username The username Example: username
+     * @queryParam Password The password Example: password
+     * @queryParam Currency The currency  to filter Example:AMD
+     * @queryParam Description The description Example: SHMZ
+     * @queryParam Amount The amount Example:10
+     * @queryParam OrderID The Order ID to filter Example: AMD
+     * @queryParam BackURL The back url Example: https://www.shmz.am/lesson
+     * @queryParam Opaque The opaque Example: TEST Opaque VPOS
+     * @queryParam CardHolderID The card holder ID url Example: TEST CARD VPOS
+     *
+     * @response
+     * {
+     * "PaymentID": "sample string 1",
+     * "ResponseCode": 2,
+     * "ResponseMessage": "sample string 3"
+     * }
      */
     function payment()
     {
         try {
-            $form = request('form');
-//            dd(base64_decode($form['number']));
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
             $data['Amount'] = 10;
@@ -113,17 +135,10 @@ class CourseAppController extends Controller
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
             $data['Description'] = 'name';
-//            $data['Card number'] = '4083060010454680';
             $data['Cardholder'] = 'TEST CARD VPOS';
             $data['Currency'] = 'AMD';
             $data['Opaque'] = 'TEST Opaque VPOS';
-//            $data['Exp.date'] = '06/24';
-//            $data['CVV'] = 281;
-            //get data from db by course_id
-//            $data['Amount'] = $form['cost'];
-
-            //get course name bay course id
-            //
+//
             $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment";
             $client = new \GuzzleHttp\Client();
 
@@ -145,11 +160,11 @@ class CourseAppController extends Controller
         }
     }
 
-    function getpayment()
+    function getPayment()
     {
-        $data['Username'] ='3d19541048';
-        $data['Password'] ='lazY2k';
-        $data['PaymentID'] =request('PaymentID');
+        $data['Username'] = '3d19541048';
+        $data['Password'] = 'lazY2k';
+        $data['PaymentID'] = request('PaymentID');
 
         $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
         $client = new \GuzzleHttp\Client();
@@ -174,15 +189,21 @@ class CourseAppController extends Controller
     function getBooksById()
     {
         try {
-            $book = $this->service->getBook(request('id'));
-            return response()->json([
-                'access_token' => request('token'),
-                'book' => $book,
-                'token_type' => 'bearer',
-                'expires_in' => auth('api')->factory()->getTTL() * 60
-            ]);
-        } catch (MethodNotAllowedHttpException$exception) {
+            $result = $this->service->getBook(request('id'));
 
+            if (is_int($result)) {
+                $book['count'] = $result;
+                $book['path'] = Config::get('constants.UPLOADS') . Config::get('constants.BOOKS') . request('id');
+
+                return response()->json([
+                    'access_token' => request('token'),
+                    'book' => $book,
+                    'token_type' => 'bearer',
+                    'expires_in' => auth('api')->factory()->getTTL() * 60
+                ]);
+            } else
+                return response()->json(['error' => true], 404);
+        } catch (MethodNotAllowedHttpException$exception) {
             logger()->error($exception);
             return response()->json(['error' => true], 500);
         }
@@ -209,7 +230,71 @@ class CourseAppController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * Course Test
+     * get Test by id
+     *
+     * @queryParam access_token token
+     * @queryParam course_id The course id to filter
+     * @queryParam account_id The account id to filter
+     *
+     * @response
+     * {
+     * "access_token": "",
+     * "tests": [
+     * {
+     * "id": 1,
+     * "courses_id": 1,
+     * "question": "harc harc harc harc harc",
+     * "answers": "[{\"inp\":\"<p>patasxan patasxan patasxan patasxan patasxan patasxan<\\/p>\"},{\"inp\":\"<p>patasxan patasxan patasxan patasxan patasxan patasxan1<\\/p>\",\"check\":\"1\"},{\"inp\":\"<p>patasxan patasxan patasxan patasxan patasxan patasxan2<\\/p><p><img src=\\\"https:\\/\\/natmedpalace.s3.amazonaws.com\\/uploads%2Ftest%2Fimages1603703829126-logo.png\\\" style=\\\"width: 45px;\\\" class=\\\"fr-fic fr-dib\\\"><\\/p>\"}]",
+     * "question_icons_paths": null,
+     * "answers_icons_paths": null,
+     * "updated_at": "2020-11-07T11:24:21.000000Z",
+     * "created_at": "2020-10-26T09:17:59.000000Z"
+     * },
+     * {
+     * "id": 2,
+     * "courses_id": 1,
+     * "question": "harc harc harc harc harc 2",
+     * "answers": "[{\"inp\":\"<p>patasxan <span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan<\\/span> &nbsp;<span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan<\\/span> &nbsp;<span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan<\\/span> &nbsp;<span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan<\\/span> &nbsp;<span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan<\\/span>&nbsp; <\\/p>\",\"check\":\"1\"},{\"inp\":\"<p><img src=\\\"https:\\/\\/natmedpalace.s3.amazonaws.com\\/uploads%2Ftest%2Fimages1603704561246-x.png\\\" style=\\\"width: 89px;\\\" class=\\\"fr-fic fr-dib\\\"><\\/p><p><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;<\\/span>&nbsp;<\\/p><p><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;<\\/span> <\\/p>\",\"check\":\"1\"},{\"inp\":\"<p><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">patasxan&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;&nbsp;<\\/span><span style=\\\"box-sizing: border-box; color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;\\\">patasxan<\\/span><span style=\\\"color: rgb(65, 65, 65); font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\\\">&nbsp;<\\/span> <\\/p>\"}]",
+     * "question_icons_paths": null,
+     * "answers_icons_paths": null,
+     * "updated_at": "2020-10-26T09:29:50.000000Z",
+     * "created_at": "2020-10-26T09:29:50.000000Z"
+     * },
+     * {
+     * "id": 4,
+     * "courses_id": 1,
+     * "question": "harc harc harc harc harc 2",
+     * "answers": "[{\"inp\":\"<p>patasxan patasxan patasxan patasxan patasxan 5<\\/p>\",\"check\":\"1\"},{\"inp\":\"<p><img src=\\\"https:\\/\\/natmedpalace.s3.amazonaws.com\\/uploads%2Ftest%2Fimages1603704561246-x.png\\\" style=\\\"width: 89px;\\\" class=\\\"fr-fic fr-dib\\\"><\\/p><p>patasxan patasxan patasxan patasxan patasxan patasxan patasxan 5<\\/p>\",\"check\":\"1\"},{\"inp\":\"<p>patasxan patasxan patasxan patasxan patasxan patasxan patasxan 9<\\/p>\"}]",
+     * "question_icons_paths": null,
+     * "answers_icons_paths": null,
+     * "updated_at": "2020-11-07T11:28:42.000000Z",
+     * "created_at": "2020-10-26T09:29:50.000000Z"
+     * },
+     * {
+     * "id": 8,
+     * "courses_id": 1,
+     * "question": "harc harc harc harc harc 1",
+     * "answers": "[{\"inp\":\"<p>answers, answers<\\/p>\", \"check\":\"1\"},{\"inp\":\"<p>answers, answers, answers<\\/p>\"},{\"inp\":\"<p>answers, answer, answer,&nbsp; answer<\\/p>\"}]",
+     * "question_icons_paths": null,
+     * "answers_icons_paths": null,
+     * "updated_at": "2020-11-07T13:19:11.000000Z",
+     * "created_at": "2020-11-07T13:19:11.000000Z"
+     * },
+     * {
+     * "id": 10,
+     * "courses_id": 1,
+     * "question": "harc harc harc harc harc 1",
+     * "answers": "[{\"inp\":\"<p>answers, answers<\\/p>\", \"check\":\"1\"},{\"inp\":\"<p>answers, answers, answers<\\/p>\"},{\"inp\":\"<p>answers, answer, answer,&nbsp; answer<\\/p>\"}]",
+     * "question_icons_paths": null,
+     * "answers_icons_paths": null,
+     * "updated_at": "2020-11-07T13:19:11.000000Z",
+     * "created_at": "2020-11-07T13:19:11.000000Z"
+     * }
+     * ],
+     * "token_type": "bearer",
+     * "expires_in": 21600000
+     * }
      */
     function getTestsById()
     {
@@ -244,12 +329,16 @@ class CourseAppController extends Controller
                 $s3_books = [];
 //                if (!$videos->isEmpty()) {
                 foreach ($books as $index => $book) {
+                    $path = Config::get('constants.UPLOADS') . Config::get('constants.BOOKS') . request('id');
                     $b = Book::select('id', 'title')->where('id', $book)->first();
 
                     $s3_books[$index] = $b;
+                    $s3_books[$index]['count'] = $this->service->getBook(request('id'));
+                    $s3_books[$index]['path'] = $path;
 //                    $s3_books[$index]['path'] = sprintf("%s/%s", env('AWS_URL_ACL'), $b->path);
                 }
                 $courses->books = json_encode($s3_books, true);
+
             }
             if ($courses->videos) {
                 $videos = json_decode($courses->videos);

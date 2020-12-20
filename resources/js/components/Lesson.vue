@@ -185,8 +185,21 @@
                         console.log(res)
                     })
                     .catch(error => {
-                        console.log('error');
-                        // this.$store.commit("registerFailed", {error});
+                        let msg = "", pattern = /\d+/,
+                            e = pattern.exec(error);
+                        switch (e[0]) {
+                            case '404':
+                                this.$router.push({path: '/404'});
+                                break;
+                            case '401':
+                                error = '401';
+                                msg = 'unauthorized';
+                                break;
+                            default:
+                                error = 'g';
+                                msg = 'loginFailed';
+                        }
+
                     });
             }
         },

@@ -15,7 +15,7 @@ export function getPromiseResult(credentials) {
                 res(response.data);
             })
             .catch(err => {
-                rej(texts.error);
+                rej(err);
             })
     })
 }
