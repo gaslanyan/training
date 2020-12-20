@@ -146,4 +146,21 @@ class AccountCourseService
 
     }
 
+    public function uploadPayment($id, $account_id, $data)
+    {
+        $ac = $this->model->selected(['id'])
+            ->where('account_id', $account_id)
+            ->where('course_id', $id)->first();
+        if (empty($ac)) {
+            $u_data['course_id'] = $id;
+            $u_data['account_id'] = $account_id;
+            $u_data['payment'] = $data;
+            return $this->model->create($u_data);
+        } else {
+            return $this->model->update(['id', 'count', 'percent'])
+                ->where('account_id', $account_id)
+                ->where('course_id', $id)->first();
+        }
+    }
+
 }

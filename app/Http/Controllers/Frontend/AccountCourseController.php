@@ -98,4 +98,92 @@ class AccountCourseController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+    /**
+     * Payment- Init Payment Request
+     * Init Payment Request
+     *
+     * @queryParam ClientID The client ID Example:
+     * @queryParam Username The username Example: username
+     * @queryParam Password The password Example: password
+     * @queryParam Currency The currency  to filter Example:AMD
+     * @queryParam Description The description Example: SHMZ
+     * @queryParam Amount The amount Example:10
+     * @queryParam OrderID The Order ID to filter Example: AMD
+     * @queryParam BackURL The back url Example: https://www.shmz.am/lesson
+     * @queryParam Opaque The opaque Example: TEST Opaque VPOS
+     * @queryParam CardHolderID The card holder ID url Example: TEST CARD VPOS
+     *
+     * @response
+     * {
+     * "PaymentID": "sample string 1",
+     * "ResponseCode": 2,
+     * "ResponseMessage": "sample string 3"
+     * }
+     */
+    function payment()
+    {
+        try {
+            $data = [];
+            $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
+            $data['Amount'] = 10;
+            $data['OrderID'] = 2357353;
+            $data["BackURL"] = "https://www.shmz.am/lesson";
+            $data['Username'] = '3d19541048';
+            $data['Password'] = 'lazY2k';
+            $data['Description'] = 'name';
+            $data['Cardholder'] = 'TEST CARD VPOS';
+            $data['Currency'] = 'AMD';
+            $data['Opaque'] = 'TEST Opaque VPOS';
+//
+            $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment";
+            $client = new \GuzzleHttp\Client();
+
+            $response = $client->request('POST',
+                $endpoint, ['form_params' => $data]);
+            $statusCode = $response->getStatusCode();
+            $content = $response->getBody();
+            $content = json_decode($response->getBody(), true);
+            return response()->json([
+                'access_token' => request('token'),
+                'payment' => $content,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 60
+            ]);
+        } catch (MethodNotAllowedHttpException $exception) {
+            dd($exception);
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
+
+    function getPayment()
+    {
+        $data['Username'] = '3d19541048';
+        $data['Password'] = 'lazY2k';
+        $data['PaymentID'] = request('PaymentID');
+
+        $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('POST',
+            $endpoint, ['form_params' => $data]);
+        $statusCode = $response->getStatusCode();
+        $content = $response->getBody();
+        $content = json_decode($response->getBody(), true);
+        $upload_data = [];
+        $upload_data['PaymentID'] = $data['PaymentID'];
+        $upload_data['ClientName'] = $content['ClientName'];
+        $upload_data['DateTime'] = $content['DateTime'];
+        $upload_data['DepositedAmount'] = $content['DepositedAmount'];
+        $upload_data['Amount'] = $content['Amount'];
+
+        $ud = $this->service->uploadPayment(request('course_id'),request('account_id'),json_encode($upload_data),true);
+        return response()->json([
+            'access_token' => request('token'),
+            'getpayment' => $content,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
+    }
+
 }

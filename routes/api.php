@@ -42,8 +42,8 @@ Route::group(['prefix' => 'auth',
     Route::post('gettests', 'Frontend\CourseAppController@getTestsById');
     Route::post('gettestsbyaid', 'Frontend\AccountCourseController@getTestsResult');
     Route::post('getresult', 'Frontend\AccountCourseController@getResult');
-    Route::post('payment', 'Frontend\CourseAppController@payment');
-    Route::post('getpayment', 'Frontend\CourseAppController@getPayment');
+    Route::post('payment', 'Frontend\AccountCourseController@payment');
+    Route::post('getpayment', 'Frontend\AccountCourseController@getPayment');
     Route::post('getcpcourse', 'Frontend\AccountCourseController@getCPCourse');
     Route::post('gettitle', 'Frontend\CourseAppController@getCourseTitleById');
     Route::post('finishedvideo', 'Frontend\CourseController@finishedCount');

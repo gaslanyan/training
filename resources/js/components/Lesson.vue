@@ -59,7 +59,7 @@
                                             <div class='d-flex justify-content-center'>
                                                 <div>
                                                     <button id="show-modal" class="text-uppercase enroll nav-link btn"
-                                                            @click="payment">{{texts.pay}}
+                                                            @click="payment(course.id)">{{texts.pay}}
                                                     </button>
                                                 </div>
                                             </div>
@@ -100,13 +100,13 @@
 </template>
 
 <script>
-    import {getPromiseResult, getPaymentDetails} from '../partials/help';
+    import {getPromiseResult} from '../partials/help';
     import pagetexts from './json/pages.json'
     import text from './json/registertexts.json';
 
 
     export default {
-        name: "paymentForm",
+
         data() {
             return {
                 courses: [],
@@ -151,7 +151,8 @@
                     .catch(err => {
                     })
             },
-            payment() {
+            payment(id) {
+                this.course_id = id ;
                 let credentials = {
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
@@ -176,7 +177,7 @@
                     PaymentID: `${query.paymentID}`,
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
-                    // form: data,
+                    course_id : this.course_id,
                     url: "getpayment",
                     auth: true
                 };
@@ -223,7 +224,6 @@
 
         },
         mounted() {
-            console.log(Object.keys(this.$route.query).length);
             if (Object.keys(this.$route.query).length > 0) {
 
                 this.getPaymentQuery(this.$route.query);
