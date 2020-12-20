@@ -177,7 +177,7 @@ class AccountCourseController extends Controller
         $upload_data['DepositedAmount'] = $content['DepositedAmount'];
         $upload_data['Amount'] = $content['Amount'];
 
-        $ud = $this->service->uploadPayment(request('course_id'),request('account_id'),json_encode($upload_data),true);
+        $ud = $this->service->uploadPayment(request('course_id'),request('account_id'),$upload_data);
         return response()->json([
             'access_token' => request('token'),
             'getpayment' => $content,

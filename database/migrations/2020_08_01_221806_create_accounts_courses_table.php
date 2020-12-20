@@ -25,7 +25,7 @@ class CreateAccountsCoursesTable extends Migration
             $table->json('test')->nullable();
             $table->integer('raiting')->nullable();
             $table->string('comment')->nullable();
-            $table->string('panding')->default('unread');
+            $table->tinyInteger('paid')->default(0);
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
         });

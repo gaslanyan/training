@@ -225,6 +225,7 @@ return [
     'test'=>"Թեստ",
     'percent'=>"%",
     'count'=>"Քանակ",
+    'dont_payment'=>"Ձեր գումարը չի լրացվել",
 
 // tests
     'tests' => 'Թեստեր',
