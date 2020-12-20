@@ -21,6 +21,7 @@ class CreateAccountsCoursesTable extends Migration
             $table->enum('status',['success', 'unsuccess']);
             $table->float('percent')->nullable();
             $table->json('random_test')->nullable();
+            $table->json('payment')->nullable();
             $table->json('test')->nullable();
             $table->integer('raiting')->nullable();
             $table->string('comment')->nullable();

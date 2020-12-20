@@ -124,7 +124,6 @@ class SpecialtySeeder extends Seeder
                     Facades\DB::table('specialties')->insert($item);
                 }
             }
-
         }
     }
 }

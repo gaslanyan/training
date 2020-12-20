@@ -174,6 +174,12 @@ class CourseAppController extends Controller
         $statusCode = $response->getStatusCode();
         $content = $response->getBody();
         $content = json_decode($response->getBody(), true);
+        //$data['PaymentID']
+        //Amount
+        //ClientName
+        //DateTime
+        //DepositedAmount
+
         return response()->json([
             'access_token' => request('token'),
             'getpayment' => $content,
