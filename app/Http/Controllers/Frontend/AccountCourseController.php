@@ -126,7 +126,7 @@ class AccountCourseController extends Controller
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
             $data['Amount'] = 10;
-            $data['OrderID'] = 2357355;
+            $data['OrderID'] = 2357356;
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '3d19541048';
             $data['Password'] = 'lazY2k';
