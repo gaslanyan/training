@@ -150,7 +150,7 @@ class AccountCourseService
     public function uploadPayment($id, $account_id, $data)
     {
         $isPayment = false;
-        $c_a = Courses::select('cost')->where('course_id', $id)->first();
+        $c_a = Courses::select('cost')->where('id', $id)->first();
         $ac = $this->model->selected(['id', 'payment'])
             ->where('account_id', $account_id)
             ->where('id', $id)->first();
