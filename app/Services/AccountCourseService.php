@@ -150,29 +150,29 @@ class AccountCourseService
     public function uploadPayment($id, $account_id, $data)
     {
         $isPayment = false;
-        $c_a = Courses::select('cost')->where('id', $id)->first();
-        $ac = $this->model->selected(['id', 'payment'])
-            ->where('account_id', $account_id)
-            ->where('course_id', $id)->first();
-        if (empty($ac->id)) {
+//        $c_a = Courses::select('cost')->where('id', $id)->first();
+//        $ac = $this->model->selected(['id', 'payment'])
+//            ->where('account_id', $account_id)
+//            ->where('course_id', $id)->first();
+//        if (empty($ac->id)) {
             $u_data['course_id'] = $id;
             $u_data['account_id'] = $account_id;
-            $u_data['payment'] = $data;
-            $isPayment = ($data['DepositedAmount'] == $c_a->cost) ? true : false;
-            if($isPayment)
+            $u_data['payment'] = json_encode($data);
+//            $isPayment = ($data['DepositedAmount'] == $c_a->cost) ? true : false;
+//            if($isPayment)
                 $u_data['paid'] = 1;
             $this->model->create($u_data);
-        } else {
-
-            $u_data = json_decode($ac->payment, true);
-            $u_data['DepositedAmount'] += $data['DepositedAmount'];
-            $isPayment = ($u_data['DepositedAmount'] == $c_a->cost) ? true : false;
-            if($isPayment)
-                $u_data['paid'] = 1;
-            $this->model->update(['payment' => json_encode($u_data, true)], $ac->id);
-        }
-        if (!$isPayment)
-            $isPayment = __('messages.dont_payment');
+//        } else {
+//
+//            $u_data = json_decode($ac->payment, true);
+//            $u_data['DepositedAmount'] += $data['DepositedAmount'];
+//            $isPayment = ($u_data['DepositedAmount'] == $c_a->cost) ? true : false;
+//            if($isPayment)
+//                $u_data['paid'] = 1;
+//            $this->model->update(['payment' => json_encode($u_data, true)], $ac->id);
+//        }
+//        if (!$isPayment)
+//            $isPayment = __('messages.dont_payment');
         return $isPayment;
     }
 }
