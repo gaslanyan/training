@@ -153,7 +153,7 @@ class AccountCourseService
         $c_a = Courses::select('cost')->where('course_id', $id)->first();
         $ac = $this->model->selected(['id', 'payment'])
             ->where('account_id', $account_id)
-            ->where('course_id', $id)->first();
+            ->where('id', $id)->first();
         if (empty($ac->id)) {
             $u_data['course_id'] = $id;
             $u_data['account_id'] = $account_id;
