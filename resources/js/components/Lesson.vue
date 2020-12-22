@@ -154,6 +154,7 @@
             payment(id) {
                 this.course_id = id ;
                 localStorage.setItem('c_id',id);
+                console.log(id);
                 let credentials = {
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
