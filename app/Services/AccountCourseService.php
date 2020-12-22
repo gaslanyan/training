@@ -161,7 +161,7 @@ class AccountCourseService
 //            $isPayment = ($data['DepositedAmount'] == $c_a->cost) ? true : false;
 //            if($isPayment)
                 $u_data['paid'] = 1;
-            $this->model->create($u_data);
+            dd($this->model->create($u_data));
 //        } else {
 //
 //            $u_data = json_decode($ac->payment, true);
