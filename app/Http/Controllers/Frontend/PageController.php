@@ -64,6 +64,7 @@ class PageController extends Controller
         $course_id = $request->course_id;
         $user_id = $request->account_id;
         $comment = $request->comment;
+
         try {
             $accountcourses = new AccountCourse();
             $accountcourses->course_id = $course_id;
@@ -71,6 +72,30 @@ class PageController extends Controller
             $accountcourses->comment = $comment;
             $accountcourses->panding = "unread";
             $accountcourses->save();
+
+        } catch (\Exception $exception) {
+           //dd($exception);
+            logger()->error($exception);
+            // return redirect('backend/courses')->with('error', Lang::get('messages.wrong'));
+        }
+
+        return true;
+
+
+    }
+    public function rating(Request $request)
+    {
+        $course_id = $request->course_id;
+        $user_id = $request->account_id;
+        $rating= $request->rating;
+
+          try {
+            $accountcourses = new AccountCourse();
+            $accountcourses->course_id = $course_id;
+            $accountcourses->account_id = $user_id;
+            $accountcourses->raiting = $rating;
+            $accountcourses->save();
+
         } catch (\Exception $exception) {
             dd($exception);
             logger()->error($exception);
@@ -81,6 +106,7 @@ class PageController extends Controller
 
 
     }
+
 
     public function get(Request $request)
     {

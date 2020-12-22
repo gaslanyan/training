@@ -24,14 +24,8 @@
                             <h1>{{coursecount}}</h1>
                             <span class="smalltext">{{text.lessons}}</span>
                         </div>
-                        <div class="col clockinner clockinner1">
-                            <h1 class="minutes">47</h1>
-                            <span class="smalltext">{{text.certificates}}</span>
-                        </div>
-                        <div class="col clockinner clockinner1">
-                            <h1 class="seconds">59</h1>
-                            <span class="smalltext">Secs</span>
-                        </div>
+
+
                     </div>
                 </div>
                 <div class="col-lg-4 offset-lg-1">

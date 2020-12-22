@@ -64,7 +64,7 @@
         data() {
             return {
                 datas: [],
-                aboutimg: '/css/frontend/img/about-img.png',
+                aboutimg: '/css/frontend/img/about-img.jpg',
                 docs: [],
                 text: pagestext,
             };

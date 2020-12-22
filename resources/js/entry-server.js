@@ -5,6 +5,7 @@ new Promise((resolve, reject) => {
     router.push(url);
     router.onReady(() => {
         const matchedComponents = router.getMatchedComponents();
+        console.log('matchedComponents',matchedComponents);
         if (!matchedComponents.length) {
             return reject({ code: 404 });
         }

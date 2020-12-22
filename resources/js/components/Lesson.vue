@@ -76,11 +76,11 @@
                                     <div class="course_content">
                                         <div class="course_meta d-flex justify-content-between">
                                             <div>
-                                    <span class="meta_info">
+                                    <!--span class="meta_info">
                                         <a href="#">
                                             <i class="fa fa-user-o yellow"></i>355
                                         </a>
-                                    </span>
+                                    </span-->
 
                                             </div>
                                             <div>
@@ -153,6 +153,7 @@
             },
             payment(id) {
                 this.course_id = id ;
+                localStorage.setItem('c_id',id);
                 let credentials = {
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
@@ -177,7 +178,7 @@
                     PaymentID: `${query.paymentID}`,
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
-                    course_id : this.course_id,
+                    course_id : localStorage.getItem('c_id'),
                     url: "getpayment",
                     auth: true
                 };

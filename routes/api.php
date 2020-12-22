@@ -64,6 +64,7 @@ Route::post('allcourses', 'Frontend\CourseController@allcourses');
 //get courses
 
 Route::post('comment', 'Frontend\PageController@savecomment');
+Route::post('rating', 'Frontend\PageController@rating');
 
 
 Route::post('regions', 'Frontend\AddressController@index');

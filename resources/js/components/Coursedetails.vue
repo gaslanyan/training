@@ -149,6 +149,7 @@
                 video_info: [],
                 books: [],
                 feedback: '',
+                rating:0,
                 datas: [],
                 specialites: [],
                 courseimg: '/css/frontend/img/courses/course-details.jpg',
@@ -302,30 +303,38 @@
                     })
             },
             raiting: function (event) {
-
                 var loop_count = 5 - parseInt(event.currentTarget.id);
-
-
-                for (var j = event.currentTarget.id; j >= event.currentTarget.id; j--) {
-                    var ss = j.toString();
-                    if (document.getElementById(ss).classList.contains('checked')) {
-
-
-                        document.getElementById(ss).classList.remove("checked");
-                    }
-                    event.currentTarget.classList.remove("checked");
-
-                }
-
+                var t_id =parseInt(event.currentTarget.id);
 
                 if (!event.currentTarget.classList.contains('checked')) {
-                    for (var i = 1; i <= parseInt(event.currentTarget.id); i++) {
+                    for (var i = 1; i <= parseInt(t_id); i++) {
                         event.currentTarget.classList.add("checked");
                         var s = i.toString();
                         document.getElementById(s).classList.add("checked");
-
                     }
                 }
+                else{
+                    for (var j = 5; j >= t_id; j--) {
+                        var ss = j.toString();
+                        document.getElementById(ss).classList.remove("checked");
+                    }
+                }
+                console.log(event.currentTarget.id);
+                let user = JSON.parse(localStorage.getItem('user'));
+                axios.post('/api/rating/', {
+                    rating:parseInt(event.currentTarget.id),
+                    account_id: user.id,
+                    course_id: this.$route.params.id
+                })
+                    .then(function (response) {
+                        //alert(response.data);
+
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
             },
             sendcomment: function () {
                 // if(this.feedback != ''){

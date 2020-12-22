@@ -107,7 +107,7 @@ export const routes = [
         meta: {
             breadCrumbs: [{
                 to: '/book', // hyperlink
-                text: '    Գրքեր' // crumb text
+                text: 'Գրքեր' // crumb text
             }]
         },
     },

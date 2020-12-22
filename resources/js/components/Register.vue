@@ -327,14 +327,15 @@
                     </div>
                     <footer class="form-group col-lg-12">
                         <label for="address" class='fa fa-arrow-left nav_label col-lg-4 float-left'></label>
+
+                        <vue-recaptcha sitekey="6LedFfYZAAAAAFddwlJAn8IhifgaZLWnYKPsJZpv" :loadRecaptchaScript="true" class="cpt float-left"></vue-recaptcha>
                         <button type="submit" class="btn primary-btn mt-3 float-right">{{texts.register}}</button>
+
                     </footer>
                 </div>
             </article>
 
         </form>
-
-            <vue-recaptcha sitekey="6LedFfYZAAAAAFddwlJAn8IhifgaZLWnYKPsJZpv" :loadRecaptchaScript="true"></vue-recaptcha>
 
     </div>
 
