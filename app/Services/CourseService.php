@@ -128,11 +128,28 @@ class CourseService
         $tests = Tests::where('courses_id', $id)
             ->get();
         //->random(5)
+
         if (!empty($tests)) {
             $random_test = [];
+
             foreach ($tests as $index => $test) {
+                $arr = [];
                 $random_test[] = $test->id;
+                $contents = json_decode($test['answers']);
+//                dd($contents);
+                $answers = [];
+                foreach ($contents as $str => $item) {
+                    preg_match("/<img[^>]+src=\"([^\">]+)\"/", $item->inp, $arr);
+
+                    if (isset($arr[1]))
+                        $answers[$str]['img'] = $arr[1];
+                    $answers[$str]['answer'] = strip_tags($item->inp);
+                    if(isset($item->check))
+                        $answers[$str]['check'] = 1;
+                }
+                $tests[$index]['answers'] = json_encode($answers, true);
             }
+
             AccountCourse::where(['account_id' => $a_id, 'course_id' => $id])
                 ->update(['random_test' => json_encode($random_test, true)]);
 

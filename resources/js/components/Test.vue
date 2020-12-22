@@ -38,6 +38,7 @@
                                 <h3 class="or">{{index+1}}. {{info.question}}</h3>
 
                                 <ul class="test-actual">
+
                                     <li v-for="(answer, i) in JSON.parse(info.answers)" class="d-flex flex-row">
 
                                         <label class="test-answer">
@@ -45,7 +46,11 @@
                                                    v-model="formTest[(index +1)+'_'+(i+1)]"
                                                    :name="'test_'+(index +1)" v-validate="'required|included:1,2,3,4'">
                                         </label>
-                                        <span v-html="answer.inp">{{answer.inp}}</span>
+
+                                        <span class="test" v-if="answer.answer" v-html="answer.answer">{{answer.answer}}</span>
+                                        <div v-if="answer.img" class="test">
+                                            <img  :src="answer.img" class="test_img">
+                                        </div>
                                         <span v-show="errors.has('test_'+(index +1))"
                                               class="help is-danger">{{ errors.first('test_'+(index +1)) }}</span>
                                     </li>
@@ -196,7 +201,7 @@
                     .then(res => {
                         if (res === 0)
                             this.$router.push('/coursedetails/' + this.$route.params.id);
-                        else if(res === -1)
+                        else if (res === -1)
                             this.$router.push('/404');
 
                     })
@@ -238,3 +243,15 @@
 
     }
 </script>
+<style>
+
+    .test_img {
+        float: left;
+        width: 120px;
+    }
+    .test{
+        width: 100%;
+        display: block;
+        float: left;
+    }
+</style>
