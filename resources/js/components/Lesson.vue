@@ -76,11 +76,11 @@
                                     <div class="course_content">
                                         <div class="course_meta d-flex justify-content-between">
                                             <div>
-                                    <!--span class="meta_info">
-                                        <a href="#">
-                                            <i class="fa fa-user-o yellow"></i>355
-                                        </a>
-                                    </span-->
+                                                <!--span class="meta_info">
+                                                    <a href="#">
+                                                        <i class="fa fa-user-o yellow"></i>355
+                                                    </a>
+                                                </span-->
 
                                             </div>
                                             <div>
@@ -103,10 +103,9 @@
     import {getPromiseResult} from '../partials/help';
     import pagetexts from './json/pages.json'
     import text from './json/registertexts.json';
-
+    import Swal from 'sweetalert2'
 
     export default {
-
         data() {
             return {
                 courses: [],
@@ -119,11 +118,22 @@
             }
         },
         methods: {
+            beforeunloadFn(e) {
+                Console.log('refresh or close')
+                // ...
+            },
+            created() {
+                window.addEventListener('beforeunload', e => this.beforeunloadFn(e))
+            },
+            destroyed() {
+                window.removeEventListener('beforeunload', e => this.beforeunloadFn(e))
+            },
             logout() {
                 this.$store.commit('logout');
                 this.$router.push('/login');
             },
             allcourses: function () {
+
                 let credentials = {
                     url: 'allcourses',
                     auth: false
@@ -152,21 +162,21 @@
                     })
             },
             payment(id) {
-                this.course_id = id ;
-                localStorage.setItem('c_id',id);
-                console.log(id);
+                this.course_id = id;
+                localStorage.setItem('c_id', id);
+                localStorage.setItem('a_id', this.currentUser.id);
+
                 let credentials = {
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
-                    // form: data,
+                    course_id: id,
+                    mobile: false,
                     url: "payment",
                     auth: true
                 };
-
                 getPromiseResult(credentials)
                     .then(res => {
-                        location.href = 'https://servicestest.ameriabank.am/VPOS/Payments/Pay?id='+res.payment.PaymentID+'&lang=am';
-
+                        location.href = 'https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
                     })
                     .catch(error => {
                         console.log('error');
@@ -174,18 +184,32 @@
                     })
             },
             getPaymentQuery(query) {
-
                 let credentials = {
                     PaymentID: `${query.paymentID}`,
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
-                    course_id : localStorage.getItem('c_id'),
+                    course_id: localStorage.getItem('c_id'),
                     url: "getpayment",
                     auth: true
                 };
+
                 getPromiseResult(credentials)
                     .then(res => {
-                        console.log(res)
+                        // console.log(res)
+                        if (localStorage.get('m')) {
+                            this.logout();
+                            Swal.fire({
+                                icon: 'success',
+                                title: pagetexts.thanks,
+                                text: pagetexts.backApp,
+                                confirmButtonText:
+                                    `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                                confirmButtonColor: '#631ed8',
+                            });
+                            setTimeout(function () {
+                                window.close();
+                            }, 5000);
+                        }
                     })
                     .catch(error => {
                         let msg = "", pattern = /\d+/,
@@ -202,7 +226,6 @@
                                 error = 'g';
                                 msg = 'loginFailed';
                         }
-
                     });
             }
         },
@@ -213,8 +236,11 @@
                 return this.$store.getters.currentUser
             },
         },
-
+        components: {
+            'Swal': Swal
+        },
         beforeMount() {
+
             if (!this.$store.getters.currentUser) {
                 this.allcourses();
             } else {
@@ -226,13 +252,21 @@
 
         },
         mounted() {
-            if (Object.keys(this.$route.query).length > 0) {
 
+            if (Object.keys(this.$route.query).length > 0) {
+                if(this.$route.query)
                 this.getPaymentQuery(this.$route.query);
+                else
+                    Swal.fire({
+                        icon: 'error',
+                        title: pagetexts.error,
+                        text: pagetexts.again,
+                        confirmButtonText:
+                            `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                        confirmButtonColor: '#631ed8',
+                    });
             }
         }
-
-
     }
 </script>
 

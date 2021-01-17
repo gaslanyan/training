@@ -54,10 +54,16 @@ class DashboardController extends Controller
                 }
             }
         }
-    //        echo "<pre>";
-    //        dd($workplace_region[7]['workplace']);
-        $courses = Courses::query()->rightJoin('accounts_courses', 'accounts_courses.course_id', '=', 'courses.id')
-            ->select('courses.name', 'accounts_courses.course_id', DB::raw('count(course_id) as total'), DB::raw('IF(`paid`,1,0) as isPaid'))
+        //        echo "<pre>";
+        //        dd($workplace_region[7]['workplace']);
+        $courses = Courses::query()->rightJoin('accounts_courses',
+            'accounts_courses.course_id',
+            '=', 'courses.id')
+            ->select('courses.name',
+                'accounts_courses.course_id',
+                DB::raw('count(course_id) as total')
+//                DB::raw('IF(`paid`,1,0) as isPaid')
+    )
             ->groupBy(['course_id'])->get();
 
         return view('backend.dashboard', compact('admin', 'courses', 'workplace_region'));

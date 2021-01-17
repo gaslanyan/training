@@ -30,6 +30,10 @@
   "phone": "(+374) 43-007-107",
   "email": "ccpdmw@gmail.com",
   "copyright": "Copyright © 2020 All rights reserved |\n Նախագծված և իրականացված է <i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i> <a href=\"#\">GTECH LLC</a>\n                    կողմից",
-  "page": "էջից"
-
+  "page": "էջից",
+  "thanks": "Շնորհակալություն",
+  "backApp": "Գործարքը կատարվել է հաջողությամբ",
+  "close": "Փակել",
+  "error": "Ինչ-որ բան այն չէ",
+  "again": "Փորցեք կրկին"
 }

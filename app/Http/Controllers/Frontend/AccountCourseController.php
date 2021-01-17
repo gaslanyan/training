@@ -98,10 +98,11 @@ class AccountCourseController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+
     /**
      * Payment- Init Payment Request
      * Init Payment Request
-     *
+     * important for mobile --- send account_id, course_id, token, mobile=true
      * @queryParam ClientID The client ID Example:
      * @queryParam Username The username Example: username
      * @queryParam Password The password Example: password
@@ -122,6 +123,7 @@ class AccountCourseController extends Controller
      */
     function payment()
     {
+//        dd(request());
         try {
             $data = [];
             $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
@@ -177,7 +179,7 @@ class AccountCourseController extends Controller
         $upload_data['DepositedAmount'] = $content['DepositedAmount'];
         $upload_data['Amount'] = $content['Amount'];
 
-        $ud = $this->service->uploadPayment(request('course_id'),request('account_id'),$upload_data);
+        $ud = $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
         return response()->json([
             'access_token' => request('token'),
             'getpayment' => $content,

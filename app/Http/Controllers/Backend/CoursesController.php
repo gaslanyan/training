@@ -241,6 +241,7 @@ class CoursesController extends Controller
             $cours['books'] = json_encode($request->books);
             $cours['cost'] = $request->cost;
             $cours['content'] = $request->content_data;
+
             $this->model->create($cours);
             return redirect('backend/course')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {

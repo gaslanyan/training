@@ -7,7 +7,8 @@ export function getPromiseResult(credentials) {
     if (credentials.auth)
         auth = "auth/";
     delete credentials.auth;
-
+    if (credentials.mobile)
+        localStorage.setItem('m', credentials.mobile);
     return new Promise((res, rej) => {
         axios.post('/api/' + auth + url, credentials,
         )
