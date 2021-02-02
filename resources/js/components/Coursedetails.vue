@@ -136,7 +136,7 @@
 </template>
 
 <script>
-    import {getPromiseResult} from '../partials/help';
+    import {getPromiseResult,getCertificateById} from '../partials/help';
     import texts from './json/course.json';
     import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
     import 'hooper/dist/hooper.css';
@@ -302,27 +302,52 @@
                         // this.$store.commit("registerFailed", {error});
                     })
             },
+
+            certificate: function () {
+                let credentials = {
+                    id: this.$route.params.id,
+                    token: this.currentUser.token,
+                    user_id:this.currentUser.id
+                };
+                getCertificateById(credentials)
+                    .then(res => {
+                        console.log(res.data)
+                        /*this.datas = res.data;
+                        this.datas.credit = JSON.parse(res.data.credit);
+                        this.video_info = JSON.parse(res.data.videos);
+                        this.books = JSON.parse(res.data.books);
+                        this.specialites = res.specialities;*/
+                        // this.manageEvents();
+
+                    })
+                    .catch(error => {
+                        console.log('error');
+                        // this.$store.commit("registerFailed", {error});
+                    })
+            },
             raiting: function (event) {
                 var loop_count = 5 - parseInt(event.currentTarget.id);
                 var t_id =parseInt(event.currentTarget.id);
-
+                var r = 0;
                 if (!event.currentTarget.classList.contains('checked')) {
                     for (var i = 1; i <= parseInt(t_id); i++) {
                         event.currentTarget.classList.add("checked");
                         var s = i.toString();
+                        r=event.currentTarget.id;
                         document.getElementById(s).classList.add("checked");
                     }
                 }
                 else{
                     for (var j = 5; j >= t_id; j--) {
                         var ss = j.toString();
+                        r=event.currentTarget.id-1;
                         document.getElementById(ss).classList.remove("checked");
                     }
                 }
                 console.log(event.currentTarget.id);
                 let user = JSON.parse(localStorage.getItem('user'));
                 axios.post('/api/rating/', {
-                    rating:parseInt(event.currentTarget.id),
+                    rating:parseInt(r),
                     account_id: user.id,
                     course_id: this.$route.params.id
                 })
@@ -377,6 +402,7 @@
         beforeMount() {
             this.coursedetails();
             this.finishedVideo();
+            this.certificate();
         },
     }
 
