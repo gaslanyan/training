@@ -136,7 +136,7 @@
 </template>
 
 <script>
-    import {getPromiseResult,getCertificateById} from '../partials/help';
+    import {getPromiseResult} from '../partials/help';
     import texts from './json/course.json';
     import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
     import 'hooper/dist/hooper.css';
