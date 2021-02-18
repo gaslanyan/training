@@ -8,8 +8,6 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
-
 /**
  * Class PasswordResetController
  * @package App\Http\Controllers\Frontend
@@ -77,6 +75,7 @@ class PasswordResetController extends Controller
     protected function resetPassword($user, $password)
     {
         $user->password = Hash::make($password);
+        dd(Hash::make($password));
         $user->save();
         event(new PasswordReset($user));
     }

@@ -410,8 +410,9 @@ class AccountService
     public function updatePassword($request, $id)
     {
         $data = [];
-        $data['password'] = bcrypt($request->password);
-        $inserted = $this->model->update($data, $id);
+        $password = bcrypt($request->password);
+        $inserted = User::where('account_id', $id)->update(['password' => $password]);
+
         if (!$inserted)
             throw new ModelNotFoundException('insert chi eghel ');
         return $inserted;

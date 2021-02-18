@@ -119,12 +119,13 @@ class AccountController extends Controller
     public function show($id)
     {
         try {
-
             $account = $this->service->getAccount()->where('id', $id)->first();
             if (!empty($account)) {
                 $account = $this->service->addresses($account);
             }
+
             $profession = $this->service->getProfessions($id);
+
             return view('backend.account.show',
                 compact('account', 'profession'));
         } catch (MethodNotAllowedHttpException $exception) {

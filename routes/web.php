@@ -87,8 +87,6 @@ Route::post( '/delete-book', 'Backend\BookController@removeBook');
 Route::post('/backend/book/{id}', 'Backend\BookController@update');
 
 //courses
-Route::get('/backend/course/result', 'Backend\CoursesController@result');
-Route::get('/backend/course/result-speciality', 'Backend\CoursesController@resultSpeciality');
 Route::resource('/backend/course', 'Backend\CoursesController');
 Route::post('/backend/course/{id}', 'Backend\CoursesController@update');
 

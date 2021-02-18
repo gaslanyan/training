@@ -43,14 +43,14 @@
         },
         methods: {
             resetPassword() {
-                axios.post("/api/reset/password/", {
+                axios.post("/reset/password", {
                     token: this.$route.params.token,
                     email: this.email,
                     password: this.password,
                     password_confirmation: this.password_confirmation
                 })
                     .then(result => {
-                        // console.log(result.data);
+                        console.log(result.data);
                         this.$router.push({name: 'login'})
                     }, error => {
                         console.error(error);
