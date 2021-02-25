@@ -135,7 +135,6 @@
                 return this.$store.getters.registeredUser
             },
             verifiedUser() {
-                console.log('verifiedUser', this.$store.getters.verifiedUser);
                 return this.$store.getters.verifiedUser
             }
         }

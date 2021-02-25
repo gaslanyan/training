@@ -17,6 +17,9 @@ export default {
         verifiedUser: null,
         editedUser: null,
         get_content_error: null,
+        resetPassword: null,
+        reset_password: null,
+        reset_failed: null,
     },
     getters: {
         isLoading(state) {
@@ -46,6 +49,12 @@ export default {
         verifiedUser(state) {
             return state.verifiedUser;
         },
+        reset_password(state){
+            return state.reset_password;
+        },
+        reset_failed(state){
+            return state.reset_failed;
+        }
     },
     mutations: {
         login(state) {
@@ -101,6 +110,12 @@ export default {
         verifySuccess(state, payload) {
             state.verify_error = null;
             state.verifiedUser = payload.success;
+        },
+        resetPasswordSuccess(state, payload) {
+            state.reset_password = payload;
+        },
+        resetPasswordFailed(state, payload) {
+            state.reset_failed = payload;
         },
         verifyFailed(state, payload) {
             state.verify_error = payload.error;

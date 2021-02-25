@@ -75,6 +75,6 @@ Route::post('spec', 'Frontend\ExpertController@specialty');
 Route::post('territory', 'Frontend\AddressController@territories');
 //        Route::get('reset-password', 'AuthController@sendPasswordResetLink');
 Route::post('reset-password', 'Frontend\PasswordResetController@sendPasswordResetLink');
-Route::post('reset/password', 'Frontend\PasswordResetController@callResetPassword');
+Route::match(['put', 'patch'],'reset/password', 'Frontend\PasswordResetController@callResetPassword');
 
 
