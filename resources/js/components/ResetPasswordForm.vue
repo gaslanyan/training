@@ -2,30 +2,41 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
-                <div class="card card-default">
-                    <div class="card-header">New Password</div>
+                <div class="register_form">
+                    <h3>{{texts.new_password_confirm}}</h3>
                     <div class="card-body">
-                        <div class="form-group row">
-
-                        </div>
                         <form autocomplete="off" @submit.prevent="resetPassword">
                             <input autocomplete="off" type="hidden" name="_method" value="PUT">
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" id="email" class="form-control" placeholder="user@example.com"
-                                       v-model="email" required>
+                            <div class="form-group row">
                             </div>
                             <div class="form-group">
-                                <label for="email">Password</label>
-                                <input type="password" id="password" class="form-control" placeholder=""
-                                       v-model="password" required>
+
+                                <input type="email" id="email" name="email" autocomplete="off"
+                                       v-validate="'required|email'" :placeholder="texts.email"
+                                       :class="{'input': true, 'is-invalid': errors.has('email')}"
+                                       class="form-control p-4" v-model="formReset.email"
+                                       :data-vv-as="texts.email">
+                                <span v-show="errors.has('email')"
+                                      class="help is-danger">{{ errors.first('email') }}</span>
                             </div>
                             <div class="form-group">
-                                <label for="email">Confirm Password</label>
-                                <input type="password" id="password_confirmation" class="form-control" placeholder=""
-                                       v-model="password_confirmation" required>
+                                <input type="password" id="password" class="form-control p-4 input" v-validate="'required|min:8'"
+                                       v-model="formReset.password" :placeholder="texts.password"
+                                       :class="{'input': true, 'is-invalid': errors.has('password') }"
+                                       :data-vv-as="texts.password">
+                                <span ref="password" v-show="errors.has('password')"
+                                      class="help is-danger">{{ errors.first('password') }}</span>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <div class="form-group">
+                                <input type="password" id="password_confirmation" class="form-control p-4 input" placeholder=""
+                                       :class="{'input': true, 'is-invalid': errors.has('password_confirmation') }"
+                                       v-validate="'required|min:8|confirmed:password'" v-model="formReset.password_confirmation"
+                                       :placeholder="texts.confirmpassword"
+                                       :data-vv-as="texts.confirmpassword">
+                                <span ref="password_confirmation" v-show="errors.has('password_confirmation')"
+                                      class="help is-danger">{{ errors.first('password_confirmation') }}</span>
+                            </div>
+                            <button type="submit" class="btn primary-btn">{{texts.update}}</button>
                         </form>
                     </div>
                 </div>
@@ -40,29 +51,44 @@
     export default {
         data() {
             return {
+                formReset: {
+                    email: '',
+                    password: '',
+                    password_confirmation: '',
+                },
                 token: null,
-                email: null,
-                password: null,
-                password_confirmation: null,
-                has_error: false,
+                error: null,
                 texts: registertexts,
             }
         },
         methods: {
             resetPassword() {
-                axios.post("/api/reset/password", {
-                    token: this.$route.params.token,
-                    _method: 'PUT',
-                    email: this.email,
-                    password: this.password,
-                    password_confirmation: this.password_confirmation
-                })
-                    .then(result => {
-                        this.$router.push({name: 'login'})
-                    }, error => {
-                        console.error(error);
+                this.$validator.validateAll()
+                    .then((res) => {
+                        console.log(res);
+                        if (res) {
+                            axios.post("/api/reset/password", {
+                                token: this.$route.params.token,
+                                _method: 'PUT',
+                                email: this.$data.formReset.email,
+                                password: this.$data.formReset.password,
+                                password_confirmation: this.$data.formReset.password_confirmation
+                            })
+                                .then(result => {
+                                    this.$router.push({name: 'login'})
+                                }, error => {
+                                    console.error(error);
+                                });
+                        }
                     });
+
             }
         }
     }
 </script>
+<style scoped>
+    .error {
+        text-align: center;
+        color: red;
+    }
+</style>

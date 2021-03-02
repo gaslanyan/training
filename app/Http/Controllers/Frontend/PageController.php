@@ -134,7 +134,7 @@ class PageController extends Controller
 
 
     }
-    public function certificate(Request $request)
+       public function certificate(Request $request)
     {
 
         $account_name = Account::where('id', '=', $request->user_id)->first();
@@ -147,18 +147,33 @@ class PageController extends Controller
         $coordy = \GuzzleHttp\json_decode($course->coordinatey);*/
 
        // $coordinates = $course->coordinates;
-        $coordinates = \GuzzleHttp\json_decode("[{'name' : {'x': 182,'y' : 219}},{'start_date': {'x' : 111, 'y' : 271}},{'end_date' : {'x' : 240, 'y' : 270}}]");
-        dd($coordinates);
+        $coordinates = \GuzzleHttp\json_decode('{
+                    "name": {
+                        "x": "182",
+                        "y": "218"
+                    },
+                    "end_date": {
+                        "x": "244",
+                        "y": "267"
+                    },
+                    "start_date": {
+                        "x": "136",
+                        "y": "273"
+                    }
+}');
+
 
        // $img =   imagecreatefrompng(public_path()."/css/frontend/img/".$certificate);
-        $img = public_path(Config::get('constants.UPLOADS') . '/diplomas'.$certificate);
+        $img = public_path(Config::get('constants.UPLOADS') . '/diplomas/plakat.png');
+      
         $color = imagecolorallocate($img, 000, 000, 000);
         $font = public_path()."/css/frontend/fonts/GHEAMariamRIt.otf";
         $text = strtoupper($account_name->name ." ". $account_name->surname);
 
-        imagettftext($img, 12, 0, $coordx->text, $coordy->text, $color, $font, $text);
-        imagettftext($img, 12, 0, $coordx->data, $coordy->data, $color, $font, $start);
-        imagettftext($img, 12, 0, $coordy->data1, $coordy->data1, $color, $font, $end);
+        dd($img);
+        imagettftext($img, 12, 0, $coordinates->name->x, $coordinates->name->y, $color, $font, $text);
+        imagettftext($img, 12, 0, $coordinates->start_date->x, $coordinates->start_date->y, $color, $font, $start);
+        imagettftext($img, 12, 0, $coordinates->end_date->x, $coordinates->end_date->y, $color, $font, $end);
         header('Content-type:image/png');
         imagepng($img, public_path().'/css/frontend/img/'.$text.'.png', 5);
         echo '<img id="finishimg" src ='.public_path()."/css/frontend/img/".$text.'.png">';

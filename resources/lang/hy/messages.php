@@ -66,7 +66,7 @@ return [
 //backend messages
 
     'dt' => 'Վերջնաժամկետ',
-    'dashboard'=>'կառավարման հարթակ',
+    'dashboard' => 'կառավարման հարթակ',
     'permissions' => 'Թույլտվություններ',
     'description' => 'Նկարագրություն',
     'your_password' => 'Ձեր գաղտնաբառը: ',
@@ -220,13 +220,13 @@ return [
     'selfeducation' => 'Ինքնակրթություն',
     'course_name_unique' => 'Նաման անունով դասընթաց արդեն գոյություն ունի։',
     'unknown' => 'Անորոշ',
-    'verify'=>"Հաստատաել",
-    'credit'=>"Կրեդիտ",
-    'result'=>"Արդյունք",
-    'test'=>"Թեստ",
-    'percent'=>"%",
-    'count'=>"Քանակ",
-    'dont_payment'=>"Ձեր գումարը չի լրացվել",
+    'verify' => "Հաստատաել",
+    'credit' => "Կրեդիտ",
+    'result' => "Արդյունք",
+    'test' => "Թեստ",
+    'percent' => "%",
+    'count' => "Քանակ",
+    'dont_payment' => "Ձեր գումարը չի լրացվել",
 
 // tests
     'tests' => 'Թեստեր',
@@ -252,13 +252,13 @@ return [
     'sanitary_rules_and_norms' => 'Սանիտարական կանոններ և նորմեր',
 
 //comments
-    'comments' =>'Մեկնաբանություններ',
-    'username'  =>'Օգտատեր',
-    'showcomment' =>'Դիտել մեկնաբանությունը',
+    'comments' => 'Մեկնաբանություններ',
+    'username' => 'Օգտատեր',
+    'showcomment' => 'Դիտել մեկնաբանությունը',
 
 
     //help
-    'i'=>"ի ",
-    'y'=>"ը ",
+    'i' => "ի ",
+    'y' => "ը ",
 ];
 

@@ -10,7 +10,7 @@ body {
 
 .shmz {
     font-size: 34px !important;
-    /* background: #631ed8 !important;
+    /* background: #631ed8 !important;department_area
      background: -webkit-linear-gradient(left, #631ed8, rgb(41,145,241)) !important;
      background: -moz-linear-gradient(left, #631ed8, rgb(41,145,241)) !important;
     /**! background: linear-gradient(to right, #e9a401 0%, #ff0 51%, #fff800 100%); !important;*/
@@ -106,8 +106,11 @@ button:focus {
 
 .fa {
 
-    color: #a5a3a7;
+    color: #fff; /*#a5a3a7;*/
     font-size: 25px;
+}
+.nav-link:hover {
+    color: rgb(255 255 255);
 }
 
 .text {
@@ -1826,14 +1829,19 @@ color:rgb(99 30 216);
     text-align: center;
     cursor: pointer;
     border: 4px double #631ed8;
-    padding:10px 20px;
+    padding:20px 20px;
     height:250px;
 }
 
 .categories_post img {
     max-width: 100%;
 }
-
+.feedeback h6{
+    color:#777;
+}
+.fa-star{
+    color:#777;
+}
 .categories_post .categories_details {
     /*position: absolute;
     top: 20px;
@@ -1865,7 +1873,6 @@ color:rgb(99 30 216);
     font-size: 14px;
     line-height: 26px;
     margin-bottom: 0px;
-    color:rgb(99, 30, 216);
 }
 
 .categories_post .categories_details .border_line {
@@ -1873,26 +1880,16 @@ color:rgb(99 30 216);
     background: #fff;
     width: 100%;
     height: 1px;
+
 }
-.categories_text {
-    position:relative;
-}
-.categories_text div:last-child{
-    position:absolute;
-    top:90px;
-    left:13px;
-}
-.fa-lock{
-    position: absolute;
-    top: 60px;
-    left: 120px;
-}
+
 .line:after {
     content: "";
     position: absolute;
     height: 1px;
     width: 30%;
     background: rgb(99, 30, 216);
+
 }
 
 .categories_post:hover .categories_details {

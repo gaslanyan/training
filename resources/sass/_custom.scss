@@ -364,7 +364,8 @@ a.submit-button {
 #preview {
   display: flex;
   position: relative;
-  width: 120px;
+  width: 180px;
+  margin:0 auto;
 }
 
 .avatar {
@@ -390,17 +391,24 @@ input[type="file"], .icon {
   opacity: 1;
   cursor: pointer;
   border-radius: 50%;
-  width: 36px;
+  width: 50px;
   background-color: #8638FC;
-  padding: 5px;
+  padding: 12px;
+  color:#fff;
+}
+.img_hint{
+  text-align: center;
+  font-size: 12px;
 }
 .department_area{
-  border-top: 3px solid #fff800;
+  border-top: none;
 }
 .clock_sec h1{
   font-size: 40px;
   color: #e9a401;
 }
-
+.diplomas{
+  height: 300px;
+}
 /* Custom Area css
 ============================================================================================ */

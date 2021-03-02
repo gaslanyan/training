@@ -25,13 +25,13 @@
                 <div class="row">
                     <div class="col-lg-6 course_details_left">
                         <div class="main_image">
-                            <p class="pb-4"> {{texts.hint}}</p>
+
                             <div id="preview">
                                 <img v-bind:src="imgName" class="avatar">
                                 <i class="fa fa-camera-retro fa-2x icon"></i>
                                 <input type="file" @change="onFileChange"/>
-
                             </div>
+                            <p class="pt-4 img_hint"> {{texts.hint}}</p>
                         </div>
                     </div>
                     <div class="col-lg-6 right-contents">

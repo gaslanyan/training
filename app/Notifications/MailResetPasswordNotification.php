@@ -2,10 +2,9 @@
 
 namespace App\Notifications;
 
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
-use Illuminate\Auth\Notifications\ResetPassword;
 
 class MailResetPasswordNotification extends ResetPassword
 {
@@ -42,11 +41,13 @@ class MailResetPasswordNotification extends ResetPassword
     {
         $link = url("/reset-password/" . $this->token);
         return (new MailMessage)
-            ->subject(__('auth','reset_password'))
-            ->line(__('auth',"receiving"))
-            ->action(__('auth','reset_password'), $link)
-            ->line(__('auth',"reset_expire" . config('auth.passwords.users.expire') . " minutes"))
-            ->line(__('auth',"not_request_reset"));
+            ->greeting(__('messages.hello'))
+            ->subject(__('auth.reset_password'))
+            ->line(__('auth.receiving'))
+            ->action(__('auth.reset_password'), $link)
+            ->line(__('auth.reset_expire'))
+            ->line(__('auth.not_reset'))
+            ->salutation(__("messages.faithfully"));
     }
 
 

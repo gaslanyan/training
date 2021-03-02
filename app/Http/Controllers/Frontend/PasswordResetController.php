@@ -75,7 +75,6 @@ class PasswordResetController extends Controller
     protected function resetPassword($user, $password)
     {
         $user->password = Hash::make($password);
-        dd(Hash::make($password));
         $user->save();
         event(new PasswordReset($user));
     }

@@ -305,7 +305,7 @@
 
                                 <div class="col-lg-3 d-inline-flex" v-model="appEdit.diplomas"
                                      v-for="(diploma, key) in appEdit.j_diplomas" ref="diploma">
-                                    <img class="col-lg-12" :src="'/uploads/diplomas/'+diploma" :alt="diploma">
+                                    <img class="col-lg-12 diplomas" :src="'/uploads/diplomas/'+diploma" :alt="diploma">
                                     <div class="remove-container">
                                         <a class="remove fa fa-remove"
                                            v-on:click="removeDiploma(key, diploma)"> </a>

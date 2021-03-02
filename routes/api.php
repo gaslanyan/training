@@ -59,6 +59,7 @@ Route::post('coursestitle', 'Frontend\PageController@coursestitle');
 Route::post('applicantcount', 'Frontend\PageController@applicantcount');
 Route::post('coursescount', 'Frontend\PageController@coursescount');
 Route::post('allcourses', 'Frontend\CourseController@allcourses');
+Route::post('certificate', 'Frontend\PageController@certificate');
 
 
 //get courses

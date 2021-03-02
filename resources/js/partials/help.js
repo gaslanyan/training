@@ -53,3 +53,19 @@ export function langs(el, lng) {
     return (!pattern.test(el)) ? false : true;
 }
 
+export function getCertificateById(credentials) {
+    // let data = new FormData();
+    // data.append('token', token);
+
+    return new Promise((res, rej) => {
+        axios.post('/api/certificate', credentials,
+        )
+            .then(response => {
+                // console.log(response)
+                res(response.data);
+            })
+            .catch(err => {
+                rej(texts.error);
+            })
+    })
+}

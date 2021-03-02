@@ -32,7 +32,8 @@
                             <input autocomplete="off" id="email" type="email" name="email"
                                    v-validate="'required|email'" :placeholder="texts.email"
                                    :class="{'input': true, 'is-invalid': errors.has('email') }"
-                                   class="form-control p-4" v-model="formLogin.email" :data-vv-as="texts.email">
+                                   class="form-control p-4" v-model="formLogin.email"
+                                   :data-vv-as="texts.email">
                             <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
 
                             <input autocomplete="off" id="password" type="password" name="password"
@@ -129,8 +130,7 @@
             },
             unverifiedError() {
                 return this.$store.getters.unverifiedError
-            }
-            ,
+            },
             registeredUser() {
                 return this.$store.getters.registeredUser
             },
