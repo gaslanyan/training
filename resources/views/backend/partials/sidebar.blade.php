@@ -88,7 +88,8 @@
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover">
-                    <a href="{{action('Backend\AccountController@index', 'user')}}" class="kt-menu__link kt-menu__toggle">
+                    <a href="{{action('Backend\AccountController@index', 'user')}}"
+                       class="kt-menu__link kt-menu__toggle">
                                         <span class="kt-menu__link-icon kt-demo-icon__preview">
                                            <i class="flaticon-users"></i>
                                         </span>
@@ -98,14 +99,16 @@
                 </li>
                 <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover">
-                    <a href="{{action('Backend\AccountController@index', 'lecture')}}" class="kt-menu__link kt-menu__toggle">
+                    <a href="{{action('Backend\AccountController@index', 'lecture')}}"
+                       class="kt-menu__link kt-menu__toggle">
                                         <span class="kt-menu__link-icon kt-demo-icon__preview">
                                            <i class="flaticon-profile-1"></i>
                                         </span>
                         <span class="kt-menu__link-text">{{__('messages.lectures')}}</span>
                     </a>
 
-                </li> <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover">
                     <a href="{{action('Backend\TypeController@index')}}" class="kt-menu__link kt-menu__toggle">
                                         <span class="kt-menu__link-icon kt-demo-icon__preview">
@@ -115,8 +118,9 @@
                     </a>
 
                 </li>
-                </li> <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
-                          data-ktmenu-submenu-toggle="hover">
+                </li>
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                    data-ktmenu-submenu-toggle="hover">
                     <a href="{{action('Backend\SpecialtyController@index')}}" class="kt-menu__link kt-menu__toggle">
                                         <span class="kt-menu__link-icon kt-demo-icon__preview">
                                            <i class="flaticon2-files-and-folders"></i>
@@ -125,16 +129,34 @@
                     </a>
 
                 </li>
-                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon">
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                    data-ktmenu-submenu-toggle="hover"><a href="javascript:;"
+                                                          class="kt-menu__link kt-menu__toggle"><span
+                                class="kt-menu__link-icon">
 												<span class="kt-menu__link-icon kt-demo-icon__preview">
                                            <i class="flaticon-interface-3"></i>
-                                        </span></span><span class="kt-menu__link-text">{{__('messages.media')}}</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                        </span></span><span class="kt-menu__link-text">{{__('messages.media')}}</span><i
+                                class="kt-menu__ver-arrow la la-angle-right"></i></a>
                     <div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
                         <ul class="kt-menu__subnav">
-                            <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">{{__('messages.media')}}</span></span></li>
-                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{action('Backend\VideoController@index')}}" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet flaticon2-arrow"><span></span></i><span class="kt-menu__link-text">{{__('messages.videos')}}</span></a></li>
-                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{action('Backend\ImageController@index')}}" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet flaticon2-image-file"></i><span class="kt-menu__link-text">{{__('messages.images')}}</span></a></li>
-                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="{{action('Backend\BookController@index')}}" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet flaticon2-open-text-book"></i><span class="kt-menu__link-text">{{__('messages.books')}}</span></a></li>
+                            <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span
+                                        class="kt-menu__link"><span
+                                            class="kt-menu__link-text">{{__('messages.media')}}</span></span></li>
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                                data-ktmenu-submenu-toggle="hover"><a href="{{action('Backend\VideoController@index')}}"
+                                                                      class="kt-menu__link kt-menu__toggle"><i
+                                            class="kt-menu__link-bullet flaticon2-arrow"><span></span></i><span
+                                            class="kt-menu__link-text">{{__('messages.videos')}}</span></a></li>
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                                data-ktmenu-submenu-toggle="hover"><a href="{{action('Backend\ImageController@index')}}"
+                                                                      class="kt-menu__link kt-menu__toggle"><i
+                                            class="kt-menu__link-bullet flaticon2-image-file"></i><span
+                                            class="kt-menu__link-text">{{__('messages.images')}}</span></a></li>
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                                data-ktmenu-submenu-toggle="hover"><a href="{{action('Backend\BookController@index')}}"
+                                                                      class="kt-menu__link kt-menu__toggle"><i
+                                            class="kt-menu__link-bullet flaticon2-open-text-book"></i><span
+                                            class="kt-menu__link-text">{{__('messages.books')}}</span></a></li>
                         </ul>
                     </div>
                 </li>
@@ -156,17 +178,16 @@
                         <span class="kt-menu__link-text">{{__('messages.tests')}}</span>
                     </a>
                 </li>
+{{--                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"--}}
+{{--                    data-ktmenu-submenu-toggle="hover">--}}
+{{--                    <a href="{{action('Backend\EmailController@index')}}" class="kt-menu__link kt-menu__toggle">--}}
+{{--                                        <span class="kt-menu__link-icon kt-demo-icon__preview">--}}
+{{--                                           <i class="flaticon-interface-3"></i>--}}
+{{--                                        </span>--}}
+{{--                        <span class="kt-menu__link-text">Նամակներ</span>--}}
+{{--                    </a>--}}
 
-                {{--                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"--}}
-                {{--                    data-ktmenu-submenu-toggle="hover">--}}
-                {{--                    <a href="{{action('Backend\EmailController@index')}}" class="kt-menu__link kt-menu__toggle">--}}
-                {{--                        <span class="kt-menu__link-icon kt-demo-icon__preview">--}}
-                {{--                           <i class="flaticon-interface-3"></i>--}}
-                {{--                        </span>--}}
-                {{--                        <span class="kt-menu__link-text">Նամակներ</span>--}}
-                {{--                    </a>--}}
-
-                {{--                </li>--}}
+{{--                </li>--}}
                 {{--                <li class="kt-menu__section ">--}}
                 {{--                    <h4 class="kt-menu__section-text">Համակարգ</h4>--}}
                 {{--                    <i class="kt-menu__section-icon flaticon-more-v2"></i>--}}
@@ -202,7 +223,7 @@
                     </a>
 
                 </li>
-                   <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover">
                     <a href="{{action('Backend\PageController@index')}}" class="kt-menu__link kt-menu__toggle">
                                         <span class="kt-menu__link-icon kt-demo-icon__preview">
@@ -212,7 +233,7 @@
                     </a>
 
                 </li>
-                
+
                 <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover">
                     <a href="{{action('Backend\CommentController@index')}}" class="kt-menu__link kt-menu__toggle">

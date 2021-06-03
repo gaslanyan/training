@@ -45,10 +45,9 @@
                         </div>
                         <div class="attachment-mark" v-if="books">
                             <h4 class="title">{{texts.books}}</h4>
-
                             <template  v-for="book in books">
                                 <i class="fa fa-book text"></i>
-                                <router-link :to="{name: 'book', params: { id: book.id }}" class="text" target="_blank">{{book.title}}</router-link>
+                                <router-link to="/books/1" class="text" target="_blank">{{book.title}}</router-link>
 
                             </template>
                         </div>
@@ -125,10 +124,15 @@
                                     </div>
                                 </form>
                             </div>
-
+                          
                         </div>
+                        
                     </div>
+                  
                 </div>
+                    <div id="certificate">
+                                <img id="finishimg"  v-bind:src= "'/public/css/frontend/img/' + cert" />
+                            </div>
             </div>
         </section>
         <!--================ End Course Details Area =================-->
@@ -136,7 +140,7 @@
 </template>
 
 <script>
-    import {getPromiseResult} from '../partials/help';
+    import {getPromiseResult,getCertificateById} from '../partials/help';
     import texts from './json/course.json';
     import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
     import 'hooper/dist/hooper.css';
@@ -166,7 +170,9 @@
                     {id: 5}
 
                 ],
-                isFinished: 0
+                isFinished: 0,
+                disabled:1,
+                cert:[]
             };
         },
         computed: {
@@ -309,16 +315,12 @@
                     token: this.currentUser.token,
                     user_id:this.currentUser.id
                 };
+
                 getCertificateById(credentials)
                     .then(res => {
-                        console.log(res.data)
-                        /*this.datas = res.data;
-                        this.datas.credit = JSON.parse(res.data.credit);
-                        this.video_info = JSON.parse(res.data.videos);
-                        this.books = JSON.parse(res.data.books);
-                        this.specialites = res.specialities;*/
-                        // this.manageEvents();
-
+                        //alert(response.data);
+                        console.log(res);
+                        this.cert =  res;
                     })
                     .catch(error => {
                         console.log('error');
@@ -346,7 +348,7 @@
                 }
                 console.log(event.currentTarget.id);
                 let user = JSON.parse(localStorage.getItem('user'));
-                axios.post('/api/rating/', {
+                axios.post('/api/rating', {
                     rating:parseInt(r),
                     account_id: user.id,
                     course_id: this.$route.params.id
@@ -366,7 +368,7 @@
                 //console.log(this.$refs.feedback.text);
                 let user = JSON.parse(localStorage.getItem('user'));
                 // this.feedback = this.$refs.feedback.text;
-                axios.post('/api/comment/', {
+                axios.post('/api/comment', {
                     comment: feedback.value,
                     account_id: user.id,
                     course_id: this.$route.params.id
@@ -375,6 +377,7 @@
                         //alert(response.data);
                         feedback.value = '';
                         feedbacksuccess = "Մեկնաբանությունը հաջողությամբ ուղարկվեց";
+
                     })
                     .catch(function (error) {
                         console.log(error);

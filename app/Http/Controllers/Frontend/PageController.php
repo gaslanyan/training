@@ -61,17 +61,27 @@ class PageController extends Controller
 
     public function savecomment(Request $request)
     {
-        $course_id = $request->course_id;
+ $course_id = $request->course_id;
         $user_id = $request->account_id;
         $comment = $request->comment;
+        $result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id','=',$course_id)->get();
+
 
         try {
-            $accountcourses = new AccountCourse();
-            $accountcourses->course_id = $course_id;
-            $accountcourses->account_id = $user_id;
-            $accountcourses->comment = $comment;
-            $accountcourses->panding = "unread";
-            $accountcourses->save();
+            if(count($result) < 1) {
+                $accountcourses = new AccountCourse();
+                $accountcourses->course_id = $course_id;
+                $accountcourses->account_id = $user_id;
+                $accountcourses->comment = $comment;
+                $accountcourses->panding = "unread";
+                $accountcourses->save();
+            }
+            else{
+                $accountcourses = AccountCourse::query()->find($result[0]->id);
+                $accountcourses->comment = $comment;
+                $accountcourses->panding = "unread";
+                $accountcourses->save();
+            }
 
         } catch (\Exception $exception) {
            //dd($exception);
@@ -82,25 +92,9 @@ class PageController extends Controller
         return true;
 
 
+
+
     }
-
-    /**
-     * Send and update rating
-     *
-     * Send and update rating  by account id
-     *
-     * @queryParam course_id The course id Example: "2"
-     * @queryParam user_id The sign in account id Example: "2"
-     * @queryParam rating The selected rating value Example: "4"
-     *
-     *
-     * @response
-     *{
-     * "success": "true",
-     * "user": "2"
-     * }
-     */
-
     public function rating(Request $request)
     {
         $course_id = $request->course_id;
@@ -108,7 +102,7 @@ class PageController extends Controller
         $rating= $request->rating;
 
         //$result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id','=',$course_id)->get();
-        $result = DB::table('accounts_courses')->where('raiting', '>', 0)->get();
+                       $result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id','=',$course_id)->get();
 
           try {
               if(count($result) < 1) {
@@ -130,11 +124,11 @@ class PageController extends Controller
             // return redirect('backend/courses')->with('error', Lang::get('messages.wrong'));
         }
 
-        return response()->json(['success' => true, 'user' => $user_id, 200]);
+        return true;
 
 
     }
-       public function certificate(Request $request)
+    public function certificate(Request $request)
     {
 
         $account_name = Account::where('id', '=', $request->user_id)->first();
@@ -143,11 +137,12 @@ class PageController extends Controller
         $certificate  =  $course->certificate;
         $start  = $course->start_date;
         $end = $course->duration_date;
-      /* $coordx = \GuzzleHttp\json_decode($course->coordinatex);
-        $coordy = \GuzzleHttp\json_decode($course->coordinatey);*/
 
-       // $coordinates = $course->coordinates;
-        $coordinates = \GuzzleHttp\json_decode('{
+        if($course->coordinates != ""){
+         $coordinates =  \GuzzleHttp\json_decode($course->coordinates);
+          }
+        // dd($coordinates);
+         /*$coordinates = \GuzzleHttp\json_decode('{
                     "name": {
                         "x": "182",
                         "y": "218"
@@ -160,24 +155,26 @@ class PageController extends Controller
                         "x": "136",
                         "y": "273"
                     }
-}');
+}');*/
 
+        if($coordinates != ""){
 
-       // $img =   imagecreatefrompng(public_path()."/css/frontend/img/".$certificate);
-        $img = public_path(Config::get('constants.UPLOADS') . '/diplomas/plakat.png');
-      
-        $color = imagecolorallocate($img, 000, 000, 000);
+        $img = public_path().'/uploads/diplomas/'.$certificate;
+        $imgg =  imagecreatefrompng($img);
+        $color = imagecolorallocate($imgg, 000, 000, 000);
         $font = public_path()."/css/frontend/fonts/GHEAMariamRIt.otf";
         $text = strtoupper($account_name->name ." ". $account_name->surname);
 
-        dd($img);
-        imagettftext($img, 12, 0, $coordinates->name->x, $coordinates->name->y, $color, $font, $text);
-        imagettftext($img, 12, 0, $coordinates->start_date->x, $coordinates->start_date->y, $color, $font, $start);
-        imagettftext($img, 12, 0, $coordinates->end_date->x, $coordinates->end_date->y, $color, $font, $end);
+
+        imagettftext($imgg, 12, 0, ($coordinates->name->x) + 70, ($coordinates->name->y) + 100, $color, $font, $text);
+        imagettftext($imgg, 12, 0, ($coordinates->start_date->x) + 20, ($coordinates->start_date->y) + 100, $color, $font, $start);
+        imagettftext($imgg, 12, 0, ($coordinates->end_date->x) + 20, ($coordinates->end_date->y) + 100, $color, $font, $end);
         header('Content-type:image/png');
-        imagepng($img, public_path().'/css/frontend/img/'.$text.'.png', 5);
-        echo '<img id="finishimg" src ='.public_path()."/css/frontend/img/".$text.'.png">';
+        imagepng($imgg, public_path().'/css/frontend/img/'.$text.'.png', 5);
+         $resp = $text.".png";
+        echo $resp; //'<img id="finishimg" src ="'.public_path()."/css/frontend/img/".$text.'.png">';
         /*return response()->json(['data' => $coursestitle]);*/
+    }
     }
 
 

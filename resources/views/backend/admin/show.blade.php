@@ -114,19 +114,12 @@
                                     @endif
                                 </div>
                             </div>
-
-
                         </div>
-
                         <!--end::Widget -->
-
-
                     </div>
                 </div>
-
                 <!--End::Portlet-->
             </div>
-
             <!--End:: App Aside-->
 
             <!--Begin:: App Content-->

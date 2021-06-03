@@ -45,10 +45,11 @@ class CourseService
     {
         $spec = Profession::select('specialty_id')->where('account_id', $id)->first();
 
-        $courses = Courses::select('id', 'name', 'cost')->
+        $courses = Courses::select('id', 'name', 'cost', 'start_date')->
         whereRaw('JSON_CONTAINS(`specialty_ids`, 
          \'["' . $spec->specialty_id . '"]\')')
             ->where('status', "=", "active")
+            ->where('start_date', ">=", date("Y-m-d"))
             ->with(['account_course' => function ($query) use ($id) {
                 $query->select('course_id', 'paid')
                     ->where('account_id', $id);
@@ -93,8 +94,9 @@ class CourseService
      */
     public function all()
     {
-        $messages = $this->model->selected(['id', 'name', 'cost'])->get();
-
+        $messages = $this->model->selected(['id', 'name', 'cost', 'start_date'])
+            ->whereDate('start_date', "<=", date("Y-m-d"))
+            ->get();
         if (!$messages)
             throw new ModelNotFoundException('User not found by ID ');
         return $messages;

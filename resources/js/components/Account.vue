@@ -66,30 +66,34 @@
 
             <h2 class="col-12 or">{{texts.testsresult}}</h2>
 
-            <ul>
-                <li v-for="(info, i) in this.tests" class="d-flex flex-column test-actual">
-                    <div class="row media post_item">
-                        <img class="col-2" v-bind:src="certificateName">
-                        <div class="col-10 media-body">
-                            <p class="router-link-active">{{info.course.name}}</p>
-                            <div class="row">
-                                <div class="col-6">
+            <div v-if="this.tests.length > 0">
+                <ul>
+                    <li v-for="(info, i) in this.tests" class="d-flex flex-column test-actual">
+                        <div class="row media post_item">
+                            <img class="col-2" v-bind:src="certificateName">
+                            <div class="col-10 media-body">
+                                <p class="router-link-active">{{info.course.name}}</p>
+                                <div class="row">
+                                    <div class="col-6">
                         <span v-for="c in JSON.parse(info.course.credit)">
                             <i>{{c.name}} - </i>
                             <span>{{c.credit}}</span>
                             <br>
                         </span>
+                                    </div>
+                                    <ul class="col-6">
+                                        <li><i>{{texts.result}} - {{info.percent}}%</i></li>
+                                        <li><span>{{info.updated_at.substr(0, 10)}}</span></li>
+                                    </ul>
                                 </div>
-                                <ul class="col-6">
-                                    <li><i>{{texts.result}} - {{info.percent}}%</i></li>
-                                    <li><span>{{info.updated_at.substr(0, 10)}}</span></li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
-                </li>
-
-            </ul>
+                    </li>
+                </ul>
+            </div>
+            <div v-else>
+                <p>{{texts.testsnoresult}}</p>
+            </div>
         </section>
     </div>
 </template>

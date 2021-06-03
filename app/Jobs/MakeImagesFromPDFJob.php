@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
+use Org_Heigl\Ghostscript\Ghostscript;
 use Spatie\PdfToImage\Pdf;
 
 class MakeImagesFromPDFJob implements ShouldQueue
@@ -33,18 +34,21 @@ class MakeImagesFromPDFJob implements ShouldQueue
      */
     public function handle()
     {
-        $path = public_path() . Config::get('constants.UPLOADS') . "/books/" . $this->pdf->id . '/';
-        $pathToImage = $path . $this->pdf->path;
+        $path = sprintf('%s%s/books/%d/', public_path(), Config::get('constants.UPLOADS'), $this->pdf->id);
+        $pathToImage =  sprintf('%s%s',$path, $this->pdf->path);
 
         if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0775, true, true);
         }
 
         if (file_exists($pathToImage)) {
-            $pdf = new Pdf($pathToImage);
+            try{
+                Ghostscript::setGsPath();
+                $pdf = new Pdf($pathToImage);
 
-            foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
-                $pdf->setPage($pageNumber)->saveImage($path . $pageNumber . '.jpg');
+                $pdf->saveAllPagesAsImages($path);
+            }catch (\Exception $e){
+                logger()->error($e);
             }
         }
     }

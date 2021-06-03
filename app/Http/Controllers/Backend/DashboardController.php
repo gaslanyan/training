@@ -43,6 +43,7 @@ class DashboardController extends Controller
 
             if (!empty($work_region_id)) {
                 foreach ($work_region_id as $key => $val) {
+
                     $region_name = Region::query()->where(['id' => $key])->first('name');
                     $workplace_region[$key]['region'] = $region_name->name;
 
@@ -63,7 +64,7 @@ class DashboardController extends Controller
                 'accounts_courses.course_id',
                 DB::raw('count(course_id) as total')
 //                DB::raw('IF(`paid`,1,0) as isPaid')
-    )
+            )
             ->groupBy(['course_id'])->get();
 
         return view('backend.dashboard', compact('admin', 'courses', 'workplace_region'));
