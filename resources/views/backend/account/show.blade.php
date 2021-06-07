@@ -213,8 +213,7 @@
                                 <div class="row ">
                                     <button type="button" class="btn btn-label-info btn-lg btn-upper"
                                             data-toggle="modal"
-                                            data-target="#kt_modal_6">գրել
-                                        հաղորդագրություն
+                                            data-target="#kt_modal_6">{{__('messages.w_message')}}
                                     </button>
                                 </div>
                             </div>
@@ -249,7 +248,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!--end::Widget -->
                     </div>
                 </div>
@@ -413,7 +411,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">ՈՒղարկել նամակ {{$account->user->email}}
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{__('messages.send_email')}} {{$account->user->email}}
                         հասցեին</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>

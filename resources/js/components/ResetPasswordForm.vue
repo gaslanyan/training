@@ -20,7 +20,8 @@
                                       class="help is-danger">{{ errors.first('email') }}</span>
                             </div>
                             <div class="form-group">
-                                <input type="password" id="password" class="form-control p-4 input" v-validate="'required|min:8'"
+                                <input type="password" id="password" class="form-control p-4 input"
+                                       v-validate="'required|min:8'" name="password"
                                        v-model="formReset.password" :placeholder="texts.password"
                                        :class="{'input': true, 'is-invalid': errors.has('password') }"
                                        :data-vv-as="texts.password">
@@ -28,9 +29,11 @@
                                       class="help is-danger">{{ errors.first('password') }}</span>
                             </div>
                             <div class="form-group">
-                                <input type="password" id="password_confirmation" class="form-control p-4 input" placeholder=""
-                                       :class="{'input': true, 'is-invalid': errors.has('password_confirmation') }"
-                                       v-validate="'required|min:8|confirmed:password'" v-model="formReset.password_confirmation"
+                                <input type="password" id="password_confirmation" class="form-control p-4 input"
+                                       placeholder="" name="password_confirmation"
+                                       :class="{'input': true, 'is-invalid': errors.has('password_confirmation')}"
+                                       v-validate="'required|min:8|confirmed:password'"
+                                       v-model="formReset.password_confirmation"
                                        :placeholder="texts.confirmpassword"
                                        :data-vv-as="texts.confirmpassword">
                                 <span ref="password_confirmation" v-show="errors.has('password_confirmation')"

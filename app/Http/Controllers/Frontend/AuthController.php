@@ -41,8 +41,7 @@ class AuthController extends Controller
                              ProfessionRequest $professionRequest,
                              UserRequest $userRequest)
     {
-        return Registration::register($accountRequest, $professionRequest, $userRequest, 'user', 'pending');
-
+             return Registration::register($accountRequest, $professionRequest, $userRequest, 'user', 'pending');
     }
 
     /**

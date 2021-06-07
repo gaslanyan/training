@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 function isAdmin()
 {
-    $user = $user = Auth::guard('admin')->user();;
+    $user = $user = Auth::guard('admin')->user();
     if (!empty($user))
         return $user;
     else
-        return redirect('/login');;
+        return redirect('/login');
 }
 
 /**
@@ -40,7 +40,8 @@ function getRegionName($id)
     $region = Region::select('name')
         ->where('id', $id)
         ->first();
-
+    if (!$region)
+        return null;
     return $region->name;
 }
 
@@ -106,19 +107,19 @@ function creditNameByKey($credit)
         foreach ($credit as $index => $item) {
             switch ($item['name']) {
                 case 'practical':
-                    $test .="<li>". __('messages.practical').": ".$item['credit']."</li>" ;
+                    $test .= "<li>" . __('messages.practical') . ": " . $item['credit'] . "</li>";
                     break;
                 case 'theoretical':
-                    $test .= "<li>".__('messages.theoretical').": ".$item['credit']."</li>";
+                    $test .= "<li>" . __('messages.theoretical') . ": " . $item['credit'] . "</li>";
                     break;
                 case 'selfeducation':
-                    $test .= "<li>".__('messages.selfeducation').": ".$item['credit']."</li>";
+                    $test .= "<li>" . __('messages.selfeducation') . ": " . $item['credit'] . "</li>";
                     break;
             }
         }
         $test .= "</ul>";
     }
-    return  $test;
+    return $test;
 }
 
 

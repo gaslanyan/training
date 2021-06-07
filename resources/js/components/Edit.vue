@@ -350,7 +350,7 @@
                             <input autocomplete="off" id="re_password" type="password" name="re_password"
                                    class="form-control" v-on:blur="checkLang('re_password','en', 'passEdit')"
                                    :class="{'input': true, 'is-invalid': errors.has('re_password') }"
-                                   v-validate="'required|min:8'" v-model="passEdit.re_password"
+                                   v-validate="'required|min:8|confirmed:password'" v-model="passEdit.re_password"
                                    :data-vv-as="texts.confirmpassword">
                             <span v-show="errors.has('re_password')" class="help is-danger">{{ errors.first('re_password') }}</span>
                         </div>
@@ -676,7 +676,7 @@
                 }
 
                 let isArm = langs(el, lng);
-                if (isArm) {
+                if (!isArm) {
                     this.$data.appEdit[val] = "";
                 }
             }

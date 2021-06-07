@@ -130,6 +130,9 @@ button:focus {
 .or{
     color:rgb(99, 30, 216);
 }
+.reg_thd{
+    margin-bottom:-0.5rem;
+}
 
 /*Custom CSS */
 
@@ -1830,7 +1833,8 @@ color:rgb(99 30 216);
     cursor: pointer;
     border: 4px double #631ed8;
     padding:20px 20px;
-    height:250px;
+    /*height:250px;*/
+    margin-bottom: 25px;
 }
 
 .categories_post img {
@@ -5003,7 +5007,8 @@ button {
 .help{
     color: #e3342f;
     font-style: italic;
-    /*font-weight: bolder;*/
+   font-size: 12px;
+   text-align:left !important;
 }
 ._help{
     color: #631fd8;

@@ -178,14 +178,14 @@ class CoursesController extends Controller
             "credit" => "required|array|min:1",
             "credit.0.credit" => "required|integer|gt:0",
             "credit.*.credit" => "nullable|integer|gt:0",
-            "cost" => "required|integer|gt:0|max:1000",
+            "cost" => "required|integer|gt:0|max:100000",
             "videos" => "nullable|array|exists:videos,id",
             "books" => "nullable|array|exists:books,id",
             "certificate" => "nullable|file|mimes:jpg,jpeg,png",
             "coord.name" => "nullable|string",
             "coord.start_date" => "nullable|string",
             "coord.end_date" => "nullable|string",
-            "content_data" => "required|string|min:2|max:1000",
+            "content_data" => "required|string|min:2",
         ], [
             'name.unique' => __('messages.course_name_unique'),
         ]);

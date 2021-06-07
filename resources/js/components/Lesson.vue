@@ -133,7 +133,6 @@
                 this.$router.push('/login');
             },
             allcourses: function () {
-
                 let credentials = {
                     url: 'allcourses',
                     auth: false
@@ -165,7 +164,6 @@
                 this.course_id = id;
                 localStorage.setItem('c_id', id);
                 localStorage.setItem('a_id', this.currentUser.id);
-
                 let credentials = {
                     account_id: this.currentUser.id,
                     token: this.currentUser.token,
@@ -192,7 +190,6 @@
                     url: "getpayment",
                     auth: true
                 };
-
                 getPromiseResult(credentials)
                     .then(res => {
                         // console.log(res)
@@ -240,22 +237,18 @@
             'Swal': Swal
         },
         beforeMount() {
-
             if (!this.$store.getters.currentUser) {
                 this.allcourses();
             } else {
                 this.getCourses(this.$store.getters.currentUser.id);
-
                 if (this.$store.getters.currentUser.prof.member_of_palace === 1)
                     this.isOpened = true;
             }
-
         },
         mounted() {
-
             if (Object.keys(this.$route.query).length > 0) {
-                if(this.$route.query)
-                this.getPaymentQuery(this.$route.query);
+                if (this.$route.query)
+                    this.getPaymentQuery(this.$route.query);
                 else
                     Swal.fire({
                         icon: 'error',

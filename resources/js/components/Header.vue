@@ -6,7 +6,7 @@
                 <h1>{{text.title}}</h1>
             </div>
 
-            <div class="navbar-collapse col-lg-4 col-sm-4 col-4" id="navbarContent">
+            <div class="navbar-collapse col-lg-4 col-sm-4 col-6" id="navbarContent">
                 <div class="navbar-nav ml-auto m_navbar">
                     <template v-if="!currentUser">
                         <li>
@@ -42,7 +42,7 @@
 
         <header ref="navbar" class="header_area" :class="{'navbar_fixed': scrolled}" v-on:scroll="handleScroll">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container-fluid">
+                <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <router-link :to="{ name: 'home' }" class="navbar-brand logo_h">
                         <!--img :src="image_src" alt=""-->

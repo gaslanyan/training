@@ -108,6 +108,7 @@ class AccountService
             ->where('a.id', '=', $id)
             ->first();
 
+
         if (!$account)
             throw new ModelNotFoundException('User not found by ID ');
         return $account;
@@ -153,11 +154,11 @@ class AccountService
             $account->h_region = getRegionName($home_address['h_region']);
         if (!empty($home_address['h_street']))
             $account->h_street = $home_address['h_street'];
+
         if (!empty($home_address['h_territory']))
             $account->h_territory = getRegionName($home_address['h_territory']);
 
         $work_address = json_decode($account->work_address, true);
-
         if (!empty($work_address['w_region']))
 
             $account->w_region = getRegionName($work_address['w_region']);

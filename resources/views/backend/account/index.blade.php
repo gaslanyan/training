@@ -138,7 +138,9 @@
                                             <input type="hidden" name="a_id" value="{{$account->id}}">
                                             <input class="email" type="checkbox" name="member"
                                                    value="{{$account->prof->member_of_palace}}"
-                                            @if(!empty($account->prof->member_of_palace == 1)){{'checked'}}@endif>
+                                            @if(!empty($account->prof->member_of_palace == 1))
+                                                {{'checked'}}
+                                                    @endif>
                                         </form>
                                     </td>
                                     <td>

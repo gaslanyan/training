@@ -11,3 +11,5 @@ public/uploads
 **/.sass-cache
 **/.sass-cache/*
 resources/sass/app.css
+public/js/popper.js
+public/storage
