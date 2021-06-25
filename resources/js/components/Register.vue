@@ -307,7 +307,8 @@
                     </div>
                     <div class="form-group  col-lg-4">
                         <label for="password">{{texts.password}}</label>
-                        <input autocomplete="off" id="password" type="password" name="password" class="form-control"
+
+                        <input autocomplete="off" ref="pass" id="password" type="password" name="password" class="form-control"
                                v-validate="'required|min:8'" v-model="formRegister.password"
                                :class="{'input': true, 'is-invalid': errors.has('password') }"
                                v-on:blur="checkLang('password','en')"
@@ -320,15 +321,15 @@
                         <input autocomplete="off" id="re_password" type="password" name="re_password"
                                class="form-control"
                                :class="{'input': true, 'is-invalid': errors.has('re_password') }"
-                               v-validate="'required|min:8'" v-model="formRegister.re_password"
+                               v-validate="'required|confirmed:pass'" v-model="formRegister.re_password"
                                v-on:blur="checkLang('re_password','en')"
                                :data-vv-as="texts.confirmpassword">
                         <span ref="re_password" v-show="errors.has('re_password')" class="help is-danger">{{ errors.first('re_password') }}</span>
                     </div>
-                    <footer class="form-group col-lg-12">
+                    <footer class="form-group col-lg-12 reg_thd">
                         <label for="address" class='fa fa-arrow-left nav_label col-lg-4 float-left'></label>
 
-                        <!-- <vue-recaptcha sitekey="6LedFfYZAAAAAFddwlJAn8IhifgaZLWnYKPsJZpv" :loadRecaptchaScript="true" class="cpt float-left"></vue-recaptcha> -->
+                        <vue-recaptcha sitekey="6LedFfYZAAAAAFddwlJAn8IhifgaZLWnYKPsJZpv" :loadRecaptchaScript="true" class="cpt float-left"></vue-recaptcha>
                         <button type="submit" class="btn primary-btn mt-3 float-right">{{texts.register}}</button>
 
                     </footer>

@@ -7,11 +7,11 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-3">
-                    <div class="dpmt_courses">
+                <div class="col-lg-12">
+                    <div class="dpmt_courses row">
 
                         <!-- single course -->
-                        <div class="col-12 text-center ">
+                        <div class="col-3 text-center ">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="nurse" alt="">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-12 text-center">
+                        <div class=" col-3 text-center">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="doctor" alt="">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-12 text-center ">
+                        <div class=" col-3 text-center ">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="pharmacy" alt="">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-12 text-center">
+                        <div class=" col-3 text-center">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="phar" alt="">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-lg-12 mt-3">
                     <div class="dpmt_right" v-html="data.homedescription" v-for="data in datas" :key="data.id">
                         <p>{{ data.homedescription }}</p>
                         <router-link :to="{ name: 'lesson' }" class="primary-btn text-uppercase search_course_btn">

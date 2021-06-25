@@ -111,9 +111,10 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @if(!$accounts->isEmpty())
                         @foreach($accounts as $key => $account)
-
+                            @if(!empty($account->user))
                             <tr class="text-center">
                                 <td></td>
                                 <td>
@@ -152,7 +153,7 @@
                                                 else if($account->user->status ==="removed")
                                                     $class = 'btn-danger';
                                             @endphp
-                                        @endif
+                                        @endif   
                                         <span
                                                 class="btn {{$class}}">{{__('messages.'.$account->user->status)}}
                                         </span>
@@ -206,6 +207,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     @endif
                     </tbody>

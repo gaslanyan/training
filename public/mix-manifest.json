@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/charts/google-charts.js": "/js/charts/google-charts.js",
+    "/css/app.css": "/css/app.css",
+    "/js/popper.js": "/js/popper.js"
 }

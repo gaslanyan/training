@@ -129,7 +129,7 @@
                     src = "/uploads/images/avatars/" + img_name;
                 else
                     src = "/images/avatars/" + img_name;
-                console.log(this.account);
+
                 return src;
             },
             certificateName: function () {

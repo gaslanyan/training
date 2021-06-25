@@ -13,7 +13,7 @@
 
                     </div>
                     <div class="form-group row" v-if="unverifiedError">
-                        <p class="error m-auto">
+                        <p class="error m-auto unverified">
                             {{unverifiedError}}
                         </p>
                     </div>
