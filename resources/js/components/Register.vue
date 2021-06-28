@@ -280,7 +280,7 @@
                             <p>
                                 {{texts.uploadfiles}}
                             </p>
-                            <span ref="files" v-show="errors.has('files')" class="help is-danger">{{ errors.first('files') }}</span>
+                            <span ref="file" v-show="errors.has('files')" class="help is-danger">{{ errors.first('files') }}</span>
                         </div>
 
                         <div v-for="(file, key) in files" class="file-listing col-lg-6 d-inline-flex">

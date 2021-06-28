@@ -122,7 +122,7 @@
                                            id="{{$account->id}}">
                                 </td>
                                 <td>
-                                    <img src="{{  Config::get('constants.AVATAR_PATH_UPLOADED').$account->image_name}}"
+                                    <img src="/uploads{{  Config::get('constants.AVATAR_PATH_UPLOADED').$account->image_name}}"
                                          alt="avatar" style="height: 50px"></td>
                                 <td>@if(!empty($account->name)){{$account->name}}@endif
                                     @if(!empty($account->surname)){{$account->surname}}@endif
@@ -153,7 +153,7 @@
                                                 else if($account->user->status ==="removed")
                                                     $class = 'btn-danger';
                                             @endphp
-                                        @endif   
+                                        @endif
                                         <span
                                                 class="btn {{$class}}">{{__('messages.'.$account->user->status)}}
                                         </span>

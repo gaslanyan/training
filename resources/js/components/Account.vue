@@ -179,6 +179,7 @@
                             let ls = JSON.parse(localStorage.getItem('user'));
                             ls.image_name = res.user.image_name;
                             localStorage.setItem('user', JSON.stringify(ls))
+                            this.$router.go()
                         })
                         // this.$router.push({path: '/dashboard'});
                     })

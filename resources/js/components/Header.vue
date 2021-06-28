@@ -106,6 +106,7 @@
                 this.$router.push('/login');
             },
             getAccountById: function () {
+                console.log(this.currentUser);
                 if(this.currentUser){
                 let credentials = {
                     id: this.currentUser.id,

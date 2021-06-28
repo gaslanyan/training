@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'ArmHmksBebasNeueRegular_1';
-    src: url('fonts/ArmHmksBebasNeueRegular_1.eot');
-    src: url('fonts/ArmHmksBebasNeueRegular_1.eot') format('embedded-opentype'),
-    url('fonts/ArmHmksBebasNeueRegular_1.woff2') format('woff2'),
-    url('fonts/ArmHmksBebasNeueRegular_1.woff') format('woff'),
-    url('fonts/ArmHmksBebasNeueRegular_1.ttf') format('truetype'),
-    url('fonts/ArmHmksBebasNeueRegular_1.svg#ArmHmksBebasNeueRegular_1') format('svg');
+    font-family: 'ArmHmksBebasNeueRegular';
+    src: url('fonts/ArmHmksBebasNeueRegular.eot');
+    src: url('fonts/ArmHmksBebasNeueRegular.eot') format('embedded-opentype'),
+    url('fonts/ArmHmksBebasNeueRegular.woff2') format('woff2'),
+    url('fonts/ArmHmksBebasNeueRegular.woff') format('woff'),
+    url('fonts/ArmHmksBebasNeueRegular.ttf') format('truetype'),
+    url('fonts/ArmHmksBebasNeueRegular.svg#ArmHmksBebasNeueRegular') format('svg');
 }
 body {
     line-height: 25px;
@@ -40,7 +40,7 @@ h5,
 h6 {
     font-weight: 500;
     color: #fff;
-    font-family: "ArmHmksBebasNeueRegular_1", sans-serif !important;
+    font-family: "ArmHmksBebasNeueRegular", sans-serif !important;
 }
 h4{
     color: #771FF3;
@@ -109,8 +109,8 @@ button:focus {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: rgb(99, 30, 216);
-    font-family: 'Roboto', sans-serif;
+    color: #42036e;
+    font-family: 'ArmHmksBebasNeueRegular', sans-serif;
 }
 .nav-link:hover{
     color: #e9a401 ;
@@ -355,7 +355,7 @@ button:focus {
 }
 
 .header_area .navbar .nav .nav-item .nav-link {
-    font: 500 18px/80px "ArmHmksBebasNeueRegular_1", sans-serif;
+    font: 500 18px/80px "ArmHmksBebasNeueRegular", sans-serif;
     text-transform: uppercase;
     color: #42036e;
     padding: 0px;
@@ -683,10 +683,10 @@ button:focus {
 
 .clock_sec h1 {
 
-    color: #fded45;
+    color: #e9a401;
 }
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
-    color: #fded45;
+    color: #e9a401;
 }
 @media (max-width: 470px) {
     .home_banner_area .search_course_wrap .form_box {
@@ -754,7 +754,7 @@ button:focus {
     border: 0;
     font-size: 16px;
     font-weight: 500;
-    font-family:'ArmHmksBebasNeueRegular_1';
+    font-family:'ArmHmksBebasNeueRegular';
     text-transform: uppercase;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;

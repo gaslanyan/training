@@ -131,7 +131,7 @@ export function approveUser(credentials, files, token) {
     }
     formData.append('_method', 'PUT');
     formData.append('token', token);
-    console.log('credentials',formData);
+    console.log('credentials', formData);
     return new Promise(function (res, rej) {
 
         axios.post('/api/auth/approve/' + credentials.id,
