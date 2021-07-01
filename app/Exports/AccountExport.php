@@ -53,7 +53,8 @@ class AccountExport implements FromCollection, WithHeadings, ShouldAutoSize
             unset($account->updated_at);
             $prof = getProfession($account->id);
 
-            $account['education'] =  $prof->edu_name . " - " . $prof->spec_name;
+            $account['education'] =  $prof->edu_name ;
+            $account['spec']=$prof->spec_name;
             $account['email'] = $account->user->email;
         }
 
@@ -76,6 +77,7 @@ class AccountExport implements FromCollection, WithHeadings, ShouldAutoSize
             __('messages.home_address'),
             __('messages.workplace_name'),
             __('messages.education'),
+            __('messages.spec'),
             __('messages.email'),
         ];
     }

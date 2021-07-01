@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class ManageUserStatus extends Notification
 {
@@ -69,8 +70,8 @@ class ManageUserStatus extends Notification
             ->subject($subject)
             ->greeting($greeting)
             ->salutation(__("messages.faithfully"))
-            ->line($this->message->value)
-            ->line(__('messages.thank_you'));
+            ->line(new HtmlString($this->message->value))
+            ->line(new HtmlString(__('messages.thank_you')));
         if ($this->action)
             $mail->action(__('messages.login'), url('/login'));
         else {

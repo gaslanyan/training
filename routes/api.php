@@ -17,6 +17,7 @@ Route::group(['prefix' => 'auth'],
     function ($router) {
         Route::post('register', 'Frontend\AuthController@register');
         Route::post('login', 'Frontend\AuthController@login');
+        Route::post('verify/{id}/{key}', 'Frontend\VerifyController@verify');
 
     });
 Route::group(['prefix' => 'auth',

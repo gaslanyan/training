@@ -129,7 +129,7 @@
                     src = "/uploads/images/avatars/" + img_name;
                 else
                     src = "/images/avatars/" + img_name;
-                console.log(this.account);
+
                 return src;
             },
             certificateName: function () {
@@ -179,6 +179,7 @@
                             let ls = JSON.parse(localStorage.getItem('user'));
                             ls.image_name = res.user.image_name;
                             localStorage.setItem('user', JSON.stringify(ls))
+                            this.$router.go()
                         })
                         // this.$router.push({path: '/dashboard'});
                     })

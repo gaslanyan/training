@@ -111,9 +111,10 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @if(!$accounts->isEmpty())
                         @foreach($accounts as $key => $account)
-
+                            @if(!empty($account->user))
                             <tr class="text-center">
                                 <td></td>
                                 <td>
@@ -121,7 +122,7 @@
                                            id="{{$account->id}}">
                                 </td>
                                 <td>
-                                    <img src="{{  Config::get('constants.AVATAR_PATH_UPLOADED').$account->image_name}}"
+                                    <img src="/uploads{{  Config::get('constants.AVATAR_PATH_UPLOADED').$account->image_name}}"
                                          alt="avatar" style="height: 50px"></td>
                                 <td>@if(!empty($account->name)){{$account->name}}@endif
                                     @if(!empty($account->surname)){{$account->surname}}@endif
@@ -206,6 +207,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     @endif
                     </tbody>
