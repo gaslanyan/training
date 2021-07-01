@@ -64,7 +64,7 @@ class ManageUserStatus extends Notification
      */
     public function toMail($notifiable)
     {
-        $subject = sprintf(config('app.name') . $this->message->name);
+        $subject = sprintf(config('app.name') ." -- ". $this->message->name);
         $greeting = sprintf('Բարև ' . $this->account->name . " " . $this->account->surname . ', ');
         $mail = (new MailMessage)
             ->subject($subject)

@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Notifications\ManageUserStatus;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 trait Registration
 {
@@ -61,10 +62,17 @@ trait Registration
             if (!file_exists(public_path() . Config::get('constants.DIPLOMA'))) {
                 mkdir(Config::get('constants.DIPLOMA'), 0775, true);
             }
+            $path = public_path() . Config::get('constants.DIPLOMA');
             foreach ($allFiles as $index => $allFile) {
                 $name = grs() . "_" . $account->id . "." . $allFile->extension();
                 $a_f[] = $name;
-                $allFile->move(public_path() . Config::get('constants.DIPLOMA'), $name);
+                $img = Image::make($allFile->getRealPath());
+//                dd($allFile->getRealPath());
+                $img->resize(600, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($path. $name);
+
+//                $allFile->move(public_path() . Config::get('constants.DIPLOMA'), $name);
             }
             $prof = new Profession();
             $prof->account_id = $account->id;
