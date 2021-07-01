@@ -67,11 +67,9 @@ trait Registration
                 $name = grs() . "_" . $account->id . "." . $allFile->extension();
                 $a_f[] = $name;
                 $img = Image::make($allFile->getRealPath());
-//                dd($allFile->getRealPath());
                 $img->resize(600, null, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($path. $name);
-
 //                $allFile->move(public_path() . Config::get('constants.DIPLOMA'), $name);
             }
             $prof = new Profession();
