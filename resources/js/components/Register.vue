@@ -329,7 +329,7 @@
                     <footer class="form-group col-lg-12 reg_thd">
                         <label for="address" class='fa fa-arrow-left nav_label col-lg-4 float-left'></label>
 
-                        <vue-recaptcha sitekey="6LedFfYZAAAAAFddwlJAn8IhifgaZLWnYKPsJZpv" :loadRecaptchaScript="true" class="cpt float-left"></vue-recaptcha>
+                        <vue-recaptcha sitekey="6LfGFBobAAAAAD8RjLjcx6_SuS2Alb9je16tckZ7" :loadRecaptchaScript="true" class="cpt float-left"></vue-recaptcha>
                         <button type="submit" class="btn primary-btn mt-3 float-right">{{texts.register}}</button>
 
                     </footer>
