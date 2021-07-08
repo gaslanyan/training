@@ -75,9 +75,9 @@ class AccountRequest extends FormRequest
             'w_region' => 'required|integer|min:1',
             'w_territory' => 'required|integer|min:1',
             'h_territory' => 'required|integer|min:1',
-            'w_street' => 'required|min:2|max:127',
-            'h_street' => 'required|min:2|max:127',
-            'workplace_name' => 'required|min:2|max:127',
+            'w_street' => 'required|min:2|max:512',
+            'h_street' => 'required|min:2|max:512',
+            'workplace_name' => 'required|min:2|max:512',
         ];
     }
 

@@ -24,17 +24,17 @@
                     <div class="collapse navbar-collapse offset col-8" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto col-8">
                             <li class="nav-item">
-                                <router-link :to="{ name: 'home' }" class="nav-link">{{text.main}}</router-link>
+                                <router-link :to="{ name: 'home' }" class="nav-link">{{ text.main }}</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'about' }" class="nav-link">{{text.aboutus}}</router-link>
+                                <router-link :to="{ name: 'about' }" class="nav-link">{{ text.aboutus }}</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'lesson' }" class="nav-link">{{text.lessons}}
+                                <router-link :to="{ name: 'lesson' }" class="nav-link">{{ text.lessons }}
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'contact' }" class="nav-link">{{text.contact}}
+                                <router-link :to="{ name: 'contact' }" class="nav-link">{{ text.contact }}
                                 </router-link>
                             </li>
                         </ul>
@@ -43,29 +43,28 @@
                                 <template v-if="!currentUser">
                                     <li class="nav-item">
                                         <router-link to="/login" class="nav-link">
-                                            <img :src="stethoscope"  style="height: 24px;"/>{{text.login}}
+                                            <img :src="stethoscope" style="height: 24px;"/>{{ text.login }}
                                         </router-link>
                                     </li>
                                     <li class="nav-item">
-                                        <router-link to="/register" class="nav-link"><img :src="ekg"/>{{text.register}}
+                                        <router-link to="/register" class="nav-link"><img
+                                            :src="ekg"/>{{ text.register }}
                                         </router-link>
                                     </li>
                                 </template>
                                 <template v-else>
-                                    <li class="nav-item">
-                                        <router-link to="/account" class="nav-link"></router-link>
-                                    </li>
                                     <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
-                                           data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            {{account.name}} {{account.father_name}} {{account.surname}}<span class="caret"></span>
-                                        </a>
+                                        <router-link to="/account" id="navbarDropdown" class="nav-link dropdown-toggle"
+                                                     data-toggle="dropdown"
+                                                     aria-haspopup="true" aria-expanded="false">
+                                            {{ account.name }} {{ account.father_name }} {{ account.surname }}<span
+                                            class="caret"></span>
+                                        </router-link>
 
                                         <div class="dropdown-menu dropdown-menu-right"
                                              aria-labelledby="navbarDropdown">
                                             <a href="#!" @click.prevent="logout"
-                                               class="dropdown-item">{{text.logout}}</a>
+                                               class="dropdown-item">{{ text.logout }}</a>
                                         </div>
                                     </li>
                                 </template>
@@ -82,32 +81,33 @@
 </template>
 
 <script>
-    import pagestext from './json/pages.json';
-    export default {
-        name: 'app-header',
-        methods: {
-            handleScroll() {
-                if (this.$refs.navbar.clientHeight < window.scrollY) {
-                    this.scrolled = true;
-                    this.$refs.navbar.style.position = "fixed";
-                    this.$refs.navbar.style.top = 0;
-                    this.$refs.navbar.style.background = '#fff';
-                } else {
-                    this.scrolled = false;
-                    this.$refs.navbar.style.position = "relative";
+import pagestext from './json/pages.json';
 
-                }
+export default {
+    name: 'app-header',
+    methods: {
+        handleScroll() {
+            if (this.$refs.navbar.clientHeight < window.scrollY) {
+                this.scrolled = true;
+                this.$refs.navbar.style.position = "fixed";
+                this.$refs.navbar.style.top = 0;
+                this.$refs.navbar.style.background = '#fff';
+            } else {
+                this.scrolled = false;
+                this.$refs.navbar.style.position = "relative";
 
-                this.lastPosition = window.scrollY;
-                // this.scrolled = window.scrollY > 50;
-            },
-            logout() {
-                this.$store.commit('logout');
-                this.$router.push('/login');
-            },
-            getAccountById: function () {
-                console.log(this.currentUser);
-                if(this.currentUser){
+            }
+
+            this.lastPosition = window.scrollY;
+            // this.scrolled = window.scrollY > 50;
+        },
+        logout() {
+            this.$store.commit('logout');
+            this.$router.push('/login');
+        },
+        getAccountById: function () {
+            console.log('currentUser',this.currentUser);
+            if (this.currentUser) {
                 let credentials = {
                     id: this.currentUser.id,
                     token: this.currentUser.token
@@ -122,37 +122,36 @@
                         console.log(err)
                     })
             }
-            },
         },
-        beforeMount() {
-            this.getAccountById();
+    },
+    beforeMount() {
+        this.getAccountById();
+    },
+    created() {
+        window.addEventListener("scroll", this.handleScroll);
+    },
+    destroyed() {
+        window.removeEventListener("scroll", this.handleScroll);
+    },
+    computed: {
+        currentUser() {
+            return this.$store.getters.currentUser
         },
-        created() {
-            window.addEventListener("scroll", this.handleScroll);
-        },
-        destroyed() {
-            window.removeEventListener("scroll", this.handleScroll);
+        user() {
 
-        },
-        computed: {
-            currentUser() {
-                return this.$store.getters.currentUser
-            },
-            user(){
-
-            }
-        },
-        data() {
-            return {
-                image_src: '/css/frontend/img/logo.jpg',
-                ekg: '/css/frontend/img/ekg.png',
-                stethoscope: '/css/frontend/img/stethoscope.png',
-                limitPosition: 2000,
-                scrolled: false,
-                lastPosition: 0,
-                text: pagestext,
-                account:"",
-            };
-        },
-    }
+        }
+    },
+    data() {
+        return {
+            image_src: '/css/frontend/img/logo.jpg',
+            ekg: '/css/frontend/img/ekg.png',
+            stethoscope: '/css/frontend/img/stethoscope.png',
+            limitPosition: 2000,
+            scrolled: false,
+            lastPosition: 0,
+            text: pagestext,
+            account: "",
+        };
+    },
+}
 </script>

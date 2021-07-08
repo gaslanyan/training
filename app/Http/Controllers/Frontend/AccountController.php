@@ -183,17 +183,12 @@ class AccountController extends Controller
     public function editApprove(AccountApproveRequest $accountRequest,
                                 ProfessionApproveRequest $professionRequest, $id)
     {
-
         try {
-
             $this->service->updateFAccount($accountRequest, $professionRequest, $id);
-
             return response()->json(['success' => 'pending', 'user' => $id], 200);
         } catch (\Exception $exception) {
             logger()->error($exception);
             return response()->json(['error' => true], 500);
-
-
         }
     }
 
@@ -226,7 +221,7 @@ class AccountController extends Controller
                 return response()->json(['error' => false, 'user' => $id], 401);
             } else {
                 $this->service->updatePassword($request, $id);
-              
+
                 return response()->json([
                     'success' => true,
                     'user' => $id,
@@ -282,7 +277,7 @@ class AccountController extends Controller
      * "expires_in": 0
      * }
      * */
-    public function editProfile(Request $request, $id)
+    public function editProfile(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $profile = $this->service->getFAccountById($id);
         $approve = $this->service->getFAccount($id);

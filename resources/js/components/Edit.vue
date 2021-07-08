@@ -25,9 +25,10 @@
                             <input autocomplete="off" id="phone" type="tel" name="phone"
                                    class="form-control" :placeholder="texts.valid_phone"
                                    v-validate="{required: true, regex: /^([0-9]+)$/ }"
-                                   :class="{'input': true, 'is-invalid': errors.has('phone') }"
+                                   :class="{'input': true,
+                                   'is-invalid': errors.has('phone') }"
                                    v-model="formEdit.phone">
-                            <span v-show="errors.has('phone')" class="help is-danger">{{ errors.first('phone') }}</span>
+                            <span ref="phone" v-show="errors.has('phone')" class="help is-danger">{{ errors.first('phone') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="email">{{texts.email}}</label>
@@ -43,7 +44,7 @@
                                         format="dd-MM-yyyy" :open-date="openDate"
                                         :class="{'input': true, 'is-invalid': errors.has('bday') }"
                                         name="bday" v-model="formEdit.bday"></datepicker>
-                            <span v-show="errors.has('bday')" class="help is-danger">{{ errors.first('bdsy') }}</span>
+                            <span ref="bday" v-show="errors.has('bday')" class="help is-danger">{{ errors.first('bdsy') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="profession">{{texts.profession}}</label>
@@ -54,7 +55,7 @@
                                 <option value="">{{texts.selectaprofession}}</option>
                                 <option v-for="(prof) in professions" v-bind:value="prof.id">{{prof.name}}</option>
                             </select>
-                            <span v-show="errors.has('profession')"
+                            <span v-show="errors.has('profession')" ref="profession"
                                   class="help is-danger">{{ errors.first('profession') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
@@ -67,8 +68,8 @@
                                     {{ group.name }}
                                 </option>
                             </select>
-                            <span v-show="errors.has('specialty_id')"
-                                  class="help is-danger">{{ errors.first('specialty_id') }}</span>
+                            <span v-show="errors.has('education_id')" ref="education_id"
+                                  class="help is-danger">{{ errors.first('education_id') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="education_id">{{texts.education}}</label>
@@ -77,7 +78,8 @@
                                     v-model="formEdit.specialty_id" ref="edu" :data-vv-as="texts.education">
                                 <option v-for="(edu) in educations" v-bind:value="edu.id">{{edu.name}}</option>
                             </select>
-                            <span v-show="errors.has('specialty_id')" class="help is-danger">{{ errors.first('specialty_id') }}</span>
+                            <span ref="specialty_id" v-show="errors.has('specialty_id')"
+                                  class="help is-danger">{{ errors.first('specialty_id') }}</span>
                         </div>
 
 
@@ -88,7 +90,7 @@
                                       v-validate="'max:1024'"
                                       :class="{'input': true, 'is-invalid': errors.has('info') }"
                                       v-model="formEdit.info"></textarea>
-                            <span v-show="errors.has('info')"
+                            <span v-show="errors.has('info')" ref="info"
                                   class="help is-danger">{{ errors.first('info') }}</span>
                         </div>
                         <div class="form-group col-lg-12">
@@ -98,7 +100,7 @@
                                    v-validate="'required'"
                                    :class="{'input': true, 'is-invalid': errors.has('workplace_name') }"
                                    v-model="formEdit.workplace_name">
-                            <span v-show="errors.has('workplace_name')"
+                            <span v-show="errors.has('workplace_name')" ref="workplace_name"
                                   class="help is-danger">{{ errors.first('workplace_name') }}</span>
                         </div>
                         <div class="form-group col-lg-12">
@@ -115,7 +117,7 @@
                                             {{region.name}}
                                         </option>
                                     </select>
-                                    <span v-show="errors.has('w_region')" class="help is-danger">{{ errors.first('w_region') }}</span>
+                                    <span ref="w_region" v-show="errors.has('w_region')" class="help is-danger">{{ errors.first('w_region') }}</span>
                                 </div>
                                 <div class="form-group col-lg-4">
                                     <label for="w_territory">{{texts.territory}}</label>
@@ -134,7 +136,7 @@
                                             </option>
                                         </optgroup>
                                     </select>
-                                    <span v-show="errors.has('w_territory')"
+                                    <span v-show="errors.has('w_territory')" ref="w_territory"
                                           class="help is-danger">{{ errors.first('w_territory') }}</span>
                                 </div>
                                 <div class="form-group col-lg-4">
@@ -144,7 +146,7 @@
                                            v-validate="'required'" :data-vv-as="texts.street"
                                            :class="{'input': true, 'is-invalid': errors.has('w_street') }"
                                            v-model="formEdit.w_street">
-                                    <span v-show="errors.has('w_street')" class="help is-danger">{{ errors.first('w_street') }}</span>
+                                    <span ref="w_street" v-show="errors.has('w_street')" class="help is-danger">{{ errors.first('w_street') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +163,7 @@
                                             {{region.name}}
                                         </option>
                                     </select>
-                                    <span v-show="errors.has('h_region')" class="help is-danger">{{ errors.first('h_region') }}</span>
+                                    <span ref="h_region" v-show="errors.has('h_region')" class="help is-danger">{{ errors.first('h_region') }}</span>
 
                                 </div>
                                 <div class="form-group col-lg-4">
@@ -182,7 +184,7 @@
                                             </option>
                                         </optgroup>
                                     </select>
-                                    <span v-show="errors.has('h_territory')"
+                                    <span v-show="errors.has('h_territory')" ref="h_territory"
                                           class="help is-danger">{{ errors.first('h_territory') }}</span>
                                 </div>
                                 <div class="form-group col-lg-4">
@@ -193,7 +195,7 @@
                                            v-validate="'required'" :data-vv-as="texts.street"
                                            :class="{'input': true, 'is-invalid': errors.has('h_street') }"
                                            v-model="formEdit.h_street">
-                                    <span v-show="errors.has('h_street')" class="help is-danger">{{ errors.first('h_street') }}</span>
+                                    <span ref="h_street" v-show="errors.has('h_street')" class="help is-danger">{{ errors.first('h_street') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -213,9 +215,8 @@
                             <input autocomplete="off" id="name" type="text" name="name" class="form-control" ref="name"
                                    v-validate="'required'" :data-vv-as="texts.name"
                                    v-on:blur="checkLang('name','hy', 'appEdit')"
-                                   :class="{'input': true, 'is-invalid': errors.has('name') }" v-model="appEdit.name"
-                            >
-                            <span v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</span>
+                                   :class="{'input': true, 'is-invalid': errors.has('name') }" v-model="appEdit.name">
+                            <span ref="name" v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</span>
 
                         </div>
                         <div class="form-group col-lg-4">
@@ -224,7 +225,7 @@
                                    :class="{'input': true, 'is-invalid': errors.has('surname') }"
                                    v-validate="'required'" v-model="appEdit.surname" ref="surname"
                                    :data-vv-as="texts.surname" v-on:blur="checkLang('surname','hy','appEdit')">
-                            <span v-show="errors.has('surname')"
+                            <span v-show="errors.has('surname')" ref="surname"
                                   class="help is-danger">{{ errors.first('surname') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
@@ -234,15 +235,15 @@
                                    :class="{'input': true, 'is-invalid': errors.has('father_name') }"
                                    v-validate="'required'" v-on:blur="checkLang('father_name','hy','appEdit')"
                                    v-model="appEdit.father_name">
-                            <span v-show="errors.has('father_name')" class="help is-danger">{{ errors.first('father_name') }}</span>
+                            <span v-show="errors.has('father_name')" class="help is-danger" ref="father_name">{{ errors.first('father_name') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="passport">{{texts.serianumber}}</label>
-                            <input autocomplete="off" id="passport" type="text" name="passport"
+                            <input autocomplete="off" id="passport" type="text" name="passport" ref="pass"
                                    class="form-control" v-on:blur="checkLang('serianumber','en')"
                                    v-validate="'required'" :data-vv-as="texts.serianumber"
                                    v-model="appEdit.passport">
-                            <span v-if="errors.has('passport')" class="help is-danger" role="alert">{{ errors.first('passport') }}</span>
+                            <span ref="password" v-if="errors.has('passport')" class="help is-danger" role="alert">{{ errors.first('passport') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="issue">{{texts.dateofissue}}</label>
@@ -251,7 +252,7 @@
                                         :class="{'input': true, 'is-invalid': errors.has('date_of_issue') }"
                                         name="date_of_issue" v-model="appEdit.date_of_issue"></datepicker>
 
-                            <span v-show="errors.has('date_of_issue')" class="help is-danger">{{ errors.first('date_of_issue') }}</span>
+                            <span ref="date_of_issue" v-show="errors.has('date_of_issue')" class="help is-danger">{{ errors.first('date_of_issue') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="expiry">{{texts.dateofexpire}}</label>
@@ -261,7 +262,7 @@
                                         format="dd-MM-yyyy" :data-vv-as="texts.dateofexpire"
                                         :class="{'input': true, 'is-invalid': errors.has('date_of_expiry') }"
                                         v-model="appEdit.date_of_expiry"></datepicker>
-                            <span v-show="errors.has('date_of_expiry')" class="help is-danger">{{ errors.first('date_of_expiry') }}</span>
+                            <span ref="date_of_expiry" v-show="errors.has('date_of_expiry')" class="help is-danger">{{ errors.first('date_of_expiry') }}</span>
                         </div>
                         <div class="form-group col-lg-12">
                             <div class="form-group  col-lg-6"><span>{{texts.member_of_palace}}</span></div>
@@ -275,10 +276,10 @@
                                     <label for="confirm-switch"></label>
                                 </div>
                             </div>
-                            <span v-show="errors.has('member_of_palace')" class="help is-danger">{{ errors.first('member_of_palace') }}</span>
+                            <span ref="member_of_palace" v-show="errors.has('member_of_palace')" class="help is-danger">{{ errors.first('member_of_palace') }}</span>
                         </div>
-                        <div class="form-group col-lg-12">
-                            <div class="large-12 medium-12 small-12 diploms_container filezone">
+                        <div class="form-group col-lg-12 diploms_container">
+                            <div class="large-12 medium-12 small-12 filezone">
                                 <input autocomplete="off" ref="files" v-on:change="handleFiles()"
                                        type="file" id="files" multiple :data-vv-as="texts.uploadfiles"
                                        name="files" v-validate="'required'">
@@ -371,7 +372,6 @@
         const current_date = new Date();
         return current_date.getFullYear() + (_date);
     }
-
     import {approveUser, changePassword, editUser} from '../partials/auth';
     import {getPromiseResult, langs, territory} from '../partials/help';
     import Datepicker from 'vuejs-datepicker';

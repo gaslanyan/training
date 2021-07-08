@@ -43,7 +43,7 @@ h6 {
     font-family: "ArmHmksBebasNeueRegular", sans-serif !important;
 }
 h4{
-    color: #771FF3;
+    color: #580b7f;
 }
 
 .list {
@@ -241,11 +241,11 @@ button:focus {
 /* Start Gradient Area css
 ============================================================================================ */
 .gradient-bg, #search_input_box, .header-top .header-top-right a:hover, .single_feature:nth-child(3),.single_course .course_content .course_meta .price, .testimonial_area .owl-thumb-item.active .overlay-grad, .testimonial_area .owl-thumb-item .overlay-grad:hover, .testimonial_area .owl-thumb-item .overlay-grad.active, .registration_area, .categories_post:hover .categories_details, .blog_right_sidebar .widget_title, .blog_right_sidebar .search_widget .input-group .form-control, .blog_right_sidebar .newsletter_widget .bbtns, .blog_right_sidebar .tag_cloud_widget ul li a:hover, .blog-pagination .page-item.active .page-link, .blog-pagination .page-link:hover, .comments-area .btn-reply:hover, .blog_btn:hover, .footer-area .footer-bottom .footer-social a:hover {
-    background: -webkit-linear-gradient(90deg, #631ed8 0%, #B755FF 100%);
-    background: -moz-linear-gradient(90deg, #631ed8 0%, #B755FF 100%);
-    background: -ms-linear-gradient(90deg, #631ed8 0%, #B755FF 100%);
-    background: -o-linear-gradient(90deg, #631ed8 0%, #B755FF 100%);
-    background: radial-gradient(#B755FF, #631ed8);
+    background: -webkit-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);
+    background: -moz-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);
+    background: -ms-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);
+    background: -o-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);
+    background: radial-gradient(#b130c4, #580b7f);
     /*background: linear-gradient(90deg, #7349cc 0%, #e163e4 25%, #e163e4 75%, #7349cc 100%);*/
 }
 
@@ -281,11 +281,11 @@ button:focus {
 ============================================================================================ */
 .primary-btn {
     display: inline-block;
-    background: -webkit-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: -moz-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: -ms-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: -o-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
+    background: -webkit-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: -moz-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: -ms-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: -o-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
     /*background: linear-gradient(to right, #e9a401 0%, #ff0 51%, #fff800 100%);*/
     background-size: 200% auto;
     padding: 0px 38px;
@@ -656,7 +656,7 @@ button:focus {
     /*font-size: 40px;*/
     font-weight: 700;
    /* color: #30013e;*/
-    color: #771FF3;
+    color: #580b7f;
     line-height: 54px;
 }
 
@@ -739,11 +739,11 @@ button:focus {
 }
 
 .home_banner_area .search_course_wrap .search_course_btn {
-    background: -webkit-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: -moz-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: -ms-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: -o-linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
-    background: linear-gradient(to right, #771FF3 0%, #B755FF 51%, #ba7daf 100%);
+    background: -webkit-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: -moz-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: -ms-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: -o-linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
+    background: linear-gradient(to right, #580b7f 0%, #9827b0 51%, #b130c4 100%);
     /*background: linear-gradient(to right, #e9a401 0%, #ff0 51%, #fff800 100%);*/
     background-size: 200% auto;
     border-radius: 0;
@@ -1001,6 +1001,7 @@ button:focus {
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+    height: 40px;
 }
 
 .single_department h4 {
@@ -1038,7 +1039,7 @@ button:focus {
     font-size: 42px;
     margin-bottom: 25px;
     column-count: 2;
-    color:rgb(99, 30, 216);
+    color:#580b7f;
 }
 
 @media (max-width: 575px) {
@@ -2637,16 +2638,16 @@ color:rgb(99 30 216);
     top: 0;
     font-size: 20px;
     line-height: 24px;
-    color: #9b35f9;
+    color: #580b7f;
     font-weight: 600;
 }
 
 .contact_info .info_item h6 {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 24px;
-    color: "Crimson Text", serif;
-    font-weight: bold;
-    margin-bottom: 0px;
+    /*color: "Crimson Text", serif;*/
+    font-weight: 500 !important;
+    margin-bottom: 0;
     color: #222222;
 }
 
@@ -4801,7 +4802,7 @@ h6 {
 }
 
 .footer-social .fa {
-    color: rgb(99, 30, 216);
+    color: #580b7f;
 }
 
 .footer-area .footer-bottom .footer-social a:hover i {

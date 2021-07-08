@@ -19,6 +19,7 @@ use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 
 /**
@@ -262,10 +263,8 @@ class AccountService
             $account['surname'] = $accountRequest->surname;
             $account['father_name'] = $accountRequest->father_name;
             $account['passport'] = $accountRequest->passport;
-
             $account['date_of_issue'] = date("Y-m-d", strtotime($accountRequest->date_of_issue));
             $account['date_of_expiry'] = date("Y-m-d", strtotime($accountRequest->date_of_expiry));
-
             $this->model->update($account, $id);
 
             $this->updateProfession($profRequest, $id);
@@ -278,7 +277,6 @@ class AccountService
             $user->notify(new ManageUserStatus($user, $account, $message));
             DB::commit();
         } catch (\Exception $exception) {
-            dd($exception);
             DB::rollback();
             logger()->error($exception);
         }
@@ -427,9 +425,7 @@ class AccountService
      */
     public function updateProfession($professionRequest, $id)
     {
-
         $allFiles = $professionRequest->allFiles();
-
         $a_f = [];
         if (strlen($professionRequest->diplomas) > 0) {
             $diplomas = json_decode($professionRequest->diplomas);
@@ -438,30 +434,35 @@ class AccountService
 
             if (!empty($diplomas) && !empty($n_d)) {
                 $result = array_diff($n_d, $diplomas);
-                foreach ($result as $index => $item) {
-                    unlink(public_path() . Config::get('constants.DIPLOMA') . $item);
+
+                foreach ($result as  $item) {
+                    try{
+                   unlink(public_path() . Config::get('constants.DIPLOMA') . $item);
+                   }catch (\Exception $exception) {
+                        dd($exception);
+                        logger()->error($exception);
+                    }
                 }
-                foreach ($diplomas as $index => $diploma) {
+
+                foreach ($diplomas as $diploma) {
                     if (!empty($diploma))
                         $a_f[] = $diploma;
                 }
             }
-
-
-//            if (!file_exists(Config::get('constants.DIPLOMA'))) {
-//                mkdir(Config::get('constants.DIPLOMA'), 0775, true);
-//            }
             if (!empty($allFiles)) {
-                foreach ($allFiles as $index => $allFile) {
+                foreach ($allFiles as $allFile) {
                     $name = grs() . "_" . $id . "." . $allFile->extension();
-
                     $a_f[] = $name;
-                    $allFile->move(public_path() . Config::get('constants.DIPLOMA'), $name);
+                    $img = Image::make($allFile->getRealPath());
+                    $img->resize(600, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save(public_path() . Config::get('constants.DIPLOMA') . $name);
+//                    $allFile->move(public_path() . Config::get('constants.DIPLOMA'), $name);
                 }
             } else
+                if(empty(array_diff($n_d, $a_f)))
                 $a_f = $n_d;
         }
-
         if (!empty($professionRequest->specialty_id))
             $specialty_id = $professionRequest->specialty_id;
         else {
@@ -474,7 +475,6 @@ class AccountService
                 'specialty_id' => $specialty_id,
                 'member_of_palace' => (int)$professionRequest->member_of_palace,
                 'diplomas' => json_encode($a_f, true),
-
             ]);
 
         if (!$inserted)

@@ -62,10 +62,11 @@ class AuthController extends Controller
             if (!$token = auth('api')->attempt($credentials)) {
                 return response()->json(['error' => 'Unverified'], 400);
             }
+            return $this->respondWithTokenById($token);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Unauthorized'], 500);
         }
-        return $this->respondWithTokenById($token);
+
     }
 
     /**
@@ -137,11 +138,12 @@ class AuthController extends Controller
     protected function respondWithTokenById($token)
     {
         $user = $this->guard()->user();
+
         $account = Account::select('id')
             ->with(['prof'=>function($query){
                 $query->select('member_of_palace','account_id');
             }])
-            ->where('id', $user->id)
+            ->where('id', $user->account_id)
             ->first();
 
         return response()->json([

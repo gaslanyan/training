@@ -51,7 +51,7 @@ class AccountController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index($role)
     {
@@ -71,7 +71,7 @@ class AccountController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
@@ -82,7 +82,6 @@ class AccountController extends Controller
             $prof = (array)$prof->getData()->prof;
             return view('backend.account.create', compact('regions', 'prof'));
         } catch (ModelNotFoundException $exception) {
-            dd($exception);
             logger()->error($exception);
             return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
         }
@@ -104,7 +103,6 @@ class AccountController extends Controller
 
             return redirect('backend/account/lecture')->with('success', __('messages.success'));
         } catch (\Exception $exception) {
-            dd($exception);
             logger()->error($exception);
             return redirect('backend/account/lecture')->with('error', __('messages.wrong'));
         }
@@ -120,10 +118,10 @@ class AccountController extends Controller
     {
         try {
             $account = $this->service->getAccount()->where('id', $id)->first();
-            
+
             if (!empty($account)) {
                 $account = $this->service->addresses($account);
-               
+
             }
 
             $profession = $this->service->getProfessions($id);
