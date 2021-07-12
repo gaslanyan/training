@@ -274,7 +274,7 @@ class AccountService
             $account = Account::where('id', $id)->first();
             $user = User::select('email')->where('account_id', $id)->first();
 
-            $user->notify(new ManageUserStatus($user, $account, $message));
+            $user->notify(new ManageUserStatus($user, $account, $message, 0));
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollback();
@@ -333,7 +333,7 @@ class AccountService
         $inserted = DB::table('users')
             ->where('account_id', $id)
             ->update(['status' => "approved"]);
-        $user->notify(new ManageUserStatus($user, $account, $message, true));
+        $user->notify(new ManageUserStatus($user, $account, $message, 1));
         if (!$inserted)
             throw new ModelNotFoundException('insert chi eghel ');
         return $inserted;
@@ -397,7 +397,7 @@ class AccountService
         $message = Message::where('key', 'rejected_user')->first();
         $account = Account::select('name', 'surname')->where('id', $id)->first();
         $user = User::where('account_id', $id)->first();
-        $user->notify(new ManageUserStatus($user, $account, $message));
+        $user->notify(new ManageUserStatus($user, $account, $message, 0));
     }
 
 

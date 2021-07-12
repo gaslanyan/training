@@ -165,7 +165,7 @@ class AccountVideoService
         $inserted = DB::table('users')
             ->where('account_id', $id)
             ->update(['status' => "approved"]);
-        $user->notify(new ManageUserStatus($user, $account, $message, true));
+        $user->notify(new ManageUserStatus($user, $account, $message, 1));
         if (!$inserted->id)
             throw new ModelNotFoundException('insert chi eghel ');
         return $inserted->id;
@@ -182,7 +182,7 @@ class AccountVideoService
         $user = User::where('account_id', $id)->first();
 
         $this->model->delete($id);
-        $user->notify(new ManageUserStatus($user, $account, $message));
+        $user->notify(new ManageUserStatus($user, $account, $message, 0));
     }
 
 

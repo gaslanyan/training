@@ -37,12 +37,12 @@ class ManageUserStatus extends Notification
      * @param Account $account
      * @param Message $message
      */
-    public function __construct(User $user, Account $account, Message $message, $action = false)
+    public function __construct(User $user, Account $account, Message $message, $action = -1)
     {
         $this->user = $user;
         $this->account = $account;
         $this->message = $message;
-        $this->action = $action;
+        $this->action  = $action;
     }
 
     /**
@@ -72,9 +72,9 @@ class ManageUserStatus extends Notification
             ->salutation(__("messages.faithfully"))
             ->line(new HtmlString($this->message->value))
             ->line(new HtmlString(__('messages.thank_you')));
-        if ($this->action)
+        if ($this->action == 1)
             $mail->action(__('messages.login'), url('/login'));
-        else {
+        else if ($this->action == -1) {
             $key = md5($this->user->email);
             $mail->action(__('messages.verify'), url('/verify/' . $this->user->id . DIRECTORY_SEPARATOR . $key));
         }
