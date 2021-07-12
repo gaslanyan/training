@@ -49,6 +49,13 @@ class MessagesSeeder extends Seeder
                 "value" => "Դասավանդում, դասավանդում դասավանդում դասավանդումդասավանդումդասավանդում",
                 "created_at" => Carbon::now(),
                 "updated_at" => Carbon::now()
+            ],
+            [
+                "name" => "Տվյալների փոփոխություն",
+                "key" => "updated_user",
+                "value" => "Սպասե՛ք, ԲՇՄԶ թիմը կհաստատի կատարված փոփոխությունները։",
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now()
             ]
         ];
     }

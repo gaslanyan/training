@@ -567,7 +567,7 @@
                             this.files, this.$data.formEdit.token)
                             .then(res => {
                                 this.$store.commit("editSuccess", res);
-                                // this.logout();
+                                this.logout();
                             })
                             .catch(error => {
                                 this.$store.commit("editFailed", {error});

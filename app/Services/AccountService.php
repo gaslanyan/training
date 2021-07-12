@@ -270,7 +270,7 @@ class AccountService
             $this->updateProfession($profRequest, $id);
             self::updateUserByParam('pending', $id, 'status');
 
-            $message = Message::where('key', 'registered_user')->first();
+            $message = Message::where('key', 'updated_user')->first();
             $account = Account::where('id', $id)->first();
             $user = User::select('email')->where('account_id', $id)->first();
 
