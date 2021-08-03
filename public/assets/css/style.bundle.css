@@ -50164,3 +50164,7 @@ td .cancel {
 li{
     list-style: decimal;
 }
+#diploma{
+    opacity:1 !important;
+    height:auto !important;
+}

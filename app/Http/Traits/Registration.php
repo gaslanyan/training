@@ -83,14 +83,17 @@ trait Registration
             $user = new User();
             $user->account_id = $account->id;
             $user->email = $userRequest->email;
+            $msg = -1;
             if ($role === 'user')
                 $user->password = bcrypt($userRequest->password);
-            else
+            else{
                 $user->password = bcrypt('11111111');
+                $msg = 1;
+                }
             $user->status = $status;
             if ($user->save()) {
                 $message = Message::where('key', 'registered_' . $role)->first();
-                $user->notify(new ManageUserStatus($user, $account, $message, 0));
+                $user->notify(new ManageUserStatus($user, $account, $message, $msg));
             }
 
             DB::commit();

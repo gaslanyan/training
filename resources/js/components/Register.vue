@@ -254,7 +254,7 @@
                     </div>
                     <div class="form-group  col-lg-4">
                         <label for="specialty_id">{{ texts.specialty }}</label>
-                        <select id="specialty_id" name="education" class="form-control" v-validate="'required'"
+                        <select id="specialty_id" name="specialty" class="form-control" v-validate="'required'"
                                 :class="{'input': true, 'is-invalid': errors.has('education_id') }"
                                 v-model="formRegister.education_id" ref="spec" :data-vv-as="texts.specialty"
                                 @change="getEducations(formRegister.education_id)">

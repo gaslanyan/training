@@ -8,6 +8,7 @@ use App\Http\Requests\ProfessionRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Traits\Registration;
 use App\Models\Account;
+use Illuminate\Http\Request;
 
 
 /**
@@ -24,7 +25,8 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()    {
+    public function __construct()
+    {
 
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
@@ -37,11 +39,9 @@ class AuthController extends Controller
      * @param UserRequest $userRequest
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(AccountRequest $accountRequest,
-                             ProfessionRequest $professionRequest,
-                             UserRequest $userRequest)
+    public function register(Request $request)
     {
-             return Registration::register($accountRequest, $professionRequest, $userRequest, 'user', 'pending');
+        return Registration::register($accountRequest, $professionRequest, $userRequest, 'user', 'pending');
     }
 
     /**
@@ -140,8 +140,8 @@ class AuthController extends Controller
         $user = $this->guard()->user();
 
         $account = Account::select('id')
-            ->with(['prof'=>function($query){
-                $query->select('member_of_palace','account_id');
+            ->with(['prof' => function ($query) {
+                $query->select('member_of_palace', 'account_id');
             }])
             ->where('id', $user->account_id)
             ->first();
