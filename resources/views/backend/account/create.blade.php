@@ -337,6 +337,7 @@
 
                                                         <select id="prof" name="profession"
                                                                 class="form-control @if($errors->first('profession')){{'is-invalid'}} @endif">
+                                                            <option value="">{{__('messages.select_section')}}</option>
                                                             @if(!empty($prof))
                                                                 @foreach($prof as $key=>$p)
                                                                     <option class="form-control" value="{{$p->id}}">

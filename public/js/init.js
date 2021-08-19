@@ -192,7 +192,7 @@ $(document).ready(function () {
 
                 if ($sub.find('option').length > 0)
                     $sub.html("");
-                $sub.append(' <option class="text-capitalize" value="A">' + "" + '</option>');
+                $sub.append(' <option class="text-capitalize" value="">' + "Ընտրել կրթություն" + '</option>');
                 for (var item in data.edu) {
                     if (data.edu.hasOwnProperty(item))
                         $sub.append(' <option class="text-capitalize" value="' + data.edu[item].id + '">' + data.edu[item].name + '</option>')

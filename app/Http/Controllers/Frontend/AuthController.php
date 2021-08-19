@@ -33,14 +33,44 @@ class AuthController extends Controller
 
 
     /**
-     * Get a JWT via given credentials.
-     * @param AccountRequest $accountRequest
-     * @param ProfessionRequest $professionRequest
-     * @param UserRequest $userRequest
-     * @return \Illuminate\Http\JsonResponse
+     * The account registration
+     *
+     * @queryParam name The account name.  Example: "name"
+     * @queryParam surname The account surname.  Example: "surname"
+     * @queryParam father_name The account father_name.  Example: "father_name"
+     * @queryParam date_of_expiry The date of expiry.  Example: "2022-06-13"
+     * @queryParam date_of_issue The date of issue Example: "2020-06-02"
+     * @queryParam diplomas The rest after removing.  Example: "["OfU5qs_2.jpeg"]"
+     * @queryParam j_diplomas The passport field /all img from db.  Example: "OfU5qs_2.jpeg,3NqMqY_2.jpeg"
+     * @queryParam diploma_1 The new upload file.  Example: "(binary)"
+     * @queryParam passport The passport field.  Example: "AN0771747"
+     * @queryParam re_passport The confirm passport field.  Example: "AN0771747"
+     * @queryParam member_of_palace The member of palace 0 or 1.  Example: "0"
+     * @queryParam bday The bday Example: "1978-09-13",
+     * @queryParam email The account email Example: "g_aslanyan@mail.ru",
+     * @queryParam phone The account phone Example: "93610174",
+     * @queryParam h_region The home region id Example: "3",
+     * @queryParam h_street The home street name Example: "հիմնական 7",
+     * @queryParam h_territory The home territory id Example: "145",
+     * @queryParam w_region The work region id Example: "3",
+     * @queryParam w_street The work street name "հիմնական 7",
+     * @queryParam w_territory The work territory id "145",
+     * @queryParam workplace_name The work place name "պոլիկնիկա",
+     * @queryParam specialty_id Կրթությունը  "30",
+     * @queryParam education_id Մասնագիտացումը "7",
+     * @queryParam profession Մասնագիտական խումբը "3",
+     *
+     * @response
+     *{
+     * "success": "pending",
+     * "user": "2"
+     * }
      */
-    public function register(Request $request)
+    public function register(AccountRequest $accountRequest,
+                             ProfessionRequest $professionRequest,
+                             UserRequest $userRequest)
     {
+
         return Registration::register($accountRequest, $professionRequest, $userRequest, 'user', 'pending');
     }
 

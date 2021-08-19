@@ -73,7 +73,7 @@ if answer the checkbox, then true ex: 2_3: true, or radio button then answers nu
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/getresult?access_token=eaque&model=%7B1_2%3A+2%2C+1_3%3A+3%2C+2_2%3A+true%2C+2_3%3A+true%2C+3_2%3A+true%2C+3_3%3A+true%2C+4_1%3A+true%2C+4_2%3A+true%2C+5_2%3A+true%7D&user_id=2&course_id=1" \
+    "https://training.gtech.am/api/auth/getresult?access_token=consectetur&model=%7B1_2%3A+2%2C+1_3%3A+3%2C+2_2%3A+true%2C+2_3%3A+true%2C+3_2%3A+true%2C+3_3%3A+true%2C+4_1%3A+true%2C+4_2%3A+true%2C+5_2%3A+true%7D&user_id=2&course_id=1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -84,7 +84,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "eaque",
+    "access_token": "consectetur",
     "model": "{1_2: 2, 1_3: 3, 2_2: true, 2_3: true, 3_2: true, 3_3: true, 4_1: true, 4_2: true, 5_2: true}",
     "user_id": "2",
     "course_id": "1",
@@ -134,12 +134,13 @@ Parameter | Status | Description
 <!-- START_7f1e90abe772086d55a91477c4af5533 -->
 ## Payment- Init Payment Request
 Init Payment Request
+important for mobile --- send account_id, course_id, token, mobile=true
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/payment?ClientID=corrupti&Username=username&Password=password&Currency=AMD&Description=SHMZ&Amount=10&OrderID=AMD&BackURL=https%3A%2F%2Fwww.shmz.am%2Flesson&Opaque=TEST+Opaque+VPOS&CardHolderID=TEST+CARD+VPOS" \
+    "https://training.gtech.am/api/auth/payment?ClientID=ut&Username=username&Password=password&Currency=AMD&Description=SHMZ&Amount=10&OrderID=AMD&BackURL=https%3A%2F%2Fwww.shmz.am%2Flesson&Opaque=TEST+Opaque+VPOS&CardHolderID=TEST+CARD+VPOS" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -150,7 +151,7 @@ const url = new URL(
 );
 
 let params = {
-    "ClientID": "corrupti",
+    "ClientID": "ut",
     "Username": "username",
     "Password": "password",
     "Currency": "AMD",
@@ -328,7 +329,7 @@ get the result by test
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/addpoint?access_token=suscipit&point=7.199989&user_id=2&id=3" \
+    "https://training.gtech.am/api/auth/addpoint?access_token=sunt&point=7.199989&user_id=2&id=3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -339,7 +340,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "suscipit",
+    "access_token": "sunt",
     "point": "7.199989",
     "user_id": "2",
     "id": "3",
@@ -383,6 +384,469 @@ Parameter | Status | Description
     `id` |  optional  | The video id to filter by id
 
 <!-- END_3161a5db305df380d0f557d871301305 -->
+
+#Account Profile
+
+
+APIs for a account profile
+<!-- START_a19f97e120902d01a27fb7ac23c9a2c1 -->
+## Change avatar
+
+change avatar by account id
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "https://training.gtech.am/api/auth/avatar/1?access_token=suscipit&avatar=%22%28binary%29%22&_method=PUT" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/avatar/1"
+);
+
+let params = {
+    "access_token": "suscipit",
+    "avatar": ""(binary)"",
+    "_method": "PUT",
+};
+Object.keys(params)
+    .forEach(key => url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "token": ""
+}
+```
+
+### HTTP Request
+`PUT api/auth/avatar/{id}`
+
+`PATCH api/auth/avatar/{id}`
+
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    `access_token` |  optional  | token
+    `avatar` |  optional  | the image
+    `_method` |  optional  | 
+
+<!-- END_a19f97e120902d01a27fb7ac23c9a2c1 -->
+
+<!-- START_13790c84e17bb9810ede0e7aa98a01f1 -->
+## Edit Account profile and approve by admin
+multipart/form-data
+edit profile by account id
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "https://training.gtech.am/api/auth/approve/1?access_token=amet&name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&member_of_palace=%220%22&_method=PUT" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/approve/1"
+);
+
+let params = {
+    "access_token": "amet",
+    "name": ""name"",
+    "surname": ""surname"",
+    "father_name": ""father_name"",
+    "date_of_expiry": ""2022-06-13"",
+    "date_of_issue": ""2020-06-02"",
+    "diplomas": ""["OfU5qs_2.jpeg"]"",
+    "j_diplomas": ""OfU5qs_2.jpeg,3NqMqY_2.jpeg"",
+    "diploma_1": ""(binary)"",
+    "passport": ""AN0771747"",
+    "member_of_palace": ""0"",
+    "_method": "PUT",
+};
+Object.keys(params)
+    .forEach(key => url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "success": "pending",
+    "user": "2"
+}
+```
+
+### HTTP Request
+`PUT api/auth/approve/{id}`
+
+`PATCH api/auth/approve/{id}`
+
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    `access_token` |  optional  | token
+    `name` |  optional  | The account name
+    `surname` |  optional  | The account surname
+    `father_name` |  optional  | The account father_name
+    `date_of_expiry` |  optional  | The date of expiry
+    `date_of_issue` |  optional  | The date of issue
+    `diplomas` |  optional  | The rest after removing
+    `j_diplomas` |  optional  | The passport field /all img from db
+    `diploma_1` |  optional  | The new upload file
+    `passport` |  optional  | The passport field
+    `member_of_palace` |  optional  | The member of palace 0 or 1
+    `_method` |  optional  | 
+
+<!-- END_13790c84e17bb9810ede0e7aa98a01f1 -->
+
+<!-- START_8e088abc88be0a4785c5a04626f0482f -->
+## api/auth/getaccountbyid
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/auth/getaccountbyid" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/getaccountbyid"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/auth/getaccountbyid`
+
+
+<!-- END_8e088abc88be0a4785c5a04626f0482f -->
+
+<!-- START_6b2b0b8ab787dfbbad2bb427b98ed234 -->
+## Profile by account id
+get the profile by id
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/api/auth/edit/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/edit/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "access_token": null,
+    "user": {
+        "id": 2,
+        "name": "name",
+        "surname": "surname",
+        "father_name": "father_name",
+        "image_name": "avatar_2.png",
+        "bday": "1978-09-13",
+        "email": "g_aslanyan@mail.ru",
+        "phone": "93610174",
+        "home_address": "{\"h_region\": \"7\", \"h_street\": \"վերդի 7\/8\", \"h_territory\": \"523\"}",
+        "work_address": "{\"w_region\": \"3\", \"w_street\": \"հիմնական 7\", \"w_territory\": \"145\"}",
+        "workplace_name": "պոլիկնիկա",
+        "specialty_id": 30,
+        "education_id": 7,
+        "profession": 3,
+        "info": "Wfwf"
+    },
+    "app": {
+        "id": 2,
+        "name": "name",
+        "surname": "surname",
+        "father_name": "father_name",
+        "date_of_expiry": "2022-06-13",
+        "passport": "AN0771747",
+        "date_of_issue": "2020-06-02",
+        "prof": {
+            "specialty_id": 30,
+            "member_of_palace": 0,
+            "diplomas": "[\"OfU5qs_2.jpeg\", \"3NqMqY_2.jpeg\"]",
+            "account_id": 2
+        }
+    },
+    "token_type": "bearer",
+    "expires_in": 0
+}
+```
+
+### HTTP Request
+`GET api/auth/edit/{id}`
+
+
+<!-- END_6b2b0b8ab787dfbbad2bb427b98ed234 -->
+
+<!-- START_8ae19e30af451dc6031b22a8e271fc34 -->
+## api/auth/getstatus
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/auth/getstatus" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/getstatus"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/auth/getstatus`
+
+
+<!-- END_8ae19e30af451dc6031b22a8e271fc34 -->
+
+<!-- START_ec2b7e10ed4deb3cededb17caf85bfaf -->
+## Edit Account profile
+
+edit profile by account id
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "https://training.gtech.am/api/auth/edit/1?access_token=quas&phone=%2293656565%22&bday=%222022-06-13%22&workplace_name=%22name%22&h_region=%222%22&w_region=%222%22&h_territory=%222%22&w_territory=%222%22&w_street=%22name%22&h_street=%22name%22&profession=%220%22&specialty_id=%2230%22&education_id=%223%22&info=%22%22&_method=PUT" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/edit/1"
+);
+
+let params = {
+    "access_token": "quas",
+    "phone": ""93656565"",
+    "bday": ""2022-06-13"",
+    "workplace_name": ""name"",
+    "h_region": ""2"",
+    "w_region": ""2"",
+    "h_territory": ""2"",
+    "w_territory": ""2"",
+    "w_street": ""name"",
+    "h_street": ""name"",
+    "profession": ""0"",
+    "specialty_id": ""30"",
+    "education_id": ""3"",
+    "info": """",
+    "_method": "PUT",
+};
+Object.keys(params)
+    .forEach(key => url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "success": "true",
+    "user": "2"
+}
+```
+
+### HTTP Request
+`PUT api/auth/edit/{id}`
+
+`PATCH api/auth/edit/{id}`
+
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    `access_token` |  optional  | token
+    `phone` |  optional  | The account phone number
+    `bday` |  optional  | The account bday
+    `workplace_name` |  optional  | The workplace name
+    `h_region` |  optional  | The home region id
+    `w_region` |  optional  | The work region id
+    `h_territory` |  optional  | The home territory id
+    `w_territory` |  optional  | The work territory id
+    `w_street` |  optional  | The work street name
+    `h_street` |  optional  | The home street name
+    `profession` |  optional  | The member of palace 0 or 1
+    `specialty_id` |  optional  | The specialty id
+    `education_id` |  optional  | The education id
+    `info` |  optional  | The info description
+    `_method` |  optional  | 
+
+<!-- END_ec2b7e10ed4deb3cededb17caf85bfaf -->
+
+<!-- START_59d115d508f64860035363af26e59b9d -->
+## Change password
+
+change password by account id
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "https://training.gtech.am/api/auth/changePass/1?access_token=recusandae&old_password=%22111111111%22&password=%226666666%22&re-password=%226666666%22&_method=PUT" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/changePass/1"
+);
+
+let params = {
+    "access_token": "recusandae",
+    "old_password": ""111111111"",
+    "password": ""6666666"",
+    "re-password": ""6666666"",
+    "_method": "PUT",
+};
+Object.keys(params)
+    .forEach(key => url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "success": "true",
+    "user_id": "2"
+}
+```
+
+### HTTP Request
+`PUT api/auth/changePass/{id}`
+
+`PATCH api/auth/changePass/{id}`
+
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    `access_token` |  optional  | token
+    `old_password` |  optional  | 
+    `password` |  optional  | 
+    `re-password` |  optional  | 
+    `_method` |  optional  | 
+
+<!-- END_59d115d508f64860035363af26e59b9d -->
 
 #Course
 
@@ -852,13 +1316,13 @@ fetch(url, {
 
 
 <!-- START_2e1c96dcffcfe7e0eb58d6408f1d619e -->
-## Get a JWT via given credentials.
+## The account registration
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/register" \
+    "https://training.gtech.am/api/auth/register?name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&re_passport=%22AN0771747%22&member_of_palace=%220%22&bday=%221978-09-13%22%2C&email=%22g_aslanyan%40mail.ru%22%2C&phone=%2293610174%22%2C&h_region=%223%22%2C&h_street=%22%D5%B0%D5%AB%D5%B4%D5%B6%D5%A1%D5%AF%D5%A1%D5%B6+7%22%2C&h_territory=%22145%22%2C&w_region=%223%22%2C&w_street=unde&w_territory=delectus&workplace_name=maiores&specialty_id=sed&education_id=qui&profession=dolor" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -867,6 +1331,35 @@ curl -X POST \
 const url = new URL(
     "https://training.gtech.am/api/auth/register"
 );
+
+let params = {
+    "name": ""name"",
+    "surname": ""surname"",
+    "father_name": ""father_name"",
+    "date_of_expiry": ""2022-06-13"",
+    "date_of_issue": ""2020-06-02"",
+    "diplomas": ""["OfU5qs_2.jpeg"]"",
+    "j_diplomas": ""OfU5qs_2.jpeg,3NqMqY_2.jpeg"",
+    "diploma_1": ""(binary)"",
+    "passport": ""AN0771747"",
+    "re_passport": ""AN0771747"",
+    "member_of_palace": ""0"",
+    "bday": ""1978-09-13",",
+    "email": ""g_aslanyan@mail.ru",",
+    "phone": ""93610174",",
+    "h_region": ""3",",
+    "h_street": ""հիմնական 7",",
+    "h_territory": ""145",",
+    "w_region": ""3",",
+    "w_street": "unde",
+    "w_territory": "delectus",
+    "workplace_name": "maiores",
+    "specialty_id": "sed",
+    "education_id": "qui",
+    "profession": "dolor",
+};
+Object.keys(params)
+    .forEach(key => url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -882,10 +1375,46 @@ fetch(url, {
 ```
 
 
+> Example response (200):
+
+```json
+{
+    "success": "pending",
+    "user": "2"
+}
+```
 
 ### HTTP Request
 `POST api/auth/register`
 
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    `name` |  optional  | The account name.
+    `surname` |  optional  | The account surname.
+    `father_name` |  optional  | The account father_name.
+    `date_of_expiry` |  optional  | The date of expiry.
+    `date_of_issue` |  optional  | The date of issue
+    `diplomas` |  optional  | The rest after removing.
+    `j_diplomas` |  optional  | The passport field /all img from db.
+    `diploma_1` |  optional  | The new upload file.
+    `passport` |  optional  | The passport field.
+    `re_passport` |  optional  | The confirm passport field.
+    `member_of_palace` |  optional  | The member of palace 0 or 1.
+    `bday` |  optional  | The bday
+    `email` |  optional  | The account email
+    `phone` |  optional  | The account phone
+    `h_region` |  optional  | The home region id
+    `h_street` |  optional  | The home street name
+    `h_territory` |  optional  | The home territory id
+    `w_region` |  optional  | The work region id
+    `w_street` |  optional  | The work street name "հիմնական 7",
+    `w_territory` |  optional  | The work territory id "145",
+    `workplace_name` |  optional  | The work place name "պոլիկնիկա",
+    `specialty_id` |  optional  | Կրթությունը  "30",
+    `education_id` |  optional  | Մասնագիտացումը "7",
+    `profession` |  optional  | Մասնագիտական խումբը "3",
 
 <!-- END_2e1c96dcffcfe7e0eb58d6408f1d619e -->
 
@@ -926,6 +1455,44 @@ fetch(url, {
 
 
 <!-- END_a925a8d22b3615f12fca79456d286859 -->
+
+<!-- START_5f6caf6e0084445f9485e6b796d33d7b -->
+## Handle the incoming request.
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/auth/verify/1/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/verify/1/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/auth/verify/{id}/{key}`
+
+
+<!-- END_5f6caf6e0084445f9485e6b796d33d7b -->
 
 <!-- START_19ff1b6f8ce19d3c444e9b518e8f7160 -->
 ## Log the user out (Invalidate the token).
@@ -1003,84 +1570,6 @@ fetch(url, {
 
 <!-- END_994af8f47e3039ba6d6d67c09dd9e415 -->
 
-<!-- START_a19f97e120902d01a27fb7ac23c9a2c1 -->
-## api/auth/avatar/{id}
-> Example request:
-
-```bash
-curl -X PUT \
-    "https://training.gtech.am/api/auth/avatar/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/avatar/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT api/auth/avatar/{id}`
-
-`PATCH api/auth/avatar/{id}`
-
-
-<!-- END_a19f97e120902d01a27fb7ac23c9a2c1 -->
-
-<!-- START_13790c84e17bb9810ede0e7aa98a01f1 -->
-## api/auth/approve/{id}
-> Example request:
-
-```bash
-curl -X PUT \
-    "https://training.gtech.am/api/auth/approve/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/approve/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT api/auth/approve/{id}`
-
-`PATCH api/auth/approve/{id}`
-
-
-<!-- END_13790c84e17bb9810ede0e7aa98a01f1 -->
-
 <!-- START_a47210337df3b4ba0df697c115ba0c1e -->
 ## Get the authenticated User.
 
@@ -1118,202 +1607,6 @@ fetch(url, {
 
 
 <!-- END_a47210337df3b4ba0df697c115ba0c1e -->
-
-<!-- START_8e088abc88be0a4785c5a04626f0482f -->
-## api/auth/getaccountbyid
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/auth/getaccountbyid" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/getaccountbyid"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/auth/getaccountbyid`
-
-
-<!-- END_8e088abc88be0a4785c5a04626f0482f -->
-
-<!-- START_6b2b0b8ab787dfbbad2bb427b98ed234 -->
-## api/auth/edit/{id}
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/api/auth/edit/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/edit/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Token not provided"
-}
-```
-
-### HTTP Request
-`GET api/auth/edit/{id}`
-
-
-<!-- END_6b2b0b8ab787dfbbad2bb427b98ed234 -->
-
-<!-- START_8ae19e30af451dc6031b22a8e271fc34 -->
-## api/auth/getstatus
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/auth/getstatus" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/getstatus"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/auth/getstatus`
-
-
-<!-- END_8ae19e30af451dc6031b22a8e271fc34 -->
-
-<!-- START_ec2b7e10ed4deb3cededb17caf85bfaf -->
-## api/auth/edit/{id}
-> Example request:
-
-```bash
-curl -X PUT \
-    "https://training.gtech.am/api/auth/edit/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/edit/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT api/auth/edit/{id}`
-
-`PATCH api/auth/edit/{id}`
-
-
-<!-- END_ec2b7e10ed4deb3cededb17caf85bfaf -->
-
-<!-- START_59d115d508f64860035363af26e59b9d -->
-## api/auth/changePass/{id}
-> Example request:
-
-```bash
-curl -X PUT \
-    "https://training.gtech.am/api/auth/changePass/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/changePass/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT api/auth/changePass/{id}`
-
-`PATCH api/auth/changePass/{id}`
-
-
-<!-- END_59d115d508f64860035363af26e59b9d -->
 
 <!-- START_a404ad2680ae39b37bf51a3f1dd26c95 -->
 ## api/auth/finishedvideo
@@ -1537,6 +1830,43 @@ fetch(url, {
 
 <!-- END_8fc2e53df93fe611de1d3519d04fae69 -->
 
+<!-- START_63fc0e87430a7e884b4feef38a9ab61a -->
+## api/certificate
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/certificate" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/certificate"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/certificate`
+
+
+<!-- END_63fc0e87430a7e884b4feef38a9ab61a -->
+
 <!-- START_e795fade4d25e2473e7fd22cababfe99 -->
 ## api/comment
 > Example request:
@@ -1573,6 +1903,43 @@ fetch(url, {
 
 
 <!-- END_e795fade4d25e2473e7fd22cababfe99 -->
+
+<!-- START_8dc73d45daa776ebe968a06c2e353bdc -->
+## api/rating
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/rating" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/rating"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/rating`
+
+
+<!-- END_8dc73d45daa776ebe968a06c2e353bdc -->
 
 <!-- START_cd5946798b0d62ceae6a8f51f12d8234 -->
 ## Display a listing of the resource.
@@ -1686,13 +2053,13 @@ fetch(url, {
 
 <!-- END_6d3061d375666b8cf6babe163b36f250 -->
 
-<!-- START_b60a6dbb8352bc96ab96389756f7522e -->
+<!-- START_785f30eaa5561b9f7ece59c2d9ce76bc -->
 ## Handle reset password
 
 > Example request:
 
 ```bash
-curl -X POST \
+curl -X PUT \
     "https://training.gtech.am/api/reset/password" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -1709,7 +2076,7 @@ let headers = {
 };
 
 fetch(url, {
-    method: "POST",
+    method: "PUT",
     headers: headers,
 })
     .then(response => response.json())
@@ -1719,10 +2086,12 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/reset/password`
+`PUT api/reset/password`
+
+`PATCH api/reset/password`
 
 
-<!-- END_b60a6dbb8352bc96ab96389756f7522e -->
+<!-- END_785f30eaa5561b9f7ece59c2d9ce76bc -->
 
 <!-- START_f453d442cbe270ed50c2def3a3416115 -->
 ## about
@@ -3756,94 +4125,6 @@ fetch(url, {
 
 
 <!-- END_2dd2c63eea951ed1d3224f71fc61e050 -->
-
-<!-- START_d05e5f71cf91bdc6b2ccdc04ac6a82de -->
-## backend/course/result
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/course/result" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/course/result"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/course/result`
-
-
-<!-- END_d05e5f71cf91bdc6b2ccdc04ac6a82de -->
-
-<!-- START_181c60cec752fd46b8d9b8560dc7cfba -->
-## backend/course/result-speciality
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/course/result-speciality" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/course/result-speciality"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/course/result-speciality`
-
-
-<!-- END_181c60cec752fd46b8d9b8560dc7cfba -->
 
 <!-- START_16cf09271e74771f6ccaa3305003f808 -->
 ## backend/course

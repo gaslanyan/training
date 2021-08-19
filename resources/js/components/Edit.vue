@@ -340,7 +340,7 @@
                             <label for="password">{{texts.newpassword}}</label>
                             <input autocomplete="off" id="password" type="password" name="password" class="form-control"
                                    v-validate="'required|min:8'" v-model="passEdit.password"
-                                   :data-vv-as="texts.password"
+                                   :data-vv-as="texts.password" ref="pass"
                                    :class="{'input': true, 'is-invalid': errors.has('password') }"
                                    v-on:blur="checkLang('password','en', 'passEdit')">
                             <span v-show="errors.has('password')"
@@ -351,7 +351,7 @@
                             <input autocomplete="off" id="re_password" type="password" name="re_password"
                                    class="form-control" v-on:blur="checkLang('re_password','en', 'passEdit')"
                                    :class="{'input': true, 'is-invalid': errors.has('re_password') }"
-                                   v-validate="'required|min:8|confirmed:password'" v-model="passEdit.re_password"
+                                   v-validate="'required|confirmed:pass'" v-model="passEdit.re_password"
                                    :data-vv-as="texts.confirmpassword">
                             <span v-show="errors.has('re_password')" class="help is-danger">{{ errors.first('re_password') }}</span>
                         </div>
