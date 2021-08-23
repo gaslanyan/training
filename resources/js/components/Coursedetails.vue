@@ -124,14 +124,14 @@
                                     </div>
                                 </form>
                             </div>
-                          
+
                         </div>
-                        
+
                     </div>
-                  
+
                 </div>
                     <div id="certificate">
-                                <img id="finishimg"  v-bind:src= "'/public/css/frontend/img/' + cert" />
+                                <img id="finishimg"  v-bind:src= "'/css/frontend/img/' + cert" />
                             </div>
             </div>
         </section>

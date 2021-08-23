@@ -237,8 +237,8 @@ class CoursesController extends Controller
             $cours['end_date'] = date('Y-m-d', strtotime($request->end_date));
             $cours['duration'] = $request->duration;
             $cours['credit'] = json_encode($request->credit);
-            $cours['videos'] = json_encode($request->videos);
-            $cours['books'] = json_encode($request->books);
+            $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
+            $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
             $cours['content'] = $request->content_data;
 
@@ -354,8 +354,8 @@ class CoursesController extends Controller
             $cours['end_date'] = date('Y-m-d', strtotime($request->end_date));
             $cours['duration'] = $request->duration;
             $cours['credit'] = json_encode($request->credit);
-            $cours['videos'] = json_encode($request->videos);
-            $cours['books'] = json_encode($request->books);
+            $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
+            $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
             $cours['content'] = $request->content_data;
             $this->model->update($cours, $id);
