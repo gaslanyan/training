@@ -410,5 +410,9 @@ input[type="file"], .icon {
 .diplomas{
   height: 300px;
 }
+.fr-wrapper>div:nth-child(1), .second-toolbar>a,
+p[data-f-id="pbf"]{
+    display: none;
+}
 /* Custom Area css
 ============================================================================================ */

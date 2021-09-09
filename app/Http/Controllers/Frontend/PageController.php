@@ -166,9 +166,9 @@ class PageController extends Controller
         $text = strtoupper($account_name->name ." ". $account_name->surname);
 
 
-        imagettftext($imgg, 12, 0, ($coordinates->name->x) + 70, ($coordinates->name->y) + 100, $color, $font, $text);
-        imagettftext($imgg, 12, 0, ($coordinates->start_date->x) + 20, ($coordinates->start_date->y) + 100, $color, $font, $start);
-        imagettftext($imgg, 12, 0, ($coordinates->end_date->x) + 20, ($coordinates->end_date->y) + 100, $color, $font, $end);
+        imagettftext($imgg, 12, 0, ($coordinates->name->x) -10, ($coordinates->name->y) + 10, $color, $font, $text);
+        imagettftext($imgg, 12, 0, ($coordinates->start_date->x) -10, ($coordinates->start_date->y) + 10, $color, $font, $start);
+        imagettftext($imgg, 12, 0, ($coordinates->end_date->x) -10, ($coordinates->end_date->y) + 10, $color, $font, $end);
         header('Content-type:image/png');
         imagepng($imgg, public_path().'/css/frontend/img/'.$text.'.png', 5);
          $resp = $text.".png";

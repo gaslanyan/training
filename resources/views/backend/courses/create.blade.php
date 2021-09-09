@@ -331,15 +331,15 @@
                                                 <div id="show_cert_image"
                                                      {{$show?'':'hidden'}} style="position: relative">
                                                     <div id="pos_1"
-                                                         style="position:absolute;{{$show?sprintf('top: %dpx; left: %dpx;',$cert_name_y, $cert_name_x):'bottom: 0;'}} border-radius: 50%; text-align: center; color: #FFFFFF; width: 20px;height: 20px;background-color: black">
+                                                         style="position:absolute;{{$show?sprintf('top: %dpx; left: %dpx;',$cert_name_y-10, $cert_name_x-10):'bottom: 0;'}} border-radius: 50%; text-align: center; color: #FFFFFF; width: 20px;height: 20px;background-color: black">
                                                         1
                                                     </div>
                                                     <div id="pos_2"
-                                                         style="position:absolute; {{$show?sprintf('top: %dpx; left: %dpx;',$cert_start_date_y,$cert_start_date_x):'bottom: 0; left: 20px;'}} border-radius: 50%; text-align: center; color: #FFFFFF; width: 20px;height: 20px;background-color: black">
+                                                         style="position:absolute; {{$show?sprintf('top: %dpx; left: %dpx;',$cert_start_date_y-10,$cert_start_date_x-10):'bottom: 0; left: 20px;'}} border-radius: 50%; text-align: center; color: #FFFFFF; width: 20px;height: 20px;background-color: black">
                                                         2
                                                     </div>
                                                     <div id="pos_3"
-                                                         style="position:absolute; {{$show?sprintf('top: %dpx; left: %dpx;', $cert_end_date_y, $cert_end_date_x):'bottom: 0; left: 40px;'}} border-radius: 50%; text-align: center; color: #FFFFFF; width: 20px;height: 20px;background-color: black">
+                                                         style="position:absolute; {{$show?sprintf('top: %dpx; left: %dpx;', $cert_end_date_y-10, $cert_end_date_x-10):'bottom: 0; left: 40px;'}} border-radius: 50%; text-align: center; color: #FFFFFF; width: 20px;height: 20px;background-color: black">
                                                         3
                                                     </div>
                                                     <img id="view_image"
