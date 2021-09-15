@@ -123,16 +123,15 @@ class AccountCourseController extends Controller
      */
     function payment()
     {
-//        dd(request());
+        dd(request());
         try {
             $data = [];
-            $data['ClientID'] = '945431d0-ee02-4129-bacd-fc68eb0698ba';
+            $data['ClientID'] = '6f9a7eb3-6408-49d7-9449-5f163ede9da2';
             $data['Amount'] = 10;
-            //2357301-2357400
             $data['OrderID'] = 2357365;
             $data["BackURL"] = "https://www.shmz.am/lesson";
-            $data['Username'] = '3d19541048';
-            $data['Password'] = 'lazY2k';
+            $data['Username'] = '37443007107';
+            $data['Password'] = '37443007107';
             $data['Description'] = 'name';
             $data['Cardholder'] = 'TEST CARD VPOS';
             $data['Currency'] = 'AMD';
@@ -161,8 +160,8 @@ class AccountCourseController extends Controller
 
     function getPayment()
     {
-        $data['Username'] = '3d19541048';
-        $data['Password'] = 'lazY2k';
+        $data['Username'] = '19539226_api';
+        $data['Password'] = 'zVPawNDZQky7bKhX';
         $data['PaymentID'] = request('PaymentID');
 
         $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
