@@ -174,6 +174,7 @@
                 };
                 getPromiseResult(credentials)
                     .then(res => {
+                        console.log('res',res)
                         location.href = 'https://servicestest.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
                     })
                     .catch(error => {
