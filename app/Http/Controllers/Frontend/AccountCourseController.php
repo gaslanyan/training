@@ -131,9 +131,9 @@ class AccountCourseController extends Controller
             $data['Amount'] = 10;
             $data['OrderID'] = 2357365;
             $data["BackURL"] = "https://www.shmz.am/lesson";
-            $data['Username'] = '37443007107';
-            $data['Password'] = '37443007107';
-            $data['Description'] = $title->name;
+            $data['Username'] = '3d19541048';
+            $data['Password'] = 'lazY2k';
+            $data['Description'] = 'name';
             $data['Cardholder'] = 'TEST CARD VPOS';
             $data['Currency'] = 'AMD';
             $data['Opaque'] = 'TEST Opaque VPOS';
