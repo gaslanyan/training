@@ -131,14 +131,14 @@ class AccountCourseController extends Controller
             $data['Amount'] = 10;
             $data['OrderID'] = 2357365;
             $data["BackURL"] = "https://www.shmz.am/lesson";
-            $data['Username'] = '3d19541048';
-            $data['Password'] = 'lazY2k';
-            $data['Description'] = 'name';
-            $data['Cardholder'] = 'TEST CARD VPOS';
+            $data['Username'] = '19539226_api';
+            $data['Password'] = 'zVPawNDZQky7bKhX';
+            $data['Description'] = $title->name;
+            $data['Cardholder'] = 'CARD VPOS';
             $data['Currency'] = 'AMD';
-            $data['Opaque'] = 'TEST Opaque VPOS';
+            $data['Opaque'] = 'Opaque VPOS';
 //
-            $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/InitPayment";
+            $endpoint = "https://services.ameriabank.am/VPOS/api/VPOS/InitPayment";
             $client = new \GuzzleHttp\Client();
 
             $response = $client->request('POST',
@@ -165,7 +165,7 @@ class AccountCourseController extends Controller
         $data['Password'] = 'zVPawNDZQky7bKhX';
         $data['PaymentID'] = request('PaymentID');
 
-        $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
+        $endpoint = "https://services.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
         $client = new \GuzzleHttp\Client();
 
         $response = $client->request('POST',
