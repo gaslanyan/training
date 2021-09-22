@@ -82,6 +82,7 @@
 
 <script>
 import pagestext from './json/pages.json';
+import {getPromiseResult} from "../partials/help";
 
 export default {
     name: 'app-header',
@@ -122,6 +123,20 @@ export default {
                         console.log(err)
                     })
             }
+        },
+        getSpecialties(id) {
+            let credentials = {
+                id: id,
+                auth: false,
+                url: 'spec'
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.specialties = res.spec;
+                })
+                .catch(error => {
+                    this.$store.commit("getContentFailed", {error});
+                });
         },
     },
     beforeMount() {

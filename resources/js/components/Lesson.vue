@@ -211,6 +211,7 @@
                     .catch(error => {
                         let msg = "", pattern = /\d+/,
                             e = pattern.exec(error);
+                        console.log(e,error)
                         switch (e[0]) {
                             case '404':
                                 this.$router.push({path: '/404'});
