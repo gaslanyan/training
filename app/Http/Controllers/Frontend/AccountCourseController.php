@@ -129,7 +129,7 @@ class AccountCourseController extends Controller
             $data = [];
             $data['ClientID'] = '6f9a7eb3-6408-49d7-9449-5f163ede9da2';
             $data['Amount'] = 10;
-            $data['OrderID'] = 2357365;
+            $data['OrderID'] = rand(1, 2000000000);//2milliard
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '19539226_api';
             $data['Password'] = 'zVPawNDZQky7bKhX';

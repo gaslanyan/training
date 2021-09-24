@@ -359,6 +359,10 @@ class AccountController extends Controller
         return Excel::download(new AccountExport($role),
             'accounts.xlsx');
     }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     function cancelPayment(){
         $data['Username'] = '19539226_api';
         $data['Password'] = 'zVPawNDZQky7bKhX';
@@ -369,15 +373,15 @@ class AccountController extends Controller
         $client = new \GuzzleHttp\Client();
         $response = $client->request('POST',
             $endpoint, ['form_params' => $data]);
-//        $statusCode = $response->getStatusCode();
-//        $content = $response->getBody();
-//        $content = json_decode($response->getBody(), true);
-//        return response()->json([
-//            'access_token' => request('token'),
-//            'payment' => $content,
-//            'token_type' => 'bearer',
-//            'expires_in' => auth('api')->factory()->getTTL() * 60
-//        ]);
+        $statusCode = $response->getStatusCode();
+        $content = $response->getBody();
+        $content = json_decode($response->getBody(), true);
+        return response()->json([
+            'access_token' => request('token'),
+            'payment' => $content,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
 
     }
 }
