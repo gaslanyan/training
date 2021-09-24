@@ -158,3 +158,7 @@ Route::resource('/backend/pages', 'Backend\PageController');
 Route::resource('/backend/comments', 'Backend\CommentController');
 Route::post('/commentstatus', 'Backend\CommentController@commentstatus');
 //Route::get( '/backend/index/{id}', 'Backend\CoursesController@edit');
+
+
+//payment
+Route::get('/backend/account/cancelPayment', 'Backend\AccountController@cancelPayment')->name('account.cancelPayment');

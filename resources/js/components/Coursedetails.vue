@@ -47,7 +47,7 @@
                             <h4 class="title">{{texts.books}}</h4>
                             <template  v-for="book in books">
                                 <i class="fa fa-book text"></i>
-                                <router-link to="/books/1" class="text" target="_blank">{{book.title}}</router-link>
+                                <router-link :to="{name: 'books',params: {id: book.id}}" class="text" target="_blank">{{book.title}}</router-link>
 
                             </template>
                         </div>

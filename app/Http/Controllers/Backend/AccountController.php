@@ -359,5 +359,25 @@ class AccountController extends Controller
         return Excel::download(new AccountExport($role),
             'accounts.xlsx');
     }
+    function cancelPayment(){
+        $data['Username'] = '19539226_api';
+        $data['Password'] = 'zVPawNDZQky7bKhX';
+//        $data['PaymentID'] = request('PaymentID');
+        $data['PaymentID'] = 'D847AB1F-E404-4984-8174-6C48AF73052B';
 
+        $endpoint = "https://servicestest.ameriabank.am/VPOS/api/VPCancelPaymentOS/CancelPayment";
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('POST',
+            $endpoint, ['form_params' => $data]);
+//        $statusCode = $response->getStatusCode();
+//        $content = $response->getBody();
+//        $content = json_decode($response->getBody(), true);
+//        return response()->json([
+//            'access_token' => request('token'),
+//            'payment' => $content,
+//            'token_type' => 'bearer',
+//            'expires_in' => auth('api')->factory()->getTTL() * 60
+//        ]);
+
+    }
 }
