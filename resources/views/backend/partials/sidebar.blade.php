@@ -118,7 +118,7 @@
                     </a>
 
                 </li>
-                </li>
+
                 <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover">
                     <a href="{{action('Backend\SpecialtyController@index')}}" class="kt-menu__link kt-menu__toggle">
@@ -178,16 +178,16 @@
                         <span class="kt-menu__link-text">{{__('messages.tests')}}</span>
                     </a>
                 </li>
-{{--                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"--}}
-{{--                    data-ktmenu-submenu-toggle="hover">--}}
-{{--                    <a href="{{action('Backend\EmailController@index')}}" class="kt-menu__link kt-menu__toggle">--}}
-{{--                                        <span class="kt-menu__link-icon kt-demo-icon__preview">--}}
-{{--                                           <i class="flaticon-interface-3"></i>--}}
-{{--                                        </span>--}}
-{{--                        <span class="kt-menu__link-text">Նամակներ</span>--}}
-{{--                    </a>--}}
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
+                    data-ktmenu-submenu-toggle="hover">
+                    <a href="{{action('Backend\PaymentController@index')}}" class="kt-menu__link kt-menu__toggle">
+                                        <span class="kt-menu__link-icon kt-demo-icon__preview">
+                                           <i class="flaticon2-shopping-cart"></i>
+                                        </span>
+                        <span class="kt-menu__link-text">{{__('messages.payment')}}</span>
+                    </a>
 
-{{--                </li>--}}
+                </li>
                 {{--                <li class="kt-menu__section ">--}}
                 {{--                    <h4 class="kt-menu__section-text">Համակարգ</h4>--}}
                 {{--                    <i class="kt-menu__section-icon flaticon-more-v2"></i>--}}

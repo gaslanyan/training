@@ -22,7 +22,7 @@
                                 </div-->
                             </slide>
                             <slide>
-                            <iframe width="100%" height="576px" :src="path"  style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay"></iframe>
+<!--                            <iframe width="100%" height="576px" :src="path"  style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay"></iframe>-->
 
                             <!--video ref="video" class="view-video col-lg-12" controls
                                    v-on:loadeddata="manageEvents(info.id)">

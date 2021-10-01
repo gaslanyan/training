@@ -261,7 +261,9 @@ return [
     'username' => 'Օգտատեր',
     'showcomment' => 'Դիտել մեկնաբանությունը',
 
+//payment
 
+    'payment' => "Վճարումներ",
     //help
     'i' => "ի ",
     'y' => "ը ",

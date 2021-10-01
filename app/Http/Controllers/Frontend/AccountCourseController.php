@@ -123,17 +123,16 @@ class AccountCourseController extends Controller
      */
     function payment()
     {
-//        dd(request());
         try {
-            $title = $this->service->getTitle(request('course_id'));
+            $info = $this->service->getCourseById(request('course_id'));
             $data = [];
             $data['ClientID'] = '6f9a7eb3-6408-49d7-9449-5f163ede9da2';
-            $data['Amount'] = 10;
+            $data['Amount'] = $info->cost;
             $data['OrderID'] = rand(1, 2000000000);//2milliard
             $data["BackURL"] = "https://www.shmz.am/lesson";
             $data['Username'] = '19539226_api';
             $data['Password'] = 'zVPawNDZQky7bKhX';
-            $data['Description'] = $title->name;
+            $data['Description'] = $info->name;
             $data['Cardholder'] = 'CARD VPOS';
             $data['Currency'] = 'AMD';
             $data['Opaque'] = 'Opaque VPOS';

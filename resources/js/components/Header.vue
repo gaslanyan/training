@@ -107,7 +107,6 @@ export default {
             this.$router.push('/login');
         },
         getAccountById: function () {
-            console.log('currentUser',this.currentUser);
             if (this.currentUser) {
                 let credentials = {
                     id: this.currentUser.id,
@@ -141,6 +140,7 @@ export default {
     },
     beforeMount() {
         this.getAccountById();
+        console.log("test", this.$store.getters.currentUser)
     },
     created() {
         window.addEventListener("scroll", this.handleScroll);
@@ -152,9 +152,6 @@ export default {
         currentUser() {
             return this.$store.getters.currentUser
         },
-        user() {
-
-        }
     },
     data() {
         return {

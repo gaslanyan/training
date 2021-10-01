@@ -156,6 +156,7 @@ Route::resource('/backend/specialty', 'Backend\SpecialtyController');
 
 Route::resource('/backend/pages', 'Backend\PageController');
 Route::resource('/backend/comments', 'Backend\CommentController');
+Route::resource('/backend/payments', 'Backend\PaymentController');
 Route::post('/commentstatus', 'Backend\CommentController@commentstatus');
 //Route::get( '/backend/index/{id}', 'Backend\CoursesController@edit');
 

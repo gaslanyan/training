@@ -138,9 +138,9 @@ class AccountCourseService
             throw new ModelNotFoundException('Account not get!');
         return $account;
     }
-    public function getTitle($id)
+    public function getCourseById($id)
     {
-        $course = Courses::select('id', 'name')
+        $course = Courses::select('id', 'name','cost')
             ->where('id', $id)->first();
         if (!$course)
             throw new ModelNotFoundException('Account not get!');

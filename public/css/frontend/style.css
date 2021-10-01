@@ -6,6 +6,7 @@
     url('fonts/ArmHmksBebasNeueRegular.woff') format('woff'),
     url('fonts/ArmHmksBebasNeueRegular.ttf') format('truetype'),
     url('fonts/ArmHmksBebasNeueRegular.svg#ArmHmksBebasNeueRegular') format('svg');
+    font-display: swap;
 }
 body {
     line-height: 25px;
@@ -1040,6 +1041,9 @@ button:focus {
     margin-bottom: 25px;
     column-count: 2;
     color:#580b7f;
+}
+.dpmt_right ol li{
+    list-style: decimal;
 }
 
 @media (max-width: 575px) {
