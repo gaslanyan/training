@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -154,7 +155,6 @@ class CoursesController extends Controller
 
             return view('backend.courses.create', compact('credit_types', 'videos', 'books', 'speciality'));
         } catch (\Exception $exception) {
-            dd($exception);
             logger()->error($exception);
             return redirect('backend/dashboard')->with('error', Lang::get('messages.wrong'));
         }
@@ -170,6 +170,7 @@ class CoursesController extends Controller
 
         $validator = Validator::make($input, [
             'name' => 'required|min:2|max:190|string|unique:courses',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png',
             'specialty_ids' => 'required|array|exists:specialties,id',
             'status' => 'required|in:"active","archive", "delete"',
             'start_date' => 'required|date',
@@ -199,6 +200,19 @@ class CoursesController extends Controller
         try {
             $cours = [];
             $file = $request->file('certificate');
+            $image = $request->file('image');
+            $image_name = null;
+
+            if (!empty($image)) {
+                $image_name = sprintf('%s.jpg', $request->name);
+                $path = public_path(Config::get('constants.UPLOADS') . '/courses');
+
+                if (!File::isDirectory($path)) {
+                    File::makeDirectory($path, 0775, true, true);
+                }
+
+                $file->move($path, $image_name);
+            }
 
             if (!empty($file)) {
                 $cert_name = sprintf('%s.jpg', $request->name);
@@ -231,6 +245,7 @@ class CoursesController extends Controller
             }
 
             $cours['name'] = $request->name;
+            $cours['image'] = $image_name;
             $cours['specialty_ids'] = json_encode($request->specialty_ids);
             $cours['status'] = $request->status;
             $cours['start_date'] = date('Y-m-d', strtotime($request->start_date));
@@ -282,6 +297,7 @@ class CoursesController extends Controller
 
         $validator = Validator::make($input, [
             'name' => sprintf('required|min:2|max:190|string|unique:courses,name,%d', $id),
+            'image' => 'nullable|file|mimes:jpg,jpeg,png',
             'specialty_ids' => 'required|array|exists:specialties,id',
             'status' => 'required|in:"active","archive", "delete"',
             'start_date' => 'required|date',
@@ -312,6 +328,20 @@ class CoursesController extends Controller
             $cours = [];
             $file = $request->file('certificate');
             $model = Courses::query()->find($id);
+
+            $image = $request->file('image');
+            $image_name = $model->image;
+
+            if (!empty($image)) {
+                $image_name = sprintf('%s.jpg', $request->name);
+                $path = public_path(Config::get('constants.UPLOADS') . '/courses');
+
+                if (!File::isDirectory($path)) {
+                    File::makeDirectory($path, 0775, true, true);
+                }
+
+                $file->move($path, $image_name);
+            }
 
             if (!empty($file) || !empty($model->certificate)) {
                 if (!empty($file)) {
@@ -347,10 +377,10 @@ class CoursesController extends Controller
 
             $id = $request->id;
             $cours['name'] = $request->name;
+            $cours['image'] = $image_name;
             $cours['specialty_ids'] = json_encode($request->specialty_ids);
             $cours['status'] = $request->status;
             $cours['start_date'] = date('Y-m-d', strtotime($request->start_date));
-            $cours['end_date'] = date('Y-m-d', strtotime($request->end_date));
             $cours['end_date'] = date('Y-m-d', strtotime($request->end_date));
             $cours['duration'] = $request->duration;
             $cours['credit'] = json_encode($request->credit);
