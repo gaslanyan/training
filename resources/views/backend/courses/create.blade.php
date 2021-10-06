@@ -351,6 +351,24 @@
 
                                             <div class="form-group row">
                                                 <label for="content_data"
+                                                       class="col-lg-2 col-form-label">{{__('messages.image')}}</label>
+                                                <div class="col-lg-10">
+                                                    <input type="file" name="image"
+                                                           accept="image/*">
+                                                    @error('image')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                    @enderror
+                                                    @if(!empty($course->image))
+                                                        <img id="image"
+                                                             alt="Course image"
+                                                             src="{{asset(sprintf('uploads/courses/%s', $course->image))}}"
+                                                             style="width: 100%; height: 100%">
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="content_data"
                                                        class="col-lg-2 col-form-label">{{__('messages.content')}}
                                                     *</label>
                                                 <div class="col-lg-10">

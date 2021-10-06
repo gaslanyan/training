@@ -13,7 +13,7 @@ class Courses extends Model implements JWTSubject
     use Notifiable;
 
     protected $fillable = [
-        'id', 'name', 'specialty_ids', 'status', 'start_date', 'end_date', 'duration', 'credit', 'videos', 'books', 'cost', 'content', 'certificate', 'coordinates'
+        'id', 'name', 'image', 'specialty_ids', 'status', 'start_date', 'end_date', 'duration', 'credit', 'videos', 'books', 'cost', 'content', 'certificate', 'coordinates'
     ];
 
     /**
@@ -96,6 +96,19 @@ class Courses extends Model implements JWTSubject
         }
 
         return $speciality_list;
+    }
+
+    /**
+     * @param $image
+     * @return string|null
+     */
+    public function getImageAttribute()
+    {
+        if ($this->image) {
+            return asset(sprintf('uploads/courses/%s', $this->image));
+        }
+
+        return null;
     }
 
     /**
@@ -248,7 +261,7 @@ class Courses extends Model implements JWTSubject
 
     public function account_course()
     {
-        return $this->hasOne('App\Models\AccountCourse','course_id');
+        return $this->hasOne('App\Models\AccountCourse', 'course_id');
     }
 
     public function test()
