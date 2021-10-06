@@ -43,7 +43,7 @@
                                 <template v-if="!currentUser">
                                     <li class="nav-item">
                                         <router-link to="/login" class="nav-link">
-                                            <img :src="stethoscope" style="height: 24px;"/>{{ text.login }}
+                                            <img :src="stethoscope" style="height: 30px;"/>{{ text.login }}
                                         </router-link>
                                     </li>
                                     <li class="nav-item">
@@ -156,8 +156,8 @@ export default {
     data() {
         return {
             image_src: '/css/frontend/img/logo.jpg',
-            ekg: '/css/frontend/img/ekg.png',
-            stethoscope: '/css/frontend/img/stethoscope.png',
+            ekg: '/css/frontend/img/ekg_new.png',
+            stethoscope: '/css/frontend/img/stethoscope_new.png',
             limitPosition: 2000,
             scrolled: false,
             lastPosition: 0,

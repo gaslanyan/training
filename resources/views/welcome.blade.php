@@ -25,9 +25,14 @@
     <!-- Styles -->
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="preload" as="font" href="https://training.gtech.am/css/frontend/fonts/ArmHmksBebasNeueRegular.eot" crossorigin="">
+    <link rel="preload" as="font" href="https://training.gtech.am/css/frontend/fonts/ArmHmksBebasNeueRegular.woff2" crossorigin="">
+    <link rel="preload" as="font" href="https://training.gtech.am/css/frontend/fonts/ArmHmksBebasNeueRegular.woff" crossorigin="">
+    <link rel="preload" as="font" href="https://training.gtech.am/css/frontend/fonts/ArmHmksBebasNeueRegular.ttf" crossorigin="">
+    <link rel="preload" as="font" href="https://training.gtech.am/css/frontend/fonts/ArmHmksBebasNeueRegular.svg" crossorigin="">
     <!-- Templates css -->
     <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}" type="text/css">
+
    </head>
 <body>
     <div id="app">

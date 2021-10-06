@@ -1,6 +1,14 @@
 <template>
     <div class="container-fluid">
-        <section class="banner_area">
+
+        <div class="row">
+            <div class="col-12 coursedetails_banner" >
+                <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
+                <h2 class="text-center">{{datas.name}}</h2>
+                <h3>Թիրախային լսարան՝ </h3>
+            </div>
+        </div>
+        <!--section class="banner_area">
             <div class="banner_inner d-flex align-items-center">
                 <div class="overlay"></div>
                 <div class="container">
@@ -18,7 +26,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section-->
 
         <!--================ Start Course Details Area =================-->
         <section class="course_details_area section_gap">
@@ -37,6 +45,7 @@
                                         <h5 class="title">{{info.title}}</h5>
                                         <h5 class="vid_content">{{`${info.lectures.name} ${info.lectures.surname}
                                             ${info.lectures.father_name}`}}</h5>
+
                                     </div>
                                 </slide>
                                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -66,27 +75,31 @@
                                     <span class="or"> {{texts.status_active}}</span>
                                 </a>
                             </li>
+                        </ul>
 
+                        <a class="d-flex" href="#">
+                            <div class="dot"></div><p class="credit">{{texts.credit}}</p>
+                        </a>
+                        <ul>
                             <li>
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>{{texts.credit}}</p>
-                                </a>
                                 <a class="justify-content-between d-flex" href="#"
                                    v-for="c in datas.credit">
                                     <span>{{creditName(c.name)}}</span>
-                                    <span>{{c.credit}}</span>
+                                    <span class="or">{{c.credit}}</span>
                                 </a>
                             </li>
+                        </ul>
+                        <ul>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>{{texts.duration}} </p>
-                                    <span>{{datas.duration_date}}</span>
+                                    <span class="or">{{datas.duration_date}}</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>{{texts.coursecost}} </p>
-                                    <span>{{datas.cost}} AMD</span>
+                                    <span class="or">{{datas.cost}} AMD</span>
                                 </a>
                             </li>
                         </ul>
@@ -111,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="feedeback">
+                            <!--div-- class="feedeback">
                                 <h6>{{texts.feedback}}{{feedbacksuccess}}</h6>
                                 <form @submit.prevent="sendcomment">
                                     <textarea name="feedback" class="form-control" ref="feedback" cols="10" rows="10"
@@ -122,7 +135,7 @@
                                         </button>
                                     </div>
                                 </form>
-                            </div>
+                            </div-->
 
                         </div>
 

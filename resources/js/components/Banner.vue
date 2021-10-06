@@ -21,49 +21,36 @@
 
                                 </div-->
                             </slide>
-                            <slide>
-<!--                            <iframe width="100%" height="576px" :src="path"  style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay"></iframe>-->
+<!--                            <slide>-->
+<!--&lt;!&ndash;                            <iframe width="100%" height="576px" :src="path"  style="border:none;overflow:hidden" scrolling="no" frameborder="0" allow="autoplay"></iframe>&ndash;&gt;-->
 
-                            <!--video ref="video" class="view-video col-lg-12" controls
-                                   v-on:loadeddata="manageEvents(info.id)">
-                                <source :src="info.path">
-                            </video-->
-                            <div class="col-lg-12">
-                                <!--h5 class="title">test</h5-->
+<!--                            &lt;!&ndash;video ref="video" class="view-video col-lg-12" controls-->
+<!--                                   v-on:loadeddata="manageEvents(info.id)">-->
+<!--                                <source :src="info.path">-->
+<!--                            </video&ndash;&gt;-->
+<!--                            <div class="col-lg-12">-->
+<!--                                &lt;!&ndash;h5 class="title">test</h5&ndash;&gt;-->
 
-                            </div>
-                        </slide>
-                            <slide>
-                              <img :src="banner_src" alt="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ" title="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ">
-                                <!--video ref="video" class="view-video col-lg-12" controls
-                                       v-on:loadeddata="manageEvents(info.id)">
-                                    <source :src="info.path">
-                                </video-->
-                                <div class="col-lg-12">
-                                    <!--h5 class="title">test1</h5-->
+<!--                            </div>-->
+<!--                        </slide>-->
+                            <!--   <slide>
+                                 <img :src="banner_src" alt="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ" title="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ">
+                                   <!--video ref="video" class="view-video col-lg-12" controls
+                                          v-on:loadeddata="manageEvents(info.id)">
+                                       <source :src="info.path">
+                                   </video-->
+                            <!--    <div class="col-lg-12">
+                                 <!--h5 class="title">test1</h5-->
 
-                                </div>
-                            </slide>
+                                    <!--        </div>
+                                     <!--     </slide>-->
 
                             <hooper-pagination slot="hooper-addons"></hooper-pagination>
                         </hooper>
 
                     </div>
                 </div>
-                <div class="ekgbg">
-                <div class="container">
-                    <div class="row">
-                            <div class="banner_content col-12">
-                                <h2 class="pt-4"> ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ </h2>
-                                <p>Բարի գալուստ Բուժաշխատողների շարունակական մասնագիտական զարգացման կենտրոնի էլեկտրոնային հավելված։ Մեր թիմը ստեղծել է այս գործիքը, որպեսզի բուժաշխատողներն իրենց շարունակական մասնագիտական զարգացումը կարողանա իրականացնել նաև պարբերաբար և առցանց՝ էլեկտրոնային ուսուցման նյութերի միջոցով։
-                                <div class="search_course_wrap d-flex justify-content-end">
-                                   <router-link :to="{ name: 'lesson' }" class="btn search_course_btn align-self-end">
-                                   Դասընթացներ</router-link>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
+
             </div>
         </section>
         <!--================ End Home Banner Area =================-->

@@ -58,6 +58,7 @@ class CourseAppController extends Controller
         }
     }
 
+
     /**
      * @return \Illuminate\Http\JsonResponse
      */

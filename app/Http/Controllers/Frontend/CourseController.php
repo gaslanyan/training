@@ -37,7 +37,7 @@ class CourseController extends Controller
     public function finishedCount()
     {
         $isFinished = 1;
-        $videos = Courses::select('id','videos')
+        $videos = Courses::select('id', 'videos')
             ->with(['account_course' => function ($query) {
                 $query->select('course_id')->where('course_id', request('id'));
             }])
@@ -67,5 +67,17 @@ class CourseController extends Controller
         return $isFinished;
     }
 
+    function getCourseByProf()
+    {
+        try {
+            $courses = $this->service->getCoursesById(request('id'));
+            return response()->json([
+                'courses' => $courses,
+            ]);
+        } catch (MethodNotAllowedHttpException$exception) {
 
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
 }

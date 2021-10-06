@@ -1,12 +1,18 @@
 <template>
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 lesson_banner" >
+                <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
+                <h2>ՄԵՐ ՄԱՍԻՆ</h2>
+            </div>
+        </div>
         <section class="banner_area">
             <div class="banner_inner d-flex align-items-center">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
-                            <div class="banner_content text-center">
+                            <div class="banner_content">
                                 <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
                                     <router-link :to="{ name: 'home' }" class="nav-link">{{text.main}}</router-link>
                                     <router-link to="" class="nav-link">{{b.text}}</router-link>
@@ -22,13 +28,13 @@
         <div class="department_area section_gap">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 text-center">
+                    <div class="col-lg-12 text-center">
                         <img class="img-fluid" :src="aboutimg" alt="">
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="dpmt_right" v-for="data in datas" :key="data.id">
-                            <h1>{{ data.title }}</h1>
+                            <!--h1>{{ data.title }}</h1-->
                             <p> {{ data.description }}</p>
                             <router-link :to="{ name: 'lesson' }" class="primary-btn text-uppercase">
                                 {{ text.lessons }}
@@ -64,7 +70,8 @@
         data() {
             return {
                 datas: [],
-                aboutimg: '/css/frontend/img/about-img.jpg',
+                aboutimg: '/css/frontend/img/transparent_logo.png',
+                lesson_banner: '/css/frontend/img/lessonbanner.png',
                 docs: [],
                 text: pagestext,
             };

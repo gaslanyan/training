@@ -438,6 +438,7 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
+                    console.log(this.$refs.edu)
                     this.$refs.edu.style.border = '1px solid #9f12ad';
                     this.$refs.spec.style.border = '1px solid #ced4da';
                     this.educations = res.edu;

@@ -8,10 +8,10 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="dpmt_courses row">
+                    <div class="dpmt_courses row offset-2">
 
                         <!-- single course -->
-                        <div class="col-3 text-center ">
+                        <div class="col-2 mr-4 text-center ">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="nurse" alt="">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-3 text-center">
+                        <div class=" col-2 mr-4 text-center">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="doctor" alt="">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-3 text-center ">
+                        <div class=" col-2  mr-4text-center ">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="pharmacy" alt="">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-3 text-center">
+                        <div class=" col-2 ml-4 mr-4 text-center">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="phar" alt="">
@@ -50,7 +50,24 @@
                     </div>
                 </div>
 
+
+                    <div class="container">
+                        <div class="row offset-1">
+                            <div class="banner_content col-10 text-justify">
+                                <p>Բարի գալուստ Բուժաշխատողների շարունակական մասնագիտական զարգացման կենտրոնի էլեկտրոնային հավելված։ Մեր թիմը ստեղծել է այս գործիքը, որպեսզի բուժաշխատողներն իրենց շարունակական մասնագիտական զարգացումը կարողանա իրականացնել նաև պարբերաբար և առցանց՝ էլեկտրոնային ուսուցման նյութերի միջոցով։
+                                <div class="search_course_wrap d-flex justify-content-end">
+                                    <!--router-link :to="{ name: 'lesson' }" class="btn search_course_btn align-self-end">
+                                        Դասընթացներ</router-link-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
                 <div class="col-lg-12 mt-3">
+                    <h2 class="pt-4 home_title"> ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ </h2>
                     <div class="dpmt_right" v-html="data.homedescription" v-for="data in datas" :key="data.id">
                         <p>{{ data.homedescription }}</p>
                         <router-link :to="{ name: 'lesson' }" class="primary-btn text-uppercase search_course_btn">
@@ -61,6 +78,7 @@
 
             </div>
         </div>
+
     </div>
     <!--================ End Department Area =================-->
 </template>
@@ -74,7 +92,7 @@
             return {
                 datas: [],
                 nurse: '/css/frontend/img/nurse.svg',
-                doctor: '/css/frontend/img/doctor.png',
+                doctor: '/css/frontend/img/doctor_new.png',
                 pharmacy: '/css/frontend/img/pharmacy-symbol.svg',
                 phar: '/css/frontend/img/pharmacy.png',
                 text: pagestext,

@@ -13,6 +13,7 @@ use App\Models\AccountCourse;
 use App\Models\Book;
 use App\Models\Courses;
 use App\Models\Profession;
+use App\Models\Specialties;
 use App\Models\Tests;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -44,16 +45,43 @@ class CourseService
     public function getCourses($id)
     {
         $spec = Profession::select('specialty_id')->where('account_id', $id)->first();
-
-        $courses = Courses::select('id', 'name', 'cost', 'start_date')->
-        whereRaw('JSON_CONTAINS(`specialty_ids`, 
+        $prof = Specialties::select('parent_id')->where('id', $spec->specialty_id)->first();
+        if ($prof->parent_id == 1)
+            $courses = $this->getCoursesById($prof->parent_id);
+        else
+            $courses = Courses::select('id', 'name', 'cost', 'start_date')->
+            whereRaw('JSON_CONTAINS(`specialty_ids`,
          \'["' . $spec->specialty_id . '"]\')')
-            ->where('status', "=", "active")
-            ->where('start_date', ">=", date("Y-m-d"))
-            ->with(['account_course' => function ($query) use ($id) {
-                $query->select('course_id', 'paid')
-                    ->where('account_id', $id);
-            }])->get();
+                ->where('status', "=", "active")
+                ->where('start_date', ">=", date("Y-m-d"))
+                ->with(['account_course' => function ($query) use ($id) {
+                    $query->select('course_id', 'paid')
+                        ->where('account_id', $id);
+                }])->get();
+
+        $result = (!empty($courses)) ? $courses : __('messages.noting');
+        if (!$courses)
+            throw new ModelNotFoundException('User not found by ID ');
+        return $result;
+    }
+
+    public function getCoursesById($id)
+    {
+        $spec = Specialties::select('id')->where('parent_id', $id)->paginate(10);
+
+        $courses = [];
+        foreach ($spec as $index => $item) {
+            $c = Courses::select('id', 'name', 'cost', 'start_date')->
+            whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . $item->id . '"]\')')
+//                ->where('status', "=", "active")
+//                ->where('start_date', ">=", date("Y-m-d"))
+                ->first();
+
+            if (!empty($c))
+//                 dd($c);
+                $courses[$c['id']] = $c;
+        }
+//        dd($courses);
 
         $result = (!empty($courses)) ? $courses : __('messages.noting');
         if (!$courses)
@@ -95,7 +123,7 @@ class CourseService
     public function all()
     {
         $messages = $this->model->selected(['id', 'name', 'cost', 'start_date'])
-            ->whereDate('start_date', "<=", date("Y-m-d"))
+//            ->whereDate('start_date', "<=", date("Y-m-d"))
             ->get();
         if (!$messages)
             throw new ModelNotFoundException('User not found by ID ');
@@ -146,7 +174,7 @@ class CourseService
                     if (isset($arr[1]))
                         $answers[$str]['img'] = $arr[1];
                     $answers[$str]['answer'] = strip_tags($item->inp);
-                    if(isset($item->check))
+                    if (isset($item->check))
                         $answers[$str]['check'] = 1;
                 }
                 $tests[$index]['answers'] = json_encode($answers, true);
