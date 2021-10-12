@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactRequest;
 use App\Models\Account;
 use App\Models\AccountCourse;
 use App\Models\Courses;
@@ -10,6 +11,7 @@ use App\Models\Page;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -183,5 +185,25 @@ class PageController extends Controller
 
         $ssr = $this->render($request->path());
         return view('app', ['ssr' => $ssr]);
+    }
+
+    public function sendMail(ContactRequest $contactRequest){
+        try {
+        $data = array('name'=>\request('name'),
+            'subject'=>\request('subject'),
+            'email'=>\request('email'),
+            'body'=>\request('message'));
+        Mail::send('mails/contact', $data, function($message) {
+            $message->to('info@training.gtech.am', \request('subject'))->subject
+            (\request('message'));
+            $message->from(\request('email'),request('subject'));
+        });
+             return response()->json([
+                 'success' => true
+             ]);
+        } catch (\Exception $exception) {
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
     }
 }

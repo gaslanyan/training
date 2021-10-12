@@ -8,62 +8,63 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="dpmt_courses row offset-2">
+                    <div class="dpmt_courses row ">
 
                         <!-- single course -->
-                        <div class="col-2 mr-4 text-center ">
+                        <div class="col-lg-2 col-12 mb-4 mr-4 text-center ">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="nurse" alt="">
                                 </div>
-                                <h4>{{text.nurse}}</h4>
+                                <h4>{{ text.nurse }}</h4>
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-2 mr-4 text-center">
+                        <div class="col-lg-2 col-12 mb-4 mr-4 text-center">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="doctor" alt="">
                                 </div>
-                                <h4>{{text.doctor}}</h4>
+                                <h4>{{ text.doctor }}</h4>
 
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-2  mr-4text-center ">
+                        <div class="col-lg-2 col-12 mb-4 mr-4 text-center ">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="pharmacy" alt="">
                                 </div>
-                                <h4>{{text.pharmacy}}</h4>
+                                <h4>{{ text.pharmacy }}</h4>
                             </div>
                         </div>
                         <!-- single course -->
-                        <div class=" col-2 ml-4 mr-4 text-center">
+                        <div class="col-lg-2 col-12 mb-4 ml-4 mr-4 text-center">
                             <div class="single_department">
                                 <div class="dpmt_icon">
                                     <img :src="phar" alt="">
                                 </div>
-                                <h4>{{text.phar}}</h4>
+                                <h4>{{ text.phar }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                    <div class="container">
-                        <div class="row offset-1">
-                            <div class="banner_content col-10 text-justify">
-                                <p>Բարի գալուստ Բուժաշխատողների շարունակական մասնագիտական զարգացման կենտրոնի էլեկտրոնային հավելված։ Մեր թիմը ստեղծել է այս գործիքը, որպեսզի բուժաշխատողներն իրենց շարունակական մասնագիտական զարգացումը կարողանա իրականացնել նաև պարբերաբար և առցանց՝ էլեկտրոնային ուսուցման նյութերի միջոցով։
-                                <div class="search_course_wrap d-flex justify-content-end">
-                                    <!--router-link :to="{ name: 'lesson' }" class="btn search_course_btn align-self-end">
-                                        Դասընթացներ</router-link-->
-                                </div>
+                <div class="container">
+                    <div class="row offset-lg-1">
+                        <div class="banner_content col-12 text-justify">
+                            <p>Բարի գալուստ Բուժաշխատողների շարունակական մասնագիտական զարգացման կենտրոնի էլեկտրոնային
+                                հավելված։ Մեր թիմը ստեղծել է այս գործիքը, որպեսզի բուժաշխատողներն իրենց շարունակական
+                                մասնագիտական զարգացումը կարողանա իրականացնել նաև պարբերաբար և առցանց՝ էլեկտրոնային
+                                ուսուցման նյութերի միջոցով։
+                            <div class="search_course_wrap d-flex justify-content-end">
+                                <!--router-link :to="{ name: 'lesson' }" class="btn search_course_btn align-self-end">
+                                    Դասընթացներ</router-link-->
                             </div>
                         </div>
                     </div>
-
-
+                </div>
 
 
                 <div class="col-lg-12 mt-3">
@@ -71,7 +72,7 @@
                     <div class="dpmt_right" v-html="data.homedescription" v-for="data in datas" :key="data.id">
                         <p>{{ data.homedescription }}</p>
                         <router-link :to="{ name: 'lesson' }" class="primary-btn text-uppercase search_course_btn">
-                            {{text.lessons}}
+                            {{ text.lessons }}
                         </router-link>
                     </div>
                 </div>
@@ -84,41 +85,41 @@
 </template>
 
 <script>
-    import {getPromiseResult} from '../partials/help';
-    import pagestext from './json/pages.json'
+import {getPromiseResult} from '../partials/help';
+import pagestext from './json/pages.json'
 
-    export default {
-        data() {
-            return {
-                datas: [],
-                nurse: '/css/frontend/img/nurse.svg',
-                doctor: '/css/frontend/img/doctor_new.png',
-                pharmacy: '/css/frontend/img/pharmacy-symbol.svg',
-                phar: '/css/frontend/img/pharmacy.png',
-                text: pagestext,
+export default {
+    data() {
+        return {
+            datas: [],
+            nurse: '/css/frontend/img/nurse.svg',
+            doctor: '/css/frontend/img/doctor_new.png',
+            pharmacy: '/css/frontend/img/pharmacy-symbol.svg',
+            phar: '/css/frontend/img/pharmacy.png',
+            text: pagestext,
+        };
+    },
+    methods: {
+        aboutpage: function () {
+            let credentials = {
+                url: "about",
+                auth: false
             };
-        },
-        methods: {
-            aboutpage: function () {
-                let credentials = {
-                    url: "about",
-                    auth: false
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        this.datas = res.data;
-                        //this.docs = res.document;
-                    })
-                    .catch(error => {
-                        console.log('error');
-                        // this.$store.commit("registerFailed", {error});
-                    })
-            }
-        },
-        beforeMount() {
-            this.aboutpage()
-        },
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.datas = res.data;
+                    //this.docs = res.document;
+                })
+                .catch(error => {
+                    console.log('error');
+                    // this.$store.commit("registerFailed", {error});
+                })
+        }
+    },
+    beforeMount() {
+        this.aboutpage()
+    },
 
-    }
+}
 </script>
 

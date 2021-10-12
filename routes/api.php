@@ -55,7 +55,7 @@ Route::group(['prefix' => 'auth',
 
 
 Route::post('about', 'Frontend\PageController@about');
-
+Route::post('sendMail', 'Frontend\PageController@sendMail');
 Route::post('coursestitle', 'Frontend\PageController@coursestitle');
 Route::post('applicantcount', 'Frontend\PageController@applicantcount');
 Route::post('coursescount', 'Frontend\PageController@coursescount');

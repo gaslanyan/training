@@ -10,8 +10,8 @@
 <!--                        </video>-->
 
                         <hooper :itemsToShow="1">
-                            <slide style="withd:100%;">
-                                <img :src="banner_src_one" alt="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ" title="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ">
+                            <slide style="width:100%;">
+                                <img :src="banner_src_one" :alt="texts.title" :title="texts.title" style="width: 100%">
                                 <!--video ref="video" class="view-video col-lg-12" controls
                                        v-on:loadeddata="manageEvents(info.id)">
                                     <source :src="info.path">
@@ -35,15 +35,15 @@
 <!--                        </slide>-->
                             <!--   <slide>
                                  <img :src="banner_src" alt="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ" title="ԲՈՒԺԱՇԽԱՏՈՂՆԵՐԻ ՇԱՐՈՒՆԱԿԱԿԱՆ ՄԱՍՆԱԳԻՏԱԿԱՆ ԶԱՐԳԱՑՄԱՆ ԿԵՆՏՐՈՆ">
-                                   <!--video ref="video" class="view-video col-lg-12" controls
+                                  video ref="video" class="view-video col-lg-12" controls
                                           v-on:loadeddata="manageEvents(info.id)">
                                        <source :src="info.path">
                                    </video-->
                             <!--    <div class="col-lg-12">
-                                 <!--h5 class="title">test1</h5-->
+                                h5 class="title">test1</h5-->
 
                                     <!--        </div>
-                                     <!--     </slide>-->
+                                    </slide>-->
 
                             <hooper-pagination slot="hooper-addons"></hooper-pagination>
                         </hooper>
@@ -62,9 +62,11 @@
 <script>
     import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
     import 'hooper/dist/hooper.css';
+    import texts from './json/pages.json';
     export default {
         data() {
             return {
+                texts:texts,
                 path:"https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fnational.medical.palace.armenia%2Fvideos%2F1156056018093516%2F&show_text=0",
                 image_src: '/css/frontend/img/logo.png',
                 banner_src: '/css/frontend/img/banner/banner.jpeg',

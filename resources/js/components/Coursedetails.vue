@@ -5,7 +5,7 @@
             <div class="col-12 coursedetails_banner" >
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center">{{datas.name}}</h2>
-                <h3>Թիրախային լսարան՝ </h3>
+                <h3>{{texts.class }}</h3>
             </div>
         </div>
         <!--section class="banner_area">
@@ -27,13 +27,24 @@
                 </div>
             </div>
         </section-->
-
         <!--================ Start Course Details Area =================-->
         <section class="course_details_area section_gap">
             <div class="container" :key="datas.id">
                 <div class="col-lg-12 m-0 pb-5"><h2 class="or text-center"> {{datas.name}}</h2></div>
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
+<!--                        <div v-if="!isOpened">-->
+                        <div >
+                            <div class="border_line yellow"></div>
+                            <span class="fa fa-lock yellow"></span>
+                            <div class='d-flex justify-content-center'>
+                                <div>
+                                    <button id="show-modal" class="text-uppercase enroll nav-link btn"
+                                            @click="payment(datas.id)">{{texts.pay}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="main_image" v-if="video_info">
                             <hooper :itemsToShow="1">
                                 <slide v-for="(info, index) in video_info" :key="index" :index="index">
@@ -50,7 +61,6 @@
                                 </slide>
                                 <hooper-pagination slot="hooper-addons"></hooper-pagination>
                             </hooper>
-
                         </div>
                         <div class="attachment-mark" v-if="books">
                             <h4 class="title">{{texts.books}}</h4>
@@ -156,6 +166,8 @@
     import texts from './json/course.json';
     import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
     import 'hooper/dist/hooper.css';
+    import Swal from "sweetalert2";
+    import pagetexts from "./json/pages.json";
 
     export default {
         data() {
@@ -174,6 +186,7 @@
                 texts: texts,
                 feedbacksuccess: '',
                 isActive: false,
+                isOpened: false,
                 objects: [
                     {id: 1},
                     {id: 2},
@@ -184,7 +197,8 @@
                 ],
                 isFinished: 0,
                 disabled:1,
-                cert:[]
+                cert:[],
+                pagetexts:pagetexts
             };
         },
         computed: {
@@ -296,6 +310,72 @@
                         // this.$store.commit("registerFailed", {error});
                     })
             },
+            payment(id) {
+                this.course_id = id;
+                localStorage.setItem('c_id', id);
+                localStorage.setItem('a_id', this.currentUser.id);
+                let credentials = {
+                    account_id: this.currentUser.id,
+                    token: this.currentUser.token,
+                    course_id: id,
+                    mobile: false,
+                    url: "payment",
+                    auth: true
+                };
+                getPromiseResult(credentials)
+                    .then(res => {
+                        location.href = 'https://services.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
+                    })
+                    .catch(error => {
+                        console.log('error');
+                        // this.$store.commit("registerFailed", {error});
+                    })
+            },
+            getPaymentQuery(query) {
+                let credentials = {
+                    PaymentID: `${query.paymentID}`,
+                    account_id: this.currentUser.id,
+                    token: this.currentUser.token,
+                    course_id: localStorage.getItem('c_id'),
+                    url: "getpayment",
+                    auth: true
+                };
+                getPromiseResult(credentials)
+                    .then(res => {
+                        // console.log(res)
+                        if (localStorage.get('m')) {
+                            this.logout();
+                            Swal.fire({
+                                icon: 'success',
+                                title: pagetexts.thanks,
+                                text: pagetexts.backApp,
+                                confirmButtonText:
+                                    `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                                confirmButtonColor: '#631ed8',
+                            });
+                            setTimeout(function () {
+                                window.close();
+                            }, 5000);
+                        }
+                    })
+                    .catch(error => {
+                        let msg = "", pattern = /\d+/,
+                            e = pattern.exec(error);
+                        console.log(e, error)
+                        switch (e[0]) {
+                            case '404':
+                                this.$router.push({path: '/404'});
+                                break;
+                            case '401':
+                                error = '401';
+                                msg = 'unauthorized';
+                                break;
+                            default:
+                                error = 'g';
+                                msg = 'loginFailed';
+                        }
+                    });
+            },
             coursedetails: function () {
                 let credentials = {
                     id: this.$route.params.id,
@@ -375,28 +455,28 @@
                     });
 
             },
-            sendcomment: function () {
-                // if(this.feedback != ''){
-                //console.log(this.$refs.feedback.text);
-                let user = JSON.parse(localStorage.getItem('user'));
-                // this.feedback = this.$refs.feedback.text;
-                axios.post('/api/comment', {
-                    comment: feedback.value,
-                    account_id: user.id,
-                    course_id: this.$route.params.id
-                })
-                    .then(function (response) {
-                        //alert(response.data);
-                        feedback.value = '';
-                        feedbacksuccess = "Մեկնաբանությունը հաջողությամբ ուղարկվեց";
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                /* }else{
-                     alert('Fill all fields.');
-                 }*/
-            },
+            // sendcomment: function () {
+            //     // if(this.feedback != ''){
+            //     //console.log(this.$refs.feedback.text);
+            //     let user = JSON.parse(localStorage.getItem('user'));
+            //     // this.feedback = this.$refs.feedback.text;
+            //     axios.post('/api/comment', {
+            //         comment: feedback.value,
+            //         account_id: user.id,
+            //         course_id: this.$route.params.id
+            //     })
+            //         .then(function (response) {
+            //             //alert(response.data);
+            //             feedback.value = '';
+            //             feedbacksuccess = "Մեկնաբանությունը հաջողությամբ ուղարկվեց";
+            //         })
+            //         .catch(function (error) {
+            //             console.log(error);
+            //         });
+            //     /* }else{
+            //          alert('Fill all fields.');
+            //      }*/
+            // },
             creditName:function (name) {
                 let hy_name = '';
                 switch (name) {
@@ -417,7 +497,24 @@
             this.coursedetails();
             this.finishedVideo();
             this.certificate();
+            if (this.$store.getters.currentUser.prof.member_of_palace === 1)
+                this.isOpened = true;
         },
+        mounted() {
+            if (Object.keys(this.$route.query).length > 0) {
+                if (this.$route.query)
+                    this.getPaymentQuery(this.$route.query);
+                else
+                    Swal.fire({
+                        icon: 'error',
+                        title: pagetexts.error,
+                        text: pagetexts.again,
+                        confirmButtonText:
+                            `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                        confirmButtonColor: '#631ed8',
+                    });
+            }
+        }
     }
 
 </script>

@@ -1,16 +1,12 @@
 <template>
     <div class="login row justify-content-center m-0">
         <div class="col-md-6">
-
             <div class="register_form">
                 <h3>{{texts.enter}}</h3>
                 <form @submit.prevent="authenticate" class="form_area">
-
                     <div class="form-group row">
-
                         <div v-if="registeredUser" class="text-success">{{texts.registred}}</div>
                         <div v-if="verifiedUser" class="text-success">{{texts.verified}}</div>
-
                     </div>
                     <div class="form-group row" v-if="unverifiedError">
                         <p class="error m-auto unverified">
@@ -43,20 +39,15 @@
                                    :data-vv-as="texts.password" :placeholder="texts.password">
                             <span v-show="errors.has('password')"
                                   class="help is-danger">{{ errors.first('password') }}</span>
-
                         </div>
-
                         <div class="col-lg-6 text-center m-auto">
                             <div class="btn btn-link">
                                 <router-link to="/reset-password" class="purple"> {{texts.forgot}}</router-link>
                             </div>
-
                             <input type="submit" :value="texts.enter" class="btn primary-btn">
                         </div>
-
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

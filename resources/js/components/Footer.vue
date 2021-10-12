@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="container-fluid">
-            <div class="row footer-bottom offset-1 d-flex justify-content-center">
+            <div class="row footer-bottom  d-flex justify-content-center">
                 <p class="col-lg-8 col-sm-12 footer-text m-0" v-html="text.copyright">{{text.copyright}}</p>
             </div>
         </div>
