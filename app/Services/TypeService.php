@@ -42,7 +42,9 @@ class TypeService
     {
         $data = [];
         $data['name'] = $request->name;
-        $data['icon'] = $request->icon;
+        $data['icon'] = "";
+        if (!empty($request->icon))
+            $data['icon'] = $request->icon;
         $data['description'] = $request->description;
         $inserted = $this->model->create($data);
 
@@ -67,7 +69,6 @@ class TypeService
         $data['description'] = $request->description;
 
         $updated = $this->model->update($data, $id);
-
         if (!$updated)
             throw new ModelNotFoundException('insert chi eghel ');
         return $request->id;

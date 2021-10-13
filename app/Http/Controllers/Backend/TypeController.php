@@ -29,7 +29,7 @@ class TypeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
@@ -38,7 +38,6 @@ class TypeController extends Controller
             return view('backend.type.index',
                 compact('types'));
         } catch (ModelNotFoundException $exception) {
-            dd($exception);
             logger()->error($exception);
             return redirect('backend/type')->with('error', __('messages.wrong'));
         }
@@ -47,14 +46,13 @@ class TypeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
         try {
             return view('backend.type.create');
         } catch (\Exception $exception) {
-//            dd($exception);
             logger()->error($exception);
             return redirect('backend/type')->with('error', __('messages.wrong'));
         }
@@ -72,7 +70,7 @@ class TypeController extends Controller
             $this->service->store($request);
             return redirect('backend/type')->with('success', __('messages.success'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/type')->with('error', __('messages.wrong'));
         }
@@ -92,7 +90,7 @@ class TypeController extends Controller
             return view('backend.type.show',
                 compact('type'));
         } catch (ModelNotFoundException $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/dashboard')->with('error', __('messages.wrong'));
         }
@@ -110,7 +108,7 @@ class TypeController extends Controller
             $type = $this->service->show($id);
             return view('backend.type.edit', compact('type'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/type')->with('error', __('messages.wrong'));
         }
@@ -129,7 +127,7 @@ class TypeController extends Controller
             $this->service->update($request, $id);
             return redirect('backend/type')->with('success', __('messages.updated'));
         } catch (ModelNotFoundException $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/type')->with('error', __('messages.wrong'));
         }
