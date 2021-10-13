@@ -433,7 +433,6 @@
                         <div class="form-group row">
                             <label for="message" class="text-right col-lg-3 col-form-label text-capitalize">հաղորդագրություն*:</label>
                             <div class="col-lg-12">
-                                Can I insert rich text editor?
                                 <textarea id="message" name="message"
                                           class="form-control"
                                           style="max-height: 200px; min-height: 200px; max-width: 100%; min-width: 100%"></textarea>

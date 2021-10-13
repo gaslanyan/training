@@ -21,7 +21,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse offset col-12" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse offset col-lg-12 col-12" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto col-8">
                             <li class="nav-item">
                                 <router-link :to="{ name: 'home' }" class="nav-link">{{ text.main }}</router-link>
