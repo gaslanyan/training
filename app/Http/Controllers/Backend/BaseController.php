@@ -41,7 +41,7 @@ class BaseController extends Controller
                         "<a href='" . $path . "'>" . __('messages.see') . "</a>";
                 }
                 $sender['message'] = $message;
-                $sender['email'] = str_replace(' ', '', $request->email);
+                $sender['email'] = trim($request->email);
                 $this->createEmail($sender);
             }
 
@@ -78,7 +78,7 @@ class BaseController extends Controller
                         $sender['subject'] = $request->subject;
                         $sender['name'] = $request->name;
                         $sender['message'] = $request->message;
-                        $sender['email'] = $g_email->email;
+                        $sender['email'] = trim($g_email->email);
                         $this->createEmail($sender);
                     }
                 }
