@@ -75,13 +75,11 @@ class BaseController extends Controller
                         ->where('account_id', $id)
                         ->first();
 
-
                     if ($email->save()) {
                         $sender['subject'] = $request->subject;
                         $sender['name'] = $request->name;
                         $sender['message'] = $request->message;
                         $sender['email'] = trim($g_email->email);
-                        dd($sender['email']);
                         $this->createEmail($sender);
                     }
                 }
@@ -100,7 +98,7 @@ class BaseController extends Controller
         $objSend->message = $sender['message'];
         $objSend->sender = 'Medical training HR Team';
 
-        dd(Mail::to($sender['email'])->send(new \App\Mail\SendEmail($objSend)));
+        Mail::to($sender['email'])->send(new \App\Mail\SendEmail($objSend));
 
     }
 

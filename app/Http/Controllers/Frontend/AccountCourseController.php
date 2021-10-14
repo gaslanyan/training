@@ -126,12 +126,12 @@ class AccountCourseController extends Controller
         try {
             $info = $this->service->getCourseById(request('course_id'));
             $data = [];
-            $data['ClientID'] = '6f9a7eb3-6408-49d7-9449-5f163ede9da2';
+            $data['ClientID'] = env('CLIENT_ID');
             $data['Amount'] = $info->cost;
             $data['OrderID'] = rand(1, 2000000000);//2milliard
-            $data["BackURL"] = "https://www.shmz.am/lesson";
-            $data['Username'] = '19539226_api';
-            $data['Password'] = 'zVPawNDZQky7bKhX';
+            $data["BackURL"] = env('BACK_URL');
+            $data['Username'] = env('PAY_USERNAME');
+            $data['Password'] = env('PAY_PASSWORD');
             $data['Description'] = $info->name;
             $data['Cardholder'] = 'CARD VPOS';
             $data['Currency'] = 'AMD';
@@ -152,7 +152,6 @@ class AccountCourseController extends Controller
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
         } catch (MethodNotAllowedHttpException $exception) {
-            dd($exception);
             logger()->error($exception);
             return response()->json(['error' => true], 500);
         }
@@ -160,8 +159,8 @@ class AccountCourseController extends Controller
 
     function getPayment()
     {
-        $data['Username'] = '19539226_api';
-        $data['Password'] = 'zVPawNDZQky7bKhX';
+        $data['Username'] = env('PAY_USERNAME');
+        $data['Password'] = env('PAY_PASSWORD');
         $data['PaymentID'] = request('PaymentID');
 
         $endpoint = "https://services.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";

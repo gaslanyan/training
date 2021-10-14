@@ -32,7 +32,7 @@ class SendEmail extends Mailable
         return $this->from(env('MAIL_USERNAME'))
             ->subject($this->bc->subject)
             ->view('mails.email')
-//            ->bcc(env('MAIL_USERNAME'))
+            ->bcc(env('MAIL_USERNAME'))
             ->attach(public_path('/images') . '/logos/logo_new_sm.jpg',
                 [
                     'as' => 'logo.png',

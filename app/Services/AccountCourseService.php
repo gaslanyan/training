@@ -138,9 +138,10 @@ class AccountCourseService
             throw new ModelNotFoundException('Account not get!');
         return $account;
     }
+
     public function getCourseById($id)
     {
-        $course = Courses::select('id', 'name','cost')
+        $course = Courses::select('id', 'name', 'cost')
             ->where('id', $id)->first();
         if (!$course)
             throw new ModelNotFoundException('Account not get!');
@@ -163,13 +164,13 @@ class AccountCourseService
 //            ->where('account_id', $account_id)
 //            ->where('course_id', $id)->first();
 //        if (empty($ac->id)) {
-            $u_data['course_id'] = $id;
-            $u_data['account_id'] = $account_id;
-            $u_data['payment'] = json_encode($data);
+        $u_data['course_id'] = $id;
+        $u_data['account_id'] = $account_id;
+        $u_data['payment'] = json_encode($data);
 //            $isPayment = ($data['DepositedAmount'] == $c_a->cost) ? true : false;
 //            if($isPayment)
-                $u_data['paid'] = 1;
-            $this->model->create($u_data);
+        $u_data['paid'] = 1;
+        $this->model->create($u_data);
 //        } else {
 //
 //            $u_data = json_decode($ac->payment, true);
@@ -182,5 +183,18 @@ class AccountCourseService
 //        if (!$isPayment)
 //            $isPayment = __('messages.dont_payment');
         return $isPayment;
+    }
+
+    function getPayments()
+    {
+        $payments = $this->model->select(['id', 'account_id', 'course_id', 'payment'])
+            ->with(['course' => function ($query) {
+                $query->select('id', 'name', 'cost');
+            }, 'account' => function ($query) {
+                $query->select('id', 'name', 'surname', 'father_name');
+            }])->get();
+        if (!$payments)
+            throw new ModelNotFoundException('Account not get!');
+        return $payments;
     }
 }

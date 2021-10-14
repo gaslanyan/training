@@ -59,7 +59,6 @@ class AccountController extends Controller
         Session::put('role', $role);
         try {
             $accounts = $this->service->getAccountList($role);
-
             return view('backend.account.index',
                 compact('accounts', 'role'));
         } catch (ModelNotFoundException $exception) {
@@ -86,7 +85,6 @@ class AccountController extends Controller
             return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
         }
     }
-
 
     /**
      * @param AccountRequest $accountRequest
@@ -123,7 +121,6 @@ class AccountController extends Controller
                 $account = $this->service->addresses($account);
 
             }
-
             $profession = $this->service->getProfessions($id);
 
             return view('backend.account.show',
