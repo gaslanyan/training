@@ -79,6 +79,7 @@ class BaseController extends Controller
                         $sender['name'] = $request->name;
                         $sender['message'] = $request->message;
                         $sender['email'] = trim($g_email->email);
+                        dd($sender['email']);
                         $this->createEmail($sender);
                     }
                 }
