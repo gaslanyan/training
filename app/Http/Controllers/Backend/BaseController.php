@@ -73,6 +73,7 @@ class BaseController extends Controller
                     $g_email = User::select('email')
                         ->where('account_id', $id)
                         ->first();
+                    dd($g_email);
 
                     if ($email->save()) {
                         $sender['subject'] = $request->subject;
