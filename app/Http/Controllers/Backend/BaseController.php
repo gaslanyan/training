@@ -42,7 +42,7 @@ class BaseController extends Controller
                 }
                 $sender['message'] = $message;
                 $sender['email'] = trim($request->email);
-                dd($sender['email']);
+
                 $this->createEmail($sender);
             }
 
@@ -100,7 +100,7 @@ class BaseController extends Controller
         $objSend->message = $sender['message'];
         $objSend->sender = 'Medical training HR Team';
 
-        Mail::to($sender['email'])->send(new \App\Mail\SendEmail($objSend));
+        dd(Mail::to($sender['email'])->send(new \App\Mail\SendEmail($objSend)));
 
     }
 
