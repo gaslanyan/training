@@ -42,6 +42,7 @@ class BaseController extends Controller
                 }
                 $sender['message'] = $message;
                 $sender['email'] = trim($request->email);
+                dd($sender['email']);
                 $this->createEmail($sender);
             }
 
@@ -73,7 +74,7 @@ class BaseController extends Controller
                     $g_email = User::select('email')
                         ->where('account_id', $id)
                         ->first();
-                    dd($g_email);
+
 
                     if ($email->save()) {
                         $sender['subject'] = $request->subject;
