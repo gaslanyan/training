@@ -102,10 +102,10 @@ class Courses extends Model implements JWTSubject
      * @param $image
      * @return string|null
      */
-    public function getImageAttribute()
+    public function getImageAttribute($value)
     {
-        if ($this->image) {
-            return asset(sprintf('uploads/courses/%s', $this->image));
+        if ($value) {
+            return asset(sprintf('uploads/courses/%s', $value));
         }
 
         return null;
