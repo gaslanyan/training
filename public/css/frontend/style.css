@@ -5046,7 +5046,7 @@ li {
     }
 
     .lesson_filter li {
-        /*margin-bottom*/
+        width: 100%;display: block;
 
     }
 
