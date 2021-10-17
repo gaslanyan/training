@@ -2,12 +2,13 @@
 $user = isAdmin();
 
 ?>
-        <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 @include('backend.partials.head')
 <!-- begin::Body -->
-<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+<body
+    class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
 
 <!-- begin:: Page -->
 @include('backend.partials.header')
@@ -22,7 +23,7 @@ $user = isAdmin();
 
                     <!-- begin:: Header Menu -->
                     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
-                                class="la la-close"></i></button>
+                            class="la la-close"></i></button>
                     <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
 
                     </div>
@@ -36,16 +37,18 @@ $user = isAdmin();
                         <div class="kt-header__topbar-item kt-header__topbar-item--user">
                             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
                                 <div class="kt-header__topbar-user">
-                                    <span class="kt-header__topbar-welcome kt-hidden-mobile">{{__('messages.hello')}}, </span>
+                                    <span
+                                        class="kt-header__topbar-welcome kt-hidden-mobile">{{__('messages.hello')}}, </span>
                                     @if(!empty($user))
-                                    <span class="kt-header__topbar-username kt-hidden-mobile mobile_name">{{$user->name}}</span>
+                                        <span
+                                            class="kt-header__topbar-username kt-hidden-mobile mobile_name">{{$user->name}}</span>
                                     @endif
-
-                                    <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
+                                <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                                     {{--                                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">{{$fn}}</span>--}}
                                 </div>
                             </div>
-                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+                            <div
+                                class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 
                                 <!--begin: Head -->
                                 <div class="kt-user-card kt-user-card--skin-light kt-notification-item-padding-x"

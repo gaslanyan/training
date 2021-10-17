@@ -18,19 +18,19 @@ $(document).ready(function () {
             "targets": 0
         }],
         "language": lang,
-
-
     }).api();
 
     var groupColumn = 1, topColumn = 2;
     var t = $('#example').DataTable({
         "columnDefs": [
             {
+                "searchable": false,
+                "orderable": false,
                 "visible": false,
-                "targets": [topColumn, groupColumn]
+                "targets": [0, topColumn, groupColumn]
             }
         ],
-        "order": [[topColumn, 'asc'], [groupColumn, 'asc']],
+        "order": [[1, 'asc'], [topColumn, 'asc'], [groupColumn, 'asc']],
         "language": lang,
         "rowGroup": {
             dataSrc: [topColumn, groupColumn]
@@ -67,6 +67,7 @@ $(document).ready(function () {
             cell.innerHTML = i + 1;
         });
     }).draw();
+
     $(document).on("click", ".delete", function (e) {
         var url_swal = '/js/hy_swal.json';
         var _swal = getJSONData(url_swal);

@@ -6,13 +6,11 @@
             <div class="container">
                 <div class="row justify-content-around">
                     <!--<div class="col-lg-4 col-md-6 single-footer-widget">-->
-
-                    <div class="col-lg-4 col-md-6 single-footer-widget text-center">
+                    <div class="col-lg-4 col-md-2  col-single-footer-widget text-center">
                         <img :src="footer_logo"/>
 
                     </div>
-
-                    <div class="col-lg-4 col-md-6 single-footer-widget">
+                    <div class="col-lg-4 col-md-10 single-footer-widget">
                         <h4 class=" ">{{text.fastlinks}}</h4>
                         <ul class="text-left">
                             <li><a href="http://www.moh.am/" target="_blank">{{text.moh}}</a></li>
@@ -61,7 +59,6 @@
 
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="container-fluid">

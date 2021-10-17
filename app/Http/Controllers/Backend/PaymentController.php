@@ -34,7 +34,7 @@ class PaymentController extends Controller
     {
         try {
             $payments = $this->service->getPayments();
-            dd($payments);
+
             return view('backend.payment.index',
                 compact('payments' ));
         } catch (ModelNotFoundException $exception) {

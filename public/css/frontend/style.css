@@ -224,7 +224,7 @@ a:hover, a:focus {
 
 .home_banner_area {
     z-index: 1;
-    min-height: 580px;
+    /*min-height: 580px;*/
     display: flex;
     position: relative;
 }
@@ -342,7 +342,7 @@ a:hover, a:focus {
 .dpmt_courses {
     position: relative;
     z-index: 10;
-    margin-top: -4%;
+    /*margin-top: -4%;*/
     margin-bottom: 20px;
     justify-content: center;
 }
@@ -400,7 +400,7 @@ a:hover, a:focus {
 
 .dpmt_right ol li {
     list-style: decimal;
-    text-align: justify;
+    /*text-align: justify;*/
 }
 
 @media (max-width: 575px) {
@@ -887,8 +887,7 @@ a:hover, a:focus {
 .lesson_filter li {
     list-style: none;
     background-color: #fff;
-    max-width: 190px;
-    width: 100%;
+    width: 19%;
     padding: 10px;
     text-align: center;
     border-radius: 30px;
@@ -921,11 +920,11 @@ a:hover, a:focus {
 }
 
 .home_banner_area {
-    min-height: 234px;
+    /*min-height: 234px;*/
 }
 
 .hooper {
-    height: 600px;
+    height: 100%!important;
     margin-top: -14px;
 }
 
@@ -965,7 +964,8 @@ a:hover, a:focus {
 }
 
 .hooper-pagination {
-    top: 0
+    top: 0;
+    height:50px !important;
 }
 
 .purple {
@@ -3746,9 +3746,6 @@ h6 {
   ============================================================================================ */
     /* Home Banner Area css
   ============================================================================================ */
-    .home_banner_area .banner_inner {
-        padding: 100px 0px;
-    }
 
     /* End Home Banner Area css
   ============================================================================================ */
@@ -3926,17 +3923,17 @@ h6 {
     }
 
     .home_banner_area {
-        min-height: 700px;
+        /*min-height: 700px;*/
     }
 }
 
 @media (max-width: 767px) {
     .home_banner_area {
-        min-height: 500px;
+        /*min-height: 500px;*/
     }
 
     .home_banner_area .banner_inner {
-        min-height: 500px;
+        /*min-height: 500px;*/
     }
 
     .home_banner_area .banner_inner .banner_content {
@@ -4006,11 +4003,11 @@ h6 {
     }
 
     .home_banner_area {
-        min-height: 500px;
+        /*min-height: 500px;*/
     }
 
     .home_banner_area .banner_inner {
-        min-height: 500px;
+        /*min-height: 500px;*/
     }
 
     .blog_banner .banner_inner .blog_b_text {
@@ -4056,7 +4053,7 @@ h6 {
     /* Footer Area css
   ============================================================================================ */
     .footer-area {
-        padding: 70px 0px;
+        /*padding: 70px 0px;*/
     }
 
     /* End End Footer Area css
@@ -4107,8 +4104,8 @@ h6 {
 /*  Footer Styles
 /* =================================== */
 .footer-area {
-    /*background: rgb(99, 30, 216);*/
-    /*background-image: url("../../images/bg.png");*/
+    display: flex;
+    flex-direction: column;
     padding-bottom: 0;
 }
 
@@ -4243,10 +4240,9 @@ h6 {
     padding: 20px 0;
 
 }
-
 @media (max-width: 991px) {
     .footer-area .footer-bottom {
-        margin-top: 20px;
+        /*margin-top: 20px;*/
         background-color: #30013e;
     }
 }

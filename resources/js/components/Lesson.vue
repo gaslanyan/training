@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12" v-if="!currentUser">
-                        <ul v-if="professions" class="lesson_filter">
+                        <ul v-if="professions" class="lesson_filter col-12">
                             <li ref="course_0" @click="allcourses()">{{ text.all }}</li>
                             <li ref="course_" @click="getCoursesByProf(prof.id)" v-for="(prof) in professions">
                                 {{ prof.name }}

@@ -184,7 +184,7 @@
                                         <span class="kt-menu__link-icon kt-demo-icon__preview">
                                            <i class="flaticon2-shopping-cart"></i>
                                         </span>
-                        <span class="kt-menu__link-text">{{__('messages.payment')}}</span>
+                        <span class="kt-menu__link-text">{{__('messages.payments')}}</span>
                     </a>
 
                 </li>

@@ -11,7 +11,7 @@
 
                         <hooper :itemsToShow="1">
                             <slide style="width:100%;">
-                                <img :src="banner_src_one" :alt="texts.title" :title="texts.title" style="width: 100%">
+                                <img :src="banner_src_one" :alt="texts.title" :title="texts.title" style="width: 100%;">
                                 <!--video ref="video" class="view-video col-lg-12" controls
                                        v-on:loadeddata="manageEvents(info.id)">
                                     <source :src="info.path">

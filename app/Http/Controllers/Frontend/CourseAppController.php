@@ -226,7 +226,6 @@ class CourseAppController extends Controller
         if (isset($courses)) {
             if ($courses->books) {
                 $books = json_decode($courses->books);
-
                 $s3_books = [];
 //                if (!$videos->isEmpty()) {
                 foreach ($books as $index => $book) {

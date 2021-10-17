@@ -54,45 +54,50 @@
                         <th>#</th>
                         <th>{{__('messages.name')." ".__('messages.surname')." ".__('messages.father_name')}}</th>
                         <th>{{__('messages.course_name')}}</th>
-                        <th>{{__('messages.payment')}}</th>
-                        <th>{{__('messages.action')}}</th>
+                        <th>{{__('messages.cost')}} / {{__('messages.amd')}}</th>
+                        <th>{{__('messages.payments')}} / {{__('messages.amd')}}</th>
+{{--                        <th>{{__('messages.action')}}</th>--}}
                     </tr>
                     </thead>
                     <tbody>
-
                     @if(!$payments->isEmpty())
                         @foreach($payments as $key => $payment)
-                            @if(!empty($payment->user))
+                            @if(!empty($payment->account))
                                 <tr class="text-center">
-                                    <td></td>
-                                    <td>@if(!empty($payment->name)){{$payment->name}}@endif
-                                        @if(!empty($payment->surname)){{$payment->surname}}@endif
-                                        @if(!empty($payment->father_name)){{$payment->father_name}}@endif
+                                    <td> </td>
+                                    <td class="text-left">@if(!empty($payment->account->name)){{$payment->account->name}}@endif
+                                        @if(!empty($payment->account->surname)){{$payment->account->surname}}@endif
+                                        @if(!empty($payment->account->father_name)){{$payment->account->father_name}}@endif
                                     </td>
-                                    <td>
+                                    <td class="text-left">
                                         @if(!empty($payment->course)) {{$payment->course->name}}@endif
                                     </td>
                                     <td>
-                                        @if(!empty($payment->payment)) {{$payment->payment}}@endif
+                                        @if(!empty($payment->course)) {{$payment->course->cost}} @endif
                                     </td>
                                     <td>
-                                        <div class="row justify-content-end">
-                                            <a href="{{action('Backend\PaymentController@show', $payment->id)}}"
-                                               class="btn btn-info kt-badge kt-badge--lg"
-                                               data-toggle="m-tooltip" data-placement="top"
-                                               data-original-title="{{__('messages.show')}}">
-                                                <i class="la la-eye"></i>
-                                            </a>
-
-                                        </div>
+                                        @php
+                                        $pay = json_decode($payment->payment)
+                                        @endphp
+                                        @if(!empty($payment->payment)) {{$pay->Amount}}@endif
                                     </td>
+{{--                                    <td>--}}
+{{--                                        <div class="row justify-content-end">--}}
+{{--                                            <a href="{{action('Backend\PaymentController@show', $payment->id)}}"--}}
+{{--                                               class="btn btn-info kt-badge kt-badge--lg"--}}
+{{--                                               data-toggle="m-tooltip" data-placement="top"--}}
+{{--                                               data-original-title="{{__('messages.show')}}">--}}
+{{--                                                <i class="la la-eye"></i>--}}
+{{--                                            </a>--}}
+
+{{--                                        </div>--}}
+{{--                                    </td>--}}
                                 </tr>
                             @endif
                         @endforeach
                     @endif
                     </tbody>
                 </table>
-
                 <!--end: Datatable -->
             </div>
         </div>
