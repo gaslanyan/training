@@ -350,10 +350,11 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="content_data"
-                                                       class="col-lg-2 col-form-label">{{__('messages.image')}}</label>
+                                                <label class="btn btn-success" for="image-course">
+                                                    {{__('messages.image')}}
+                                                </label>
                                                 <div class="col-lg-10">
-                                                    <input type="file" name="image"
+                                                    <input type="file" name="image" id="image-course"
                                                            accept="image/*">
                                                     @error('image')
                                                     <div class="invalid-feedback">{{$message}}</div>
@@ -369,9 +370,11 @@
 
                                             <div class="form-group row">
                                                 <label for="content_data"
-                                                       class="col-lg-2 col-form-label">{{__('messages.content')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.content')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-12">
                                                     <textarea id="content_data" type="text" name="content_data"
                                                               class="form-control froala-editor @error('content_data') is-invalid @enderror">{{isset($course) ? $course->content : old('content_data')}}</textarea>
                                                     @error('content_data')
