@@ -18,7 +18,6 @@
                                 <div :key="b.to" class="page_link" v-for="b in $route.meta.breadCrumbs">
                                     <router-link :to="{ name: 'home' }" class="nav-link">{{ text.main }}</router-link>
                                     <router-link class="nav-link" to="">{{ b.text }}</router-link>
-
                                 </div>
                             </div>
                         </div>
@@ -32,14 +31,16 @@
                 <div class="row">
                     <div class="col-12" v-if="!currentUser">
                         <ul v-if="professions" class="lesson_filter col-12">
-                            <li class=" mb-4" ref="course_0" @click="allcourses()">{{ text.all }}</li>
-                            <li class=" mb-4" ref="course_" @click="getCoursesByProf(prof.id)" v-for="(prof) in professions">
-                                {{ prof.name }}
+                            <li class="mb-4">
+                                <span ref="course_0" @click="allcourses()">{{ text.all }} </span>
+                            </li>
+                            <li class="mb-4" v-for="(prof) in professions">
+                                <span ref="course_" @click="getCoursesByProf(prof.id)">
+                                    {{ prof.name }}</span>
                             </li>
                         </ul>
                     </div>
                     <div :key="course.id" class="col-lg-4" v-for="course in courses">
-
                         <router-link :to="'/coursedetails/'+course.id" class="nav-link">
                             <div class="categories_post">
                                 <div class="categories_details">
@@ -49,31 +50,6 @@
                                             <p>
                                                 {{ course.name }}</p>
                                         </div>
-                                        <!--                                    <div v-if="!currentUser">-->
-                                        <!--                                        <div class="border_line yellow"></div>-->
-                                        <!--                                        <span class="fa fa-lock yellow"></span>-->
-                                        <!--                                        <div class='d-flex justify-content-center'>-->
-                                        <!--                                            <router-link class="nav-link" to="/login">{{ texts.login }}</router-link>-->
-                                        <!--                                            <p class="nav-link">կամ</p>-->
-
-                                        <!--                                            <router-link class="nav-link" to="/register"> {{ text.register }}-->
-                                        <!--                                            </router-link>-->
-
-                                        <!--                                        </div>-->
-                                        <!--                                    </div>-->
-                                        <!--                                    <div v-else>-->
-                                        <!--                                        <div v-if="!isOpened && course.account_course === null">-->
-                                        <!--                                            <div class="border_line yellow"></div>-->
-                                        <!--                                            <span class="fa fa-lock yellow"></span>-->
-                                        <!--                                            <div class='d-flex justify-content-center'>-->
-                                        <!--                                                <div>-->
-                                        <!--                                                    <button id="show-modal" class="text-uppercase enroll nav-link btn"-->
-                                        <!--                                                            @click="payment(course.id)">{{ texts.pay }}-->
-                                        <!--                                                    </button>-->
-                                        <!--                                                </div>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </div>-->
-                                        <!--                                    </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +124,7 @@ export default {
                     this.toggleActiveClass(0);
                 })
                 .catch(error => {
-                    console.log('errorsss');
+                    console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
         },
@@ -181,7 +157,6 @@ export default {
             r.classList.add('active')
         },
         getCoursesByProf(id) {
-
             let credentials = {
                 id: id,
                 url: 'getcoursebyprof',
@@ -201,7 +176,8 @@ export default {
                 id: id,
                 token: this.currentUser.token,
                 url: 'getcoursebyspec',
-                auth: true
+                auth: true,
+                mobile: false
             };
             getPromiseResult(credentials)
                 .then(res => {
@@ -244,6 +220,10 @@ export default {
 <style>
 .active {
     background-color: rgb(159, 18, 173) !important;
-    color: rgb(255, 255, 255)
+    color: rgb(255, 255, 255);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
 }
 </style>

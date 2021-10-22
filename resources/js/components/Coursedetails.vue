@@ -2,10 +2,10 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-12 coursedetails_banner" >
+            <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
-                <h2 class="text-center">{{datas.name}}</h2>
-                <h3>{{texts.class }}</h3>
+                <h2 class="text-center">{{ datas.name }}</h2>
+                <h3>{{ texts.class }}</h3>
             </div>
         </div>
         <!--section class="banner_area">
@@ -30,21 +30,22 @@
         <!--================ Start Course Details Area =================-->
         <section class="course_details_area section_gap">
             <div class="container" :key="datas.id">
-                <div class="col-lg-12 m-0 pb-5"><h2 class="or text-center"> {{datas.name}}</h2></div>
+                <div class="col-lg-12 m-0 pb-5"><h2 class="or text-center"> {{ datas.name }}</h2></div>
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
-<!--                        <div v-if="!isOpened">-->
-                        <div >
-                            <div class="border_line yellow"></div>
-                            <span class="fa fa-lock yellow"></span>
-                            <div class='d-flex justify-content-center'>
-                                <div>
-                                    <button id="show-modal" class="text-uppercase enroll nav-link btn"
-                                            @click="payment(datas.id)">{{texts.pay}}
-                                    </button>
-                                </div>
+                        <!--                        <div v-if="!isOpened">-->
+                        <div class='d-flex justify-content-center look'>
+                            <span class="fa fa-lock fa-3x" id="look"></span>
+                            <div>
+                                <router-link class="nav-link" to="/login">{{ texts.login }}</router-link>
+                                <button class=" text-uppercase enroll nav-link btn"
+                                        @click="payment(datas.id)">{{ texts.pay }}
+                                </button>
+                                <router-link class="nav-link" to="/register"> {{ texts.register }}
+                                </router-link>
                             </div>
                         </div>
+
                         <div class="main_image" v-if="video_info">
                             <hooper :itemsToShow="1">
                                 <slide v-for="(info, index) in video_info" :key="index" :index="index">
@@ -53,9 +54,11 @@
                                         <source :src="info.path">
                                     </video>
                                     <div class="col-lg-12">
-                                        <h5 class="title">{{info.title}}</h5>
-                                        <h5 class="vid_content">{{`${info.lectures.name} ${info.lectures.surname}
-                                            ${info.lectures.father_name}`}}</h5>
+                                        <h5 class="title">{{ info.title }}</h5>
+                                        <h5 class="vid_content">{{
+                                                `${info.lectures.name} ${info.lectures.surname}
+                                            ${info.lectures.father_name}`
+                                            }}</h5>
 
                                     </div>
                                 </slide>
@@ -63,60 +66,62 @@
                             </hooper>
                         </div>
                         <div class="attachment-mark" v-if="books">
-                            <h4 class="title">{{texts.books}}</h4>
-                            <template  v-for="book in books">
+                            <h4 class="title">{{ texts.books }}</h4>
+                            <template v-for="book in books">
                                 <i class="fa fa-book text"></i>
-                                <router-link :to="{name: 'book',params: {id: book.id}}" class="text" target="_blank">{{book.title}}</router-link>
+                                <router-link :to="{name: 'book',params: {id: book.id}}" class="text" target="_blank">
+                                    {{ book.title }}
+                                </router-link>
                             </template>
                         </div>
                         <div class="content_wrapper">
-                            <h4 class="title">{{texts.content}}</h4>
+                            <h4 class="title">{{ texts.content }}</h4>
                             <div v-html="datas.content" class="content">
-                                {{datas.content}}
+                                {{ datas.content }}
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-4 right-contents">
                         <ul>
                             <li v-if="datas.status ==='active'">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>{{texts.status}} </p>
-                                    <span class="or"> {{texts.status_active}}</span>
+                                    <p>{{ texts.status }} </p>
+                                    <span class="or"> {{ texts.status_active }}</span>
                                 </a>
                             </li>
                         </ul>
 
                         <a class="d-flex" href="#">
-                            <div class="dot"></div><p class="credit">{{texts.credit}}</p>
+                            <div class="dot"></div>
+                            <p class="credit">{{ texts.credit }}</p>
                         </a>
                         <ul>
                             <li>
                                 <a class="justify-content-between d-flex" href="#"
                                    v-for="c in datas.credit">
-                                    <span>{{creditName(c.name)}}</span>
-                                    <span class="or">{{c.credit}}</span>
+                                    <span>{{ creditName(c.name) }}</span>
+                                    <span class="or">{{ c.credit }}</span>
                                 </a>
                             </li>
                         </ul>
                         <ul>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>{{texts.duration}} </p>
-                                    <span class="or">{{datas.duration_date}}</span>
+                                    <p>{{ texts.duration }} </p>
+                                    <span class="or">{{ datas.duration_date }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>{{texts.coursecost}} </p>
-                                    <span class="or">{{datas.cost}} AMD</span>
+                                    <p>{{ texts.coursecost }} </p>
+                                    <span class="or">{{ datas.cost }} AMD</span>
                                 </a>
                             </li>
                         </ul>
 
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
-                                     v-bind:class="{ 'isDisabled': !isFinished }">{{texts.test}}
+                                     v-bind:class="{ 'isDisabled': !isFinished }">{{ texts.test }}
                         </router-link>
 
 
@@ -125,7 +130,7 @@
                                 <div class="col-lg-12">
                                     <h6 class="mb-15"></h6>
                                     <div class="d-flex flex-row reviews justify-content-between">
-                                        <span>{{texts.rate}}</span>
+                                        <span>{{ texts.rate }}</span>
                                         <div class="star">
                                             <i class="fa fa-star" :id="item.id" v-on:click="raiting"
                                                v-bind:class="{ checked: isActive }" v-for="(item, key) in objects"></i>
@@ -152,9 +157,9 @@
                     </div>
 
                 </div>
-                    <div id="certificate">
-                                <img id="finishimg"  v-bind:src= "'/css/frontend/img/' + cert" />
-                            </div>
+                <div id="certificate">
+                    <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
+                </div>
             </div>
         </section>
         <!--================ End Course Details Area =================-->
@@ -162,381 +167,390 @@
 </template>
 
 <script>
-    import {getPromiseResult,getCertificateById} from '../partials/help';
-    import texts from './json/course.json';
-    import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
-    import 'hooper/dist/hooper.css';
-    import Swal from "sweetalert2";
-    import pagetexts from "./json/pages.json";
+import {getCertificateById, getPromiseResult} from '../partials/help';
+import texts from './json/course.json';
+import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
+import 'hooper/dist/hooper.css';
+import Swal from "sweetalert2";
+import pagetexts from "./json/pages.json";
 
-    export default {
-        data() {
-            return {
-                id: '',
-                // book: '/css/frontend/img/ekg.png',
-                video_info: [],
-                books: [],
-                feedback: '',
-                rating:0,
-                datas: [],
-                specialites: [],
-                courseimg: '/css/frontend/img/courses/course-details.jpg',
-                videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
-                docs: [],
-                texts: texts,
-                feedbacksuccess: '',
-                isActive: false,
-                isOpened: false,
-                objects: [
-                    {id: 1},
-                    {id: 2},
-                    {id: 3},
-                    {id: 4},
-                    {id: 5}
+export default {
+    data() {
+        return {
+            id: '',
+            // book: '/css/frontend/img/ekg.png',
+            video_info: [],
+            books: [],
+            feedback: '',
+            rating: 0,
+            datas: [],
+            specialites: [],
+            courseimg: '/css/frontend/img/courses/course-details.jpg',
+            videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
+            docs: [],
+            texts: texts,
+            feedbacksuccess: '',
+            isActive: false,
+            isOpened: false,
+            objects: [
+                {id: 1},
+                {id: 2},
+                {id: 3},
+                {id: 4},
+                {id: 5}
 
-                ],
-                isFinished: 0,
-                disabled:1,
-                cert:[],
-                pagetexts:pagetexts
-            };
-        },
-        computed: {
-            currentUser: function () {
-                if (!this.$store.getters.currentUser)
-                    return JSON.parse(localStorage.getItem('user'));
-                return this.$store.getters.currentUser
-            }
-        },
-        components: {
-            Hooper,
-            Slide, HooperPagination
-        },
-        methods: {
-            manageEvents(id, index) {
-                this.$nextTick(() => {
-                    let credentials = {
-                        id: id,
-                        token: this.currentUser.token,
-                        url: 'videoinfo',
-                        auth: true
-                    };
-                    getPromiseResult(credentials)
-                        .then(res => {
-                            if (res.video.status === "progress" || !res.video) {
-                                let _this = this;
-                                if (_this.$refs.video) {
-                                    let supposedCurrentTime = 0, backTime = 0;
-                                    let video = _this.$refs.video[index], isPlay = true;
-
-                                    video.addEventListener('play', function () {
-                                        if (isPlay) {
-                                            video.currentTime = res.video.point;
-                                            supposedCurrentTime = res.video.point;
-                                            isPlay = false;
-                                        }
-                                    });
-
-                                    video.addEventListener('timeupdate', function () {
-                                        if (!video.seeking) {
-                                            supposedCurrentTime = video.currentTime;
-                                        } else
-                                            backTime = video.currentTime;
-                                    });
-
-                                    video.addEventListener('seeking', function () {
-                                        console.log('seeking', video.currentTime);
-                                        let back = backTime - supposedCurrentTime;
-                                        if (back < 0) {
-                                            supposedCurrentTime = backTime;
-                                        } else {
-                                            let delta = video.currentTime - supposedCurrentTime;
-                                            if (Math.abs(delta) > 0.01) {
-                                                console.log("Seeking is disabled");
-                                                video.currentTime = supposedCurrentTime;
-                                            }
-                                        }
-                                    });
-
-                                    video.addEventListener('pause', () => {
-                                        // video.currentTime = supposedCurrentTime;
-                                        _this.addPoint(id, video.currentTime);
-                                    });
-
-                                    video.addEventListener('ended', function () {
-                                        console.log('ended', id);
-                                        _this.addPoint(id, video.currentTime);
-                                    });
-                                }
-                            }
-                        })
-                        .catch(error => {
-                            this.$store.commit("getContentFailed", {error});
-                        });
-                });
-            },
-            addPoint(id, point) {
+            ],
+            isFinished: 0,
+            disabled: 1,
+            cert: [],
+            pagetexts: pagetexts
+        };
+    },
+    computed: {
+        currentUser: function () {
+            if (!this.$store.getters.currentUser)
+                return JSON.parse(localStorage.getItem('user'));
+            return this.$store.getters.currentUser
+        }
+    },
+    components: {
+        Hooper,
+        Slide, HooperPagination
+    },
+    methods: {
+        manageEvents(id, index) {
+            this.$nextTick(() => {
                 let credentials = {
                     id: id,
-                    user_id: this.currentUser.id,
                     token: this.currentUser.token,
-                    point: point,
-                    url: "addpoint",
+                    url: 'videoinfo',
                     auth: true
                 };
                 getPromiseResult(credentials)
                     .then(res => {
-                    })
-                    .catch(error => {
-                        console.log('error');
-                        // this.$store.commit("registerFailed", {error});
-                    })
-            },
-            finishedVideo() {
-                let credentials = {
-                    id: this.$route.params.id,
-                    user_id: this.currentUser.id,
-                    token: this.currentUser.token,
-                    url: 'finishedvideo',
-                    auth: true
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        this.isFinished = res;
+                        if (res.video.status === "progress" || !res.video) {
+                            let _this = this;
+                            if (_this.$refs.video) {
+                                let supposedCurrentTime = 0, backTime = 0;
+                                let video = _this.$refs.video[index], isPlay = true;
 
-                    })
-                    .catch(error => {
-                        console.log('error', error);
-                        // this.$store.commit("registerFailed", {error});
-                    })
-            },
-            payment(id) {
-                this.course_id = id;
-                localStorage.setItem('c_id', id);
-                localStorage.setItem('a_id', this.currentUser.id);
-                let credentials = {
-                    account_id: this.currentUser.id,
-                    token: this.currentUser.token,
-                    course_id: id,
-                    mobile: false,
-                    url: "payment",
-                    auth: true
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        location.href = 'https://services.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
-                    })
-                    .catch(error => {
-                        console.log('error');
-                        // this.$store.commit("registerFailed", {error});
-                    })
-            },
-            getPaymentQuery(query) {
-                let credentials = {
-                    PaymentID: `${query.paymentID}`,
-                    account_id: this.currentUser.id,
-                    token: this.currentUser.token,
-                    course_id: localStorage.getItem('c_id'),
-                    url: "getpayment",
-                    auth: true
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        // console.log(res)
-                        if (localStorage.get('m')) {
-                            this.logout();
-                            Swal.fire({
-                                icon: 'success',
-                                title: pagetexts.thanks,
-                                text: pagetexts.backApp,
-                                confirmButtonText:
-                                    `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
-                                confirmButtonColor: '#631ed8',
-                            });
-                            setTimeout(function () {
-                                window.close();
-                            }, 5000);
+                                video.addEventListener('play', function () {
+                                    if (isPlay) {
+                                        video.currentTime = res.video.point;
+                                        supposedCurrentTime = res.video.point;
+                                        isPlay = false;
+                                    }
+                                });
+
+                                video.addEventListener('timeupdate', function () {
+                                    if (!video.seeking) {
+                                        supposedCurrentTime = video.currentTime;
+                                    } else
+                                        backTime = video.currentTime;
+                                });
+
+                                video.addEventListener('seeking', function () {
+                                    console.log('seeking', video.currentTime);
+                                    let back = backTime - supposedCurrentTime;
+                                    if (back < 0) {
+                                        supposedCurrentTime = backTime;
+                                    } else {
+                                        let delta = video.currentTime - supposedCurrentTime;
+                                        if (Math.abs(delta) > 0.01) {
+                                            console.log("Seeking is disabled");
+                                            video.currentTime = supposedCurrentTime;
+                                        }
+                                    }
+                                });
+
+                                video.addEventListener('pause', () => {
+                                    // video.currentTime = supposedCurrentTime;
+                                    _this.addPoint(id, video.currentTime);
+                                });
+
+                                video.addEventListener('ended', function () {
+                                    console.log('ended', id);
+                                    _this.addPoint(id, video.currentTime);
+                                });
+                            }
                         }
                     })
                     .catch(error => {
-                        let msg = "", pattern = /\d+/,
-                            e = pattern.exec(error);
-                        console.log(e, error)
-                        switch (e[0]) {
-                            case '404':
-                                this.$router.push({path: '/404'});
-                                break;
-                            case '401':
-                                error = '401';
-                                msg = 'unauthorized';
-                                break;
-                            default:
-                                error = 'g';
-                                msg = 'loginFailed';
-                        }
+                        this.$store.commit("getContentFailed", {error});
                     });
-            },
-            coursedetails: function () {
-                let credentials = {
+            });
+        },
+        addPoint(id, point) {
+            let credentials = {
+                id: id,
+                user_id: this.currentUser.id,
+                token: this.currentUser.token,
+                point: point,
+                url: "addpoint",
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                })
+                .catch(error => {
+                    console.log('error');
+                    // this.$store.commit("registerFailed", {error});
+                })
+        },
+        finishedVideo() {
+            let credentials = {
+                id: this.$route.params.id,
+                user_id: this.currentUser.id,
+                token: this.currentUser.token,
+                url: 'finishedvideo',
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.isFinished = res;
+
+                })
+                .catch(error => {
+                    console.log('error', error);
+                    // this.$store.commit("registerFailed", {error});
+                })
+        },
+        payment(id) {
+            this.course_id = id;
+            localStorage.setItem('c_id', id);
+            localStorage.setItem('a_id', this.currentUser.id);
+            let credentials = {
+                account_id: this.currentUser.id,
+                token: this.currentUser.token,
+                course_id: id,
+                mobile: false,
+                url: "payment",
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    location.href = 'https://services.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
+                })
+                .catch(error => {
+                    console.log('error');
+                    // this.$store.commit("registerFailed", {error});
+                })
+        },
+        getPaymentQuery(query) {
+            let credentials = {
+                PaymentID: `${query.paymentID}`,
+                account_id: this.currentUser.id,
+                token: this.currentUser.token,
+                course_id: localStorage.getItem('c_id'),
+                url: "getpayment",
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    // console.log(res)
+                    if (localStorage.get('m')) {
+                        this.logout();
+                        Swal.fire({
+                            icon: 'success',
+                            title: pagetexts.thanks,
+                            text: pagetexts.backApp,
+                            confirmButtonText:
+                                `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                            confirmButtonColor: '#631ed8',
+                        });
+                        setTimeout(function () {
+                            window.close();
+                        }, 5000);
+                    }
+                })
+                .catch(error => {
+                    let msg = "", pattern = /\d+/,
+                        e = pattern.exec(error);
+                    console.log(e, error)
+                    switch (e[0]) {
+                        case '404':
+                            this.$router.push({path: '/404'});
+                            break;
+                        case '401':
+                            error = '401';
+                            msg = 'unauthorized';
+                            break;
+                        default:
+                            error = 'g';
+                            msg = 'loginFailed';
+                    }
+                });
+        },
+        coursedetails: function () {
+            let credentials = {};
+            if (!this.currentUser)
+                credentials = {
+                    id: this.$route.params.id,
+                    url: 'courseinfo',
+                    auth: false
+                };
+            else
+                credentials = {
                     id: this.$route.params.id,
                     token: this.currentUser.token,
                     url: 'coursedetails',
                     auth: true
                 };
-                getPromiseResult(credentials)
-                    .then(res => {
+            getPromiseResult(credentials)
+                .then(res => {
 
-                        this.datas = res.data;
-                        this.datas.credit = JSON.parse(res.data.credit);
-                        this.video_info = JSON.parse(res.data.videos);
-                        this.books = JSON.parse(res.data.books);
-                        this.specialites = res.specialities;
-                        this.id = res.data.id;
-                        // this.manageEvents();
+                    this.datas = res.data;
+                    this.datas.credit = JSON.parse(res.data.credit);
+                    this.video_info = JSON.parse(res.data.videos);
+                    this.books = JSON.parse(res.data.books);
+                    this.specialites = res.specialities;
+                    this.id = res.data.id;
+                    // this.manageEvents();
 
-                    })
-                    .catch(error => {
-                        console.log('error');
-                        // this.$store.commit("registerFailed", {error});
-                    })
-            },
-
-            certificate: function () {
-                let credentials = {
-                    id: this.$route.params.id,
-                    token: this.currentUser.token,
-                    user_id:this.currentUser.id
-                };
-
-                getCertificateById(credentials)
-                    .then(res => {
-                        //alert(response.data);
-                        console.log(res);
-                        this.cert =  res;
-                    })
-                    .catch(error => {
-                        console.log('error');
-                        // this.$store.commit("registerFailed", {error});
-                    })
-            },
-            raiting: function (event) {
-                var loop_count = 5 - parseInt(event.currentTarget.id);
-                var t_id =parseInt(event.currentTarget.id);
-                var r = 0;
-                if (!event.currentTarget.classList.contains('checked')) {
-                    for (var i = 1; i <= parseInt(t_id); i++) {
-                        event.currentTarget.classList.add("checked");
-                        var s = i.toString();
-                        r=event.currentTarget.id;
-                        document.getElementById(s).classList.add("checked");
-                    }
-                }
-                else{
-                    for (var j = 5; j >= t_id; j--) {
-                        var ss = j.toString();
-                        r=event.currentTarget.id-1;
-                        document.getElementById(ss).classList.remove("checked");
-                    }
-                }
-                console.log(event.currentTarget.id);
-                let user = JSON.parse(localStorage.getItem('user'));
-                axios.post('/api/rating', {
-                    rating:parseInt(r),
-                    account_id: user.id,
-                    course_id: this.$route.params.id
                 })
-                    .then(function (response) {
-                        //alert(response.data);
-
-
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-
-            },
-            // sendcomment: function () {
-            //     // if(this.feedback != ''){
-            //     //console.log(this.$refs.feedback.text);
-            //     let user = JSON.parse(localStorage.getItem('user'));
-            //     // this.feedback = this.$refs.feedback.text;
-            //     axios.post('/api/comment', {
-            //         comment: feedback.value,
-            //         account_id: user.id,
-            //         course_id: this.$route.params.id
-            //     })
-            //         .then(function (response) {
-            //             //alert(response.data);
-            //             feedback.value = '';
-            //             feedbacksuccess = "Մեկնաբանությունը հաջողությամբ ուղարկվեց";
-            //         })
-            //         .catch(function (error) {
-            //             console.log(error);
-            //         });
-            //     /* }else{
-            //          alert('Fill all fields.');
-            //      }*/
-            // },
-            creditName:function (name) {
-                let hy_name = '';
-                switch (name) {
-                    case 'theoretical':
-                        hy_name =texts.theoretical;
-                        break;
-                        case 'practical':
-                        hy_name =texts.practical;
-                        break;
-                        case 'selfeducation':
-                        hy_name =texts.selfeducation;
-                        break;
-                }
-                return hy_name;
-            }
+                .catch(error => {
+                    console.log('error');
+                    // this.$store.commit("registerFailed", {error});
+                })
         },
-        beforeMount() {
-            this.coursedetails();
+
+        certificate: function () {
+            let credentials = {
+                id: this.$route.params.id,
+                token: this.currentUser.token,
+                user_id: this.currentUser.id
+            };
+
+            getCertificateById(credentials)
+                .then(res => {
+                    //alert(response.data);
+                    console.log(res);
+                    this.cert = res;
+                })
+                .catch(error => {
+                    console.log('error');
+                    // this.$store.commit("registerFailed", {error});
+                })
+        },
+        raiting: function (event) {
+            var loop_count = 5 - parseInt(event.currentTarget.id);
+            var t_id = parseInt(event.currentTarget.id);
+            var r = 0;
+            if (!event.currentTarget.classList.contains('checked')) {
+                for (var i = 1; i <= parseInt(t_id); i++) {
+                    event.currentTarget.classList.add("checked");
+                    var s = i.toString();
+                    r = event.currentTarget.id;
+                    document.getElementById(s).classList.add("checked");
+                }
+            } else {
+                for (var j = 5; j >= t_id; j--) {
+                    var ss = j.toString();
+                    r = event.currentTarget.id - 1;
+                    document.getElementById(ss).classList.remove("checked");
+                }
+            }
+            console.log(event.currentTarget.id);
+            let user = JSON.parse(localStorage.getItem('user'));
+            axios.post('/api/rating', {
+                rating: parseInt(r),
+                account_id: user.id,
+                course_id: this.$route.params.id
+            })
+                .then(function (response) {
+                    //alert(response.data);
+
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        },
+        // sendcomment: function () {
+        //     // if(this.feedback != ''){
+        //     //console.log(this.$refs.feedback.text);
+        //     let user = JSON.parse(localStorage.getItem('user'));
+        //     // this.feedback = this.$refs.feedback.text;
+        //     axios.post('/api/comment', {
+        //         comment: feedback.value,
+        //         account_id: user.id,
+        //         course_id: this.$route.params.id
+        //     })
+        //         .then(function (response) {
+        //             //alert(response.data);
+        //             feedback.value = '';
+        //             feedbacksuccess = "Մեկնաբանությունը հաջողությամբ ուղարկվեց";
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         });
+        //     /* }else{
+        //          alert('Fill all fields.');
+        //      }*/
+        // },
+        creditName: function (name) {
+            let hy_name = '';
+            switch (name) {
+                case 'theoretical':
+                    hy_name = texts.theoretical;
+                    break;
+                case 'practical':
+                    hy_name = texts.practical;
+                    break;
+                case 'selfeducation':
+                    hy_name = texts.selfeducation;
+                    break;
+            }
+            return hy_name;
+        }
+    },
+    beforeMount() {
+        this.coursedetails();
+        if (this.$store.getters.currentUser) {
             this.finishedVideo();
             this.certificate();
             if (this.$store.getters.currentUser.prof.member_of_palace === 1)
                 this.isOpened = true;
-        },
-        mounted() {
-            if (Object.keys(this.$route.query).length > 0) {
-                if (this.$route.query)
-                    this.getPaymentQuery(this.$route.query);
-                else
-                    Swal.fire({
-                        icon: 'error',
-                        title: pagetexts.error,
-                        text: pagetexts.again,
-                        confirmButtonText:
-                            `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
-                        confirmButtonColor: '#631ed8',
-                    });
-            }
+        }
+    },
+    mounted() {
+        if (Object.keys(this.$route.query).length > 0) {
+            if (this.$route.query)
+                this.getPaymentQuery(this.$route.query);
+            else
+                Swal.fire({
+                    icon: 'error',
+                    title: pagetexts.error,
+                    text: pagetexts.again,
+                    confirmButtonText:
+                        `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                    confirmButtonColor: '#631ed8',
+                });
         }
     }
+}
 
 </script>
 <style>
-    .home_banner_area {
-        min-height: 234px;
-    }
+.home_banner_area {
+    min-height: 234px;
+}
 
-    .hooper {
-        height: 600px;
-    }
+.hooper {
+    height: 600px;
+}
 
-    .hooper-pagination {
-        top: 0
-    }
+.hooper-pagination {
+    top: 0
+}
 
-    .isDisabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-        text-decoration: none;
-        pointer-events: none;
-    }
+.isDisabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+    pointer-events: none;
+}
 
 </style>
 

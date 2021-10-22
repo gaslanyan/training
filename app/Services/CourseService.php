@@ -42,11 +42,11 @@ class CourseService
      * @param $id
      * @return mixed
      */
-    public function getCourses($id)
+    public function getCourses($id,$mobile)
     {
         $spec = Profession::select('specialty_id')->where('account_id', $id)->first();
         $prof = Specialties::select('parent_id')->where('id', $spec->specialty_id)->first();
-        if ($prof->parent_id == 1)
+        if ($prof->parent_id == 1 && !$mobile)
             $courses = $this->getCoursesById($prof->parent_id);
         else
             $courses = Courses::select('id', 'name', 'cost', 'start_date')->
@@ -85,7 +85,7 @@ class CourseService
 
         $result = (!empty($courses)) ? $courses : __('messages.noting');
         if (!$courses)
-            throw new ModelNotFoundException('User not found by ID ');
+            throw new ModelNotFoundException('Course not found by ID ');
         return $result;
     }
 
@@ -125,8 +125,9 @@ class CourseService
         $messages = $this->model->selected(['id', 'name', 'cost', 'start_date'])
 //            ->whereDate('start_date', "<=", date("Y-m-d"))
             ->get();
+
         if (!$messages)
-            throw new ModelNotFoundException('User not found by ID ');
+            throw new ModelNotFoundException('Courses not found by ID ');
         return $messages;
 
     }

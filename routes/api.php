@@ -48,7 +48,6 @@ Route::group(['prefix' => 'auth',
     Route::post('getcpcourse', 'Frontend\AccountCourseController@getCPCourse');
     Route::post('gettitle', 'Frontend\CourseAppController@getCourseTitleById');
     Route::post('finishedvideo', 'Frontend\CourseController@finishedCount');
-
     Route::post('videoinfo', 'Frontend\AccountVideoController@getVideoById');
     Route::post('addpoint', 'Frontend\AccountVideoController@addPointById');
 });
@@ -67,7 +66,7 @@ Route::post('certificate', 'Frontend\PageController@certificate');
 
 Route::post('comment', 'Frontend\PageController@savecomment');
 Route::post('rating', 'Frontend\PageController@rating');
-
+Route::post('courseinfo', 'Frontend\CourseController@courseinfo');
 
 Route::post('regions', 'Frontend\AddressController@index');
 Route::post('prof', 'Frontend\ExpertController@profession');
