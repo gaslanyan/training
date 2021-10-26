@@ -45649,7 +45649,7 @@ body {
     }
 
     .kt-header--fixed.kt-subheader--fixed.kt-subheader--enabled .kt-wrapper {
-        padding-top: 119px;
+        padding-top: 55px;
     }
 
     .kt-wrapper {
@@ -45672,7 +45672,7 @@ body {
     }
 
     .kt-header--fixed.kt-subheader--fixed .kt-subheader {
-        position: fixed;
+        /*position: fixed;*/
         height: 54px;
         top: 65px;
         left: 0;

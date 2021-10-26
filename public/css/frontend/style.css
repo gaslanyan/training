@@ -13,7 +13,7 @@
     color: #580b7f;
 }
 
-.contact_message .message_item i,.look, #look {
+.contact_message .message_item i, .look, #look {
     color: #580b7f;
 }
 
@@ -38,6 +38,19 @@ body {
     position: relative;
     z-index: 10;
     border-radius: 30px;
+}
+.main_image{
+    position: relative;
+    height: 100%;
+}
+.look{
+    position: absolute;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(88,11,127,.3);
 }
 
 .lesson_banner {
@@ -332,25 +345,32 @@ a:hover, a:focus {
 }
 
 .single_department {
-
-    padding: 10px 30px 10px 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 12% 8% 6%;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
 
+.dpmt_icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 .dpmt_courses {
     position: relative;
     z-index: 10;
-    /*margin-top: -4%;*/
+    margin-top: -4%;
     margin-bottom: 20px;
     justify-content: center;
 }
 
 .dpmt_courses > div {
     background: #fff;
-    border-radius: 30px;
+    border-radius: 22px;
 }
 
 .single_department img {
@@ -362,21 +382,24 @@ a:hover, a:focus {
 }
 
 .single_department h4 {
-    margin-top: 20px;
-    margin-bottom: 0;
-    color: #000000;
+    font-size: 16px;
+    line-height: 18px;
+    color: #8639fa;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
 
-.dpmt_courses > div:nth-child(1):hover,
+.dpmt_courses > div:hover,
 .dpmt_courses > div:nth-child(2):hover,
 .dpmt_courses > div:nth-child(3):hover,
 .dpmt_courses > div:nth-child(4):hover {
-    background: radial-gradient(#B755FF, #631ed8);
-    box-shadow: 0px 20px 50px rgba(203, 208, 210, 0.3);
+    background: -webkit-linear-gradient(
+        45deg, #5f1b80, #b233c5);
 }
 
 .single_department:hover img {
@@ -639,6 +662,16 @@ a:hover, a:focus {
     margin-top: 10px;
     width: 100%;
 }
+.pay_btn{
+    height: 55px;
+    width: 252px;
+    background: -webkit-linear-gradient(
+        45deg, #5f1b80, #b233c5);
+    border-radius: 360px;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+}
 
 .right-contents .reviews span,
 .right-contents .reviews .star {
@@ -890,6 +923,12 @@ a:hover, a:focus {
     width: 19%;
 }
 
+.lesson_filter li span:hover  {
+    background: -webkit-linear-gradient(
+        45deg, #5f1b80, #b233c5) !important;
+    color: #fff;
+}
+
 .lesson_filter li span {
     list-style: none;
     background-color: #fff;
@@ -897,7 +936,7 @@ a:hover, a:focus {
     display: flex;
     align-self: center;
     justify-content: center;
-    border-radius: 30px;
+    border-radius: 22px;
 }
 
 /* End Testimonial Area css
@@ -1375,7 +1414,7 @@ a:hover, a:focus {
 }
 
 
-.categories_post:hover {
+.categories_post:hover  {
     background: -webkit-linear-gradient(
         45deg, #5f1b80, #b233c5);
     color: #FFF;
@@ -4054,7 +4093,8 @@ h6 {
         font-size: 28px;
         line-height: 38px;
     }
- .single-footer-widget .sub-btn {
+
+    .single-footer-widget .sub-btn {
         right: 0px;
     }
 }

@@ -81,7 +81,7 @@ class SpecialtyService
         $data['type_id'] = $request->type_id;
         $data['parent_id'] = $request->parent_id;
         $data['name'] = $request->name;
-        $data['icon'] = $request->icon;
+        $data['icon'] = "fa";
         $inserted = $this->model->create($data);
 
         if(!$inserted->id)

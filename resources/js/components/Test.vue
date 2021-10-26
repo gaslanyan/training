@@ -62,6 +62,9 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
+                        <div id="certificate">
+                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
+                        </div>
                     </div>
                 </div>
 
@@ -73,7 +76,7 @@
 
 <script>
     import coursetexts from './json/course.json';
-    import {getPromiseResult} from '../partials/help';
+    import {getCertificateById, getPromiseResult} from '../partials/help';
 
     export default {
         name: 'app-header',
@@ -81,6 +84,25 @@
             logout() {
                 this.$store.commit('logout');
                 this.$router.push('/login');
+            },
+            certificate: function () {
+                let credentials = {
+                    id: this.$route.params.id,
+                    token: this.currentUser.token,
+                    user_id: this.currentUser.id
+                };
+
+                getCertificateById(credentials)
+                    .then(res => {
+                        //alert(response.data);
+                        console.log(res);
+                          this.res = res;
+                    })
+                    .catch(error => {
+                        console.log('error');
+                        // this.$store.commit("registerFailed", {error});
+                    })
+                return  this.res || null
             },
             getTests(id) {
                 let credentials = {
@@ -126,6 +148,9 @@
                                 // this.$refs.form.style.display = 'none';
                                 // this.$refs.msg.innerText = 'none';
                                 // window.location.reload();
+                                if(this.certificate()){
+                                    this.card =this.certificate();
+                                }
 
                             })
                             .catch(err => {
@@ -227,7 +252,9 @@
                 title: "",
                 formTest: {},
                 msg: "",
-                again: ""
+                again: "",
+                res:"",
+                cert: []
             }
         },
         beforeMount() {

@@ -9,8 +9,8 @@
     <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
         <div class="kt-aside__brand-logo">
             <a href="">
-                <img alt="Logo" style="width: 120px"
-                     src="{{asset('images/logos/logo_new_sm.jpg')}}"/>
+                <img alt="Logo" style="width: 120px; padding-top: 30px;"
+                     src="{{asset('images/logos/logo.png')}}"/>
             </a>
         </div>
         <div class="kt-aside__brand-tools">
@@ -234,19 +234,19 @@
 
                 </li>
 
-                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
-                    data-ktmenu-submenu-toggle="hover">
-                    <a href="{{action('Backend\CommentController@index')}}" class="kt-menu__link kt-menu__toggle">
-                                <span class="kt-menu__link-icon kt-demo-icon__preview">
-                                   <i class="flaticon2-notification"></i>
-                                </span>
-                        <span class="kt-menu__link-text">{{__('messages.comments')}}</span>
-                        <span class="menu-label">
-							<span class="label label-danger label-inline"><?php echo getNotificationforCourses();?></span>
-						</span>
-                    </a>
+{{--                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"--}}
+{{--                    data-ktmenu-submenu-toggle="hover">--}}
+{{--                    <a href="{{action('Backend\CommentController@index')}}" class="kt-menu__link kt-menu__toggle">--}}
+{{--                                <span class="kt-menu__link-icon kt-demo-icon__preview">--}}
+{{--                                   <i class="flaticon2-notification"></i>--}}
+{{--                                </span>--}}
+{{--                        <span class="kt-menu__link-text">{{__('messages.comments')}}</span>--}}
+{{--                        <span class="menu-label">--}}
+{{--							<span class="label label-danger label-inline"><?php echo getNotificationforCourses();?></span>--}}
+{{--						</span>--}}
+{{--                    </a>--}}
 
-                </li>
+{{--                </li>--}}
                 <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover">
                     <a href="{{action('Backend\MessageController@index')}}" class="kt-menu__link kt-menu__toggle">

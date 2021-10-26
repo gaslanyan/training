@@ -522,11 +522,14 @@ export default {
                 .then(res => {
                     if (res.user) {
                         this.$store.commit("registerSuccess", res);
+                        if(localStorage.getItem('course_id')){
+                            this.$router.push({path: '/coursedetails/'+localStorage.getItem('course_id')});
+                            localStorage.removeItem('course_id')
+                        }else
                         this.$router.push({path: '/login'});
                     }
                 })
                 .catch(error => {
-
                         let msg = "", pattern = /\d+/,
                             e = pattern.exec(error);
 

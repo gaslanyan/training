@@ -35,6 +35,7 @@ class CourseController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -99,7 +100,6 @@ class CourseController extends Controller
     }
 
 
-
     public function finishedCount()
     {
         $isFinished = 1;
@@ -137,6 +137,20 @@ class CourseController extends Controller
     {
         try {
             $courses = $this->service->getCoursesById(request('id'));
+            return response()->json([
+                'courses' => $courses,
+            ]);
+        } catch (MethodNotAllowedHttpException$exception) {
+
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
+
+    function getCoursesById()
+    {
+        try {
+            $courses = $this->service->getCoursesByIdC(request('id'));
             return response()->json([
                 'courses' => $courses,
             ]);

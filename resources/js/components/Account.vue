@@ -62,7 +62,7 @@
                 </div>
             </div>
         </section>
-        <section class="course_details_area section_gap d-flex flex-column" v-if="tests">
+        <section class="course_details_area account_details_area section_gap d-flex flex-column" v-if="tests">
 
             <h2 class="col-12 or">{{texts.testsresult}}</h2>
 

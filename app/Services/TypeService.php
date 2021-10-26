@@ -42,7 +42,7 @@ class TypeService
     {
         $data = [];
         $data['name'] = $request->name;
-        $data['icon'] = "";
+        $data['icon'] = "fa";
         if (!empty($request->icon))
             $data['icon'] = $request->icon;
         $data['description'] = $request->description;
@@ -65,7 +65,7 @@ class TypeService
     public function update($request, $id)
     {
         $data['name'] = $request->name;
-        $data['icon'] = $request->icon;
+        $data['icon'] = "fa";
         $data['description'] = $request->description;
 
         $updated = $this->model->update($data, $id);

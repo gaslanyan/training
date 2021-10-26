@@ -111,8 +111,8 @@ class AccountCourseController extends Controller
      * @queryParam Amount The amount Example:10
      * @queryParam OrderID The Order ID to filter Example: AMD
      * @queryParam BackURL The back url Example: https://www.shmz.am/lesson
-     * @queryParam Opaque The opaque Example: TEST Opaque VPOS
-     * @queryParam CardHolderID The card holder ID url Example: TEST CARD VPOS
+     * @queryParam Opaque The opaque Example:  Opaque VPOS
+     * @queryParam CardHolderID The card holder ID url Example:  CARD VPOS
      *
      * @response
      * {

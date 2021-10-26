@@ -75,6 +75,10 @@
                         login(this.$data.formLogin)
                             .then(res => {
                                 this.$store.commit("loginSuccess", res);
+                                if(localStorage.getItem('course_id')){
+                                    this.$router.push({path: '/coursedetails/'+localStorage.getItem('course_id')});
+                                    localStorage.removeItem('course_id')
+                                }else
                                 this.$router.push({path: '/account'});
                             })
                             .catch(error => {

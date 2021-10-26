@@ -17,6 +17,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        #login{
+            width: 10%;
+        }
+        .btn-shmz{
+            background: -webkit-linear-gradient(
+                45deg, #5f1b80, #b233c5);
+            border-radius: 360px;
+            color: #fff;
+            font-size: 20px;
+            padding: 0 20px;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

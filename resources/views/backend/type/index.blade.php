@@ -80,7 +80,6 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>{{__('messages.image_name')}}</th>
                         <th>{{__('messages.name')}}</th>
                         <th>{{__('messages.description')}}</th>
                         <th>{{__('messages.action')}}</th>
@@ -92,7 +91,6 @@
 
                             <tr>
                                 <td></td>
-                                <td><img src="">{{$type->icon}}</td>
                                 <td>{{$type->name}}</td>
                                 <td>{{mb_substr($type->description, 0 , 30)}}</td>
 

@@ -1,69 +1,57 @@
 <template>
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center">{{ datas.name }}</h2>
-                <h3>{{ texts.class }}</h3>
+                <h3>{{ texts.class }} {{ datas.specialities }} </h3>
             </div>
-        </div>
-        <!--section class="banner_area">
-            <div class="banner_inner d-flex align-items-center">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                           <div class="banner_content text-center">
-                                <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
-                                    <router-link :to="{ name: 'home' }" class="nav-link">{{texts.home}}
-                                    </router-link>
-                                    <router-link to="" class="nav-link">{{b.text}}</router-link>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section-->
-        <!--================ Start Course Details Area =================-->
+        </div>        <!--================ Start Course Details Area =================-->
         <section class="course_details_area section_gap">
             <div class="container" :key="datas.id">
-                <div class="col-lg-12 m-0 pb-5"><h2 class="or text-center"> {{ datas.name }}</h2></div>
+                <!--div class="col-lg-12 m-0 pb-5"><h2 class="or text-center"> {{datas.name}}</h2></div-->
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
                         <!--                        <div v-if="!isOpened">-->
-                        <div class='d-flex justify-content-center look'>
-                            <span class="fa fa-lock fa-3x" id="look"></span>
-                            <div>
-                                <router-link class="nav-link" to="/login">{{ texts.login }}</router-link>
-                                <button class=" text-uppercase enroll nav-link btn"
-                                        @click="payment(datas.id)">{{ texts.pay }}
-                                </button>
-                                <router-link class="nav-link" to="/register"> {{ texts.register }}
-                                </router-link>
-                            </div>
-                        </div>
+                        <div class="main_image">
+                            <div class='d-flex justify-content-center look'>
+                                <img id="look" v-bind:src="lock" alt="lock">
 
-                        <div class="main_image" v-if="video_info">
-                            <hooper :itemsToShow="1">
-                                <slide v-for="(info, index) in video_info" :key="index" :index="index">
-                                    <video ref="video" class="view-video col-lg-12" controls
-                                           v-on:loadeddata="manageEvents(info.id, index)">
-                                        <source :src="info.path">
-                                    </video>
-                                    <div class="col-lg-12">
-                                        <h5 class="title">{{ info.title }}</h5>
-                                        <h5 class="vid_content">{{
-                                                `${info.lectures.name} ${info.lectures.surname}
-                                            ${info.lectures.father_name}`
-                                            }}</h5>
+                                <div class="d-flex flex-column mt-3">
+                                    <button class=" text-uppercase pay_btn btn"
+                                            @click="payment(datas.id)">{{ texts.pay }}
+                                    </button>
+                                    <!--                                    -->
+                                    <div class="d-flex justify-content-center" v-if="!currentUser">
 
+                                        <button class="text-uppercase nav-link btn-none" @click="login">
+                                            {{ texts.login }}
+                                        </button>
+                                        <button class="text-uppercase nav-link btn-none" @click="register">
+                                            {{ texts.register }}
+                                        </button>
                                     </div>
-                                </slide>
-                                <hooper-pagination slot="hooper-addons"></hooper-pagination>
-                            </hooper>
+                                </div>
+                            </div>
+                            <div v-if="video_info">
+                                <hooper :itemsToShow="1">
+                                    <slide v-for="(info, index) in video_info" :key="index" :index="index">
+                                        <video ref="video" class="view-video col-lg-12" controls
+                                               v-on:loadeddata="manageEvents(info.id, index)">
+                                            <source :src="info.path">
+                                        </video>
+                                        <div class="col-lg-12">
+                                            <h5 class="title">{{ info.title }}</h5>
+                                            <h5 class="vid_content">{{
+                                                    `${info.lectures.name} ${info.lectures.surname}
+                                                ${info.lectures.father_name}`
+                                                }}</h5>
+
+                                        </div>
+                                    </slide>
+                                    <hooper-pagination slot="hooper-addons"></hooper-pagination>
+                                </hooper>
+                            </div>
                         </div>
                         <div class="attachment-mark" v-if="books">
                             <h4 class="title">{{ texts.books }}</h4>
@@ -73,12 +61,6 @@
                                     {{ book.title }}
                                 </router-link>
                             </template>
-                        </div>
-                        <div class="content_wrapper">
-                            <h4 class="title">{{ texts.content }}</h4>
-                            <div v-html="datas.content" class="content">
-                                {{ datas.content }}
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 right-contents">
@@ -108,22 +90,35 @@
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>{{ texts.duration }} </p>
-                                    <span class="or">{{ datas.duration_date }}</span>
+                                    <span class="or text-nowrap">{{ datas.duration_date }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>{{ texts.coursecost }} </p>
-                                    <span class="or">{{ datas.cost }} AMD</span>
+                                    <span class="or text-nowrap">{{ datas.cost }} AMD</span>
                                 </a>
                             </li>
-                        </ul>
 
+                        </ul>
+                        <div>
+                            <a class="justify-content-between d-flex" href="#">
+
+                                <div class="attachment-mark" v-if="books">
+                                    <img :src="bookimg"/>
+                                    <template v-for="book in books">
+                                        <i class="fa fa-book text"></i>
+                                        <router-link :to="{name: 'book',params: {id: book.id}}" class="text"
+                                                     target="_blank">{{ book.title }}
+                                        </router-link>
+                                    </template>
+                                </div>
+                            </a>
+                        </div>
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
-                                     v-bind:class="{ 'isDisabled': !isFinished }">{{ texts.test }}
+                                     :disabled="!isFinished">{{ texts.test }}
                         </router-link>
-
 
                         <div class="content">
                             <div class="review-top row pt-40">
@@ -153,21 +148,30 @@
                             </div-->
 
                         </div>
-
                     </div>
-
-                </div>
-                <div id="certificate">
-                    <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
                 </div>
             </div>
         </section>
+        <div class="mt-4 mb-4 content_wrapper d-flex justify-content-center flex-column text-center">
+            <h4 class="title align-self-center">{{ texts.content }}</h4>
+            <div v-html="datas.content" class="content">
+                {{ datas.content }}
+            </div>
+        </div>
         <!--================ End Course Details Area =================-->
+        <section class="course_details_area section_gap">
+            <hooper :itemsToShow="3">
+                <slide class="slid" v-for="(info, index) in courses" :key="index" :index="index">
+                    <router-link :to="'/coursedetails/'+info.id" class="nav-link"> {{ info.name }}</router-link>
+                    {{ info.cost }}
+                </slide>
+            </hooper>
+        </section>
     </div>
 </template>
 
 <script>
-import {getCertificateById, getPromiseResult} from '../partials/help';
+import {getPromiseResult} from '../partials/help';
 import texts from './json/course.json';
 import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
 import 'hooper/dist/hooper.css';
@@ -178,15 +182,17 @@ export default {
     data() {
         return {
             id: '',
-            // book: '/css/frontend/img/ekg.png',
+            courses: [],
             video_info: [],
             books: [],
             feedback: '',
             rating: 0,
             datas: [],
             specialites: [],
-            courseimg: '/css/frontend/img/courses/course-details.jpg',
-            videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
+            // courseimg: '/css/frontend/img/courses/course-details.jpg',
+            // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
+            lock: '/css/frontend/img/lock.png',
+            bookimg: '/css/frontend/img/book.jpg',
             docs: [],
             texts: texts,
             feedbacksuccess: '',
@@ -198,11 +204,9 @@ export default {
                 {id: 3},
                 {id: 4},
                 {id: 5}
-
             ],
             isFinished: 0,
             disabled: 1,
-            cert: [],
             pagetexts: pagetexts
         };
     },
@@ -413,19 +417,15 @@ export default {
                     // this.$store.commit("registerFailed", {error});
                 })
         },
-
-        certificate: function () {
+        getCourseById: function () {
             let credentials = {
                 id: this.$route.params.id,
-                token: this.currentUser.token,
-                user_id: this.currentUser.id
+                url: 'getcoursebyid',
+                auth: false
             };
-
-            getCertificateById(credentials)
+            getPromiseResult(credentials)
                 .then(res => {
-                    //alert(response.data);
-                    console.log(res);
-                    this.cert = res;
+                    this.courses = res.courses;
                 })
                 .catch(error => {
                     console.log('error');
@@ -503,13 +503,22 @@ export default {
                     break;
             }
             return hy_name;
+        },
+        login: function () {
+            localStorage.setItem("course_id", this.$route.query);
+            location.href = '/login';
+        },
+        register: function () {
+            localStorage.setItem("course_id", this.$route.query);
+            location.href = '/register';
         }
     },
     beforeMount() {
         this.coursedetails();
+        this.getCourseById();
         if (this.$store.getters.currentUser) {
             this.finishedVideo();
-            this.certificate();
+
             if (this.$store.getters.currentUser.prof.member_of_palace === 1)
                 this.isOpened = true;
         }
@@ -537,6 +546,12 @@ export default {
     min-height: 234px;
 }
 
+.slid {
+    width: 33% !important;
+    height: 150px;
+    border: 1px solid
+}
+
 .hooper {
     height: 600px;
 }
@@ -551,6 +566,10 @@ export default {
     text-decoration: none;
     pointer-events: none;
 }
-
+.btn-none{
+    background-color: transparent;
+    outline: none;
+    color:#fff;
+}
 </style>
 

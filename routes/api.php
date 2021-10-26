@@ -78,4 +78,5 @@ Route::post('territory', 'Frontend\AddressController@territories');
 Route::post('reset-password', 'Frontend\PasswordResetController@sendPasswordResetLink');
 Route::match(['put', 'patch'],'reset/password', 'Frontend\PasswordResetController@callResetPassword');
 Route::post('getcoursebyprof', 'Frontend\CourseController@getCourseByProf');
+Route::post('getcoursebyid', 'Frontend\CourseController@getCoursesById');
 

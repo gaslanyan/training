@@ -116,7 +116,7 @@ class SpecialtyController extends Controller
         } catch (ModelNotFoundException $exception) {
             //
             logger()->error($exception);
-            return redirect('backend/message')->with('error', __('messages.wrong'));
+            return redirect('backend/specialty')->with('error', __('messages.wrong'));
         }
     }
 
@@ -133,7 +133,7 @@ class SpecialtyController extends Controller
                 $i_id = $this->service->updateSpecialty($request);
                 if ($i_id)
                     $response ['success'] = true;
-            } else return redirect('backend/message')->with('error', __('messages.wrong'));
+            } else return redirect('backend/specialty')->with('error', __('messages.wrong'));
         } catch (ModelNotFoundException $exception) {
             logger()->error($exception);
             $response['success'] = false;

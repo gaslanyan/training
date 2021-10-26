@@ -42,7 +42,7 @@ class CourseService
      * @param $id
      * @return mixed
      */
-    public function getCourses($id,$mobile)
+    public function getCourses($id, $mobile)
     {
         $spec = Profession::select('specialty_id')->where('account_id', $id)->first();
         $prof = Specialties::select('parent_id')->where('id', $spec->specialty_id)->first();
@@ -83,6 +83,24 @@ class CourseService
         }
 //        dd($courses);
 
+        $result = (!empty($courses)) ? $courses : __('messages.noting');
+        if (!$courses)
+            throw new ModelNotFoundException('Course not found by ID ');
+        return $result;
+    }
+
+    public function getCoursesByIDC($id)
+    {
+        $c = Courses::select('specialty_ids')
+            ->where('id', "=", $id)
+            ->first();
+        if (!empty($c)) {
+            $s_ids = json_decode($c->specialty_ids);
+            $p_id = Specialties::select('parent_id')
+                ->where("id", $s_ids[0])
+                ->first();
+            $courses = $this->getCoursesById($p_id->parent_id);
+        }
         $result = (!empty($courses)) ? $courses : __('messages.noting');
         if (!$courses)
             throw new ModelNotFoundException('Course not found by ID ');

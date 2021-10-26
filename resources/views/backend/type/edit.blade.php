@@ -83,17 +83,6 @@
 
                                                 </div>
                                             </div>
-
-                                            <div class="form-group row">
-                                                <label for="key" class="col-lg-3 col-form-label">{{__('messages.image_name')}}
-                                                    *</label>
-                                                <div class="col-lg-9">
-                                                    <input id="key" type="text" name="icon"
-                                                           class="form-control" value="{{$type->icon}}">
-
-                                                </div>
-                                            </div>
-
                                             <div class="form-group row">
                                                 <label for="value"
                                                        class="col-lg-3 col-form-label">{{__('messages.description')}}
