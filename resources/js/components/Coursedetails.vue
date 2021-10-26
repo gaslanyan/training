@@ -505,11 +505,13 @@ export default {
             return hy_name;
         },
         login: function () {
-            localStorage.setItem("course_id", this.$route.query);
+            console.log(this.$route.params.id)
+            localStorage.setItem("course_id", this.$route.params.id);
             location.href = '/login';
         },
         register: function () {
-            localStorage.setItem("course_id", this.$route.query);
+            console.log(this.$route.params.id)
+            localStorage.setItem("course_id", this.$route.params.id);
             location.href = '/register';
         }
     },
