@@ -2,9 +2,7 @@ $(document).ready(function () {
 
     var CSRF_TOKEN = $('[name="csrf-token"]').attr('content');
     var url = '/js/hy_table.json';
-
     var lang = getJSONData(url);
-
     var t = $('#kt_table_1').dataTable({
         "ordering": true,
         "initComplete": function () {
@@ -20,14 +18,21 @@ $(document).ready(function () {
         "language": lang,
     }).api();
 
+    t.on('order.dt search.dt', function () {
+
+        t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
+
     var groupColumn = 1, topColumn = 2;
-    var t = $('#example').DataTable({
+     $('#example').DataTable({
         "columnDefs": [
             {
                 "searchable": false,
                 "orderable": false,
                 "visible": false,
-                "targets": [0, topColumn, groupColumn]
+                "targets": [topColumn, groupColumn]
             }
         ],
         "order": [[1, 'asc'], [topColumn, 'asc'], [groupColumn, 'asc']],
@@ -41,19 +46,19 @@ $(document).ready(function () {
             var rows = api.rows({page: 'current'}).nodes();
             var last = null;
 
-            // api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
-            //     if (last !== group) {
-            //         $(rows).eq(i).before(
-            //             '<tr class="group"><td colspan="5">' + group + '</td></tr>'
-            //         );
-            //
-            //         last = group;
-            //     }
-            // });
+            api.column(groupColumn, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                    $(rows).eq(i).before(
+                        '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                    );
+
+                    last = group;
+                }
+            });
         }
     });
-
-    // Order by the grouping
+    //
+    // // Order by the grouping
     $('#example tbody').on('click', 'tr.group', function () {
         var currentOrder = t.order()[0];
         if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
@@ -61,13 +66,7 @@ $(document).ready(function () {
         } else {
             t.order([groupColumn, 'asc']).draw();
         }
-    });
-    t.on('order.dt search.dt', function () {
-        t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1;
         });
-    }).draw();
-
     $(document).on("click", ".delete", function (e) {
         var url_swal = '/js/hy_swal.json';
         var _swal = getJSONData(url_swal);

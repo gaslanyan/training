@@ -45,6 +45,7 @@ Route::get('/edit{id}', 'Frontend\AccountController@edit')->name('edit');
 Route::get('/about', 'Frontend\PageController@get');
 Route::get('/verify/{key}', 'Frontend\VerifyController@indax');
 Route::get('/contact', 'Frontend\PageController@get');
+Route::get('/howtouse', 'Frontend\PageController@get');
 
 \Illuminate\Support\Facades\Auth::routes();
 

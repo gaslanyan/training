@@ -29,6 +29,8 @@
                             aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>
+            </div>
+                <div class="container pt-3 pb-3 contact_content">
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="contact_message">
@@ -103,7 +105,8 @@
                         </form>
                     </div>
                 </div>
-            </div>
+                </div>
+
         </section>
         <!--================Contact Area =================-->
     </div>

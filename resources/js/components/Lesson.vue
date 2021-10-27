@@ -46,9 +46,9 @@
                                 <div class="categories_details">
                                     <img :src="lessonimg"/>
                                     <div class="categories_text">
-                                                                                   <p>
-                                                {{ course.name }}</p>
-
+                                        <p>
+                                            {{ course.name }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@ export default {
 .active {
     /*background-color: rgb(159, 18, 173) ;*/
     background: -webkit-linear-gradient(
-        45deg, #5f1b80, #b233c5)!important;
+        45deg, #5f1b80, #b233c5) !important;
     color: rgb(255, 255, 255);
     display: flex;
     width: 100%;

@@ -27,7 +27,7 @@
 
                     <div class="col-lg-12 m-0 pb-5">
                         <h2 class="text-center">
-                            <router-link :to="{ name: 'coursedetails', params:{id:this.id}}" class="nav-link or">
+                            <router-link :to="{ name: 'coursedetails', params:{id:this.id}}" class="nav-link title">
                                 {{this.title}}
                             </router-link>
                         </h2>
@@ -35,7 +35,7 @@
                         <h4 v-if="this.again" class="router-link-active ">{{this.again}}</h4>
                         <form ref="form" @submit.prevent="getResult">
                             <div v-for="(info, index) in tests">
-                                <h3 class="or">{{index+1}}. {{info.question}}</h3>
+                                <h3 class="question">{{index+1}}. {{info.question}}</h3>
 
                                 <ul class="test-actual">
 

@@ -119,8 +119,6 @@
 <!--end::Page Vendors -->
 
 <!--begin::Page Scripts(used by this page) -->
-<script defer  src="{{ asset('assets/js/pages/account.js')}}" type="text/javascript"></script>
-
 <!--end::Page Scrip -->
 <script defer  src="{{ asset('assets/vendors/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
 {{--<script defer  src="{{ asset('assets/vendors/custom/datatables/datatables.min.js')}}" type="text/javascript"></script>--}}
@@ -139,6 +137,6 @@
 <script defer src="{{ asset('assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js')}}"
         type="text/javascript"></script>
 <script defer src="{{ asset('assets/js/pages/components/extended/sweetalert2.js')}}" type="text/javascript"></script>
-<script src="{{ asset('js/init.js')}}" type="text/javascript"></script>
+<script defer src="{{ asset('js/init.js')}}" type="text/javascript"></script>
 @yield('script')
 <!--end::Page Scripts -->

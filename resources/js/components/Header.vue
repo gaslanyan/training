@@ -7,8 +7,8 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <router-link :to="{ name: 'home' }" class="navbar-brand logo_h col-3">
-                        <img :src="image_src" alt="" style="width:55%;">
+                    <router-link :to="{ name: 'home' }" class="navbar-brand logo_h col-2">
+                        <img :src="image_src" alt="" style="width:100%;">
                         <!--span class="shmz">ՇՄԶ</span-->
 
                     </router-link>
@@ -21,8 +21,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse offset col-lg-8 col-12" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav menu_nav ml-auto col-8">
+                    <div class="collapse navbar-collapse offset col-lg-10 col-12" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto col-9">
                             <li class="nav-item">
                                 <router-link :to="{ name: 'home' }" class="nav-link">{{ text.main }}</router-link>
                             </li>
@@ -35,6 +35,10 @@
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{ name: 'contact' }" class="nav-link">{{ text.contact }}
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name: 'howtouse' }" class="nav-link">{{ text.howtouse }}
                                 </router-link>
                             </li>
                         </ul>

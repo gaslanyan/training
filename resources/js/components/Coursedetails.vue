@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
-                <h2 class="text-center">{{ datas.name }}</h2>
+                <h2 class="text-center pt-4">{{ datas.name }}</h2>
                 <h3>{{ texts.class }} {{ datas.specialities }} </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -41,9 +41,9 @@
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12">
-                                            <h5 class="title">{{ info.title }}</h5>
+                                            <!--h5 class="title">{{ info.title }}</h5-->
                                             <h5 class="vid_content">{{
-                                                    `${info.lectures.name} ${info.lectures.surname}
+                                                `${info.lectures.name} ${info.lectures.surname}
                                                 ${info.lectures.father_name}`
                                                 }}</h5>
 
@@ -53,15 +53,15 @@
                                 </hooper>
                             </div>
                         </div>
-                        <div class="attachment-mark" v-if="books">
-                            <h4 class="title">{{ texts.books }}</h4>
-                            <template v-for="book in books">
-                                <i class="fa fa-book text"></i>
-                                <router-link :to="{name: 'book',params: {id: book.id}}" class="text" target="_blank">
-                                    {{ book.title }}
-                                </router-link>
-                            </template>
-                        </div>
+                        <!--<div class="attachment-mark" v-if="books">-->
+                            <!--<h4 class="title">{{ texts.books }}</h4>-->
+                            <!--<template v-for="book in books">-->
+                                <!--<i class="fa fa-book text"></i>-->
+                                <!--<router-link :to="{name: 'book',params: {id: book.id}}" class="text" target="_blank">-->
+                                    <!--{{ book.title }}-->
+                                <!--</router-link>-->
+                            <!--</template>-->
+                        <!--</div>-->
                     </div>
                     <div class="col-lg-4 right-contents">
                         <ul>
@@ -107,7 +107,7 @@
                                 <div class="attachment-mark" v-if="books">
                                     <img :src="bookimg"/>
                                     <template v-for="book in books">
-                                        <i class="fa fa-book text"></i>
+                                        <!--<i class="fa fa-book text"></i>-->
                                         <router-link :to="{name: 'book',params: {id: book.id}}" class="text"
                                                      target="_blank">{{ book.title }}
                                         </router-link>
@@ -117,7 +117,8 @@
                         </div>
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
-                                     :disabled="!isFinished">{{ texts.test }}
+                                     :disabled="!isFinished"
+                                     :event="isFinished ? 'click' : ''">{{ texts.test }}
                         </router-link>
 
                         <div class="content">
@@ -152,28 +153,38 @@
                 </div>
             </div>
         </section>
-        <div class="mt-4 mb-4 content_wrapper d-flex justify-content-center flex-column text-center">
-            <h4 class="title align-self-center">{{ texts.content }}</h4>
-            <div v-html="datas.content" class="content">
+        <div class="mt-4 mb-4 content_wrapper d-flex justify-content-center flex-column text-center container">
+            <h2 class="title align-self-center">{{ texts.content }}</h2>
+                        <div v-html="datas.content" class="content text-left">
                 {{ datas.content }}
             </div>
         </div>
         <!--================ End Course Details Area =================-->
-        <section class="course_details_area section_gap">
+        <section class="course_details_carousel section_gap container">
             <hooper :itemsToShow="3">
-                <slide class="slid" v-for="(info, index) in courses" :key="index" :index="index">
-                    <router-link :to="'/coursedetails/'+info.id" class="nav-link"> {{ info.name }}</router-link>
-                    {{ info.cost }}
+                <slide class="slide_carousel" v-for="(info, index) in courses" :key="index" :index="index">
+                    <router-link :to="'/coursedetails/'+info.id" class="nav-link">
+                        <div class="categories_post">
+                            <div class="categories_details">
+                                <img :src="lessonimg"/>
+                                <div class="categories_text">
+                                    <p>
+                                        {{ info.name }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </router-link>
                 </slide>
+                <hooper-navigation slot="hooper-addons"></hooper-navigation>
             </hooper>
         </section>
     </div>
 </template>
-
 <script>
 import {getPromiseResult} from '../partials/help';
 import texts from './json/course.json';
-import {Hooper, Pagination as HooperPagination, Slide} from 'hooper';
+import {Hooper, Pagination as HooperPagination, Navigation as HooperNavigation, Slide} from 'hooper';
 import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
@@ -189,6 +200,7 @@ export default {
             rating: 0,
             datas: [],
             specialites: [],
+            lessonimg: '/css/frontend/img/lessonimg.png',
             // courseimg: '/css/frontend/img/courses/course-details.jpg',
             // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
             lock: '/css/frontend/img/lock.png',
@@ -219,7 +231,8 @@ export default {
     },
     components: {
         Hooper,
-        Slide, HooperPagination
+        Slide, HooperPagination,
+        HooperNavigation
     },
     methods: {
         manageEvents(id, index) {
@@ -548,12 +561,6 @@ export default {
     min-height: 234px;
 }
 
-.slid {
-    width: 33% !important;
-    height: 150px;
-    border: 1px solid
-}
-
 .hooper {
     height: 600px;
 }
@@ -568,10 +575,11 @@ export default {
     text-decoration: none;
     pointer-events: none;
 }
-.btn-none{
+
+.btn-none {
     background-color: transparent;
     outline: none;
-    color:#fff;
+    color: #fff;
 }
 </style>
 
