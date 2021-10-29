@@ -13,6 +13,7 @@ import Coursedetails from './components/Coursedetails.vue';
 import Books from './components/Books.vue';
 import Test from './components/Test.vue';
 import NotFound from './components/NotFound.vue';
+import Howtouse from './components/Howtouse.vue';
 
 
 export const routes = [
@@ -75,6 +76,17 @@ export const routes = [
             breadCrumbs: [{
                 to: '/contact', // hyperlink
                 text: 'ՀԵՏԱԴԱՐՁ ԿԱՊ' // crumb text
+            }]
+        },
+    },
+    {
+        path: '/howtouse',
+        name: 'howtouse',
+        component: Howtouse,
+        meta: {
+            breadCrumbs: [{
+                to: '/howtouse', // hyperlink
+                text: 'Ինչպես Օգտվել' // crumb text
             }]
         },
     },

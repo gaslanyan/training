@@ -46,6 +46,7 @@
                                                 `${info.lectures.name} ${info.lectures.surname}
                                                 ${info.lectures.father_name}`
                                                 }}</h5>
+                                            <h5>{{`${info.lectures.specialites}}}</h5>
 
                                         </div>
                                     </slide>
@@ -422,6 +423,7 @@ export default {
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
                     this.id = res.data.id;
+                    console.log(res.data);
                     // this.manageEvents();
 
                 })
