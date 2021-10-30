@@ -43,7 +43,8 @@ class CourseAppController extends Controller
     function getCourseBySpec()
     {
         try {
-            $courses = $this->service->getCourses(request('id'), request('mobile'));
+            $mobile = (bool)request('mobile');
+            $courses = $this->service->getCourses(request('id'), $mobile);
             return response()->json([
                 'access_token' => request('token'),
                 'courses' => $courses,

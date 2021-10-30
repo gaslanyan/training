@@ -4436,9 +4436,11 @@ h6 {
 .login form {
     position: relative;
     height: 300px;
-
 }
-
+.login form a{
+    font-size: 14px;
+    white-space: nowrap;
+}
 .register form {
     position: relative;
     /*height: 650px;*/

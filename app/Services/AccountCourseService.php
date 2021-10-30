@@ -99,6 +99,7 @@ class AccountCourseService
 
         }])->where('account_id', $id)
             ->get();
+        dd(count($tests));
 
         if (!$tests)
             throw new ModelNotFoundException('Account course not get!');

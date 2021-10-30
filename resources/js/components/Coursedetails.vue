@@ -12,9 +12,8 @@
                 <!--div class="col-lg-12 m-0 pb-5"><h2 class="or text-center"> {{datas.name}}</h2></div-->
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
-                        <!--                        <div v-if="!isOpened">-->
                         <div class="main_image">
-                            <div class='d-flex justify-content-center look'>
+                            <div v-if="!isOpened" class='d-flex justify-content-center look'>
                                 <img id="look" v-bind:src="lock" alt="lock">
 
                                 <div class="d-flex flex-column mt-3">
@@ -43,11 +42,9 @@
                                         <div class="col-lg-12">
                                             <!--h5 class="title">{{ info.title }}</h5-->
                                             <h5 class="vid_content">{{
-                                                `${info.lectures.name} ${info.lectures.surname}
+                                                    `${info.lectures.name} ${info.lectures.surname}
                                                 ${info.lectures.father_name}`
                                                 }}</h5>
-                                            <h5>{{`${info.lectures.specialites}}}</h5>
-
                                         </div>
                                     </slide>
                                     <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -55,13 +52,13 @@
                             </div>
                         </div>
                         <!--<div class="attachment-mark" v-if="books">-->
-                            <!--<h4 class="title">{{ texts.books }}</h4>-->
-                            <!--<template v-for="book in books">-->
-                                <!--<i class="fa fa-book text"></i>-->
-                                <!--<router-link :to="{name: 'book',params: {id: book.id}}" class="text" target="_blank">-->
-                                    <!--{{ book.title }}-->
-                                <!--</router-link>-->
-                            <!--</template>-->
+                        <!--<h4 class="title">{{ texts.books }}</h4>-->
+                        <!--<template v-for="book in books">-->
+                        <!--<i class="fa fa-book text"></i>-->
+                        <!--<router-link :to="{name: 'book',params: {id: book.id}}" class="text" target="_blank">-->
+                        <!--{{ book.title }}-->
+                        <!--</router-link>-->
+                        <!--</template>-->
                         <!--</div>-->
                     </div>
                     <div class="col-lg-4 right-contents">
@@ -156,7 +153,7 @@
         </section>
         <div class="mt-4 mb-4 content_wrapper d-flex justify-content-center flex-column text-center container">
             <h2 class="title align-self-center">{{ texts.content }}</h2>
-                        <div v-html="datas.content" class="content text-left">
+            <div v-html="datas.content" class="content text-left">
                 {{ datas.content }}
             </div>
         </div>
@@ -185,7 +182,7 @@
 <script>
 import {getPromiseResult} from '../partials/help';
 import texts from './json/course.json';
-import {Hooper, Pagination as HooperPagination, Navigation as HooperNavigation, Slide} from 'hooper';
+import {Hooper, Navigation as HooperNavigation, Pagination as HooperPagination, Slide} from 'hooper';
 import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
