@@ -111,8 +111,8 @@ class AccountCourseController extends Controller
      * @queryParam Amount The amount Example:10
      * @queryParam OrderID The Order ID to filter Example: AMD
      * @queryParam BackURL The back url Example: https://www.shmz.am/lesson
-     * @queryParam Opaque The opaque Example: TEST Opaque VPOS
-     * @queryParam CardHolderID The card holder ID url Example: TEST CARD VPOS
+     * @queryParam Opaque The opaque Example:  Opaque VPOS
+     * @queryParam CardHolderID The card holder ID url Example:  CARD VPOS
      *
      * @response
      * {
@@ -126,12 +126,12 @@ class AccountCourseController extends Controller
         try {
             $info = $this->service->getCourseById(request('course_id'));
             $data = [];
-            $data['ClientID'] = '6f9a7eb3-6408-49d7-9449-5f163ede9da2';
+            $data['ClientID'] = env('CLIENT_ID');
             $data['Amount'] = $info->cost;
             $data['OrderID'] = rand(1, 2000000000);//2milliard
-            $data["BackURL"] = "https://www.shmz.am/lesson";
-            $data['Username'] = '19539226_api';
-            $data['Password'] = 'zVPawNDZQky7bKhX';
+            $data["BackURL"] = env('BACK_URL').request('course_id');
+            $data['Username'] = env('PAY_USERNAME');
+            $data['Password'] = env('PAY_PASSWORD');
             $data['Description'] = $info->name;
             $data['Cardholder'] = 'CARD VPOS';
             $data['Currency'] = 'AMD';
@@ -152,7 +152,7 @@ class AccountCourseController extends Controller
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
         } catch (MethodNotAllowedHttpException $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return response()->json(['error' => true], 500);
         }
@@ -160,8 +160,8 @@ class AccountCourseController extends Controller
 
     function getPayment()
     {
-        $data['Username'] = '19539226_api';
-        $data['Password'] = 'zVPawNDZQky7bKhX';
+        $data['Username'] = env('PAY_USERNAME');
+        $data['Password'] = env('PAY_PASSWORD');
         $data['PaymentID'] = request('PaymentID');
 
         $endpoint = "https://services.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
@@ -178,7 +178,7 @@ class AccountCourseController extends Controller
         $upload_data['DateTime'] = $content['DateTime'];
         $upload_data['DepositedAmount'] = $content['DepositedAmount'];
         $upload_data['Amount'] = $content['Amount'];
-        dd($upload_data);
+
         $ud = $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
         return response()->json([
             'access_token' => request('token'),
