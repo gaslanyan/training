@@ -63,6 +63,7 @@
                             <p ref="msg"></p>
                         </div>
                         <div id="certificate">
+                            <p>{{coursetexts.cert}}</p>
                             <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
                         </div>
                     </div>
@@ -149,7 +150,7 @@
                                 // this.$refs.msg.innerText = 'none';
                                 // window.location.reload();
                                 if(this.certificate()){
-                                    this.card =this.certificate();
+                                    this.cert =this.certificate();
                                 }
 
                             })

@@ -93,10 +93,8 @@ class AccountCourseService
 
     public function getTestsResult($id)
     {
-
         $tests = $this->model->with(['course' => function ($query) {
             $query->select('id', 'name', 'credit');
-
         }])->where('account_id', $id)
             ->get();
 
