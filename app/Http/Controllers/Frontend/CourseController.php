@@ -113,11 +113,14 @@ class CourseController extends Controller
         if (!empty($videos->account_course)) {
             if (!empty($videos->videos)) {
                 $videos = json_decode($videos->videos);
+                var_dump(count($videos));
                 if (!empty($videos)) {
                     foreach ($videos as $index => $video) {
                         $status = AccountVideo::select('status')
                             ->where([["video_id", $video], ['account_id', request('user_id')]])
                             ->first();
+
+                        dd($status);
 
                         if ((!empty($status) && $status->status != "finished")
                             || empty($status)) {

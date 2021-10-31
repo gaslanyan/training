@@ -60,7 +60,7 @@
                                     <div class="course_content">
                                         <div class="course_meta d-flex justify-content-between">
                                             <div>
-                                                <span ref="price" class="price">{{ course.cost }} AMD</span>
+                                                <span ref="price" class="price" v-if="!isOpened">{{ course.cost }} AMD</span>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +93,8 @@ export default {
             text: text,
             cost: "",
             course_id: "",
-            professions: ""
+            professions: "",
+            isOpened:false
         }
     },
     methods: {
@@ -169,7 +170,6 @@ export default {
                 })
         },
         getCourses(id) {
-            console.log(id)
             let credentials = {
                 id: id,
                 token: this.currentUser.token,
