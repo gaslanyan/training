@@ -99,11 +99,20 @@ class AccountCourseService
 
         }])->where('account_id', $id)
             ->get();
-        dd(count($tests));
 
         if (!$tests)
             throw new ModelNotFoundException('Account course not get!');
         return $tests;
+    }
+    public function getPaymentById($account_id, $id)
+    {
+        $paid= $this->model->selected('paid')
+            ->where('account_id', $account_id)
+            ->where('course_id', $id)->first();
+
+        if (!$paid)
+            throw new ModelNotFoundException('Account course not get!');
+        return $paid;
     }
 
 //todo  inchi get

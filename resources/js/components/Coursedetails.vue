@@ -17,12 +17,11 @@
                                 <img id="look" v-bind:src="lock" alt="lock">
 
                                 <div class="d-flex flex-column mt-3">
-                                    <button class=" text-uppercase pay_btn btn"
+                                    <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
                                             @click="payment(datas.id)">{{ texts.pay }}
                                     </button>
-                                    <!--                                    -->
-                                    <div class="d-flex justify-content-center" v-if="!currentUser">
 
+                                    <div class="d-flex justify-content-center" v-if="!currentUser">
                                         <button class="text-uppercase nav-link btn-none" @click="login">
                                             {{ texts.login }}
                                         </button>
@@ -103,7 +102,7 @@
                             <a class="justify-content-between d-flex" href="#">
 
                                 <div class="attachment-mark" v-if="books">
-                                    <img :src="bookimg"/>
+                                    <img :src="bookimg" alt="book">
                                     <template v-for="book in books">
                                         <!--<i class="fa fa-book text"></i>-->
                                         <router-link :to="{name: 'book',params: {id: book.id}}" class="text"
@@ -127,7 +126,7 @@
                                         <span>{{ texts.rate }}</span>
                                         <div class="star">
                                             <i class="fa fa-star" :id="item.id" v-on:click="raiting"
-                                               v-bind:class="{ checked: isActive }" v-for="(item, key) in objects"></i>
+                                               v-bind:class="{ checked: isActive }" v-for="item in objects"></i>
 
                                         </div>
                                     </div>
@@ -164,7 +163,7 @@
                     <router-link :to="'/coursedetails/'+info.id" class="nav-link">
                         <div class="categories_post">
                             <div class="categories_details">
-                                <img :src="lessonimg"/>
+                                <img :src="lessonimg" :alt="info.name ">
                                 <div class="categories_text">
                                     <p>
                                         {{ info.name }}
@@ -208,6 +207,7 @@ export default {
             feedbacksuccess: '',
             isActive: false,
             isOpened: false,
+            isPaid: false,
             objects: [
                 {id: 1},
                 {id: 2},
@@ -308,7 +308,7 @@ export default {
                 .then(res => {
                 })
                 .catch(error => {
-                    console.log('error');
+                    console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
         },
@@ -326,7 +326,7 @@ export default {
 
                 })
                 .catch(error => {
-                    console.log('error', error);
+                    console.log(error, error);
                     // this.$store.commit("registerFailed", {error});
                 })
         },
@@ -347,9 +347,27 @@ export default {
                     location.href = 'https://services.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
                 })
                 .catch(error => {
-                    console.log('error');
+                    console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
+        },
+        getPaymentById(query) {
+            let credentials = {
+                account_id: this.currentUser.id,
+                token: this.currentUser.token,
+                course_id: localStorage.getItem('c_id'),
+                url: "getpaymentbyid",
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    if (res.paid)
+                        this.isPaid = true;
+
+                })
+                .catch(error => {
+                    console.log(error)
+                });
         },
         getPaymentQuery(query) {
             let credentials = {
@@ -362,7 +380,8 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    // console.log(res)
+                    if (res.getpayment.PaymentID)
+                        this.isPaid = true;
                     if (localStorage.get('m')) {
                         this.logout();
                         Swal.fire({
@@ -397,7 +416,7 @@ export default {
                 });
         },
         coursedetails: function () {
-            let credentials = {};
+            let credentials;
             if (!this.currentUser)
                 credentials = {
                     id: this.$route.params.id,
@@ -425,7 +444,7 @@ export default {
 
                 })
                 .catch(error => {
-                    console.log('error');
+                    console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
         },
@@ -440,7 +459,7 @@ export default {
                     this.courses = res.courses;
                 })
                 .catch(error => {
-                    console.log('error');
+                    console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
         },
@@ -532,18 +551,18 @@ export default {
         this.getCourseById();
         if (this.$store.getters.currentUser) {
             this.finishedVideo();
-
+            this.getPaymentById();
             if (this.$store.getters.currentUser.prof.member_of_palace === 1)
                 this.isOpened = true;
         }
     },
     mounted() {
         if (Object.keys(this.$route.query).length > 0) {
-            if (this.$route.query)
+            if (this.$route.query) {
                 this.getPaymentQuery(this.$route.query);
-            else
+            } else
                 Swal.fire({
-                    icon: 'error',
+                    icon: error,
                     title: pagetexts.error,
                     text: pagetexts.again,
                     confirmButtonText:

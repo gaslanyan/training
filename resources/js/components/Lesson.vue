@@ -90,7 +90,6 @@ export default {
             lesson_banner: '/css/frontend/img/lessonbanner.png',
             lessonimg: '/css/frontend/img/lessonimg.png',
             texts: pagetexts,
-
             text: text,
             cost: "",
             course_id: "",

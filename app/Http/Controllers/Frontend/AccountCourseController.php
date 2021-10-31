@@ -80,6 +80,23 @@ class AccountCourseController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+    function getPaymentById()
+    {
+        try {
+            $paid = $this->service->getPaymentById(request('id'));
+
+            return response()->json([
+                'access_token' => request('token'),
+                'data' => $paid->paid,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 60
+            ]);
+        } catch (MethodNotAllowedHttpException$exception) {
+
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
 
     function getCPCourse()
     {
@@ -170,7 +187,7 @@ class AccountCourseController extends Controller
         $response = $client->request('POST',
             $endpoint, ['form_params' => $data]);
         $statusCode = $response->getStatusCode();
-        $content = $response->getBody();
+//        $content = $response->getBody();
         $content = json_decode($response->getBody(), true);
         $upload_data = [];
         $upload_data['PaymentID'] = $data['PaymentID'];
@@ -179,7 +196,7 @@ class AccountCourseController extends Controller
         $upload_data['DepositedAmount'] = $content['DepositedAmount'];
         $upload_data['Amount'] = $content['Amount'];
 
-        $ud = $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
+         $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
         return response()->json([
             'access_token' => request('token'),
             'getpayment' => $content,

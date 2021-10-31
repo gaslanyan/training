@@ -75,8 +75,8 @@ class CourseService
         foreach ($spec as $index => $item) {
             $c = Courses::select('id', 'name', 'cost', 'start_date')->
             whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . $item->id . '"]\')')
-//                ->where('status', "=", "active")
-//                ->where('start_date', ">=", date("Y-m-d"))
+                ->where('status', "=", "active")
+               ->where('start_date', ">=", date("Y-m-d"))
                 ->first();
 
             if (!empty($c))
