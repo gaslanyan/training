@@ -83,8 +83,7 @@ class AccountCourseController extends Controller
     function getPaymentById()
     {
         try {
-            $paid = $this->service->getPaymentById(request('id'));
-
+            $paid = $this->service->getPaymentById(request('account_id'),request('course_id'));
             return response()->json([
                 'access_token' => request('token'),
                 'data' => $paid->paid,

@@ -93,20 +93,23 @@ class AccountCourseService
 
     public function getTestsResult($id)
     {
-        $tests = $this->model->with(['course' => function ($query) {
-            $query->select('id', 'name', 'credit');
-        }])->where('account_id', $id)
+        $tests = $this->model->with(['course' =>
+            function ($query) {
+                $query->select('id', 'name', 'credit');
+            }])
+            ->where('account_id', $id)
             ->get();
 
         if (!$tests)
             throw new ModelNotFoundException('Account course not get!');
         return $tests;
     }
-    public function getPaymentById($account_id, $id)
+
+    public function getPaymentById($account_id, $course_id)
     {
-        $paid= $this->model->selected('paid')
+        $paid = $this->model->selected('paid')
             ->where('account_id', $account_id)
-            ->where('course_id', $id)->first();
+            ->where('course_id', $course_id)->first();
 
         if (!$paid)
             throw new ModelNotFoundException('Account course not get!');

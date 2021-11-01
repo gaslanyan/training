@@ -30,31 +30,31 @@
                     </div>
                 </div>
             </div>
-                <div class="container pt-3 pb-3 contact_content">
+                <div class="container pt-4 pb-4 contact_content">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="contact_message">
-                            <div class="message_item">
+                    <div class="col-12 pt-5 ">
+                        <div class="row contact_message col-12 justify-content-center">
+                            <div class="message_item col-12 col-lg-3">
                                 <i class="fa fa-home"></i>
                                 <h6>{{ texts.address }}</h6>
                                 <p>{{ texts.street }}</p>
                             </div>
-                            <div class="message_item">
+                            <div class="message_item col-12 col-lg-3">
                                 <i class="fa fa-phone"></i>
                                 <h6><a href="#">{{ texts.phone }}</a></h6>
                                 <p>{{ texts.workingtime }}</p>
                             </div>
-                            <div class="message_item">
+                            <div class="message_item col-12 col-lg-3">
                                 <i class="fa fa-envelope"></i>
                                 <h6><a href="#">{{ texts.mail }}</a></h6>
                                 <p>{{ texts.mailtext }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9">
-                        <form class="row contact_form" @submit.prevent="sendMail" method="post" id="contactForm"
+                    <div class="col-lg-12 pt-5 pb-5 justify-content-center">
+                        <form class="row contact_form flex-column align-items-center" @submit.prevent="sendMail" method="post" id="contactForm"
                               novalidate="novalidate">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-12 col-lg-6 ">
                                 <div class="form-group">
                                     <input autocomplete="off" id="name" type="text" name="name" class="form-control"
                                            v-validate="'required'"
@@ -86,8 +86,7 @@
                                           class="help is-danger">{{ errors.first('subject') }}</span>
 
                                 </div>
-                            </div>
-                            <div class="col-md-6">
+
                                 <div class="form-group">
                                     <label for="message">{{ texts.message }}</label>
                                     <textarea autocomplete="off" id="message" name="message"
@@ -99,7 +98,7 @@
                                           class="help is-danger">{{ errors.first('message') }}</span>
                                 </div>
                             </div>
-                            <div class="col-md-12 text-right">
+                            <div class="col-md-6 col-lg-6 col-12 text-right">
                                 <button type="submit" value="submit" class="btn primary-btn">{{ texts.send }}</button>
                             </div>
                         </form>
@@ -179,4 +178,9 @@ export default {
 
 }
 </script>
-
+<style>
+input, textarea{
+    border:none!important;
+    border-bottom:1px solid #eeeeee!important;
+}
+</style>

@@ -1398,9 +1398,6 @@ a:hover, a:focus {
 
 }
 
-.categories_post img {
-    max-width: 100%;
-}
 
 .feedeback h6 {
     color: #777;
@@ -2236,39 +2233,7 @@ a:hover, a:focus {
     padding: 2px 0px;
 }
 
-.contact_form .form-group {
-    margin-bottom: 10px;
-}
 
-.contact_form .form-group .form-control {
-    line-height: 26px;
-    color: #999;
-    border: 1px solid #eeeeee;
-    font-family: "Crimson Text", serif;
-    border-radius: 0px;
-    padding-left: 20px;
-}
-
-.contact_form .form-group .form-control:focus {
-    box-shadow: none;
-    outline: none;
-}
-
-.contact_form .form-group .form-control.placeholder {
-    color: #999;
-}
-
-.contact_form .form-group .form-control:-moz-placeholder {
-    color: #999;
-}
-
-.contact_form .form-group .form-control::-moz-placeholder {
-    color: #999;
-}
-
-.contact_form .form-group .form-control::-webkit-input-placeholder {
-    color: #999;
-}
 
 .contact_form .form-group textarea {
     resize: none;
