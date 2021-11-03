@@ -66,7 +66,7 @@
             <h2 class="col-12 or">{{texts.testsresult}}</h2>
             <div v-if="this.tests.length > 0">
                 <ul>
-                    <li v-for="(info, i) in this.tests" class="d-flex flex-column test-actual">
+                    <li v-for="info in this.tests" class="d-flex flex-column test-actual">
                         <div class="row media post_item">
                             <img class="col-2" v-bind:src="certificateName">
                             <div class="col-10 media-body">

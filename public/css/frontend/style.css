@@ -1395,7 +1395,6 @@ a:hover, a:focus {
     padding: 50px 20px;
     margin-bottom: 25px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
-
 }
 
 .feedeback h6 {
@@ -1476,16 +1475,6 @@ a:hover, a:focus {
 .categories_post:hover {
     background: -webkit-linear-gradient(
             45deg, #5f1b80, #b233c5);
-    color: #fff;
-    background-size: 100%;
-    background-repeat: repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: #fff;
-    -moz-background-clip: text;
-    -moz-text-fill-color: #fff;
-}
-
-.categories_post p:hover, .categories_post:hover .categories_details h5 {
     color: #fff;
     background-size: 100%;
     background-repeat: repeat;
@@ -4063,6 +4052,9 @@ h6 {
     .footer-bottom .footer-social {
         text-align: center;
         margin-top: 15px;
+    }
+    .footer-social .text{
+        color:#fff;
     }
 
     /* End End Footer Area css

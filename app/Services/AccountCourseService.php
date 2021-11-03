@@ -93,13 +93,15 @@ class AccountCourseService
 
     public function getTestsResult($id)
     {
+        $course = [];
         $tests = $this->model->with(['course' =>
-            function ($query) {
+            function ($query) use ($course){
                 $query->select('id', 'name', 'credit');
             }])
             ->where('account_id', $id)
-            ->get();
-
+            ->where('course_id', $course['id'])
+            ->toSql();
+dd($course);
         if (!$tests)
             throw new ModelNotFoundException('Account course not get!');
         return $tests;
