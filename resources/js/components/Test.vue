@@ -58,10 +58,10 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
-<!--                        <div id="certificate">-->
-<!--                            <p>{{ coursetexts.cert }}</p>-->
-<!--                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>-->
-<!--                        </div>-->
+                        <div id="certificate" v-if="isCert">
+                            <p>{{ coursetexts.cert }}</p>
+                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
+                        </div>
                     </div>
                 </div>
 
@@ -76,6 +76,20 @@ import coursetexts from './json/course.json';
 import {getCertificateById, getPromiseResult} from '../partials/help';
 
 export default {
+    data() {
+        return {
+            id: '',
+            tests: [],
+            text: coursetexts,
+            title: "",
+            formTest: {},
+            msg: "",
+            again: "",
+            res: "",
+            cert: [],
+            isCert:false
+        }
+    },
     name: 'app-header',
     methods: {
         logout() {
@@ -146,9 +160,6 @@ export default {
                             // this.$refs.form.style.display = 'none';
                             // this.$refs.msg.innerText = 'none';
                             // window.location.reload();
-                            if (this.certificate()) {
-                                this.cert = this.certificate();
-                            }
 
                         })
                         .catch(err => {
@@ -191,13 +202,17 @@ export default {
                         this.count = info.count;
 
                         if (this.count < 3) {
-                            if (this.percent < 80) {
+                            if (this.percent < 50) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (3 - this.count) + coursetexts.possibility;
                             } else {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
-                                // this.again = coursetexts.again + (3 - this.count) + coursetexts.possibility;
+
                                 this.$refs.form.style.display = 'none';
+                                if (this.certificate()) {
+                                    this.cert = this.certificate();
+                                    this.isCert = true;
+                                }
                             }
                         } else {
                             this.$refs.form.style.display = 'none';
@@ -242,21 +257,7 @@ export default {
             return this.$store.getters.currentUser
         }
     },
-    data() {
-        return {
-            id: '',
-            tests: [],
-            text: coursetexts,
-            title: "",
-            formTest: {},
-            msg: "",
-            again: "",
-            res: "",
-            cert: []
-        }
-    },
     beforeMount() {
-
         this.id = this.$route.params.id;
         this.getPercentAndCount();
         this.getTests(this.id);
