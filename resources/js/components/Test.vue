@@ -124,7 +124,7 @@ export default {
                     }
                 )
                 .catch(err => {
-                    console.log('errr')
+                    console.log(err)
                 })
         },
         getResult() {
@@ -152,7 +152,7 @@ export default {
 
                         })
                         .catch(err => {
-                            console.log('errr')
+                            console.log(err)
                         });
                     console.log('Form Submitted!');
                     return;
@@ -172,7 +172,7 @@ export default {
                     this.title = res.title.name;
                 })
                 .catch(err => {
-                    console.log('errr')
+                    console.log(err)
                 })
         },
         getPercentAndCount() {
@@ -209,7 +209,7 @@ export default {
                     }
                 })
                 .catch(err => {
-                    console.log('errr', err)
+                    console.log(err, err)
                 })
         },
         finishedVideo() {

@@ -56,7 +56,7 @@
                               novalidate="novalidate">
                             <div class="col-md-6 col-12 col-lg-6 ">
                                 <div class="form-group">
-                                    <input autocomplete="off" id="name" type="text" name="name" class="form-control"
+                                    <input autocomplete="off" id="name" type="text" name="name" class="form-control p-4"
                                            v-validate="'required'"
                                            :class="{'input': true,
                                'is-invalid': errors.has('name') }"
@@ -86,7 +86,6 @@
                                           class="help is-danger">{{ errors.first('subject') }}</span>
 
                                 </div>
-
                                 <div class="form-group">
                                     <label for="message">{{ texts.message }}</label>
                                     <textarea autocomplete="off" id="message" name="message"

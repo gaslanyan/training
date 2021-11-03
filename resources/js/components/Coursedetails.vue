@@ -355,7 +355,7 @@ export default {
             let credentials = {
                 account_id: this.currentUser.id,
                 token: this.currentUser.token,
-                course_id: localStorage.getItem('c_id'),
+                course_id: this.$route.params.id,
                 url: "getpaymentbyid",
                 auth: true
             };
