@@ -73,7 +73,7 @@
 
 <script>
 import coursetexts from './json/course.json';
-import {getCertificateById, getPromiseResult} from '../partials/help';
+import {getPromiseResult} from '../partials/help';
 
 export default {
     data() {
@@ -100,17 +100,17 @@ export default {
             let credentials = {
                 id: this.$route.params.id,
                 token: this.currentUser.token,
-                user_id: this.currentUser.id
+                user_id: this.currentUser.id,
+                auth:true,
+                url:"certificate"
             };
 
-            getCertificateById(credentials)
+            getPromiseResult(credentials)
                 .then(res => {
-                    //alert(response.data);
-                    console.log(res);
                     this.res = res;
                 })
                 .catch(error => {
-                    console.log('error');
+                    console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
             return this.res || null
@@ -126,7 +126,6 @@ export default {
             getPromiseResult(credentials)
                 .then(res => {
                         let counter = 0;
-                        console.log('res.tests', res);
                         for (let i of res.tests) {
                             for (let answer of JSON.parse(i.answers)) {
                                 if (answer.check == 1)
@@ -155,8 +154,8 @@ export default {
                     };
                     getPromiseResult(credentials)
                         .then(res => {
-                            this.tests = res.result;
-                            console.log(res.result)
+                            this.tests = res.percent;
+                            console.log(res.percen)
                             // this.$refs.form.style.display = 'none';
                             // this.$refs.msg.innerText = 'none';
                             // window.location.reload();
@@ -187,6 +186,7 @@ export default {
                 })
         },
         getPercentAndCount() {
+
             let credentials = {
                 id: this.id,
                 user_id: this.currentUser.id,

@@ -51,6 +51,8 @@ Route::group(['prefix' => 'auth',
     Route::post('finishedvideo', 'Frontend\CourseController@finishedCount');
     Route::post('videoinfo', 'Frontend\AccountVideoController@getVideoById');
     Route::post('addpoint', 'Frontend\AccountVideoController@addPointById');
+    Route::post('certificate', 'Frontend\AccountCourseController@certificate');
+
 });
 
 
@@ -60,8 +62,6 @@ Route::post('coursestitle', 'Frontend\PageController@coursestitle');
 Route::post('applicantcount', 'Frontend\PageController@applicantcount');
 Route::post('coursescount', 'Frontend\PageController@coursescount');
 Route::post('allcourses', 'Frontend\CourseController@allcourses');
-Route::post('certificate', 'Frontend\PageController@certificate');
-
 
 //get courses
 

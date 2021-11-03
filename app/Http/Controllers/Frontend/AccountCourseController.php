@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Courses;
 use App\Services\AccountCourseService;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -203,4 +206,54 @@ class AccountCourseController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+    public function certificate(Request $request)
+    {
+
+        $account_name = Account::where('id', '=', $request->user_id)->first();
+
+        $course = Courses::where('id','=',$request->id)->first();
+        $certificate  =  $course->certificate;
+        $start  = $course->start_date;
+        $end = $course->duration_date;
+
+        if($course->coordinates != ""){
+            $coordinates =  \GuzzleHttp\json_decode($course->coordinates);
+        }
+        // dd($coordinates);
+        /*$coordinates = \GuzzleHttp\json_decode('{
+                   "name": {
+                       "x": "182",
+                       "y": "218"
+                   },
+                   "end_date": {
+                       "x": "244",
+                       "y": "267"
+                   },
+                   "start_date": {
+                       "x": "136",
+                       "y": "273"
+                   }
+}');*/
+
+        if($coordinates != ""){
+
+            $img = public_path().'/uploads/diplomas/'.$certificate;
+            $imgg =  imagecreatefrompng($img);
+            $color = imagecolorallocate($imgg, 000, 000, 000);
+            $font = public_path()."/css/frontend/fonts/GHEAMariamRIt.otf";
+            $text = strtoupper($account_name->name ." ". $account_name->surname);
+
+
+            imagettftext($imgg, 12, 0, ($coordinates->name->x) -10, ($coordinates->name->y) + 10, $color, $font, $text);
+            imagettftext($imgg, 12, 0, ($coordinates->start_date->x) -10, ($coordinates->start_date->y) + 10, $color, $font, $start);
+            imagettftext($imgg, 12, 0, ($coordinates->end_date->x) -10, ($coordinates->end_date->y) + 10, $color, $font, $end);
+            header('Content-type:image/png');
+            imagepng($imgg, public_path().'/css/frontend/img/'.$text.'.png', 5);
+            $resp = $text.".png";
+            echo $resp; //'<img id="finishimg" src ="'.public_path()."/css/frontend/img/".$text.'.png">';
+            /*return response()->json(['data' => $coursestitle]);*/
+        }
+    }
+
+
 }

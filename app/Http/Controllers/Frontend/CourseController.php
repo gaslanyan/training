@@ -109,7 +109,7 @@ class CourseController extends Controller
             }])
             ->where('id', request('id'))
             ->first();
-
+dd($videos->id);
         if (!empty($videos->account_course)) {
             if (!empty($videos->videos)) {
                 $videos = json_decode($videos->videos);
@@ -128,7 +128,8 @@ class CourseController extends Controller
                     }
                 }
             }
-        } else
+        }
+        else
             $isFinished = -1;
         return $isFinished;
     }

@@ -63,7 +63,7 @@ class AccountCourseService
         $account_course = [];
         $account_course['account_id'] = $account_id;
         $account_course['course_id'] = $id;
-        $status = ($percent >= 80) ? 'success' : 'unsuccess';
+        $status = ($percent >= 50) ? 'success' : 'unsuccess';
         $account_course['status'] = $status;
         $account_course['percent'] = $percent;
         $account_course['test'] = json_encode($account_answers);
@@ -93,15 +93,15 @@ class AccountCourseService
 
     public function getTestsResult($id)
     {
-        $course = [];
+
         $tests = $this->model->with(['course' =>
-            function ($query) use ($course){
+            function ($query) {
                 $query->select('id', 'name', 'credit');
             }])
             ->where('account_id', $id)
-            ->where('course_id', $course['id'])
-            ->toSql();
-dd($course);
+            ->where('percent', '>=', 50)
+            ->get();
+
         if (!$tests)
             throw new ModelNotFoundException('Account course not get!');
         return $tests;

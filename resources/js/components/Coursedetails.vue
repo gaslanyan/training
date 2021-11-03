@@ -361,9 +361,8 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    if (res.paid)
+                    if (res.data == 1)
                         this.isPaid = true;
-                    console.log('res.paid = ',res.paid)
                 })
                 .catch(error => {
                     console.log(error)
@@ -440,7 +439,6 @@ export default {
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
                     this.id = res.data.id;
-                    console.log(res.data);
                     // this.manageEvents();
 
                 })
