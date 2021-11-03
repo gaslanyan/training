@@ -363,7 +363,7 @@ export default {
                 .then(res => {
                     if (res.paid)
                         this.isPaid = true;
-
+                    console.log('res.paid = ',res.paid)
                 })
                 .catch(error => {
                     console.log(error)
@@ -382,6 +382,7 @@ export default {
                 .then(res => {
                     if (res.getpayment.PaymentID)
                         this.isPaid = true;
+                    location.href = "/coursedetails/" + this.$route.params.id;
                     if (localStorage.get('m')) {
                         this.logout();
                         Swal.fire({
