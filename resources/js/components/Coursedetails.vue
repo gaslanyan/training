@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
                         <div class="main_image">
-                            <div v-if="!isOpened" class='d-flex justify-content-center look'>
+                            <div v-if="!isOpened || !isPaid" class='d-flex justify-content-center look'>
                                 <img id="look" v-bind:src="lock" alt="lock">
 
                                 <div class="d-flex flex-column mt-3">
@@ -114,7 +114,7 @@
                         </div>
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
-                                     :disabled="!isFinished"
+                                     :disabled="!isFinished && !isPaid"
                                      :event="isFinished ? 'click' : ''">{{ texts.test }}
                         </router-link>
 
@@ -132,19 +132,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--div-- class="feedeback">
-                                <h6>{{texts.feedback}}{{feedbacksuccess}}</h6>
-                                <form @submit.prevent="sendcomment">
-                                    <textarea name="feedback" class="form-control" ref="feedback" cols="10" rows="10"
-                                              id="feedback" v-model="feedback"></textarea>
-                                    <div class="mt-10 text-right">
-                                        <button class="primary-btn text-right text-uppercase comment">
-                                            {{texts.send}}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div-->
-
                         </div>
                     </div>
                 </div>
@@ -365,6 +352,7 @@ export default {
                         this.isPaid = true;
                 })
                 .catch(error => {
+                    this.isPaid = false;
                     console.log(error)
                 });
         },

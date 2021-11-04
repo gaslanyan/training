@@ -109,7 +109,6 @@ class CourseController extends Controller
             }])
             ->where('id', request('id'))
             ->first();
-dd($videos->id);
         if (!empty($videos->account_course)) {
             if (!empty($videos->videos)) {
                 $videos = json_decode($videos->videos);
