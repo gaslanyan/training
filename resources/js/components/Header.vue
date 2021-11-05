@@ -144,8 +144,7 @@ export default {
     },
     beforeMount() {
         this.getAccountById();
-        console.log("test", this.$store.getters.currentUser)
-    },
+        },
     created() {
         window.addEventListener("scroll", this.handleScroll);
     },

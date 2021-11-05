@@ -4,7 +4,7 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{ texts.class }} {{ datas.specialities }} </h3>
+                <h3>{{ texts.class }} {{ specialites }} </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
         <section class="course_details_area section_gap">
@@ -229,7 +229,7 @@ export default {
                 };
                 getPromiseResult(credentials)
                     .then(res => {
-                        console.log('el el 2;')
+
                         if (res.video.status === "progress" || !res.video) {
                             let _this = this;
                             if (_this.$refs.video) {
@@ -277,6 +277,8 @@ export default {
                                 });
                             }
                         }
+                        else if (res.video.status === "finished")
+                            location.reload();
                     })
                     .catch(error => {
                         this.$store.commit("getContentFailed", {error});
@@ -429,6 +431,8 @@ export default {
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
                     this.id = res.data.id;
+                    console.log('vi', this.video_info)
+
                     // this.manageEvents();
 
                 })

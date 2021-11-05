@@ -155,7 +155,7 @@ export default {
                     getPromiseResult(credentials)
                         .then(res => {
                             this.tests = res.percent;
-                            console.log(res.percen)
+                            console.log(res.percent)
                             // this.$refs.form.style.display = 'none';
                             // this.$refs.msg.innerText = 'none';
                             // window.location.reload();
@@ -186,7 +186,6 @@ export default {
                 })
         },
         getPercentAndCount() {
-
             let credentials = {
                 id: this.id,
                 user_id: this.currentUser.id,
