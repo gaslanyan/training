@@ -58,6 +58,7 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
+                        {{isCert}}
                         <div id="certificate" v-if="isCert">
                             <p>{{ coursetexts.cert }}</p>
                             <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
@@ -209,6 +210,7 @@ export default {
 
                                 this.$refs.form.style.display = 'none';
                                 if (this.certificate()) {
+                                    console.log(this.certificate())
                                     this.cert = this.certificate();
                                     this.isCert = true;
                                 }

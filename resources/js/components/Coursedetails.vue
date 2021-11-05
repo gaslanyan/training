@@ -4,9 +4,9 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{ texts.class }}
+                <h3>{{ texts.class }}<br>
                     <span v-if="specialites"
-                    v-for="spec in specialites">{{ spec.name }}</span>
+                    v-for="spec in specialites">{{ spec.name + ", " }}</span>
                 </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
                         <div class="main_image">
-                            <div v-if="!isOpened && !isPaid" class='d-flex justify-content-center look'>
+                            <div v-show="!isOpened || !isPaid" class='d-flex justify-content-center look'>
                                 <img id="look" v-bind:src="lock" alt="lock">
                                 <div class="d-flex flex-column mt-3">
                                     <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
