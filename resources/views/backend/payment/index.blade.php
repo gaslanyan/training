@@ -56,10 +56,11 @@
                         <th>{{__('messages.course_name')}}</th>
                         <th>{{__('messages.cost')}} / {{__('messages.amd')}}</th>
                         <th>{{__('messages.payments')}} / {{__('messages.amd')}}</th>
-{{--                        <th>{{__('messages.action')}}</th>--}}
+                        <th>{{__('messages.date')}}</th>
                     </tr>
                     </thead>
                     <tbody>
+
                     @if(!$payments->isEmpty())
                         @foreach($payments as $key => $payment)
                             @if(!empty($payment->account))
@@ -92,6 +93,9 @@
 
 {{--                                        </div>--}}
 {{--                                    </td>--}}
+                                    <td class="text-left">
+                                        @if(!empty($payment->created_at)) {{$payment->created_at}}@endif
+                                    </td>
                                 </tr>
                             @endif
                         @endforeach

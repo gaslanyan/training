@@ -200,7 +200,7 @@ class AccountCourseService
 
     function getPayments()
     {
-        $payments = $this->model->selected(['id', 'account_id', 'course_id', 'payment'])
+        $payments = $this->model->selected(['id', 'account_id', 'course_id', 'payment', 'created_at'])
             ->with(['course' => function ($query) {
                 $query->select('id', 'name', 'cost');
             }, 'account' => function ($query) {

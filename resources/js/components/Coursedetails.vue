@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
                         <div class="main_image">
-                            <div v-if="!isOpened || !isPaid" class='d-flex justify-content-center look'>
+                            <div v-if="!isOpened && !isPaid" class='d-flex justify-content-center look'>
                                 <img id="look" v-bind:src="lock" alt="lock">
 
                                 <div class="d-flex flex-column mt-3">
