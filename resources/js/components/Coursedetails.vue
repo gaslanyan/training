@@ -15,7 +15,6 @@
                         <div class="main_image">
                             <div v-if="!isOpened && !isPaid" class='d-flex justify-content-center look'>
                                 <img id="look" v-bind:src="lock" alt="lock">
-
                                 <div class="d-flex flex-column mt-3">
                                     <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
                                             @click="payment(datas.id)">{{ texts.pay }}
@@ -230,11 +229,13 @@ export default {
                 };
                 getPromiseResult(credentials)
                     .then(res => {
+                        console.log('el el 2;')
                         if (res.video.status === "progress" || !res.video) {
                             let _this = this;
                             if (_this.$refs.video) {
                                 let supposedCurrentTime = 0, backTime = 0;
-                                let video = _this.$refs.video[index], isPlay = true;
+                                let video = _this.$refs.video[index],
+                                    isPlay = true;
 
                                 video.addEventListener('play', function () {
                                     if (isPlay) {
@@ -293,6 +294,7 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
+                    console.log('es e')
                 })
                 .catch(error => {
                     console.log(error);
@@ -485,28 +487,6 @@ export default {
                 });
 
         },
-        // sendcomment: function () {
-        //     // if(this.feedback != ''){
-        //     //console.log(this.$refs.feedback.text);
-        //     let user = JSON.parse(localStorage.getItem('user'));
-        //     // this.feedback = this.$refs.feedback.text;
-        //     axios.post('/api/comment', {
-        //         comment: feedback.value,
-        //         account_id: user.id,
-        //         course_id: this.$route.params.id
-        //     })
-        //         .then(function (response) {
-        //             //alert(response.data);
-        //             feedback.value = '';
-        //             feedbacksuccess = "Մեկնաբանությունը հաջողությամբ ուղարկվեց";
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        //     /* }else{
-        //          alert('Fill all fields.');
-        //      }*/
-        // },
         creditName: function (name) {
             let hy_name = '';
             switch (name) {
