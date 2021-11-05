@@ -4,7 +4,10 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{ texts.class }} {{ specialites }} </h3>
+                <h3>{{ texts.class }}
+                    <span v-if="specialites"
+                    v-for="spec in specialites">{{ spec.name }}</span>
+                </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
         <section class="course_details_area section_gap">
@@ -278,7 +281,10 @@ export default {
                             }
                         }
                         else if (res.video.status === "finished")
-                            location.reload();
+                            this.$nextTick(function () {
+                                this.isFinished = 1;
+                                // console.log(this.$el.textContent) // => 'updated'
+                            })
                     })
                     .catch(error => {
                         this.$store.commit("getContentFailed", {error});
