@@ -71,7 +71,7 @@ class AccountCourseService
         if (empty($count->count)) {
             $c = 1;
             $account_course['count'] = $c;
-            $ca = $this->model->update($account_course);
+            $ca = $this->model->update($account_course, $count->id);
         } elseif ($count->count < 4) {
             $c = $count->count + 1;
             $account_course['count'] = $c;
