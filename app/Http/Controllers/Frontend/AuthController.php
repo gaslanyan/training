@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AccountRequest;
+use App\Http\Requests\ProfessionRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Traits\Registration;
 use App\Models\Account;
 use Illuminate\Http\Request;
@@ -63,9 +66,8 @@ class AuthController extends Controller
      * "user": "2"
      * }
      */
-    public function register(Request $request)
+    public function register(AccountRequest $accountRequest,ProfessionRequest $professionRequest,UserRequest $userRequest)
     {
-        dd($request);
         return Registration::register($accountRequest, $professionRequest, $userRequest, 'user', 'pending');
     }
 
