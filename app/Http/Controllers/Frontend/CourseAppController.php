@@ -251,7 +251,7 @@ class CourseAppController extends Controller
                         }])->first();
                         if (!empty($v)) {
                             $p =Profession::where('account_id',$v->lectures->id)
-                            ->with('prof')->first();
+                            ->with('account')->first();
                             dd($p);
                             $s3_videos[$index] = $v;
                             $s3_videos[$index]['path'] = sprintf("%s/%s", env('AWS_URL_ACL'), $v->path);
