@@ -109,6 +109,7 @@ export default {
             getPromiseResult(credentials)
                 .then(res => {
                     this.res = res;
+                    console.log('this.res',this.res)
                 })
                 .catch(error => {
                     console.log(error);
@@ -143,7 +144,6 @@ export default {
         },
         getResult() {
             this.$validator.validateAll().then((result) => {
-
                 if (result) {
                     let credentials = {
                         id: this.id,

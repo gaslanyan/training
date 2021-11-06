@@ -391,7 +391,9 @@ a:hover, a:focus {
 .home_banner_area .search_course_wrap .search_course_btn:hover {
     background-position: right center;
 }
-
+.text_class{
+    font-size: 14px;
+}
 .single_department {
     display: flex;
     flex-direction: column;

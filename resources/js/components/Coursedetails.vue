@@ -4,9 +4,9 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{ texts.class }}<br>
-                    <span v-if="specialites"
-                    v-for="spec in specialites">{{ spec.name + ", " }}</span>
+                <h3>{{ texts.class}}<br>
+                    <span v-if="specialites" class="text_class"
+                    v-for="spec in specialites">{{ spec.name + ",@nbsp;" }}</span>
                 </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-8 course_details_left">
                         <div class="main_image">
-                            <div v-show="!isOpened || !isPaid" class='d-flex justify-content-center look'>
+                            <div v-if="(!isOpened || !isPaid)" class='d-flex justify-content-center look'>
                                 <img id="look" v-bind:src="lock" alt="lock">
                                 <div class="d-flex flex-column mt-3">
                                     <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
@@ -214,6 +214,11 @@ export default {
             if (!this.$store.getters.currentUser)
                 return JSON.parse(localStorage.getItem('user'));
             return this.$store.getters.currentUser
+        },
+        show: function () {
+            this.isOpened;
+            this.isPaid;
+            return this.isOpened || this.isPaid;
         }
     },
     components: {
@@ -436,11 +441,8 @@ export default {
                     this.video_info = JSON.parse(res.data.videos);
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
-                    this.id = res.data.id;
-                    console.log('vi', this.video_info)
-
-                    // this.manageEvents();
-
+                    // this.id = res.data.id;
+                    // console.log('vi', this.video_info)
                 })
                 .catch(error => {
                     console.log(error);
@@ -547,8 +549,8 @@ export default {
                     confirmButtonColor: '#631ed8',
                 });
         }
-    }
-}
+    },
+  }
 
 </script>
 <style>
