@@ -4,9 +4,9 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{ texts.class}}</h3>
+                <h3>{{ texts.class }}</h3>
                 <p><span v-if="specialites" class="text_class"
-                    v-for="spec in specialites">{{ spec.name + `, `}}</span>
+                         v-for="spec in specialites">{{ spec.name + `, ` }}</span>
                 </p>
 
             </div>
@@ -43,9 +43,11 @@
                                         </video>
                                         <div class="col-lg-12">
                                             <!--h5 class="title">{{ info.title }}</h5-->
+                                            <img :src="lectureimg+info.lectures.image_name" alt="">
                                             <h5 class="vid_content">{{
                                                     `${info.lectures.name} ${info.lectures.surname}
-                                                ${info.lectures.father_name}`
+                                                ${info.lectures.father_name}
+                                                ${info.spec.name}`
                                                 }}</h5>
                                         </div>
                                     </slide>
@@ -192,6 +194,7 @@ export default {
             // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
             lock: '/css/frontend/img/lock.png',
             bookimg: '/css/frontend/img/book.jpg',
+            'lectureimg': '/uploads/images/avatars/',
             docs: [],
             texts: texts,
             feedbacksuccess: '',
@@ -217,8 +220,8 @@ export default {
             return this.$store.getters.currentUser
         },
         show: function () {
-            console.log('show',this.isOpened || this.isPaid)
-            return this.isOpened || this.isPaid;
+            console.log('show', !this.isOpened || !this.isPaid)
+            return !this.isOpened || !this.isPaid;
         }
     },
     components: {
@@ -284,8 +287,7 @@ export default {
                                     _this.addPoint(id, video.currentTime);
                                 });
                             }
-                        }
-                        else if (res.video.status === "finished")
+                        } else if (res.video.status === "finished")
                             this.$nextTick(function () {
                                 this.isFinished = 1;
                                 // console.log(this.$el.textContent) // => 'updated'
@@ -550,7 +552,7 @@ export default {
                 });
         }
     },
-  }
+}
 
 </script>
 <style>

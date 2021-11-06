@@ -62,7 +62,7 @@ body {
     font-size: 34px;
 }
 
-.coursedetails_banner h3 {
+.coursedetails_banner h3, .coursedetails_banner p{
     font-size: 18px;
     font-family: Arial !important;
     display: flex;
