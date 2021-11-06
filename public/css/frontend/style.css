@@ -393,6 +393,7 @@ a:hover, a:focus {
 }
 .text_class{
     font-size: 14px;
+    color:#fff
 }
 .single_department {
     display: flex;

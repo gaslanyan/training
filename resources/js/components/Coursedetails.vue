@@ -120,6 +120,7 @@
                                 </div>
                             </a>
                         </div>
+
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
                                      :disabled="!isFinished && !isPaid"
@@ -446,8 +447,8 @@ export default {
                     this.video_info = JSON.parse(res.data.videos);
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
-                    // this.id = res.data.id;
-                    console.log('vi', this.video_info)
+                    this.id = res.data.id;
+                    console.log('vi', res.data)
                 })
                 .catch(error => {
                     console.log(error);
