@@ -41,14 +41,17 @@
                                                v-on:loadeddata="manageEvents(info.id, index)">
                                             <source :src="info.path">
                                         </video>
-                                        <div class="col-lg-12">
-                                            <!--h5 class="title">{{ info.title }}</h5-->
-                                            <img :src="lectureimg+info.lectures.image_name" alt="">
+                                        <div class="col-lg-12 row">
+
+                                            <img :src="lectureimg+info.lectures.image_name" alt="lectures"
+                                                 class="col-2">
+                                            <div class="col-8">
                                             <h5 class="vid_content">{{
                                                     `${info.lectures.name} ${info.lectures.surname}
-                                                ${info.lectures.father_name}
-                                                ${info.spec.name}`
+                                                ${info.lectures.father_name}`
                                                 }}</h5>
+                                            <h4>{{ info.spec.name }}</h4>
+                                            </div>
                                         </div>
                                     </slide>
                                     <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -194,7 +197,7 @@ export default {
             // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
             lock: '/css/frontend/img/lock.png',
             bookimg: '/css/frontend/img/book.jpg',
-            'lectureimg': '/uploads/images/avatars/',
+            'lectureimg': '/utploads/images/avatars/',
             docs: [],
             texts: texts,
             feedbacksuccess: '',
@@ -444,7 +447,7 @@ export default {
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
                     // this.id = res.data.id;
-                    // console.log('vi', this.video_info)
+                    console.log('vi', this.video_info)
                 })
                 .catch(error => {
                     console.log(error);
