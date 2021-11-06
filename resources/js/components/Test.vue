@@ -58,7 +58,7 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
-                        {{isCert}}
+                        {{ isCert }}
                         <div id="certificate" v-if="isCert">
                             <p>{{ coursetexts.cert }}</p>
                             <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
@@ -88,7 +88,7 @@ export default {
             again: "",
             res: "",
             cert: [],
-            isCert:false
+            isCert: false
         }
     },
     name: 'app-header',
@@ -102,20 +102,20 @@ export default {
                 id: this.$route.params.id,
                 token: this.currentUser.token,
                 user_id: this.currentUser.id,
-                auth:true,
-                url:"certificate"
+                auth: true,
+                url: "certificate"
             };
 
             getPromiseResult(credentials)
                 .then(res => {
-                    this.res = res;
-                    console.log('this.res',this.res)
+                    this.cert = res;
+
                 })
                 .catch(error => {
                     console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
-            return this.res || null
+
         },
         getTests(id) {
             let credentials = {
@@ -209,9 +209,7 @@ export default {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
 
                                 this.$refs.form.style.display = 'none';
-                                if (this.certificate()) {
-                                    console.log(this.certificate())
-                                    this.cert = this.certificate();
+                                if (this.cert) {
                                     this.isCert = true;
                                 }
                             }
