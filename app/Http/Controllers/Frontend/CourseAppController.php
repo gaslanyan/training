@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AccountVideo;
 use App\Models\Book;
 use App\Models\Courses;
+use App\Models\Profession;
 use App\Models\Specialty;
 use App\Models\Videos;
 use App\Services\CourseService;
@@ -222,7 +223,6 @@ class CourseAppController extends Controller
     public function coursedetails()
     {
         $courses = Courses::where("id", '=', request('id'))->first();
-
         if (isset($courses)) {
             if ($courses->books) {
                 $books = json_decode($courses->books);
@@ -245,8 +245,14 @@ class CourseAppController extends Controller
                 $s3_videos = [];
                 if (!empty($videos)) {
                     foreach ($videos as $index => $video) {
-                        $v = Videos::where('id', $video)->with('lectures')->first();
+                        $v = Videos::where('id', $video)->with(['lectures' => function ($query) {
+                            $query->select('id','name','surname',
+                                'father_name','bday','image_name', 'role');
+                        }])->first();
                         if (!empty($v)) {
+                            $p =Profession::where('account_id',$v->lectures->id)
+                            ->with('prof')->first();
+                            dd($p);
                             $s3_videos[$index] = $v;
                             $s3_videos[$index]['path'] = sprintf("%s/%s", env('AWS_URL_ACL'), $v->path);
                         }
