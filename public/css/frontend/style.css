@@ -18,7 +18,7 @@
     font-size: 18px;
 }
 
-.contact_message .message_item i, .look, #look {
+.contact_message .message_item i, .look, #lookPaid, #lookOpened {
     color: #580b7f;
 }
 

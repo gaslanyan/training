@@ -109,7 +109,6 @@ export default {
             getPromiseResult(credentials)
                 .then(res => {
                     this.cert = res;
-
                 })
                 .catch(error => {
                     console.log(error);
@@ -209,7 +208,7 @@ export default {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
 
                                 this.$refs.form.style.display = 'none';
-                                if (this.cert) {
+                                if (this.certificate()) {
                                     this.isCert = true;
                                 }
                             }
