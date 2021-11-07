@@ -67,7 +67,7 @@
                                                     `${info.lectures.name} ${info.lectures.surname}
                                                 ${info.lectures.father_name}`
                                                 }}</h5>
-                                            <h4>{{ info.spec.name }}</h4>
+                                            <h4>{{ info.spec}}</h4>
                                             </div>
                                         </div>
                                     </slide>
