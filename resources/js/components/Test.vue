@@ -87,7 +87,7 @@ export default {
             msg: "",
             again: "",
             res: "",
-            cert: [],
+            cert: "",
             isCert: false
         }
     },
