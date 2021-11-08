@@ -58,10 +58,9 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
-                        {{ cert }}
                         <div id="certificate" v-if="cert">
-                            <!--                            <p>{{ coursetexts.cert }}</p>-->
-                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
+                            <p>{{ coursetexts.cert }}</p>
+                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert" alt="certificate">
                         </div>
                     </div>
                 </div>
@@ -81,7 +80,7 @@ export default {
         return {
             id: '',
             tests: [],
-            text: coursetexts,
+            coursetexts: coursetexts,
             title: "",
             formTest: {},
             msg: "",
