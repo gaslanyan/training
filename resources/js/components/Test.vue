@@ -58,8 +58,8 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
-                        {{ Cert }}
-                        <div id="certificate" v-if="Cert">
+                        {{ cert }}
+                        <div id="certificate" v-if="cert">
                             <p>{{ coursetexts.cert }}</p>
                             <!--                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>-->
                         </div>
