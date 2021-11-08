@@ -115,7 +115,6 @@ export default {
                     console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
-            return this.cert || null
         },
         getTests(id) {
             let credentials = {
@@ -208,10 +207,10 @@ export default {
                             } else {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
                                 this.$refs.form.style.display = 'none';
-                                console.log('mtav',this.certificate())
-                                if (this.certificate()) {
+                                console.log('mtav',this.cert)
+                                this.certificate();
+                                if (this.cert) {
                                     this.isCert = true;
-                                    this.cert= this.certificate();
                                 }
                             }
                         } else {
