@@ -39,11 +39,17 @@ h2.title {
     font-size: 30px;
     color: #7a229b;
 }
-.question{
+
+h2 .title {
+    color: #42036e
+}
+
+.question {
     color: #505050;
     font-family: 'Arial' !important;
     font-size: 18px;
 }
+
 body {
     line-height: 25px;
     font-size: 16px;
@@ -62,7 +68,7 @@ body {
     font-size: 34px;
 }
 
-.coursedetails_banner h3, .coursedetails_banner p{
+.coursedetails_banner h3, .coursedetails_banner p {
     font-size: 18px;
     font-family: Arial !important;
     display: flex;
@@ -96,7 +102,7 @@ body {
     z-index: 10000;
     width: 100%;
     height: 100%;
-    top:-15px;
+    top: -15px;
     flex-direction: column;
     align-items: center;
     background-color: rgba(88, 11, 127, .3);
@@ -392,10 +398,12 @@ a:hover, a:focus {
 .home_banner_area .search_course_wrap .search_course_btn:hover {
     background-position: right center;
 }
-.text_class{
+
+.text_class {
     font-size: 14px;
-    color:#fff
+    color: #fff
 }
+
 .single_department {
     display: flex;
     flex-direction: column;
@@ -452,7 +460,7 @@ a:hover, a:focus {
 .dpmt_courses > div:nth-child(3):hover,
 .dpmt_courses > div:nth-child(4):hover {
     background: -webkit-linear-gradient(
-            45deg, #5f1b80, #b233c5);
+        45deg, #5f1b80, #b233c5);
 }
 
 .single_department:hover img {
@@ -720,7 +728,7 @@ a:hover, a:focus {
     height: 55px;
     width: 252px;
     background: -webkit-linear-gradient(
-            45deg, #5f1b80, #b233c5);
+        45deg, #5f1b80, #b233c5);
     border-radius: 360px;
     color: #fff;
     font-size: 20px;
@@ -979,7 +987,7 @@ a:hover, a:focus {
 
 .lesson_filter li span:hover {
     background: -webkit-linear-gradient(
-            45deg, #5f1b80, #b233c5) !important;
+        45deg, #5f1b80, #b233c5) !important;
     color: #fff;
 }
 
@@ -1417,7 +1425,7 @@ a:hover, a:focus {
     justify-content: center;*/
     text-transform: uppercase;
     background: -webkit-linear-gradient(
-            45deg, #5f1b80, #b233c5);
+        45deg, #5f1b80, #b233c5);
     background-size: 100%;
     background-repeat: repeat;
     -webkit-background-clip: text;
@@ -1447,7 +1455,7 @@ a:hover, a:focus {
     line-height: 26px;
     margin-bottom: 0px;
     background: -webkit-linear-gradient(
-            45deg, #5f1b80, #b233c5);
+        45deg, #5f1b80, #b233c5);
     background-size: 100%;
     background-repeat: repeat;
     -webkit-background-clip: text;
@@ -1478,7 +1486,7 @@ a:hover, a:focus {
 
 .categories_post:hover {
     background: -webkit-linear-gradient(
-            45deg, #5f1b80, #b233c5);
+        45deg, #5f1b80, #b233c5);
     color: #fff;
     background-size: 100%;
     background-repeat: repeat;
@@ -2224,7 +2232,6 @@ a:hover, a:focus {
     line-height: 24px;
     padding: 2px 0px;
 }
-
 
 
 .contact_form .form-group textarea {
@@ -4057,8 +4064,9 @@ h6 {
         text-align: center;
         margin-top: 15px;
     }
-    .footer-social .text .text{
-        color:#fff;
+
+    .footer-social .text .text {
+        color: #fff;
     }
 
     /* End End Footer Area css
@@ -4397,10 +4405,12 @@ h6 {
     position: relative;
     height: 300px;
 }
-.login form a{
+
+.login form a {
     font-size: 14px;
     white-space: nowrap;
 }
+
 .register form {
     position: relative;
     /*height: 650px;*/

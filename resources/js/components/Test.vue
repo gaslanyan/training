@@ -108,8 +108,10 @@ export default {
 
             getPromiseResult(credentials)
                 .then(res => {
+                    console.log('1')
                     this.cert = res;
                     this.isCert = true;
+                    console.log('1',this.cert)
                 })
                 .catch(error => {
                     console.log(error);
@@ -216,6 +218,8 @@ export default {
                             }, 1000)
                         }
                     }
+                    console.log('2')
+                    console.log('2',this.cert)
                 })
                 .catch(err => {
                     console.log(err, err)
