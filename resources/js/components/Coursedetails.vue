@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="!isPaid" class='d-flex justify-content-center look'>
+                            <div v-else-if="!isPaid" class='d-flex justify-content-center look'>
                                 <img id="lookPaid" v-bind:src="lock" alt="lock">
                                 <div class="d-flex flex-column mt-3">
                                     <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
@@ -63,11 +63,11 @@
                                             <img :src="lectureimg+info.lectures.image_name" alt="lectures"
                                                  class="col-2">
                                             <div class="col-8">
-                                            <h5 class="vid_content">{{
-                                                    `${info.lectures.name} ${info.lectures.surname}
+                                                <h5 class="vid_content">{{
+                                                        `${info.lectures.name} ${info.lectures.surname}
                                                 ${info.lectures.father_name}`
-                                                }}</h5>
-                                            <h4>{{ info.spec}}</h4>
+                                                    }}</h5>
+                                                <h4>{{ info.spec }}</h4>
                                             </div>
                                         </div>
                                     </slide>
@@ -215,7 +215,7 @@ export default {
             // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
             lock: '/css/frontend/img/lock.png',
             bookimg: '/css/frontend/img/book.jpg',
-            'lectureimg': '/utploads/images/avatars/',
+            lectureimg: '/uploads/images/avatars/',
             docs: [],
             texts: texts,
             feedbacksuccess: '',

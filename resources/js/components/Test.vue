@@ -114,7 +114,7 @@ export default {
                     console.log(error);
                     // this.$store.commit("registerFailed", {error});
                 })
-
+            return this.cert || null
         },
         getTests(id) {
             let credentials = {
@@ -208,6 +208,7 @@ export default {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
 
                                 this.$refs.form.style.display = 'none';
+                                console.log(this.certificate())
                                 if (this.certificate()) {
                                     this.isCert = true;
                                 }
@@ -258,7 +259,8 @@ export default {
     beforeMount() {
         this.id = this.$route.params.id;
         this.getPercentAndCount();
-        this.getTests(this.id);
+        if (this.percent < 50 && this.count <= 3)
+            this.getTests(this.id);
         this.getCourseTitle(this.id);
     },
     mounted() {
