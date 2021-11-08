@@ -2524,6 +2524,7 @@ a:hover, a:focus {
     line-height: 25px;
     padding-top: 0px;
     padding-bottom: 0px;
+    color: #fff;
 }
 
 .general {
@@ -4065,7 +4066,7 @@ h6 {
         margin-top: 15px;
     }
 
-    .footer-social .text .text {
+    .footer-social .text {
         color: #fff;
     }
 
