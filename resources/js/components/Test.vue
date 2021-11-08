@@ -208,7 +208,7 @@ export default {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
                                 this.$refs.form.style.display = 'none';
 
-                                this.certificate();
+
                                 console.log('mtav',this.cert)
                                 if (this.cert) {
                                     this.isCert = true;
@@ -259,6 +259,7 @@ export default {
     },
     beforeMount() {
         this.id = this.$route.params.id;
+        this.certificate();
         this.getPercentAndCount();
         if (this.percent < 50 && this.count <= 3)
             this.getTests(this.id);
