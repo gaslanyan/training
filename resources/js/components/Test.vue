@@ -58,8 +58,8 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
-                        {{ isCert }}
-                        <div id="certificate" v-if="isCert">
+                        {{ Cert }}
+                        <div id="certificate" v-if="Cert">
                             <p>{{ coursetexts.cert }}</p>
                             <!--                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>-->
                         </div>
@@ -87,8 +87,7 @@ export default {
             msg: "",
             again: "",
             res: "",
-            cert: "",
-            isCert: false
+            cert: ""
         }
     },
     name: 'app-header',
@@ -109,8 +108,7 @@ export default {
             getPromiseResult(credentials)
                 .then(res => {
                     this.cert = res;
-                    this.isCert = true;
-                    console.log('1', this.isCert)
+                    console.log('1', this.cert)
                 })
                 .catch(error => {
                     console.log(error);
@@ -218,7 +216,7 @@ export default {
                         }
                     }
                     this.certificate();
-                    console.log('2', this.isCert)
+                    console.log('2', this.cert)
                 })
                 .catch(err => {
                     console.log(err, err)
