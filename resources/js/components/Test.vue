@@ -80,7 +80,7 @@ export default {
         return {
             id: '',
             tests: [],
-            text: coursetexts,
+            coursetexts: coursetexts,
             title: "",
             formTest: {},
             msg: "",
