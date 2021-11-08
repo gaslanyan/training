@@ -61,7 +61,7 @@
                         {{ isCert }}
                         <div id="certificate" v-if="isCert">
                             <p>{{ coursetexts.cert }}</p>
-                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>
+<!--                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>-->
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@ export default {
                     console.log('1')
                     this.cert = res;
                     this.isCert = true;
-                    console.log('1',this.cert)
+                    console.log('1',this.isCert)
                 })
                 .catch(error => {
                     console.log(error);
@@ -218,8 +218,8 @@ export default {
                             }, 1000)
                         }
                     }
-                    console.log('2')
-                    console.log('2',this.cert)
+
+                    console.log('2',this.isCert)
                 })
                 .catch(err => {
                     console.log(err, err)

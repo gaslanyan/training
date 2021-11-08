@@ -828,7 +828,7 @@ a:hover, a:focus {
 .fact_area {
     position: relative;
     color: #fff;
-    background-image: url(../img/features-bg1.jpg);
+    /*background-image: url(../img/features-bg1.jpg);*/
     background-size: cover;
     z-index: 1;
     padding: 120px 0 90px;
@@ -1406,7 +1406,7 @@ a:hover, a:focus {
     cursor: pointer;
     padding: 50px 20px;
     margin-bottom: 25px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+    box-shadow: 0 3px 10px rgb(0 0 0);
 }
 
 .feedeback h6 {
@@ -2912,7 +2912,7 @@ h6 {
 }
 
 .genric-btn.disable {
-    color: #222222, 0.3;
+    color: #222222;
     background: #f9f9ff;
     border: 1px solid transparent;
     cursor: not-allowed;
@@ -4215,7 +4215,6 @@ h6 {
     /* This will show the gradient as a text color rather than element bg. */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -moz-background-clip: text;
     -moz-text-fill-color: transparent;
 
 }
