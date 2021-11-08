@@ -9,8 +9,8 @@
                             <div class="banner_content text-center">
 
                                 <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
-                                    <router-link :to="{ name: 'home' }" class="nav-link">{{ text.home }}</router-link>
-                                    <router-link :to="{ name: 'coursedetails'}" class="nav-link">{{ text.lessons }}
+                                    <router-link :to="{ name: 'home' }" class="nav-link">{{ coursetexts.home }}</router-link>
+                                    <router-link :to="{ name: 'coursedetails'}" class="nav-link">{{ coursetexts.lessons }}
                                     </router-link>
                                     <router-link to="" class="nav-link">{{ b.text }}</router-link>
                                 </div>
@@ -53,13 +53,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            <button type="submit" class="btn primary-btn mt-3 float-right">{{ text.test }}</button>
+                            <button type="submit" class="btn primary-btn mt-3 float-right">{{ coursetexts.test }}</button>
                         </form>
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
                         <div id="certificate" v-if="cert">
-                            <p>{{ coursetexts.cert }}</p>
+                            <!--                            <p>{{ coursetexts.cert }}</p>-->
                             <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert" alt="certificate">
                         </div>
                     </div>
@@ -80,7 +80,7 @@ export default {
         return {
             id: '',
             tests: [],
-            coursetexts: coursetexts,
+            text: coursetexts,
             title: "",
             formTest: {},
             msg: "",
