@@ -211,6 +211,7 @@ export default {
                                 console.log('mtav',this.certificate())
                                 if (this.certificate()) {
                                     this.isCert = true;
+                                    this.cert= this.certificate();
                                 }
                             }
                         } else {
