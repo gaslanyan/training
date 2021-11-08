@@ -449,7 +449,6 @@ export default {
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
                     this.id = res.data.id;
-                    console.log('vi', res.data)
                 })
                 .catch(error => {
                     console.log(error);

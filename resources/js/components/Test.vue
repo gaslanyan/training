@@ -108,8 +108,8 @@ export default {
 
             getPromiseResult(credentials)
                 .then(res => {
-                    console.log('res', res);
                     this.cert = res;
+                    console.log('res', res);
                 })
                 .catch(error => {
                     console.log(error);
@@ -207,8 +207,9 @@ export default {
                             } else {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
                                 this.$refs.form.style.display = 'none';
-                                console.log('mtav',this.cert)
+
                                 this.certificate();
+                                console.log('mtav',this.cert)
                                 if (this.cert) {
                                     this.isCert = true;
                                 }
