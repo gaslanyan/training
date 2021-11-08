@@ -61,7 +61,7 @@
                         {{ isCert }}
                         <div id="certificate" v-if="isCert">
                             <p>{{ coursetexts.cert }}</p>
-<!--                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>-->
+                            <!--                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert"/>-->
                         </div>
                     </div>
                 </div>
@@ -108,10 +108,9 @@ export default {
 
             getPromiseResult(credentials)
                 .then(res => {
-                    console.log('1')
                     this.cert = res;
                     this.isCert = true;
-                    console.log('1',this.isCert)
+                    console.log('1', this.isCert)
                 })
                 .catch(error => {
                     console.log(error);
@@ -218,8 +217,8 @@ export default {
                             }, 1000)
                         }
                     }
-
-                    console.log('2',this.isCert)
+                    this.certificate();
+                    console.log('2', this.isCert)
                 })
                 .catch(err => {
                     console.log(err, err)
@@ -257,7 +256,6 @@ export default {
     },
     beforeMount() {
         this.id = this.$route.params.id;
-        this.certificate();
         this.getPercentAndCount();
         if (this.percent < 50 && this.count <= 3)
             this.getTests(this.id);
