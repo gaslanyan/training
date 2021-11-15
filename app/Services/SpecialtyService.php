@@ -9,6 +9,7 @@
 namespace App\Services;
 
 
+use App\Models\Specialties;
 use App\Models\SpecialtiesType;
 use App\Models\Specialty;
 use App\Repositories\Repository;
@@ -97,5 +98,14 @@ class SpecialtyService
             throw new ModelNotFoundException('insert chi eghel ');
         return $request->id;
     }
+    public function checkSpecialty($id){
+       $p_id  = $this->model->selected('id')
+            ->where('parent_id',$id)->first();
 
+        return $p_id;
+    }
+public function delete($id){
+    $this->model->delete($id);
+
+}
 }

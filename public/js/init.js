@@ -85,17 +85,26 @@ $(document).ready(function () {
                         data: {_token: CSRF_TOKEN, id: $_id, type: $title},
                         dataType: 'JSON',
                         success: function (data) {
-
+                            console.log(data)
                             if (data.success) {
                                 swal.fire(_swal.delete).then((result) => {
+                                    // if (result.value) {
+                                    //     if ($('[name=removed]').val() == 0)
+                                    //         $('[name=removed]').val('1');
+                                    //     this.element.parent().submit();
+                                    // }
+                                });
+                            }
+                            else if(data.success == null){
+                                swal.fire(_swal.info).then((result) => {
                                     if (result.value) {
-
-                                        if ($('[name=removed]').val() == 0)
-                                            $('[name=removed]').val('1');
-                                        this.element.parent().submit();
+                                        // if ($('[name=removed]').val() == 0)
+                                        //     $('[name=removed]').val('1');
+                                        // this.element.parent().submit();
                                     }
                                 });
-                            } else {
+                            }
+                            else {
                                 this.element.parent().submit();
                             }
                         },

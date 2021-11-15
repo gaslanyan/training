@@ -146,18 +146,20 @@ class SpecialtyController extends Controller
     public function checkSpecialty(Request $request)
     {
         try {
-            dd($request->id);
-            //todo get courses ids
-            $response = [
-                'success' => true
-            ];
-        } catch (\Exception $exception) {
 
+            if ($request->ajax()) {
+                $i_id = $this->service->checkSpecialty($request->id);
+
+                if (is_object($i_id))
+                    $response ['success'] = null;
+                else
+                    $response ['success'] = false;
+            } else return redirect('backend/specialty')->with('error', __('messages.wrong'));
+        } catch (ModelNotFoundException $exception) {
             logger()->error($exception);
-            $response = [
-                'success' => false,
-                'error' => 'Do not save'
-            ];
+            $response['success'] = false;
+            $response['error'] = 'Do not save';
+
         }
         return response()->json($response);
     }
@@ -170,6 +172,15 @@ class SpecialtyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->service->delete($id);
+            return redirect('backend/specialty')->with('success', __('messages.success'));
+        } catch (\Exception $e) {
+
+            logger()->error($e);
+            return redirect()->back()
+//                ->withErrors($e->getErrors())
+                ->withInput();
+        }
     }
 }

@@ -72,6 +72,7 @@ class AccountVideoService
                 $video['status'] = "progress" :
                 $video['status'] = "finished";
             $getId = AccountVideo::select('id')->where([["video_id", $request->id], ['account_id', $request->user_id]])->first();
+            dd($getId);
             (empty($getId ))?
                 $this->model->create($video)
                 :
