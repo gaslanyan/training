@@ -39,7 +39,7 @@
                                 <hooper :itemsToShow="1">
                                     <slide v-for="(info, index) in video_info" :key="index" :index="index">
                                         <video ref="video" class="view-video col-lg-12" controls
-                                               v-on:click="manageEvents(info.id, index)">
+                                               v-on:loaded="manageEvents(info.id, index)">
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
@@ -236,73 +236,75 @@ export default {
     },
     methods: {
         manageEvents(id, index) {
-            this.$nextTick(() => {
-                let credentials = {
-                    id: id,
-                    account_id:this.currentUser.id,
-                    token: this.currentUser.token,
-                    url: 'videoinfo',
-                    auth: true
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        console.log('res.video.status',res.video.status)
-                        if (res.video.status === "progress" || !res.video) {
-                            let _this = this;
-                            if (_this.$refs.video) {
-                                let supposedCurrentTime = 0, backTime = 0;
-                                let video = _this.$refs.video[index],
-                                    isPlay = true;
+            if (this.currentUser.id) {
+                this.$nextTick(() => {
+                    let credentials = {
+                        id: id,
+                        account_id: this.currentUser.id,
+                        token: this.currentUser.token,
+                        url: 'videoinfo',
+                        auth: true
+                    };
+                    getPromiseResult(credentials)
+                        .then(res => {
+                            console.log('res.video.status', res.video.status)
+                            if (res.video.status === "progress" || !res.video) {
+                                let _this = this;
+                                if (_this.$refs.video) {
+                                    let supposedCurrentTime = 0, backTime = 0;
+                                    let video = _this.$refs.video[index],
+                                        isPlay = true;
 
-                                video.addEventListener('play', function () {
-                                    if (isPlay) {
-                                        video.currentTime = res.video.point;
-                                        supposedCurrentTime = res.video.point;
-                                        isPlay = false;
-                                    }
-                                });
-
-                                video.addEventListener('timeupdate', function () {
-                                    if (!video.seeking) {
-                                        supposedCurrentTime = video.currentTime;
-                                    } else
-                                        backTime = video.currentTime;
-                                });
-
-                                video.addEventListener('seeking', function () {
-                                    console.log('seeking', video.currentTime);
-                                    let back = backTime - supposedCurrentTime;
-                                    if (back < 0) {
-                                        supposedCurrentTime = backTime;
-                                    } else {
-                                        let delta = video.currentTime - supposedCurrentTime;
-                                        if (Math.abs(delta) > 0.01) {
-                                            console.log("Seeking is disabled");
-                                            video.currentTime = supposedCurrentTime;
+                                    video.addEventListener('play', function () {
+                                        if (isPlay) {
+                                            video.currentTime = res.video.point;
+                                            supposedCurrentTime = res.video.point;
+                                            isPlay = false;
                                         }
-                                    }
-                                });
+                                    });
 
-                                video.addEventListener('pause', () => {
-                                    // video.currentTime = supposedCurrentTime;
-                                    _this.addPoint(id, video.currentTime);
-                                });
+                                    video.addEventListener('timeupdate', function () {
+                                        if (!video.seeking) {
+                                            supposedCurrentTime = video.currentTime;
+                                        } else
+                                            backTime = video.currentTime;
+                                    });
 
-                                video.addEventListener('ended', function () {
-                                    console.log('ended', id);
-                                    _this.addPoint(id, video.currentTime);
-                                });
-                            }
-                        } else if (res.video.status === "finished")
-                            this.$nextTick(function () {
-                                this.isFinished = 1;
-                                // console.log(this.$el.textContent) // => 'updated'
-                            })
-                    })
-                    .catch(error => {
-                        this.$store.commit("getContentFailed", {error});
-                    });
-            });
+                                    video.addEventListener('seeking', function () {
+                                        console.log('seeking', video.currentTime);
+                                        let back = backTime - supposedCurrentTime;
+                                        if (back < 0) {
+                                            supposedCurrentTime = backTime;
+                                        } else {
+                                            let delta = video.currentTime - supposedCurrentTime;
+                                            if (Math.abs(delta) > 0.01) {
+                                                console.log("Seeking is disabled");
+                                                video.currentTime = supposedCurrentTime;
+                                            }
+                                        }
+                                    });
+
+                                    video.addEventListener('pause', () => {
+                                        // video.currentTime = supposedCurrentTime;
+                                        _this.addPoint(id, video.currentTime);
+                                    });
+
+                                    video.addEventListener('ended', function () {
+                                        console.log('ended', id);
+                                        _this.addPoint(id, video.currentTime);
+                                    });
+                                }
+                            } else if (res.video.status === "finished")
+                                this.$nextTick(function () {
+                                    this.isFinished = 1;
+                                    // console.log(this.$el.textContent) // => 'updated'
+                                })
+                        })
+                        .catch(error => {
+                            this.$store.commit("getContentFailed", {error});
+                        });
+                });
+            }
         },
         addPoint(id, point) {
             let credentials = {
