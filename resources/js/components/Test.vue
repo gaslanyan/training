@@ -10,11 +10,11 @@
 
                                 <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
                                     <router-link :to="{ name: 'home' }" class="nav-link">{{
-                                            coursetexts.home
+                                        coursetexts.home
                                         }}
                                     </router-link>
                                     <router-link :to="{ name: 'coursedetails'}" class="nav-link">{{
-                                            coursetexts.lessons
+                                        coursetexts.lessons
                                         }}
                                     </router-link>
                                     <router-link to="" class="nav-link">{{ b.text }}</router-link>
@@ -59,7 +59,7 @@
                                 </ul>
                             </div>
                             <button type="submit" class="btn primary-btn mt-3 float-right">{{
-                                    coursetexts.test
+                                coursetexts.test
                                 }}
                             </button>
                         </form>
@@ -262,8 +262,8 @@ export default {
     beforeMount() {
         this.id = this.$route.params.id;
         this.getPercentAndCount();
-        if (this.percent < 50 && this.count <= 3)
-            this.getTests(this.id);
+        // if (this.percent < 50 && this.count <= 3)
+        this.getTests(this.id);
         this.getCourseTitle(this.id);
     },
     mounted() {

@@ -56,7 +56,6 @@ class AccountVideoService
 
     }
 
-
     public function addPointById($request)
     {
 
