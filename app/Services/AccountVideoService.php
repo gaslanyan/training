@@ -51,7 +51,7 @@ class AccountVideoService
         $video = $this->model->where([['video_id', '=', $id]]);
 //          dd($video);
         if (!$video)
-            throw new ModelNotFoundException('User not found by ID ');
+            throw new ModelNotFoundException('Video not found by ID ');
         return $video;
 
     }
@@ -72,7 +72,7 @@ class AccountVideoService
                 $video['status'] = "progress" :
                 $video['status'] = "finished";
             var_dump($request->id);
-            var_dump($request->user_id);
+            dd($request->user_id);
             $getId = AccountVideo::select('id')->where([["video_id", $request->id], ['account_id', $request->user_id]])->first();
                         (empty($getId ))?
                 $this->model->create($video)
