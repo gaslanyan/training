@@ -33,7 +33,7 @@ class AccountVideoController extends Controller
             $v = false;
             if (!$video->isEmpty())
                 $v = $video[0];
-            dd($v);
+
             return response()->json([
                 'access_token' => request('token'),
                 'video' => $v,
