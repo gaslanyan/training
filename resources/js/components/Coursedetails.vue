@@ -39,7 +39,7 @@
                                 <hooper :itemsToShow="1">
                                     <slide v-for="(info, index) in video_info" :key="index" :index="index">
                                         <video ref="video" class="view-video col-lg-12" controls
-                                               v-on:loadeddata="manageEvents(info.id, index)">
+                                               v-on:click="manageEvents(info.id, index)">
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
@@ -239,6 +239,7 @@ export default {
             this.$nextTick(() => {
                 let credentials = {
                     id: id,
+                    account_id:this.currentUser.id
                     token: this.currentUser.token,
                     url: 'videoinfo',
                     auth: true

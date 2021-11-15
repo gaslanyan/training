@@ -29,7 +29,7 @@ class AccountVideoController extends Controller
     {
         try {
 
-            $video = $this->service->getVideoById(request('id'));
+            $video = $this->service->getVideoById(request('id'),request('account_id') );
             $v = false;
             if (!$video->isEmpty())
                 $v = $video[0];

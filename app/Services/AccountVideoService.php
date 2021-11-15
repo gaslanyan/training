@@ -46,9 +46,9 @@ class AccountVideoService
      * @param $id
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Query\Builder|object|null
      */
-    public function getVideoById($id)
+    public function getVideoById($id, $account_id)
     {
-        $video = $this->model->where([['video_id', '=', $id]]);
+        $video = $this->model->where([['video_id', '=', $id],['account_id', '=',$account_id]]);
 //          dd($video);
         if (!$video)
             throw new ModelNotFoundException('Video not found by ID ');
