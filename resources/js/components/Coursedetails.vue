@@ -39,7 +39,7 @@
                                 <hooper :itemsToShow="1">
                                     <slide v-for="(info, index) in video_info" :key="index" :index="index">
                                         <video ref="video" class="view-video col-lg-12" controls
-                                               v-on:loaded="manageEvents(info.id, index)">
+                                               v-on:loadeddata="manageEvents(info.id, index)">
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
@@ -236,8 +236,8 @@ export default {
     },
     methods: {
         manageEvents(id, index) {
-            if (this.currentUser.id) {
-                this.$nextTick(() => {
+            this.$nextTick(() => {
+                if (this.currentUser.id) {
                     let credentials = {
                         id: id,
                         account_id: this.currentUser.id,
@@ -303,8 +303,8 @@ export default {
                         .catch(error => {
                             this.$store.commit("getContentFailed", {error});
                         });
-                });
-            }
+                }
+            });
         },
         addPoint(id, point) {
             let credentials = {
