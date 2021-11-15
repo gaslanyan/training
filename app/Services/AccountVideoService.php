@@ -71,8 +71,6 @@ class AccountVideoService
             (ceil($request->point) < ceil($duration->duration)) ?
                 $video['status'] = "progress" :
                 $video['status'] = "finished";
-            var_dump($request->id);
-            dd($request->user_id);
             $getId = AccountVideo::select('id')->where([["video_id", $request->id], ['account_id', $request->user_id]])->first();
                         (empty($getId ))?
                 $this->model->create($video)
