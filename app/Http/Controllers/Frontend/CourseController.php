@@ -114,11 +114,12 @@ class CourseController extends Controller
                 $videos = json_decode($videos->videos);
 
                 if (!empty($videos)) {
+                    dd($videos);
                     foreach ($videos as $index => $video) {
                         $status = AccountVideo::select('status')
                             ->where([["video_id", $video], ['account_id', request('user_id')]])
                             ->first();
-                        dd($status);
+
                         if ((!empty($status) && $status->status != "finished")
                             || empty($status)) {
 
