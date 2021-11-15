@@ -239,7 +239,7 @@ export default {
             this.$nextTick(() => {
                 let credentials = {
                     id: id,
-                    account_id:this.currentUser.id
+                    account_id:this.currentUser.id,
                     token: this.currentUser.token,
                     url: 'videoinfo',
                     auth: true
