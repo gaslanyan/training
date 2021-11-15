@@ -88,21 +88,15 @@ $(document).ready(function () {
                             console.log(data)
                             if (data.success) {
                                 swal.fire(_swal.delete).then((result) => {
-                                    // if (result.value) {
-                                    //     if ($('[name=removed]').val() == 0)
-                                    //         $('[name=removed]').val('1');
-                                    //     this.element.parent().submit();
-                                    // }
+                                    if (result.value) {
+                                        if ($('[name=removed]').val() == 0)
+                                            $('[name=removed]').val('1');
+                                        this.element.parent().submit();
+                                    }
                                 });
                             }
                             else if(data.success == null){
-                                swal.fire(_swal.info).then((result) => {
-                                    if (result.value) {
-                                        // if ($('[name=removed]').val() == 0)
-                                        //     $('[name=removed]').val('1');
-                                        // this.element.parent().submit();
-                                    }
-                                });
+                                swal.fire(_swal.info);
                             }
                             else {
                                 this.element.parent().submit();

@@ -174,7 +174,7 @@ class SpecialtyController extends Controller
     {
         try {
             $this->service->delete($id);
-            return redirect('backend/specialty')->with('success', __('messages.success'));
+            return redirect('backend/specialty')->with('success', __('messages.deleted'));
         } catch (\Exception $e) {
 
             logger()->error($e);

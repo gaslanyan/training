@@ -48,8 +48,8 @@
                                                  class="col-2">
                                             <div class="col-8">
                                                 <h5 class="vid_content">{{
-                                                        `${info.lectures.name} ${info.lectures.surname}
-                                                ${info.lectures.father_name}`
+                                                    `${info.lectures.name} ${info.lectures.surname}
+                                                    ${info.lectures.father_name}`
                                                     }}</h5>
                                                 <h4>{{ info.spec }}</h4>
                                             </div>
@@ -236,6 +236,7 @@ export default {
     },
     methods: {
         manageEvents(id, index) {
+            console.log('index',index)
             this.$nextTick(() => {
                 let credentials = {
                     id: id,
@@ -245,7 +246,7 @@ export default {
                 };
                 getPromiseResult(credentials)
                     .then(res => {
-
+                        console.log('res.video.status',res.video.status)
                         if (res.video.status === "progress" || !res.video) {
                             let _this = this;
                             if (_this.$refs.video) {
