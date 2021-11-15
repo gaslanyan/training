@@ -42,7 +42,7 @@ class AccountVideoController extends Controller
             ]);
         } catch (MethodNotAllowedHttpException$exception) {
 
-            logger()->error($exception);-
+            logger()->error($exception);
             return response()->json(['error' => true], 500);
         }
     }
