@@ -83,10 +83,11 @@ class AccountCourseController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+
     function getPaymentById()
     {
         try {
-            $paid = $this->service->getPaymentById(request('account_id'),request('course_id'));
+            $paid = $this->service->getPaymentById(request('account_id'), request('course_id'));
             return response()->json([
                 'access_token' => request('token'),
                 'data' => $paid->paid,
@@ -148,7 +149,7 @@ class AccountCourseController extends Controller
             $data['ClientID'] = env('CLIENT_ID');
             $data['Amount'] = $info->cost;
             $data['OrderID'] = rand(1, 2000000000);//2milliard
-            $data["BackURL"] = env('BACK_URL').request('course_id');
+            $data["BackURL"] = env('BACK_URL') . request('course_id');
             $data['Username'] = env('PAY_USERNAME');
             $data['Password'] = env('PAY_PASSWORD');
             $data['Description'] = $info->name;
@@ -198,7 +199,7 @@ class AccountCourseController extends Controller
         $upload_data['DepositedAmount'] = $content['DepositedAmount'];
         $upload_data['Amount'] = $content['Amount'];
 
-         $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
+        $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
         return response()->json([
             'access_token' => request('token'),
             'getpayment' => $content,
@@ -206,18 +207,34 @@ class AccountCourseController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+
+    /**
+     * Certificate
+     * get certificate by test id
+     *
+     * @queryParam access_token token Example: token
+     * @queryParam id The test id to filter Example: 1
+     * @queryParam user_id The account id to filter Example: 2
+     *
+     * @response
+     * {
+     * "access_token": ""
+     * "token_type": "bearer",
+     * "expires_in": 21600000
+     * }
+     */
     public function certificate(Request $request)
     {
 
         $account_name = Account::where('id', '=', $request->user_id)->first();
 
-        $course = Courses::where('id','=',$request->id)->first();
-        $certificate  =  $course->certificate;
-        $start  = $course->start_date;
+        $course = Courses::where('id', '=', $request->id)->first();
+        $certificate = $course->certificate;
+        $start = $course->start_date;
         $end = $course->duration_date;
 
-        if($course->coordinates != ""){
-            $coordinates =  \GuzzleHttp\json_decode($course->coordinates);
+        if ($course->coordinates != "") {
+            $coordinates = \GuzzleHttp\json_decode($course->coordinates);
         }
         // dd($coordinates);
         /*$coordinates = \GuzzleHttp\json_decode('{
@@ -235,25 +252,30 @@ class AccountCourseController extends Controller
                    }
 }');*/
 
-        if($coordinates != ""){
+        if ($coordinates != "") {
 
-            $img = public_path().'/uploads/diplomas/'.$certificate;
-            $imgg =  imagecreatefrompng($img);
+            $img = public_path() . '/uploads/diplomas/' . $certificate;
+            $imgg = imagecreatefrompng($img);
             $color = imagecolorallocate($imgg, 000, 000, 000);
-            $font = public_path()."/css/frontend/fonts/GHEAMariamRIt.otf";
-            $text = strtoupper($account_name->name ." ". $account_name->surname);
+            $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
+            $text = strtoupper($account_name->name . " " . $account_name->surname);
 
 
-            imagettftext($imgg, 12, 0, ($coordinates->name->x) -10, ($coordinates->name->y) + 10, $color, $font, $text);
-            imagettftext($imgg, 12, 0, ($coordinates->start_date->x) -10, ($coordinates->start_date->y) + 10, $color, $font, $start);
-            imagettftext($imgg, 12, 0, ($coordinates->end_date->x) -10, ($coordinates->end_date->y) + 10, $color, $font, $end);
+            imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
+            imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
+            imagettftext($imgg, 12, 0, ($coordinates->end_date->x) - 10, ($coordinates->end_date->y) + 10, $color, $font, $end);
             header('Content-type:image/png');
-            imagepng($imgg, public_path().'/css/frontend/img/'.$text.'.png', 5);
-            $resp = $text.".png";
-            echo $resp; //'<img id="finishimg" src ="'.public_path()."/css/frontend/img/".$text.'.png">';
-            /*return response()->json(['data' => $coursestitle]);*/
+            imagepng($imgg, public_path() . '/css/frontend/img/' . $text . '.png', 5);
+//            $resp = $text.".png";
+//            echo $resp; //'<img id="finishimg" src ="'.public_path()."/css/frontend/img/".$text.'.png">';
+            return response()->json([
+                'data' => $text . ".png",
+                'access_token' => request('token'),
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 60
+
+
+            ]);
         }
     }
-
-
 }

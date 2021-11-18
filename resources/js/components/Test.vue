@@ -111,11 +111,9 @@ export default {
                 auth: true,
                 url: "certificate"
             };
-
             getPromiseResult(credentials)
                 .then(res => {
-                    this.cert = res;
-                    console.log('1', this.cert)
+                    this.cert = res.data;
                 })
                 .catch(error => {
                     console.log(error);

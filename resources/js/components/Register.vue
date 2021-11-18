@@ -6,13 +6,11 @@
             <input autocomplete="off" type="radio" id="profile" value="1" name="tractor" checked='checked'>
             <input autocomplete="off" type="radio" id="address" value="2" name="tractor">
             <input autocomplete="off" type="radio" id="education" value="3" name="tractor">
-            <!--            <input autocomplete="off" type="radio" id="register" value="4" name="tractor">-->
-            <nav class="reg_nav">
+               <nav class="reg_nav">
                 <label for="profile" class='fa fa-user-o nav_label col-lg-4 col-4'></label>
                 <label for="address" class='fa fa-address-card-o nav_label col-lg-4 col-4'></label>
                 <label for="education" class='fa fa-graduation-cap nav_label col-lg-4 col-4'></label>
-                <!--                <label for="register" class='fa fa-list-alt nav_label'></label>-->
-            </nav>
+                            </nav>
             <article class='bio container'>
                 <div class="form-group row">
                     <p class="error col-12" v-if="regError">

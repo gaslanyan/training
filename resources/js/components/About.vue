@@ -70,7 +70,7 @@
         data() {
             return {
                 datas: [],
-                aboutimg: '/css/frontend/img/transparent_logo.png',
+                aboutimg: '/css/frontend/img/about_us.jpg',
                 lesson_banner: '/css/frontend/img/lessonbanner.png',
                 docs: [],
                 text: pagestext,

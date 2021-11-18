@@ -567,8 +567,8 @@ export default {
     min-height: 234px;
 }
 
-.hooper {
-    height: 600px;
+.hooper-slide {
+    height: 100vh;
 }
 
 .hooper-pagination {
