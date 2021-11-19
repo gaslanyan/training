@@ -3816,6 +3816,7 @@ h6 {
 
 .bio:before,
 .info:before,
+.information:before,
 .edu:before,
 .reg:before,
 .pay:before {
@@ -3897,7 +3898,7 @@ input[name='tractor'] {
 
 #profile:checked ~ .bio,
 #lesson:checked ~ .bio,
-#address:checked ~ .info,
+#address:checked ~ .information,
 #pay:checked ~ .pay,
 #education:checked ~ .edu,
 #register:checked ~ .reg {
