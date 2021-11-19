@@ -212,7 +212,8 @@ export default {
                             } else {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
                                 this.$refs.form.style.display = 'none';
-                                window.location.reload()
+                                // window.location.reload();
+
                             }
                         } else {
                             this.$refs.form.style.display = 'none';
@@ -222,7 +223,7 @@ export default {
                             }, 1000)
                         }
                     }
-                    this.certificate();
+
                 })
                 .catch(err => {
                     console.log(err, err)
@@ -261,10 +262,14 @@ export default {
     beforeMount() {
         this.id = this.$route.params.id;
         this.getPercentAndCount();
-        console.log('this.percent',this.percent)
-        console.log('this.count',this.count)
-        // if (this.percent < 50 && this.count <= 3)
+        console.log('this.percent', this.percent)
+        console.log('this.count', this.count)
+        if (this.percent < 50) {
+            if (this.count <= 3)}
         this.getTests(this.id);
+    }
+        else
+            this.certificate();
         this.getCourseTitle(this.id);
     },
     mounted() {
