@@ -218,6 +218,7 @@ class AccountCourseController extends Controller
      *
      * @response
      * {
+     * "data":"img name.png"
      * "access_token": ""
      * "token_type": "bearer",
      * "expires_in": 21600000
@@ -232,49 +233,26 @@ class AccountCourseController extends Controller
         $certificate = $course->certificate;
         $start = $course->start_date;
         $end = $course->duration_date;
-
+        var_export($course->coordinates);
         if ($course->coordinates != "") {
             $coordinates = \GuzzleHttp\json_decode($course->coordinates);
-        }
-        // dd($coordinates);
-        /*$coordinates = \GuzzleHttp\json_decode('{
-                   "name": {
-                       "x": "182",
-                       "y": "218"
-                   },
-                   "end_date": {
-                       "x": "244",
-                       "y": "267"
-                   },
-                   "start_date": {
-                       "x": "136",
-                       "y": "273"
-                   }
-}');*/
-
-        if ($coordinates != "") {
 
             $img = public_path() . '/uploads/diplomas/' . $certificate;
             $imgg = imagecreatefrompng($img);
             $color = imagecolorallocate($imgg, 000, 000, 000);
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
             $text = strtoupper($account_name->name . " " . $account_name->surname);
-
-
+            $text_send = strtoupper($account_name->name . "_" . $account_name->surname) . "_" . random(1, 11111);
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
             imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
             imagettftext($imgg, 12, 0, ($coordinates->end_date->x) - 10, ($coordinates->end_date->y) + 10, $color, $font, $end);
             header('Content-type:image/png');
-            imagepng($imgg, public_path() . '/css/frontend/img/' . $text . '.png', 5);
-//            $resp = $text.".png";
-//            echo $resp; //'<img id="finishimg" src ="'.public_path()."/css/frontend/img/".$text.'.png">';
+            imagepng($imgg, public_path() . '/css/frontend/img/' . $text_send . '.png', 5);
             return response()->json([
-                'data' => $text . ".png",
+                'data' => $text_send . ".png",
                 'access_token' => request('token'),
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
-
-
             ]);
         }
     }

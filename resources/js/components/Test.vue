@@ -223,7 +223,6 @@ export default {
                         }
                     }
                     this.certificate();
-                    console.log('2', this.cert)
                 })
                 .catch(err => {
                     console.log(err, err)
