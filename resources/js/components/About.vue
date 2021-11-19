@@ -28,11 +28,11 @@
         <div class="department_area section_gap">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-12 text-center">
+                    <div class="col-lg-4 text-center">
                         <img class="img-fluid" :src="aboutimg" alt="">
                     </div>
 
-                    <div class="col-lg-12">
+                    <div class="col-lg-8">
                         <div class="dpmt_right" v-for="data in datas" :key="data.id">
                             <!--h1>{{ data.title }}</h1-->
                             <p> {{ data.description }}</p>
