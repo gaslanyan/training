@@ -130,8 +130,9 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                        let counter = 0;
+
                         for (let i of res.tests) {
+                            let counter = 0;
                             for (let answer of JSON.parse(i.answers)) {
                                 if (answer.check == 1)
                                     counter++;
@@ -211,6 +212,7 @@ export default {
                             } else {
                                 this.msg = coursetexts.result + this.percent + coursetexts.point;
                                 this.$refs.form.style.display = 'none';
+                                window.location.reload()
                             }
                         } else {
                             this.$refs.form.style.display = 'none';
@@ -260,6 +262,8 @@ export default {
     beforeMount() {
         this.id = this.$route.params.id;
         this.getPercentAndCount();
+        console.log('this.percent',this.percent)
+        console.log('this.count',this.count)
         // if (this.percent < 50 && this.count <= 3)
         this.getTests(this.id);
         this.getCourseTitle(this.id);
