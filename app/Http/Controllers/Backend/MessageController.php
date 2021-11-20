@@ -82,7 +82,7 @@ class MessageController extends Controller
             return view('backend.message.show',
                 compact('data'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', __('messages.wrong'));
         }
@@ -101,7 +101,7 @@ class MessageController extends Controller
 
             return view('backend.message.edit', compact('message'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', __('messages.wrong'));
         }

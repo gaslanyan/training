@@ -88,7 +88,7 @@ class UserController extends Controller
             $this->model->update(['status' => "approved"], $user->id);
             $user->notify(new ApprovedUser($user));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/account')->with('error', Lang::get('messages.wrong'));
         }

@@ -199,7 +199,7 @@ class AccountController extends Controller
 
             return redirect('backend/account/lecture')->with('success', __('messages.updated'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/account/lecture')->with('error', __('messages.wrong'));
         }
@@ -221,7 +221,7 @@ class AccountController extends Controller
                 $this->service->remove(\request('_id'));
             return back()->with('success', __('messages.deleted'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
         }
@@ -241,7 +241,7 @@ class AccountController extends Controller
             }
             return response()->json(['success' => $isVerified]);
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
         }
@@ -282,7 +282,7 @@ class AccountController extends Controller
             $this->service->change_status($request->id, $request->check);
             return response()->json(['success' => 'success']);
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
         }
@@ -342,7 +342,7 @@ class AccountController extends Controller
 
         } catch (\Exception $exception) {
             logger()->error($exception);
-            dd($exception);
+
             return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
         }
     }

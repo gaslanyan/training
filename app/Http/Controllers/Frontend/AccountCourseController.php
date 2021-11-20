@@ -233,7 +233,6 @@ class AccountCourseController extends Controller
         $certificate = $course->certificate;
         $start = $course->start_date;
         $end = $course->duration_date;
-        var_export($course->coordinates);
         if ($course->coordinates != "") {
             $coordinates = \GuzzleHttp\json_decode($course->coordinates);
 

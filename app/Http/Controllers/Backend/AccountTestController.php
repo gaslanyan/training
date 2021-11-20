@@ -35,7 +35,7 @@ class AccountTestController extends Controller
             $tests = $this->service->getTestsResult($id);
             return view('backend.accounttest.index', compact('tests', 'id'));
         } catch (ModelNotFoundException $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/index/' . $id)->with('error', __('messages.wrong'));
         }
@@ -56,7 +56,7 @@ class AccountTestController extends Controller
             $account = $this->service->getAccountById($a_id);
             return view('backend.accounttest.show', compact('tests', 'id', 'account'));
         } catch (ModelNotFoundException $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/index/' . $id)->with('error', __('messages.wrong'));
         }
@@ -78,7 +78,7 @@ class AccountTestController extends Controller
 
         } catch (\Exception $exception) {
             logger()->error($exception);
-            dd($exception);
+
             return redirect('backend/account/' . $id)->with('error', __('messages.wrong'));
         }
     }
@@ -98,7 +98,7 @@ class AccountTestController extends Controller
 
         } catch (\Exception $exception) {
             logger()->error($exception);
-            dd($exception);
+
             return redirect('backend/account/' . $id)->with('error', __('messages.wrong'));
         }
     }

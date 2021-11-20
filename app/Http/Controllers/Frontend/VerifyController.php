@@ -40,7 +40,7 @@ class VerifyController extends Controller
                 return response()->json(['success' => 'verify'], 200);
             }
         } catch (\Exception $exception) {
-//            dd($exception);
+//
             logger()->error($exception);
             return response()->json(['error' => true], 500);
         }

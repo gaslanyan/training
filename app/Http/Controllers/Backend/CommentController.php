@@ -31,7 +31,7 @@ class CommentController extends Controller
             return view('backend.comment.index',
                 compact('comments'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/comments')->with('error', Lang::get('messages.wrong'));
         }
@@ -71,7 +71,7 @@ class CommentController extends Controller
             return view('backend.comment.show',
                 compact('data'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', Lang::get('messages.wrong'));
         }
@@ -92,7 +92,7 @@ class CommentController extends Controller
 
             return view('backend.message.edit', compact('$comments'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', Lang::get('messages.wrong'));
         }

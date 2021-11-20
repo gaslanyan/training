@@ -83,7 +83,7 @@ body {
 
 .course_details_area {
     background: #fff;
-    width: 80%;
+    width: 100%;
     margin: -10% auto 0 auto;
     position: relative;
     z-index: 10;
@@ -191,7 +191,9 @@ a:hover, a:focus {
     color: #505050;
     font-size: 16px;
 }
-
+.color_text{
+color:#42036e;
+}
 .gradient-bg, #search_input_box, .header-top .header-top-right a:hover, .single_feature:nth-child(3), .single_course .course_content .course_meta .price, .testimonial_area .owl-thumb-item.active .overlay-grad, .testimonial_area .owl-thumb-item .overlay-grad:hover, .testimonial_area .owl-thumb-item .overlay-grad.active, .registration_area, .categories_details, .blog_right_sidebar .widget_title, .blog_right_sidebar .search_widget .input-group .form-control, .blog_right_sidebar .newsletter_widget .bbtns, .blog_right_sidebar .tag_cloud_widget ul li a:hover, .blog-pagination .page-item.active .page-link, .blog-pagination .page-link:hover, .comments-area .btn-reply:hover, .blog_btn:hover, .footer-area .footer-bottom .footer-social a:hover {
     background: -webkit-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);
     background: -moz-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);

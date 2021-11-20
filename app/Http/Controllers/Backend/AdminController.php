@@ -42,7 +42,7 @@ class AdminController extends Controller
             return view('backend.admin.index',
                 compact('admins'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/dashboard')->with('error', __('messages.wrong'));
         }
@@ -58,7 +58,7 @@ class AdminController extends Controller
         try {
             return view('backend.admin.create');
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/dashboard')->with('error', __('messages.wrong'));
         }
@@ -76,7 +76,7 @@ class AdminController extends Controller
             $service->make($request);
             return redirect('backend/admin')->with('success', __('messages.success'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/admin')->with('error', __('messages.wrong'));
         }
@@ -95,7 +95,7 @@ class AdminController extends Controller
             return view('backend.admin.show',
                 compact('data'));
         } catch (\Exception $exception) {
-//            dd($exception);
+//
             logger()->error($exception);
             return redirect('backend/dashboard')->with('error', __('messages.wrong'));
         }

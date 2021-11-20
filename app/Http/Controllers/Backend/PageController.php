@@ -34,7 +34,7 @@ class PageController extends Controller
             return view('backend.page.edit',
                 compact('pages'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', Lang::get('messages.wrong'));
         }
@@ -50,7 +50,7 @@ class PageController extends Controller
         try {
             return view('backend.message.create');
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', Lang::get('messages.wrong'));
         }
@@ -72,7 +72,7 @@ class PageController extends Controller
             $this->model->create($data);
             return redirect('backend/message')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', Lang::get('messages.wrong'));
         }
@@ -91,7 +91,7 @@ class PageController extends Controller
             return view('backend.message.show',
                 compact('data'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', Lang::get('messages.wrong'));
         }
@@ -111,7 +111,7 @@ class PageController extends Controller
 
             return view('backend.message.edit', compact('pages'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/message')->with('error', Lang::get('messages.wrong'));
         }

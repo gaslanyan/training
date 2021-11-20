@@ -58,7 +58,7 @@ class LoginController extends Controller
             }
         } catch (\Exception $exception) {
 
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend')->with('error',
                 Lang::get('messages.wrong'));

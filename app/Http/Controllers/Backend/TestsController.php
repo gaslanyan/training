@@ -94,7 +94,6 @@ class TestsController extends Controller
         ], $validation_message));
 
         if ($validator->fails()) {
-            dd($validator->getMessageBag());
             return redirect('backend/test/create')
                 ->withErrors($validator)
                 ->withInput();
@@ -109,7 +108,7 @@ class TestsController extends Controller
             $this->model->create($data);
             return redirect('backend/test')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/test')->with('error', Lang::get('messages.wrong'));
         }

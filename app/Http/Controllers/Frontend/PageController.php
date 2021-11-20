@@ -86,7 +86,7 @@ class PageController extends Controller
             }
 
         } catch (\Exception $exception) {
-           //dd($exception);
+           //
             logger()->error($exception);
             // return redirect('backend/courses')->with('error', Lang::get('messages.wrong'));
         }
@@ -121,7 +121,7 @@ class PageController extends Controller
               }
 
         } catch (\Exception $exception) {
-            dd($exception);
+
             logger()->error($exception);
             // return redirect('backend/courses')->with('error', Lang::get('messages.wrong'));
         }

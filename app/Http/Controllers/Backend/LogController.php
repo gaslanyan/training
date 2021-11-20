@@ -44,7 +44,7 @@ class LogController extends Controller
             return view('backend.log.index',
                 compact('logs'));
         } catch (ModelNotFoundException $exception) {
-            dd($exception);
+
             logger()->error($exception);
             return redirect('backend/log')->with('error', __('messages.wrong'));
         }
