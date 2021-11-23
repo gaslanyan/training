@@ -11,7 +11,12 @@ use App\Models\Videos;
 use App\Services\CourseService;
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-
+/**
+ * @group Course
+ *
+ * APIs for a course
+ * @package App\Http\Controllers\Frontend
+ */
 
 class CourseController extends Controller
 {
@@ -99,7 +104,20 @@ class CourseController extends Controller
         return response()->json(['data' => $courses, 'specialities' => $specialties_obj]);
     }
 
-
+    /**
+     * Check Course Test count
+     * get watched the test video or not
+     *
+     * @queryParam access_token token Example: token
+     * @queryParam id The course id to filter Example: 1
+     * @queryParam user_id The account id to filter Example: 2
+     *
+     *
+     * @response
+     * {
+     * "": 1||0 / true||false
+     * }
+     */
     public function finishedCount()
     {
         $isFinished = 1;
@@ -129,8 +147,7 @@ class CourseController extends Controller
                     }
                 }
             }
-        }
-        else
+        } else
             $isFinished = -1;
         return $isFinished;
     }

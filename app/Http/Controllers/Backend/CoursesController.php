@@ -211,7 +211,7 @@ class CoursesController extends Controller
                     File::makeDirectory($path, 0775, true, true);
                 }
 
-                $file->move($path, $image_name);
+                $image->move($path, $image_name);
             }
 
             if (!empty($file)) {
@@ -255,8 +255,7 @@ class CoursesController extends Controller
             $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
             $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
-            $cours['content'] = $request->content_data;
-
+            $cours['content'] = preg_replace('/<p data-f-id="pbf">.*<\/p>/i','', $request->content_data);
             $this->model->create($cours);
             return redirect('backend/course')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
@@ -339,8 +338,7 @@ class CoursesController extends Controller
                 if (!File::isDirectory($path)) {
                     File::makeDirectory($path, 0775, true, true);
                 }
-
-                $file->move($path, $image_name);
+                $image->move($path, $image_name);
             }
 
             if (!empty($file) || !empty($model->certificate)) {
@@ -387,7 +385,7 @@ class CoursesController extends Controller
             $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
             $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
-            $cours['content'] = $request->content_data;
+            $cours['content'] = preg_replace('/<p data-f-id="pbf">.*<\/p>/i','', $request->content_data);
             $this->model->update($cours, $id);
             return redirect('backend/course')->with('success', Lang::get('messages.updated'));
         } catch (\Exception $exception) {

@@ -224,7 +224,7 @@ class AccountCourseController extends Controller
      * "expires_in": 21600000
      * }
      */
-    public function certificate(Request $request)
+    public function (Request $request)
     {
 
         $account_name = Account::where('id', '=', $request->user_id)->first();
