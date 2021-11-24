@@ -108,14 +108,14 @@ class CourseController extends Controller
      * Check Course Test count
      * get watched the test video or not
      *
-     * @queryParam access_token token Example: token
-     * @queryParam id The course id to filter Example: 1
-     * @queryParam user_id The account id to filter Example: 2
+     * @queryParam access_token token. Example: token
+     * @queryParam id The course id to filter. Example: 1
+     * @queryParam user_id The account id to filter. Example: 2
      *
      *
      * @response
-     * {
-     * "": 1||0 / true||false
+     *{
+     * "": "1|0 true or false"
      * }
      */
     public function finishedCount()

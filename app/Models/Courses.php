@@ -99,7 +99,6 @@ class Courses extends Model implements JWTSubject
     }
 
     /**
-     * @param $image
      * @return string|null
      */
     public function getImageAttribute($value)

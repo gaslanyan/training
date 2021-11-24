@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "\u0532\u0548\u0552\u053a\u0531\u0547\u053d\u0531\u054f\u0548\u0542\u0546\u0535\u0550\u053b \u0547\u0531\u0550\u0548\u0552\u0546\u0531\u053f\u0531\u053f\u0531\u0546 \u0544\u0531\u054d\u0546\u0531\u0533\u053b\u054f\u0531\u053f\u0531\u0546 \u0536\u0531\u0550\u0533\u0531\u0551\u0544\u0531\u0546 \u053f\u0535\u0546\u054f\u0550\u0548\u0546 API",
-        "_postman_id": "75a6c0db-1be0-4e0c-9e75-e7bd6627c8b0",
+        "_postman_id": "9b0eaaab-0989-4ec8-aed8-e45268d8f672",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -77,7 +77,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "dolore",
+                                    "value": "sit",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -130,7 +130,7 @@
                             "query": [
                                 {
                                     "key": "ClientID",
-                                    "value": "est",
+                                    "value": "consequuntur",
                                     "description": "The client ID Example:",
                                     "disabled": false
                                 },
@@ -303,7 +303,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "voluptas",
+                                    "value": "nam",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -409,7 +409,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "deleniti",
+                                    "value": "rerum",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -456,7 +456,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "illum",
+                                    "value": "fuga",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -641,7 +641,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "sit",
+                                    "value": "commodi",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -760,7 +760,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "qui",
+                                    "value": "commodi",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -1041,19 +1041,19 @@
                                 {
                                     "key": "access_token",
                                     "value": "token",
-                                    "description": "token",
+                                    "description": "token.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "id",
                                     "value": "1",
-                                    "description": "The course id to filter",
+                                    "description": "The course id to filter.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "user_id",
                                     "value": "2",
-                                    "description": "The account id to filter",
+                                    "description": "The account id to filter.",
                                     "disabled": false
                                 }
                             ]
@@ -1431,37 +1431,37 @@
                                 },
                                 {
                                     "key": "w_street",
-                                    "value": "accusamus",
+                                    "value": "dolores",
                                     "description": "The work street name \"\u0570\u056b\u0574\u0576\u0561\u056f\u0561\u0576 7\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "w_territory",
-                                    "value": "inventore",
+                                    "value": "velit",
                                     "description": "The work territory id \"145\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "workplace_name",
-                                    "value": "quis",
+                                    "value": "laudantium",
                                     "description": "The work place name \"\u057a\u0578\u056c\u056b\u056f\u0576\u056b\u056f\u0561\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "specialty_id",
-                                    "value": "praesentium",
+                                    "value": "laborum",
                                     "description": "\u053f\u0580\u0569\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568  \"30\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "education_id",
-                                    "value": "dignissimos",
+                                    "value": "reprehenderit",
                                     "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u0581\u0578\u0582\u0574\u0568 \"7\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "profession",
-                                    "value": "magni",
+                                    "value": "sit",
                                     "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u056d\u0578\u0582\u0574\u0562\u0568 \"3\",",
                                     "disabled": false
                                 }

@@ -65,7 +65,20 @@ class AccountCourseController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
-
+    /**
+     * Check Course Test count
+     * get watched the test video or not
+     *
+     * @queryParam access_token token. Example: token
+     * @queryParam id The course id to filter. Example: 1
+     * @queryParam user_id The account id to filter. Example: 2
+     *
+     *
+     * @response
+     *{
+     * "": "1|0 true or false"
+     * }
+     */
     function getTestsResult()
     {
         try {
@@ -217,14 +230,12 @@ class AccountCourseController extends Controller
      * @queryParam user_id The account id to filter Example: 2
      *
      * @response
-     * {
-     * "data":"img name.png"
-     * "access_token": ""
-     * "token_type": "bearer",
-     * "expires_in": 21600000
+     *{
+     * "data": "img name.png",
+     * "token_type": "bearer"
      * }
      */
-    public function (Request $request)
+    public function certificate(Request $request)
     {
 
         $account_name = Account::where('id', '=', $request->user_id)->first();

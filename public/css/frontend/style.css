@@ -91,6 +91,11 @@ body {
     padding-top: 20px;
 }
 
+.view-video{
+    height: 400px;
+    margin-top:15px;
+}
+
 .course_details_carousel {
     width: 80%;
     display: flex;

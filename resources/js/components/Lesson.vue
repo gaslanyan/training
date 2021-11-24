@@ -54,7 +54,7 @@
                             </div>
                         </router-link>
                         <!-- single course -->
-                        <div class="row" v-if="currentUser">
+                        <div v-if="currentUser">
                             <div class="col-lg-12 col-md-12">
                                 <div class="single_course">
                                     <div class="course_content">

@@ -110,7 +110,7 @@ if answer the checkbox, then true ex: 2_3: true, or radio button then answers nu
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/getresult?access_token=omnis&model=%7B1_2%3A+2%2C+1_3%3A+3%2C+2_2%3A+true%2C+2_3%3A+true%2C+3_2%3A+true%2C+3_3%3A+true%2C+4_1%3A+true%2C+4_2%3A+true%2C+5_2%3A+true%7D&user_id=2&course_id=1" \
+    "https://training.gtech.am/api/auth/getresult?access_token=sit&model=%7B1_2%3A+2%2C+1_3%3A+3%2C+2_2%3A+true%2C+2_3%3A+true%2C+3_2%3A+true%2C+3_3%3A+true%2C+4_1%3A+true%2C+4_2%3A+true%2C+5_2%3A+true%7D&user_id=2&course_id=1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -121,7 +121,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "omnis",
+    "access_token": "sit",
     "model": "{1_2: 2, 1_3: 3, 2_2: true, 2_3: true, 3_2: true, 3_3: true, 4_1: true, 4_2: true, 5_2: true}",
     "user_id": "2",
     "course_id": "1",
@@ -177,7 +177,7 @@ important for mobile --- send account_id, course_id, token, mobile=true
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/payment?ClientID=ut&Username=username&Password=password&Currency=AMD&Description=SHMZ&Amount=10&OrderID=AMD&BackURL=https%3A%2F%2Fwww.shmz.am%2Flesson&Opaque=Opaque+VPOS&CardHolderID=CARD+VPOS" \
+    "https://training.gtech.am/api/auth/payment?ClientID=consequuntur&Username=username&Password=password&Currency=AMD&Description=SHMZ&Amount=10&OrderID=AMD&BackURL=https%3A%2F%2Fwww.shmz.am%2Flesson&Opaque=Opaque+VPOS&CardHolderID=CARD+VPOS" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -188,7 +188,7 @@ const url = new URL(
 );
 
 let params = {
-    "ClientID": "ut",
+    "ClientID": "consequuntur",
     "Username": "username",
     "Password": "password",
     "Currency": "AMD",
@@ -366,7 +366,7 @@ get the result by test
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/addpoint?access_token=facere&point=7.199989&user_id=2&id=3" \
+    "https://training.gtech.am/api/auth/addpoint?access_token=nam&point=7.199989&user_id=2&id=3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -377,7 +377,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "facere",
+    "access_token": "nam",
     "point": "7.199989",
     "user_id": "2",
     "id": "3",
@@ -423,12 +423,14 @@ Parameter | Status | Description
 <!-- END_3161a5db305df380d0f557d871301305 -->
 
 <!-- START_424dd09a003bf3d070fdd381e318111b -->
-## api/auth/certificate
+## Certificate
+get certificate by test id
+
 > Example request:
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/certificate" \
+    "https://training.gtech.am/api/auth/certificate?access_token=token&id=1&user_id=2" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -437,6 +439,14 @@ curl -X POST \
 const url = new URL(
     "https://training.gtech.am/api/auth/certificate"
 );
+
+let params = {
+    "access_token": "token",
+    "id": "1",
+    "user_id": "2",
+};
+Object.keys(params)
+    .forEach(key => url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -452,10 +462,25 @@ fetch(url, {
 ```
 
 
+> Example response (200):
+
+```json
+{
+    "data": "img name.png",
+    "token_type": "bearer"
+}
+```
 
 ### HTTP Request
 `POST api/auth/certificate`
 
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    `access_token` |  optional  | token
+    `id` |  optional  | The test id to filter
+    `user_id` |  optional  | The account id to filter
 
 <!-- END_424dd09a003bf3d070fdd381e318111b -->
 
@@ -472,7 +497,7 @@ change avatar by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/avatar/1?access_token=blanditiis&avatar=%22%28binary%29%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/avatar/1?access_token=rerum&avatar=%22%28binary%29%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -483,7 +508,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "blanditiis",
+    "access_token": "rerum",
     "avatar": ""(binary)"",
     "_method": "PUT",
 };
@@ -536,7 +561,7 @@ edit profile by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/approve/1?access_token=sapiente&name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&member_of_palace=%220%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/approve/1?access_token=fuga&name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&member_of_palace=%220%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -547,7 +572,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "sapiente",
+    "access_token": "fuga",
     "name": ""name"",
     "surname": ""surname"",
     "father_name": ""father_name"",
@@ -773,7 +798,7 @@ edit profile by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/edit/1?access_token=est&phone=%2293656565%22&bday=%222022-06-13%22&workplace_name=%22name%22&h_region=%222%22&w_region=%222%22&h_territory=%222%22&w_territory=%222%22&w_street=%22name%22&h_street=%22name%22&profession=%220%22&specialty_id=%2230%22&education_id=%223%22&info=%22%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/edit/1?access_token=commodi&phone=%2293656565%22&bday=%222022-06-13%22&workplace_name=%22name%22&h_region=%222%22&w_region=%222%22&h_territory=%222%22&w_territory=%222%22&w_street=%22name%22&h_street=%22name%22&profession=%220%22&specialty_id=%2230%22&education_id=%223%22&info=%22%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -784,7 +809,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "est",
+    "access_token": "commodi",
     "phone": ""93656565"",
     "bday": ""2022-06-13"",
     "workplace_name": ""name"",
@@ -862,7 +887,7 @@ change password by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/changePass/1?access_token=ipsum&old_password=%22111111111%22&password=%226666666%22&re-password=%226666666%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/changePass/1?access_token=commodi&old_password=%22111111111%22&password=%226666666%22&re-password=%226666666%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -873,7 +898,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "ipsum",
+    "access_token": "commodi",
     "old_password": ""111111111"",
     "password": ""6666666"",
     "re-password": ""6666666"",
@@ -1207,6 +1232,215 @@ fetch(url, {
 
 <!-- END_a437d75ef646b50af992896c66563c68 -->
 
+<!-- START_a404ad2680ae39b37bf51a3f1dd26c95 -->
+## Check Course Test count
+get watched the test video or not
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/auth/finishedvideo?access_token=token&id=1&user_id=2" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/auth/finishedvideo"
+);
+
+let params = {
+    "access_token": "token",
+    "id": "1",
+    "user_id": "2",
+};
+Object.keys(params)
+    .forEach(key => url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "": "1|0 true or false"
+}
+```
+
+### HTTP Request
+`POST api/auth/finishedvideo`
+
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    `access_token` |  optional  | token.
+    `id` |  optional  | The course id to filter.
+    `user_id` |  optional  | The account id to filter.
+
+<!-- END_a404ad2680ae39b37bf51a3f1dd26c95 -->
+
+<!-- START_8fc2e53df93fe611de1d3519d04fae69 -->
+## api/allcourses
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/allcourses" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/allcourses"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/allcourses`
+
+
+<!-- END_8fc2e53df93fe611de1d3519d04fae69 -->
+
+<!-- START_ef1943c162e0d7f81b61ecdb44d4713e -->
+## api/courseinfo
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/courseinfo" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/courseinfo"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/courseinfo`
+
+
+<!-- END_ef1943c162e0d7f81b61ecdb44d4713e -->
+
+<!-- START_a6744504741d554f6a457928554be41e -->
+## api/getcoursebyprof
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/getcoursebyprof" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/getcoursebyprof"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/getcoursebyprof`
+
+
+<!-- END_a6744504741d554f6a457928554be41e -->
+
+<!-- START_519c11c4aad1151b7af3151a2d6d8a0d -->
+## api/getcoursebyid
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/api/getcoursebyid" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/api/getcoursebyid"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/getcoursebyid`
+
+
+<!-- END_519c11c4aad1151b7af3151a2d6d8a0d -->
+
 #Front page
 
 
@@ -1396,7 +1630,7 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/register?name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&re_passport=%22AN0771747%22&member_of_palace=%220%22&bday=%221978-09-13%22%2C&email=%22g_aslanyan%40mail.ru%22%2C&phone=%2293610174%22%2C&h_region=%223%22%2C&h_street=%22%D5%B0%D5%AB%D5%B4%D5%B6%D5%A1%D5%AF%D5%A1%D5%B6+7%22%2C&h_territory=%22145%22%2C&w_region=%223%22%2C&w_street=enim&w_territory=ea&workplace_name=ut&specialty_id=odio&education_id=praesentium&profession=error" \
+    "https://training.gtech.am/api/auth/register?name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&re_passport=%22AN0771747%22&member_of_palace=%220%22&bday=%221978-09-13%22%2C&email=%22g_aslanyan%40mail.ru%22%2C&phone=%2293610174%22%2C&h_region=%223%22%2C&h_street=%22%D5%B0%D5%AB%D5%B4%D5%B6%D5%A1%D5%AF%D5%A1%D5%B6+7%22%2C&h_territory=%22145%22%2C&w_region=%223%22%2C&w_street=dolores&w_territory=velit&workplace_name=laudantium&specialty_id=laborum&education_id=reprehenderit&profession=sit" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -1425,12 +1659,12 @@ let params = {
     "h_street": ""հիմնական 7",",
     "h_territory": ""145",",
     "w_region": ""3",",
-    "w_street": "enim",
-    "w_territory": "ea",
-    "workplace_name": "ut",
-    "specialty_id": "odio",
-    "education_id": "praesentium",
-    "profession": "error",
+    "w_street": "dolores",
+    "w_territory": "velit",
+    "workplace_name": "laudantium",
+    "specialty_id": "laborum",
+    "education_id": "reprehenderit",
+    "profession": "sit",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -1682,43 +1916,6 @@ fetch(url, {
 
 <!-- END_a47210337df3b4ba0df697c115ba0c1e -->
 
-<!-- START_a404ad2680ae39b37bf51a3f1dd26c95 -->
-## api/auth/finishedvideo
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/auth/finishedvideo" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/finishedvideo"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/auth/finishedvideo`
-
-
-<!-- END_a404ad2680ae39b37bf51a3f1dd26c95 -->
-
 <!-- START_1f26a7d3b191a04ab9c1bc160deb8481 -->
 ## api/about
 > Example request:
@@ -1904,43 +2101,6 @@ fetch(url, {
 
 <!-- END_efff75ed7db70dd218b420c2474e811b -->
 
-<!-- START_8fc2e53df93fe611de1d3519d04fae69 -->
-## api/allcourses
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/allcourses" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/allcourses"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/allcourses`
-
-
-<!-- END_8fc2e53df93fe611de1d3519d04fae69 -->
-
 <!-- START_e795fade4d25e2473e7fd22cababfe99 -->
 ## api/comment
 > Example request:
@@ -2014,43 +2174,6 @@ fetch(url, {
 
 
 <!-- END_8dc73d45daa776ebe968a06c2e353bdc -->
-
-<!-- START_ef1943c162e0d7f81b61ecdb44d4713e -->
-## api/courseinfo
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/courseinfo" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/courseinfo"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/courseinfo`
-
-
-<!-- END_ef1943c162e0d7f81b61ecdb44d4713e -->
 
 <!-- START_cd5946798b0d62ceae6a8f51f12d8234 -->
 ## Display a listing of the resource.
@@ -2203,80 +2326,6 @@ fetch(url, {
 
 
 <!-- END_785f30eaa5561b9f7ece59c2d9ce76bc -->
-
-<!-- START_a6744504741d554f6a457928554be41e -->
-## api/getcoursebyprof
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/getcoursebyprof" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/getcoursebyprof"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/getcoursebyprof`
-
-
-<!-- END_a6744504741d554f6a457928554be41e -->
-
-<!-- START_519c11c4aad1151b7af3151a2d6d8a0d -->
-## api/getcoursebyid
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/getcoursebyid" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/getcoursebyid"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST api/getcoursebyid`
-
-
-<!-- END_519c11c4aad1151b7af3151a2d6d8a0d -->
 
 <!-- START_f453d442cbe270ed50c2def3a3416115 -->
 ## about
@@ -2848,49 +2897,6 @@ fetch(url, {
 
 <!-- END_54462d3613f2262e741142161c0e6fea -->
 
-<!-- START_adb100bcc5e3d38618f830ef694ef08c -->
-## Display the form to request a password reset link.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/password/request" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/password/request"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (200):
-
-```json
-null
-```
-
-### HTTP Request
-`GET backend/password/request`
-
-
-<!-- END_adb100bcc5e3d38618f830ef694ef08c -->
-
 <!-- START_aac2e293e378fa4e8200ea33bcf36f46 -->
 ## Where to redirect users after login.
 
@@ -3092,6 +3098,49 @@ fetch(url, {
 
 
 <!-- END_f3525b40972553430438f6663a856786 -->
+
+<!-- START_adb100bcc5e3d38618f830ef694ef08c -->
+## Display the form to request a password reset link.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/backend/password/request" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/backend/password/request"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET backend/password/request`
+
+
+<!-- END_adb100bcc5e3d38618f830ef694ef08c -->
 
 <!-- START_9f18aa1898ab33efad43015e3e96e2ee -->
 ## backend/dashboard
@@ -3787,43 +3836,6 @@ fetch(url, {
 
 <!-- END_d513eef5f8ebfe7a3b2b4d8e1e638573 -->
 
-<!-- START_19ffe74e66a39b2a5730fcd928b750db -->
-## delete-video
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/delete-video" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/delete-video"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST delete-video`
-
-
-<!-- END_19ffe74e66a39b2a5730fcd928b750db -->
-
 <!-- START_05dec41742b1fc2c98bf97b7a2ef078c -->
 ## Update the specified resource in storage.
 
@@ -3989,43 +4001,6 @@ fetch(url, {
 
 
 <!-- END_3c28362f2f30e8b91b0e301546626fbf -->
-
-<!-- START_247284710b888b31084fcf6fe37bdc41 -->
-## delete-image
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/delete-image" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/delete-image"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST delete-image`
-
-
-<!-- END_247284710b888b31084fcf6fe37bdc41 -->
 
 <!-- START_a7d77a77cd96fecff4508a540ed86fdd -->
 ## Display a listing of the resource.
@@ -4678,6 +4653,94 @@ fetch(url, {
 
 
 <!-- END_839010f00cf379f64bd5d93824a985c5 -->
+
+<!-- START_d05e5f71cf91bdc6b2ccdc04ac6a82de -->
+## backend/course/result
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/backend/course/result" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/backend/course/result"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+### HTTP Request
+`GET backend/course/result`
+
+
+<!-- END_d05e5f71cf91bdc6b2ccdc04ac6a82de -->
+
+<!-- START_181c60cec752fd46b8d9b8560dc7cfba -->
+## backend/course/result-speciality
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/backend/course/result-speciality" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/backend/course/result-speciality"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+### HTTP Request
+`GET backend/course/result-speciality`
+
+
+<!-- END_181c60cec752fd46b8d9b8560dc7cfba -->
 
 <!-- START_8f687ea9b54425bd92e779f1d7acc11b -->
 ## Display a listing of the resource.
@@ -6342,20 +6405,20 @@ fetch(url, {
 
 <!-- END_6a0de9e0ee3fc61d3617eee7984b24cd -->
 
-<!-- START_08472b7cb1a128f829319c8377570dd6 -->
-## backend/test/getCourses
+<!-- START_26c055ba7624ce9f55fcba29bbc8497b -->
+## test/getCourses
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "https://training.gtech.am/backend/test/getCourses" \
+    -G "https://training.gtech.am/test/getCourses" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test/getCourses"
+    "https://training.gtech.am/test/getCourses"
 );
 
 let headers = {
@@ -6372,34 +6435,32 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
-{
-    "message": "Unauthenticated."
-}
+null
 ```
 
 ### HTTP Request
-`GET backend/test/getCourses`
+`GET test/getCourses`
 
 
-<!-- END_08472b7cb1a128f829319c8377570dd6 -->
+<!-- END_26c055ba7624ce9f55fcba29bbc8497b -->
 
-<!-- START_796eac85706d45beb39f1ea59795f90e -->
-## backend/test
+<!-- START_c1aa27515bf03f12d5698af59e31585a -->
+## test
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "https://training.gtech.am/backend/test" \
+    -G "https://training.gtech.am/test" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test"
+    "https://training.gtech.am/test"
 );
 
 let headers = {
@@ -6416,34 +6477,32 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
-{
-    "message": "Unauthenticated."
-}
+null
 ```
 
 ### HTTP Request
-`GET backend/test`
+`GET test`
 
 
-<!-- END_796eac85706d45beb39f1ea59795f90e -->
+<!-- END_c1aa27515bf03f12d5698af59e31585a -->
 
-<!-- START_b3b2b506f612838cccdf7d22cfaa00d2 -->
-## backend/test/create
+<!-- START_02540a8edc609a5a314226b37dab9872 -->
+## test/create
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "https://training.gtech.am/backend/test/create" \
+    -G "https://training.gtech.am/test/create" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test/create"
+    "https://training.gtech.am/test/create"
 );
 
 let headers = {
@@ -6460,34 +6519,32 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
-{
-    "message": "Unauthenticated."
-}
+null
 ```
 
 ### HTTP Request
-`GET backend/test/create`
+`GET test/create`
 
 
-<!-- END_b3b2b506f612838cccdf7d22cfaa00d2 -->
+<!-- END_02540a8edc609a5a314226b37dab9872 -->
 
-<!-- START_c906784fda5665b5c7ad54574bde291b -->
-## backend/test
+<!-- START_7132fd4af5f56c29675526f8ecf4206c -->
+## test
 > Example request:
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/backend/test" \
+    "https://training.gtech.am/test" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test"
+    "https://training.gtech.am/test"
 );
 
 let headers = {
@@ -6506,25 +6563,25 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST backend/test`
+`POST test`
 
 
-<!-- END_c906784fda5665b5c7ad54574bde291b -->
+<!-- END_7132fd4af5f56c29675526f8ecf4206c -->
 
-<!-- START_54ca86590fda22a1677d54f782538546 -->
-## backend/test/{test}/edit
+<!-- START_2de5d5aceb76f5a4496931ef12597b15 -->
+## test/{test}/edit
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "https://training.gtech.am/backend/test/1/edit" \
+    -G "https://training.gtech.am/test/1/edit" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test/1/edit"
+    "https://training.gtech.am/test/1/edit"
 );
 
 let headers = {
@@ -6541,34 +6598,32 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
-{
-    "message": "Unauthenticated."
-}
+null
 ```
 
 ### HTTP Request
-`GET backend/test/{test}/edit`
+`GET test/{test}/edit`
 
 
-<!-- END_54ca86590fda22a1677d54f782538546 -->
+<!-- END_2de5d5aceb76f5a4496931ef12597b15 -->
 
-<!-- START_68126e2639026a0662e2263bebe7ee51 -->
-## backend/test/{test}
+<!-- START_9c0bc0085cc87c9a767b44635846ee3e -->
+## test/{test}
 > Example request:
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/backend/test/1" \
+    "https://training.gtech.am/test/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test/1"
+    "https://training.gtech.am/test/1"
 );
 
 let headers = {
@@ -6587,27 +6642,27 @@ fetch(url, {
 
 
 ### HTTP Request
-`PUT backend/test/{test}`
+`PUT test/{test}`
 
-`PATCH backend/test/{test}`
+`PATCH test/{test}`
 
 
-<!-- END_68126e2639026a0662e2263bebe7ee51 -->
+<!-- END_9c0bc0085cc87c9a767b44635846ee3e -->
 
-<!-- START_2faa24756d0aa8ef82285d159aa56b08 -->
-## backend/test/{test}
+<!-- START_8031bb235c7296066d140241c4bd0c5a -->
+## test/{test}
 > Example request:
 
 ```bash
 curl -X DELETE \
-    "https://training.gtech.am/backend/test/1" \
+    "https://training.gtech.am/test/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test/1"
+    "https://training.gtech.am/test/1"
 );
 
 let headers = {
@@ -6626,25 +6681,25 @@ fetch(url, {
 
 
 ### HTTP Request
-`DELETE backend/test/{test}`
+`DELETE test/{test}`
 
 
-<!-- END_2faa24756d0aa8ef82285d159aa56b08 -->
+<!-- END_8031bb235c7296066d140241c4bd0c5a -->
 
-<!-- START_57a2747dc6ac8c254238a0708f3b0dbe -->
-## backend/test/{id}
+<!-- START_ce19587bbf8c6ead41418d3c13e4a046 -->
+## test/{id}
 > Example request:
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/backend/test/1" \
+    "https://training.gtech.am/test/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "https://training.gtech.am/backend/test/1"
+    "https://training.gtech.am/test/1"
 );
 
 let headers = {
@@ -6663,10 +6718,10 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST backend/test/{id}`
+`POST test/{id}`
 
 
-<!-- END_57a2747dc6ac8c254238a0708f3b0dbe -->
+<!-- END_ce19587bbf8c6ead41418d3c13e4a046 -->
 
 <!-- START_ebecb9ce717122705fd7cc137773c186 -->
 ## territory
@@ -6704,6 +6759,1380 @@ fetch(url, {
 
 
 <!-- END_ebecb9ce717122705fd7cc137773c186 -->
+
+<!-- START_232c1f249f32a1935117a74e61939f0a -->
+## specialtyCheck
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/specialtyCheck" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/specialtyCheck"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST specialtyCheck`
+
+
+<!-- END_232c1f249f32a1935117a74e61939f0a -->
+
+<!-- START_29bbb7b8c0bf6bfb56c255010f276f34 -->
+## ajaxImageUpload
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/ajaxImageUpload" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/ajaxImageUpload"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST ajaxImageUpload`
+
+
+<!-- END_29bbb7b8c0bf6bfb56c255010f276f34 -->
+
+<!-- START_bea9dd6a2edb797c995ba14427b874a1 -->
+## ajaxRemoveImage
+> Example request:
+
+```bash
+curl -X DELETE \
+    "https://training.gtech.am/ajaxRemoveImage" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/ajaxRemoveImage"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE ajaxRemoveImage`
+
+
+<!-- END_bea9dd6a2edb797c995ba14427b874a1 -->
+
+<!-- START_cdb9d105051f344660fdcdba70d4c6c5 -->
+## typeCheck
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/typeCheck" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/typeCheck"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST typeCheck`
+
+
+<!-- END_cdb9d105051f344660fdcdba70d4c6c5 -->
+
+<!-- START_e14b5e0eae7c6a1147f1f179bc73d6b8 -->
+## specialty/list
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/specialty/list" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/specialty/list"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET specialty/list`
+
+
+<!-- END_e14b5e0eae7c6a1147f1f179bc73d6b8 -->
+
+<!-- START_38a1ab74eea98c018efd5149ed85ef7c -->
+## Display a listing of the resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/specialty" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/specialty"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET specialty`
+
+
+<!-- END_38a1ab74eea98c018efd5149ed85ef7c -->
+
+<!-- START_b3cf8cb1271c79009526625041808138 -->
+## Show the form for creating a new resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/specialty/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/specialty/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET specialty/create`
+
+
+<!-- END_b3cf8cb1271c79009526625041808138 -->
+
+<!-- START_a253d111e60f82be3307b9fa014ff014 -->
+## Display the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/specialty/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/specialty/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET specialty/{specialty}`
+
+
+<!-- END_a253d111e60f82be3307b9fa014ff014 -->
+
+<!-- START_ba4694734f7d1a767c1f8a414d1b3337 -->
+## Remove the specified resource from storage.
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "https://training.gtech.am/specialty/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/specialty/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE specialty/{specialty}`
+
+
+<!-- END_ba4694734f7d1a767c1f8a414d1b3337 -->
+
+<!-- START_0b50eedcba418efccbd6d6bd4a854fbf -->
+## Display a listing of the resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/pages" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/pages"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET pages`
+
+
+<!-- END_0b50eedcba418efccbd6d6bd4a854fbf -->
+
+<!-- START_8a60b4754cbd2227557eca9e2d3feb87 -->
+## Show the form for creating a new resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/pages/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/pages/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET pages/create`
+
+
+<!-- END_8a60b4754cbd2227557eca9e2d3feb87 -->
+
+<!-- START_0125370d1ef8c56d7cbcf2f6b0c412f0 -->
+## Store a newly created resource in storage.
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/pages" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/pages"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST pages`
+
+
+<!-- END_0125370d1ef8c56d7cbcf2f6b0c412f0 -->
+
+<!-- START_0a443f82a8cafd7d0b372f7db7619236 -->
+## Display the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/pages/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/pages/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET pages/{page}`
+
+
+<!-- END_0a443f82a8cafd7d0b372f7db7619236 -->
+
+<!-- START_83dea3193588f66f4ce30488641bacdf -->
+## Show the form for editing the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/pages/1/edit" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/pages/1/edit"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET pages/{page}/edit`
+
+
+<!-- END_83dea3193588f66f4ce30488641bacdf -->
+
+<!-- START_8a86bab0f64706deb73542f8ff2118ec -->
+## Update the specified resource in storage.
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "https://training.gtech.am/pages/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/pages/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PUT pages/{page}`
+
+`PATCH pages/{page}`
+
+
+<!-- END_8a86bab0f64706deb73542f8ff2118ec -->
+
+<!-- START_a0f9c3cf938a173796b4eabccf7573d0 -->
+## Remove the specified resource from storage.
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "https://training.gtech.am/pages/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/pages/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE pages/{page}`
+
+
+<!-- END_a0f9c3cf938a173796b4eabccf7573d0 -->
+
+<!-- START_d728f2176d9cdd509e70b4addfa59568 -->
+## Display a listing of the resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/comments" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/comments"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET comments`
+
+
+<!-- END_d728f2176d9cdd509e70b4addfa59568 -->
+
+<!-- START_1b00d25d48d0ffecbd7666826bca1161 -->
+## Show the form for creating a new resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/comments/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/comments/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET comments/create`
+
+
+<!-- END_1b00d25d48d0ffecbd7666826bca1161 -->
+
+<!-- START_dbbdec5432271c7207f66a514c3d40f3 -->
+## Store a newly created resource in storage.
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/comments" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/comments"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST comments`
+
+
+<!-- END_dbbdec5432271c7207f66a514c3d40f3 -->
+
+<!-- START_4b70241db734b6750c3cf375d7fb7f3d -->
+## Display the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/comments/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/comments/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET comments/{comment}`
+
+
+<!-- END_4b70241db734b6750c3cf375d7fb7f3d -->
+
+<!-- START_2214a0a6ed2bbd597061f5bac09eba14 -->
+## Show the form for editing the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/comments/1/edit" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/comments/1/edit"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET comments/{comment}/edit`
+
+
+<!-- END_2214a0a6ed2bbd597061f5bac09eba14 -->
+
+<!-- START_d77a52a1ec0772eb16f009b222565815 -->
+## Update the specified resource in storage.
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "https://training.gtech.am/comments/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/comments/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PUT comments/{comment}`
+
+`PATCH comments/{comment}`
+
+
+<!-- END_d77a52a1ec0772eb16f009b222565815 -->
+
+<!-- START_4be6c9e6ba186c0d21ea11a3179908f0 -->
+## Remove the specified resource from storage.
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "https://training.gtech.am/comments/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/comments/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE comments/{comment}`
+
+
+<!-- END_4be6c9e6ba186c0d21ea11a3179908f0 -->
+
+<!-- START_0af9fab88fd7253ac8ccee578f299141 -->
+## Display a listing of the resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/payments" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/payments"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET payments`
+
+
+<!-- END_0af9fab88fd7253ac8ccee578f299141 -->
+
+<!-- START_bee5c0ed5b4d16d42fc0347401ec39e5 -->
+## Show the form for creating a new resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/payments/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/payments/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET payments/create`
+
+
+<!-- END_bee5c0ed5b4d16d42fc0347401ec39e5 -->
+
+<!-- START_8c8a1dbf0b7a7750e3c029f286ad53c5 -->
+## Store a newly created resource in storage.
+
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/payments" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/payments"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST payments`
+
+
+<!-- END_8c8a1dbf0b7a7750e3c029f286ad53c5 -->
+
+<!-- START_78f503fb9658b1ceadabc4775a31735e -->
+## Display the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/payments/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/payments/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET payments/{payment}`
+
+
+<!-- END_78f503fb9658b1ceadabc4775a31735e -->
+
+<!-- START_486913730c9e1a25de563202cfde3d0d -->
+## Show the form for editing the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/payments/1/edit" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/payments/1/edit"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET payments/{payment}/edit`
+
+
+<!-- END_486913730c9e1a25de563202cfde3d0d -->
+
+<!-- START_675c31be071655650d33175d7b59a834 -->
+## Update the specified resource in storage.
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "https://training.gtech.am/payments/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/payments/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PUT payments/{payment}`
+
+`PATCH payments/{payment}`
+
+
+<!-- END_675c31be071655650d33175d7b59a834 -->
+
+<!-- START_48199b0f0eae75aec5cf8f5dfc525b96 -->
+## Remove the specified resource from storage.
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "https://training.gtech.am/payments/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/payments/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE payments/{payment}`
+
+
+<!-- END_48199b0f0eae75aec5cf8f5dfc525b96 -->
+
+<!-- START_99cd2fc0467744403b501ad7ba6c0eaa -->
+## account/cancelPayment
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://training.gtech.am/account/cancelPayment" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/account/cancelPayment"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+null
+```
+
+### HTTP Request
+`GET account/cancelPayment`
+
+
+<!-- END_99cd2fc0467744403b501ad7ba6c0eaa -->
+
+<!-- START_19ffe74e66a39b2a5730fcd928b750db -->
+## delete-video
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/delete-video" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/delete-video"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST delete-video`
+
+
+<!-- END_19ffe74e66a39b2a5730fcd928b750db -->
+
+<!-- START_247284710b888b31084fcf6fe37bdc41 -->
+## delete-image
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/delete-image" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/delete-image"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST delete-image`
+
+
+<!-- END_247284710b888b31084fcf6fe37bdc41 -->
+
+<!-- START_8d4719da98b334b52782027f53f14284 -->
+## commentstatus
+> Example request:
+
+```bash
+curl -X POST \
+    "https://training.gtech.am/commentstatus" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "https://training.gtech.am/commentstatus"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST commentstatus`
+
+
+<!-- END_8d4719da98b334b52782027f53f14284 -->
 
 <!-- START_b05e7256bb53a26866857862adc89034 -->
 ## edu
@@ -6815,1370 +8244,5 @@ fetch(url, {
 
 
 <!-- END_1ad6a4828ce175d8c157be402ed7aade -->
-
-<!-- START_dfbf5b2d1bb09b083f482957075cd701 -->
-## backend/specialtyCheck
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/backend/specialtyCheck" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/specialtyCheck"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST backend/specialtyCheck`
-
-
-<!-- END_dfbf5b2d1bb09b083f482957075cd701 -->
-
-<!-- START_8e5bb4dc7f6898e46860065c9a728249 -->
-## backend/ajaxImageUpload
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/backend/ajaxImageUpload" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/ajaxImageUpload"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST backend/ajaxImageUpload`
-
-
-<!-- END_8e5bb4dc7f6898e46860065c9a728249 -->
-
-<!-- START_fd1c691995f9a989288a3b4a867435fd -->
-## backend/ajaxRemoveImage
-> Example request:
-
-```bash
-curl -X DELETE \
-    "https://training.gtech.am/backend/ajaxRemoveImage" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/ajaxRemoveImage"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`DELETE backend/ajaxRemoveImage`
-
-
-<!-- END_fd1c691995f9a989288a3b4a867435fd -->
-
-<!-- START_baad26f4cd96122e057183a3029d2978 -->
-## backend/typeCheck
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/backend/typeCheck" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/typeCheck"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST backend/typeCheck`
-
-
-<!-- END_baad26f4cd96122e057183a3029d2978 -->
-
-<!-- START_4a1b4ee2155a4c5e95793f02b8917910 -->
-## backend/specialty/list
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/specialty/list" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/specialty/list"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/specialty/list`
-
-
-<!-- END_4a1b4ee2155a4c5e95793f02b8917910 -->
-
-<!-- START_4156e5e3c3ddd3d740e7d57744065f89 -->
-## Display a listing of the resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/specialty" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/specialty"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/specialty`
-
-
-<!-- END_4156e5e3c3ddd3d740e7d57744065f89 -->
-
-<!-- START_eeee5327c11a4b78afb8ecdd0e2e87ff -->
-## Show the form for creating a new resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/specialty/create" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/specialty/create"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/specialty/create`
-
-
-<!-- END_eeee5327c11a4b78afb8ecdd0e2e87ff -->
-
-<!-- START_5264f304a7e6565bec0281f8f04926f5 -->
-## Store a newly created resource in storage.
-
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/backend/specialty" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/specialty"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST backend/specialty`
-
-
-<!-- END_5264f304a7e6565bec0281f8f04926f5 -->
-
-<!-- START_e0ae487a5dac5c20dd02fd06eb827ccf -->
-## Display the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/specialty/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/specialty/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/specialty/{specialty}`
-
-
-<!-- END_e0ae487a5dac5c20dd02fd06eb827ccf -->
-
-<!-- START_6f374d84c518ee0382063ef0d160e5f5 -->
-## Remove the specified resource from storage.
-
-> Example request:
-
-```bash
-curl -X DELETE \
-    "https://training.gtech.am/backend/specialty/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/specialty/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`DELETE backend/specialty/{specialty}`
-
-
-<!-- END_6f374d84c518ee0382063ef0d160e5f5 -->
-
-<!-- START_479ee017e99eea42b320477b89feac5d -->
-## Display a listing of the resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/pages" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/pages"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/pages`
-
-
-<!-- END_479ee017e99eea42b320477b89feac5d -->
-
-<!-- START_3705ac8ece5973216cb6eb44326f4db0 -->
-## Show the form for creating a new resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/pages/create" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/pages/create"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/pages/create`
-
-
-<!-- END_3705ac8ece5973216cb6eb44326f4db0 -->
-
-<!-- START_f009f4b2d4c366c37f5faf75141b8b2e -->
-## Store a newly created resource in storage.
-
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/backend/pages" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/pages"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST backend/pages`
-
-
-<!-- END_f009f4b2d4c366c37f5faf75141b8b2e -->
-
-<!-- START_a8c8b807f0d6bbcf8f36d74c9e8a9a90 -->
-## Display the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/pages/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/pages/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/pages/{page}`
-
-
-<!-- END_a8c8b807f0d6bbcf8f36d74c9e8a9a90 -->
-
-<!-- START_a07341c4279f6ebbb863c00d764fb08c -->
-## Show the form for editing the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/pages/1/edit" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/pages/1/edit"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/pages/{page}/edit`
-
-
-<!-- END_a07341c4279f6ebbb863c00d764fb08c -->
-
-<!-- START_fe31febb0de22af8e999d2c3cc29a8f9 -->
-## Update the specified resource in storage.
-
-> Example request:
-
-```bash
-curl -X PUT \
-    "https://training.gtech.am/backend/pages/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/pages/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT backend/pages/{page}`
-
-`PATCH backend/pages/{page}`
-
-
-<!-- END_fe31febb0de22af8e999d2c3cc29a8f9 -->
-
-<!-- START_690982804da1a3e6a4ab5953d6784bb1 -->
-## Remove the specified resource from storage.
-
-> Example request:
-
-```bash
-curl -X DELETE \
-    "https://training.gtech.am/backend/pages/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/pages/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`DELETE backend/pages/{page}`
-
-
-<!-- END_690982804da1a3e6a4ab5953d6784bb1 -->
-
-<!-- START_aea09b4625d5e1b7d4693365733a8ef9 -->
-## Display a listing of the resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/comments" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/comments"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (500):
-
-```json
-{
-    "message": "Server Error"
-}
-```
-
-### HTTP Request
-`GET backend/comments`
-
-
-<!-- END_aea09b4625d5e1b7d4693365733a8ef9 -->
-
-<!-- START_856437a8ef23ce97beb2dfc9df4c8b95 -->
-## Show the form for creating a new resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/comments/create" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/comments/create"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`GET backend/comments/create`
-
-
-<!-- END_856437a8ef23ce97beb2dfc9df4c8b95 -->
-
-<!-- START_1daa9a2329b598220d2f3aa8d2160946 -->
-## Store a newly created resource in storage.
-
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/backend/comments" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/comments"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST backend/comments`
-
-
-<!-- END_1daa9a2329b598220d2f3aa8d2160946 -->
-
-<!-- START_d15242b67488df7d67a466e531a67620 -->
-## Display the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/comments/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/comments/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (500):
-
-```json
-{
-    "message": "Server Error"
-}
-```
-
-### HTTP Request
-`GET backend/comments/{comment}`
-
-
-<!-- END_d15242b67488df7d67a466e531a67620 -->
-
-<!-- START_9f9820f207fbecbc0bffbd46fd3fcfbc -->
-## Show the form for editing the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/comments/1/edit" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/comments/1/edit"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (500):
-
-```json
-{
-    "message": "Server Error"
-}
-```
-
-### HTTP Request
-`GET backend/comments/{comment}/edit`
-
-
-<!-- END_9f9820f207fbecbc0bffbd46fd3fcfbc -->
-
-<!-- START_2e72efddaa10b3599fe1c8750066811e -->
-## Update the specified resource in storage.
-
-> Example request:
-
-```bash
-curl -X PUT \
-    "https://training.gtech.am/backend/comments/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/comments/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT backend/comments/{comment}`
-
-`PATCH backend/comments/{comment}`
-
-
-<!-- END_2e72efddaa10b3599fe1c8750066811e -->
-
-<!-- START_a609de799e595ac6bc1a228ee94a6d64 -->
-## Remove the specified resource from storage.
-
-> Example request:
-
-```bash
-curl -X DELETE \
-    "https://training.gtech.am/backend/comments/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/comments/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`DELETE backend/comments/{comment}`
-
-
-<!-- END_a609de799e595ac6bc1a228ee94a6d64 -->
-
-<!-- START_adf3c444f41d3cf4307e2daa1f0c45ad -->
-## Display a listing of the resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/payments" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/payments"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/payments`
-
-
-<!-- END_adf3c444f41d3cf4307e2daa1f0c45ad -->
-
-<!-- START_0beb912618aabd3265d28a71ba987a7a -->
-## Show the form for creating a new resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/payments/create" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/payments/create"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/payments/create`
-
-
-<!-- END_0beb912618aabd3265d28a71ba987a7a -->
-
-<!-- START_3bfc04ab819072f52eb6b3f93e92b668 -->
-## Store a newly created resource in storage.
-
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/backend/payments" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/payments"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST backend/payments`
-
-
-<!-- END_3bfc04ab819072f52eb6b3f93e92b668 -->
-
-<!-- START_5b94fadda12026a14fc1c41a68dce9d8 -->
-## Display the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/payments/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/payments/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/payments/{payment}`
-
-
-<!-- END_5b94fadda12026a14fc1c41a68dce9d8 -->
-
-<!-- START_f83dbbac108db7288e25396c083279bd -->
-## Show the form for editing the specified resource.
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/payments/1/edit" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/payments/1/edit"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/payments/{payment}/edit`
-
-
-<!-- END_f83dbbac108db7288e25396c083279bd -->
-
-<!-- START_49571ae2a55f53554455c9f6ab73e15f -->
-## Update the specified resource in storage.
-
-> Example request:
-
-```bash
-curl -X PUT \
-    "https://training.gtech.am/backend/payments/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/payments/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`PUT backend/payments/{payment}`
-
-`PATCH backend/payments/{payment}`
-
-
-<!-- END_49571ae2a55f53554455c9f6ab73e15f -->
-
-<!-- START_31fbc623dd6e9a563f1d6a850d2902e4 -->
-## Remove the specified resource from storage.
-
-> Example request:
-
-```bash
-curl -X DELETE \
-    "https://training.gtech.am/backend/payments/1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/payments/1"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`DELETE backend/payments/{payment}`
-
-
-<!-- END_31fbc623dd6e9a563f1d6a850d2902e4 -->
-
-<!-- START_8d4719da98b334b52782027f53f14284 -->
-## commentstatus
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/commentstatus" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/commentstatus"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST commentstatus`
-
-
-<!-- END_8d4719da98b334b52782027f53f14284 -->
-
-<!-- START_f6c0a8a366ffcf5be38fd774336e755c -->
-## backend/account/cancelPayment
-> Example request:
-
-```bash
-curl -X GET \
-    -G "https://training.gtech.am/backend/account/cancelPayment" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/backend/account/cancelPayment"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-
-### HTTP Request
-`GET backend/account/cancelPayment`
-
-
-<!-- END_f6c0a8a366ffcf5be38fd774336e755c -->
 
 

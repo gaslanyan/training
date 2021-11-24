@@ -94,7 +94,10 @@ export default {
             msg: "",
             again: "",
             res: "",
-            cert: ""
+            cert: "",
+            count: 0,
+            percent:0
+
         }
     },
     name: 'app-header',
@@ -264,14 +267,13 @@ export default {
         this.getPercentAndCount();
         console.log('this.percent', this.percent)
         console.log('this.count', this.count)
-      if (this.percent < 50) {
+        if (this.percent < 50) {
             if (this.count <= 3)
-        this.getTests(this.id);
-    }
-        else {
-                this.certificate();
-                this.getCourseTitle(this.id);
-            }
+                this.getTests(this.id);
+        } else {
+            this.certificate();
+            this.getCourseTitle(this.id);
+        }
     },
     mounted() {
         this.finishedVideo();

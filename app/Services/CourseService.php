@@ -51,7 +51,7 @@ class CourseService
         if ($prof->parent_id == 1 && !$mobile) {
             $courses = $this->getCoursesById($prof->parent_id);
         } else
-            $courses = Courses::select('id', 'name', 'cost', 'start_date')->
+            $courses = Courses::select('id', 'name','image', 'cost', 'start_date')->
             whereRaw('JSON_CONTAINS(`specialty_ids`,
          \'["' . $spec->specialty_id . '"]\')')
                 ->where('status', "=", "active")
@@ -142,8 +142,8 @@ class CourseService
      */
     public function all()
     {
-        $messages = $this->model->selected(['id', 'name', 'cost', 'start_date'])
-//            ->whereDate('start_date', "<=", date("Y-m-d"))
+        $messages = $this->model->selected(['id', 'name','image', 'cost', 'start_date'])
+            ->whereDate('start_date', "<=", date("Y-m-d"))
             ->get();
 
         if (!$messages)
