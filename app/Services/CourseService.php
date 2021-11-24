@@ -73,7 +73,7 @@ class CourseService
 
         $courses = [];
         foreach ($spec as $index => $item) {
-            $c = Courses::select('id', 'name', 'cost', 'start_date')->
+            $c = Courses::select('id', 'name', 'image', 'cost', 'start_date')->
             whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . $item->id . '"]\')')
                 ->where('status', "=", "active")
                ->where('start_date', ">=", date("Y-m-d"))
