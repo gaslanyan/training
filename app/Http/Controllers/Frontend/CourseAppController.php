@@ -39,7 +39,21 @@ class CourseAppController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * Get all courses by specialty
+     * get all courses by specialty
+     *
+     * @queryParam access_token token
+     * @queryParam id The professions id ex for Ուռոլոգիա.  Example: "30" for Ուռոլոգիա
+     * @queryParam mobile Check request from the mobile devise or not. Example: "false"
+     *
+     *
+     * @response
+     *{
+     * "access_token":"",
+     * "courses":{"1":{"id":1,"name":"sd","image":null,"cost":47,"start_date":"2021-10-05"},"2":{"id":2,"name":"sd ds","image":null,"cost":47,"start_date":"2021-10-05"}},
+     * "token_type":"bearer",
+     * "expires_in":21600000
+     * }
      */
     function getCourseBySpec()
     {

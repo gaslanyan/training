@@ -22,6 +22,7 @@ Vue.use(Vuex);
 
 const router = new VueRouter({
     routes,
+    // linkActiveClass: "active",
     mode: 'history'
 });
 router.afterEach((to, from) => {

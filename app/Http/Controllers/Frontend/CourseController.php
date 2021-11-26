@@ -11,13 +11,13 @@ use App\Models\Videos;
 use App\Services\CourseService;
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+
 /**
  * @group Course
  *
  * APIs for a course
  * @package App\Http\Controllers\Frontend
  */
-
 class CourseController extends Controller
 {
 
@@ -29,6 +29,25 @@ class CourseController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * All courses
+     * get all courses
+     *
+     *
+     *
+     * @response
+     * {"data":[{"id":1,
+     * "name":"Կովիդի Տարածումը",
+     * "image":"https:\/\/www.shmz.am\/uploads\/courses\/\u053f\u0578\u057e\u056b\u0564\u056b \u054f\u0561\u0580\u0561\u056e\u0578\u0582\u0574\u0568.jpg",
+     * "cost":10,
+     * "start_date":"2021-11-24"},
+     * {"id":2,
+     * "name":"Test",
+     * "image":null,
+     * "cost":3000,
+     * "start_date":"2021-11-16"}
+     * ]}
+     */
 
     public function allCourses()
     {

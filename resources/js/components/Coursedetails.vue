@@ -155,7 +155,7 @@
         </div>
         <!--================ End Course Details Area =================-->
         <section class="course_details_carousel section_gap container">
-            <hooper :itemsToShow="3">
+            <hooper :itemsToShow="3" class="hooper_carousel">
                 <slide class="slide_carousel" v-for="(info, index) in courses" :key="index" :index="index">
                     <router-link :to="'/coursedetails/'+info.id" class="nav-link">
                         <div class="categories_post">
@@ -566,7 +566,9 @@ export default {
 .home_banner_area {
     min-height: 234px;
 }
-
+.hooper_carousel{
+    height: 43vh!important;
+}
 .hooper-slide {
     height: 100vh;
 }

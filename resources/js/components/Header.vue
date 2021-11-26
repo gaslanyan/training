@@ -24,21 +24,31 @@
                     <div class="collapse navbar-collapse offset col-lg-10 col-12" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto col-9">
                             <li class="nav-item">
-                                <router-link :to="{ name: 'home' }" class="nav-link">{{ text.main }}</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link :to="{ name: 'about' }" class="nav-link">{{ text.aboutus }}</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link :to="{ name: 'lesson' }" class="nav-link">{{ text.lessons }}
+                                <router-link ref="home" :to="{ name: 'home' }" class="nav-link"
+                                             v-on:click="setActive('home')" :class="{ active: isActive('home') }">
+                                    {{ text.main }}
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'contact' }" class="nav-link">{{ text.contact }}
+                                <router-link :to="{ name: 'about' }" class="nav-link" v-on:click="setActive('about')"
+                                             :class="{ active: isActive('about') }">{{ text.aboutus }}
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'howtouse' }" class="nav-link">{{ text.howtouse }}
+                                <router-link :to="{ name: 'lesson' }" class="nav-link" v-on:click="setActive('lessons')"
+                                             :class="{ active: isActive('lesson') }">{{ text.lessons }}
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name: 'contact' }" class="nav-link"
+                                             v-on:click="setActive('contact')" :class="{ active: isActive('contact') }">
+                                    {{ text.contact }}
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name: 'howtouse' }" class="nav-link"
+                                             v-on:click.native="setActive('howtouse')"
+                                             :class="{ active: isActive('howtouse') }">{{ text.howtouse }}
                                 </router-link>
                             </li>
                         </ul>
@@ -91,6 +101,12 @@ import {getPromiseResult} from "../partials/help";
 export default {
     name: 'app-header',
     methods: {
+        isActive: function (menuItem) {
+             return this.activeItem === menuItem
+        },
+        setActive: function (menuItem) {
+            this.activeItem = menuItem // no need for Vue.set()
+        },
         handleScroll() {
             if (this.$refs.navbar.clientHeight < window.scrollY) {
                 this.scrolled = true;
@@ -144,7 +160,13 @@ export default {
     },
     beforeMount() {
         this.getAccountById();
-        },
+    },
+    mounted() {
+        let currentUrl = window.location.pathname;
+        console.log(currentUrl)
+        if(currentUrl !== "/")
+            this.$refs.home.$el.classList.remove('router-link-active')
+    },
     created() {
         window.addEventListener("scroll", this.handleScroll);
     },
@@ -152,6 +174,7 @@ export default {
         window.removeEventListener("scroll", this.handleScroll);
     },
     computed: {
+
         currentUser() {
             return this.$store.getters.currentUser
         },
@@ -166,6 +189,7 @@ export default {
             lastPosition: 0,
             text: pagestext,
             account: "",
+            activeItem: ''
         };
     },
 }

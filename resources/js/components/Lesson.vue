@@ -44,7 +44,7 @@
                         <router-link :to="'/coursedetails/'+course.id" class="nav-link">
                             <div class="categories_post">
                                 <div class="categories_details">
-                                    <img :src="lessonimg"/>
+                                    <img :src="course.image?course.image:lessonimg" alt="">
                                     <div class="categories_text">
                                         <p>
                                             {{ course.name }}
@@ -60,7 +60,8 @@
                                     <div class="course_content">
                                         <div class="course_meta d-flex justify-content-between">
                                             <div>
-                                                <span ref="price" class="price" v-if="!isOpened">{{ course.cost }} AMD</span>
+                                                <span ref="price" class="price"
+                                                      v-if="!isOpened">{{ course.cost }} AMD</span>
                                             </div>
                                         </div>
                                     </div>
@@ -88,13 +89,13 @@ export default {
             courses: [],
             image_src: '/css/frontend/img/background.png',
             lesson_banner: '/css/frontend/img/lessonbanner.png',
-            lessonimg: '/css/frontend/img/lessonimg.png',
+            lessonimg: '/css/frontend/img/footer_logo.png',
             texts: pagetexts,
             text: text,
             cost: "",
             course_id: "",
             professions: "",
-            isOpened:false
+            isOpened: false
         }
     },
     methods: {
@@ -144,16 +145,16 @@ export default {
         toggleActiveClass(id) {
             Object.keys(this.$refs).forEach((el) => {
                 const e = this.$refs[el];
-                this.$refs.course_0.classList.remove('active')
+                this.$refs.course_0.classList.remove('class_active')
                 for (const eKey in e) {
                     if (e.hasOwnProperty(eKey))
-                        e[eKey].classList.remove('active')
+                        e[eKey].classList.remove('class_active')
                 }
             })
             let r = (id === 0) ?
                 this.$refs.course_0 :
                 this.$refs.course_[id - 1];
-            r.classList.add('active')
+            r.classList.add('class_active')
         },
         getCoursesByProf(id) {
             let credentials = {
@@ -208,22 +209,10 @@ export default {
         this.getProfessions();
     },
     mounted() {
-
         if (!this.currentUser)
             this.allcourses();
     }
 }
 </script>
 
-<style>
-.active {
-    /*background-color: rgb(159, 18, 173) ;*/
-    background: -webkit-linear-gradient(
-        45deg, #5f1b80, #b233c5) !important;
-    color: rgb(255, 255, 255);
-    display: flex;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-}
-</style>
+

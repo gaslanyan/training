@@ -2,7 +2,7 @@
     <div class="main">
         <Header/>
         <Banner v-if="$route.path==='/'"/>
-        <div class="content col-12 mb-5">
+        <div class="content mb-5">
             <router-view></router-view>
         </div>
         <Secondscreen v-if="$route.path==='/'"/>

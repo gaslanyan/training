@@ -87,7 +87,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="message">{{ texts.message }}</label>
+                                    <label for="message" class="message pl-4">{{ texts.message }}</label>
                                     <textarea autocomplete="off" id="message" name="message"
                                               class="form-control" :data-vv-as="texts.message"
                                               v-validate="'max:1024'"

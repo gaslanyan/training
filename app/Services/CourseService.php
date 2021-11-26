@@ -44,7 +44,6 @@ class CourseService
      */
     public function getCourses($id, $mobile)
     {
-
         $spec = Profession::select('specialty_id')->where('account_id', $id)->first();
         $prof = Specialties::select('parent_id')->where('id', $spec->specialty_id)->first();
 
@@ -76,7 +75,7 @@ class CourseService
             $c = Courses::select('id', 'name', 'image', 'cost', 'start_date')->
             whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . $item->id . '"]\')')
                 ->where('status', "=", "active")
-               ->where('start_date', ">=", date("Y-m-d"))
+//               ->where('start_date', ">=", date("Y-m-d"))
                 ->first();
 
             if (!empty($c))

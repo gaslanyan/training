@@ -65,7 +65,7 @@ class ImageController extends Controller
 
         try {
             $s3 = Storage::disk('s3');
-            $filePath = sprintf('/images/%s', sprintf('%s_%s', uniqid(), $image->getClientOriginalName()));
+            $filePath = sprintf('/images/%s', sprintf('%s_%s', uniqid(), Str::slug($image->getClientOriginalName())));
             $s3->put($filePath, file_get_contents($image), ['ACL' => 'public-read']);
 
             return redirect('backend/image')->with('success', Lang::get('messages.success'));
