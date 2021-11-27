@@ -71,7 +71,7 @@
                         <label for="passport">{{ texts.serianumber }}</label>
                         <input autocomplete="off" id="passport" type="text" name="passport"
                                class="form-control"
-                               v-validate="'required'" :data-vv-as="texts.serianumber"
+                               v-validate="'required'" :data-vv-as="texts.passport"
                                v-on:blur="checkLang('passport','en')"
                                v-model="formRegister.passport">
                         <span v-if="errors.has('passport')" class="help is-danger" role="alert"

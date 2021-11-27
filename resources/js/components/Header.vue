@@ -174,7 +174,6 @@ export default {
         window.removeEventListener("scroll", this.handleScroll);
     },
     computed: {
-
         currentUser() {
             return this.$store.getters.currentUser
         },

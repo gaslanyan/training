@@ -89,7 +89,7 @@ export default {
             courses: [],
             image_src: '/css/frontend/img/background.png',
             lesson_banner: '/css/frontend/img/lessonbanner.png',
-            lessonimg: '/css/frontend/img/footer_logo.png',
+            lessonimg: '/css/frontend/img/logo.png',
             texts: pagetexts,
             text: text,
             cost: "",

@@ -8,10 +8,13 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 /**
- * Class PasswordResetController
+ * @group Reset Password
+ * Api for Password Reset
  * @package App\Http\Controllers\Frontend
  */
+
 class PasswordResetController extends Controller
 {
     use SendsPasswordResetEmails, ResetsPasswords {
@@ -21,8 +24,16 @@ class PasswordResetController extends Controller
 
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * Send Password Reset Link
+     * Send email for a reset password link.
+     *
+     * @queryParam email The account email to filter.
+     *
+     * @response
+     *{
+     * "message":"Password reset email sent.",
+     * "data":"passwords.sent"
+     * }
      */
     public function sendPasswordResetLink(Request $request)
     {
@@ -30,11 +41,17 @@ class PasswordResetController extends Controller
     }
 
     /**
+     * Send Reset Link Response
      * Get the response for a successful password reset link.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param string $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @queryParam email The account email to filter.
+     *
+     * @response
+     *
+     *{
+     * "message":"Password reset email sent.",
+     * "data":"passwords.sent"}
+     * }
      */
     protected function sendResetLinkResponse(Request $request, $response)
     {
@@ -57,8 +74,20 @@ class PasswordResetController extends Controller
     }
 
     /**
-     * Handle reset password
+     * Send the given user's password.
+     *
+     *
+     * @queryParam email The account email.
+     * @queryParam password The account new password.
+     * @queryParam password_confirmation The account password_confirmation.
+     * @queryParam _method Put
+     *
+     * @response
+     *{
+     * "message":"Password reset successfully."
+     * }
      */
+
     public function callResetPassword(Request $request)
     {
         return $this->reset($request);

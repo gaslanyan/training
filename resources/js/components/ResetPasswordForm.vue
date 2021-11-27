@@ -20,7 +20,7 @@
                                       class="help is-danger">{{ errors.first('email') }}</span>
                             </div>
                             <div class="form-group">
-                                <input type="password" id="password" class="form-control p-4 input"
+                                <input type="password" id="password" ref="pass" class="form-control p-4 input"
                                        v-validate="'required|min:8'" name="password"
                                        v-model="formReset.password" :placeholder="texts.password"
                                        :class="{'input': true, 'is-invalid': errors.has('password') }"
@@ -32,7 +32,7 @@
                                 <input type="password" id="password_confirmation" class="form-control p-4 input"
                                        placeholder="" name="password_confirmation"
                                        :class="{'input': true, 'is-invalid': errors.has('password_confirmation')}"
-                                       v-validate="'required|min:8|confirmed:password'"
+                                       v-validate="'required|confirmed:pass'"
                                        v-model="formReset.password_confirmation"
                                        :placeholder="texts.confirmpassword"
                                        :data-vv-as="texts.confirmpassword">

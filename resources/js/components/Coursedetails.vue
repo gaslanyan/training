@@ -48,7 +48,7 @@
                                                  class="col-2">
                                             <div class="col-8">
                                                 <h5 class="vid_content">{{
-                                                    `${info.lectures.name} ${info.lectures.surname}
+                                                        `${info.lectures.name} ${info.lectures.surname}
                                                     ${info.lectures.father_name}`
                                                     }}</h5>
                                                 <h4>{{ info.spec }}</h4>
@@ -59,15 +59,6 @@
                                 </hooper>
                             </div>
                         </div>
-                        <!--<div class="attachment-mark" v-if="books">-->
-                        <!--<h4 class="title">{{ texts.books }}</h4>-->
-                        <!--<template v-for="book in books">-->
-                        <!--<i class="fa fa-book text"></i>-->
-                        <!--<router-link :to="{name: 'book',params: {id: book.id}}" class="text" target="_blank">-->
-                        <!--{{ book.title }}-->
-                        <!--</router-link>-->
-                        <!--</template>-->
-                        <!--</div>-->
                     </div>
                     <div class="col-lg-4 right-contents">
                         <ul>
@@ -160,7 +151,7 @@
                     <router-link :to="'/coursedetails/'+info.id" class="nav-link">
                         <div class="categories_post">
                             <div class="categories_details">
-                                <img :src="lessonimg" :alt="info.name ">
+                                <img :src="info.image?course.image:lessonimg" :alt="info.name ">
                                 <div class="categories_text">
                                     <p>
                                         {{ info.name }}
@@ -194,7 +185,7 @@ export default {
             rating: 0,
             datas: [],
             specialites: [],
-            lessonimg: '/css/frontend/img/lessonimg.png',
+            lessonimg: '/css/frontend/img/logo.png',
             // courseimg: '/css/frontend/img/courses/course-details.jpg',
             // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
             lock: '/css/frontend/img/lock.png',
@@ -566,9 +557,11 @@ export default {
 .home_banner_area {
     min-height: 234px;
 }
-.hooper_carousel{
-    height: 43vh!important;
+
+.hooper_carousel {
+    height: 43vh !important;
 }
+
 .hooper-slide {
     height: 100vh;
 }

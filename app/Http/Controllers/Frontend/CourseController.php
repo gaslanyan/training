@@ -32,7 +32,7 @@ class CourseController extends Controller
     /**
      * All courses
      * get all courses
-     *
+     * if image = nul by default get /css/frontend/img/logo.png
      *
      *
      * @response
