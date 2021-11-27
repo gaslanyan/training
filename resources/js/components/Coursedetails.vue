@@ -151,7 +151,7 @@
                     <router-link :to="'/coursedetails/'+info.id" class="nav-link">
                         <div class="categories_post">
                             <div class="categories_details">
-                                <img :src="info.image?course.image:lessonimg" :alt="info.name ">
+                                <img :src="info.image?info.image:lessonimg" :alt="info.name ">
                                 <div class="categories_text">
                                     <p>
                                         {{ info.name }}
