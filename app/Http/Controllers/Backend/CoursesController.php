@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CoursesController extends Controller
@@ -204,7 +205,7 @@ class CoursesController extends Controller
             $image_name = null;
 
             if (!empty($image)) {
-                $image_name = sprintf('%s.jpg', $request->name);
+                $image_name = sprintf('%s.jpg', uniqid('shmz_'));
                 $path = public_path(Config::get('constants.UPLOADS') . '/courses');
 
                 if (!File::isDirectory($path)) {
@@ -215,7 +216,7 @@ class CoursesController extends Controller
             }
 
             if (!empty($file)) {
-                $cert_name = sprintf('%s.jpg', $request->name);
+                $cert_name = sprintf('%s.jpg', uniqid('shmz_'));
                 $path = public_path(Config::get('constants.UPLOADS') . '/diplomas');
                 $file->move($path, $cert_name);
 
@@ -255,7 +256,7 @@ class CoursesController extends Controller
             $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
             $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
-            $cours['content'] = preg_replace('/<p data-f-id="pbf">.*<\/p>/i','', $request->content_data);
+            $cours['content'] = preg_replace('/<p data-f-id="pbf">.*<\/p>/i', '', $request->content_data);
             $this->model->create($cours);
             return redirect('backend/course')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
@@ -329,16 +330,18 @@ class CoursesController extends Controller
             $model = Courses::query()->find($id);
 
             $image = $request->file('image');
-            $image_name = $model->image;
+            $isNewImage = false;
+            $image_name = null;
 
             if (!empty($image)) {
-                $image_name = sprintf('%s.jpg', $request->name);
+                $image_name = sprintf('%s.jpg', Str::slug($request->name));
                 $path = public_path(Config::get('constants.UPLOADS') . '/courses');
 
                 if (!File::isDirectory($path)) {
                     File::makeDirectory($path, 0775, true, true);
                 }
                 $image->move($path, $image_name);
+                $isNewImage = true;
             }
 
             if (!empty($file) || !empty($model->certificate)) {
@@ -375,7 +378,8 @@ class CoursesController extends Controller
 
             $id = $request->id;
             $cours['name'] = $request->name;
-            $cours['image'] = $image_name;
+            if ($isNewImage)
+                $cours['image'] = $image_name;
             $cours['specialty_ids'] = json_encode($request->specialty_ids);
             $cours['status'] = $request->status;
             $cours['start_date'] = date('Y-m-d', strtotime($request->start_date));
@@ -385,7 +389,7 @@ class CoursesController extends Controller
             $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
             $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
-            $cours['content'] = preg_replace('/<p data-f-id="pbf">.*<\/p>/i','', $request->content_data);
+            $cours['content'] = preg_replace('/<p data-f-id="pbf">.*<\/p>/i', '', $request->content_data);
             $this->model->update($cours, $id);
             return redirect('backend/course')->with('success', Lang::get('messages.updated'));
         } catch (\Exception $exception) {

@@ -86,10 +86,10 @@ name('backend.')
         Route::post('book/{id}', 'Backend\BookController@update');
 
 //courses
-        Route::resource('course', 'Backend\CoursesController');
-        Route::post('course/{id}', 'Backend\CoursesController@update');
         Route::get('course/result', 'Backend\CoursesController@result');
         Route::get('course/result-speciality', 'Backend\CoursesController@resultSpeciality');
+        Route::resource('course', 'Backend\CoursesController');
+        Route::post('course/{id}', 'Backend\CoursesController@update');
 
 //accounts
         Route::get('account/{role}', 'Backend\AccountController@index', ['only' => [
