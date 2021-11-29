@@ -198,6 +198,7 @@ class CourseAppController extends Controller
         try {
             $tests = [];
             if ($this->finishedVideo())
+                dd($this->finishedVideo());
                 $tests = $this->service->getTestsById(request('id'), request('account_id'));
             return response()->json([
                 'access_token' => request('token'),
