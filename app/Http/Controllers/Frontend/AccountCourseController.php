@@ -65,8 +65,9 @@ class AccountCourseController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+
     /**
-     * Check Course Test count
+     * get Tests Result
      * get watched the test video or not
      *
      * @queryParam access_token token. Example: token

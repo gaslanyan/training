@@ -119,8 +119,20 @@ class CourseAppController extends Controller
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     * Get book by id
+     * get book`s page count and path
+     * ցիկլով count-ով ստսնալ նակարները ինդեքներով․jpg
+     * օր՝ 1.jpg, 2.jpg, 3.jpg
+     *
+     * @queryParam access_token token
+     * @queryParam id The course id
+     *
+     *
+     * @response
+     *{"access_token":"",
+     * "book":{"count":3,"path":"\/uploads\/books\/1"},
+     * "token_type":"bearer",
+     * "expires_in":21600000}
      */
     function getBooksById()
     {
@@ -166,60 +178,33 @@ class CourseAppController extends Controller
     }
 
     /**
-     * Course Test
+     * Course Tests for tests menu
      * get Test by id
+     * if in response the tests = [] // Դուք դեռ թեստ չեք անցել
      *
      * @queryParam access_token token Example: token
-     * @queryParam id The course id to filter Example: 1
-     * @queryParam account_id The account id to filter Example: 2
+     * @queryParam id The account id to filter Example: 1
      *
      * @response
      * {
-     * "access_token": "",
-     * "tests": [
-     * {
-     * "id": 1,
-     * "courses_id": 1,
-     * "question": "harc harc harc harc harc",
-     * "answers": "[{\"answer\":\"patasxan patasxan patasxan patasxan patasxan patasxan\"},{\"answer\":\"patasxan patasxan patasxan patasxan patasxan patasxan1\",\"check\":1},{\"img\":\"https:\\/\\/natmedpalace.s3.amazonaws.com\\/uploads%2Ftest%2Fimages1603703829126-logo.png\",\"answer\":\"patasxan patasxan patasxan patasxan patasxan patasxan2\"}]",
-     * "question_icons_paths": null,
-     * "answers_icons_paths": null,
-     * "updated_at": "2020-11-07T11:24:21.000000Z",
-     * "created_at": "2020-10-26T09:17:59.000000Z"
-     * },
-     * {
-     * "id": 2,
-     * "courses_id": 1,
-     * "question": "harc harc harc harc harc 2",
-     * "answers": "[{\"answer\":\"patasxan patasxan &nbsp;patasxan &nbsp;patasxan &nbsp;patasxan &nbsp;patasxan&nbsp; \",\"check\":1},{\"img\":\"https:\\/\\/natmedpalace.s3.amazonaws.com\\/uploads%2Ftest%2Fimages1603704561246-x.png\",\"answer\":\"patasxan&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp; \",\"check\":1},{\"answer\":\"patasxan&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp;&nbsp;patasxan&nbsp; \"}]",
-     * "question_icons_paths": null,
-     * "answers_icons_paths": null,
-     * "updated_at": "2020-10-26T09:29:50.000000Z",
-     * "created_at": "2020-10-26T09:29:50.000000Z"
-     * },
-     * {
-     * "id": 3,
-     * "courses_id": 1,
-     * "question": "harc harc harc harc harc 2",
-     * "answers": "[{\"answer\":\"patasxan patasxan patasxan patasxan patasxan patasxan\",\"check\":1},{\"img\":\"https:\\/\\/natmedpalace.s3.amazonaws.com\\/uploads%2Ftest%2Fimages1603704561246-x.png\",\"answer\":\"patasxan patasxan patasxan patasxan patasxan patasxan2patasxan patasxan patasxan patasxan patasxan patasxan\",\"check\":1},{\"answer\":\"patasxan patasxan patasxan patasxan patasxan patasxan3\"}]",
-     * "question_icons_paths": null,
-     * "answers_icons_paths": null,
-     * "updated_at": "2020-11-07T11:26:11.000000Z",
-     * "created_at": "2020-10-26T09:29:50.000000Z"
-     * },
-     * ],
-     * "token_type": "bearer",
-     * "expires_in": 21600000
-     * }
+     * "access_token":"",
+     * "tests":[],
+     * "token_type":"bearer",
+     * "expires_in":21600000}
      */
     function getTestsById()
     {
         try {
-            $tests = $this->service->getTestsById(request('id'), request('account_id'));
+            $fv = CourseController::finishedVideo();
+            dd($fv);
+            $tests = [];
+            if ($fv)
+                $tests = $this->service->getTestsById(request('id'), request('account_id'));
 
             return response()->json([
                 'access_token' => request('token'),
                 'tests' => $tests,
+                'finishedVideo' => $fv,
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
@@ -260,12 +245,12 @@ class CourseAppController extends Controller
                 if (!empty($videos)) {
                     foreach ($videos as $index => $video) {
                         $v = Videos::where('id', $video)->with(['lectures' => function ($query) {
-                            $query->select('id','name','surname',
-                                'father_name','bday','image_name', 'role');
+                            $query->select('id', 'name', 'surname',
+                                'father_name', 'bday', 'image_name', 'role');
                         }])->first();
                         if (!empty($v)) {
-                            $p =Profession::where('account_id',$v->lectures->id)
-                            ->with('spec')->first();
+                            $p = Profession::where('account_id', $v->lectures->id)
+                                ->with('spec')->first();
                             $s3_videos[$index] = $v;
                             $s3_videos[$index]['spec'] = $p->spec->name;
                             $s3_videos[$index]['path'] = sprintf("%s/%s", env('AWS_URL_ACL'), $v->path);

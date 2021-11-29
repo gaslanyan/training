@@ -22,11 +22,13 @@ class CourseController extends Controller
 {
 
     protected $service;
+    protected static $_service;
 
 
     public function __construct(CourseService $service)
     {
         $this->service = $service;
+        self::$_service =$service;
     }
 
     /**
@@ -139,6 +141,44 @@ class CourseController extends Controller
      */
     public function finishedCount()
     {
+        return $this->getVideoCount();
+    }
+
+    static function finishedVideo():int
+    {
+        return (new self(self::$_service))->getVideoCount();
+    }
+
+    function getCourseByProf()
+    {
+        try {
+            $courses = $this->service->getCoursesById(request('id'));
+            return response()->json([
+                'courses' => $courses,
+            ]);
+        } catch (MethodNotAllowedHttpException$exception) {
+
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
+
+    function getCoursesById()
+    {
+        try {
+            $courses = $this->service->getCoursesByIdC(request('id'));
+            return response()->json([
+                'courses' => $courses,
+            ]);
+        } catch (MethodNotAllowedHttpException$exception) {
+
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
+
+    public function getVideoCount()
+    {
         $isFinished = 1;
         $videos = Courses::select('id', 'videos')
             ->with(['account_course' => function ($query) {
@@ -169,33 +209,5 @@ class CourseController extends Controller
         } else
             $isFinished = -1;
         return $isFinished;
-    }
-
-    function getCourseByProf()
-    {
-        try {
-            $courses = $this->service->getCoursesById(request('id'));
-            return response()->json([
-                'courses' => $courses,
-            ]);
-        } catch (MethodNotAllowedHttpException$exception) {
-
-            logger()->error($exception);
-            return response()->json(['error' => true], 500);
-        }
-    }
-
-    function getCoursesById()
-    {
-        try {
-            $courses = $this->service->getCoursesByIdC(request('id'));
-            return response()->json([
-                'courses' => $courses,
-            ]);
-        } catch (MethodNotAllowedHttpException$exception) {
-
-            logger()->error($exception);
-            return response()->json(['error' => true], 500);
-        }
     }
 }
