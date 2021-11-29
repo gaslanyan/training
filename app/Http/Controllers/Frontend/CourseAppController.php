@@ -178,9 +178,9 @@ class CourseAppController extends Controller
     }
 
     /**
-     * Course Tests for tests menu
-     * get Test by id
-     * if in response the tests = [] // Դուք դեռ թեստ չեք անցել
+     * Get Tests
+     * get Test by id if watched the videos
+     * if in response the fV = 0 // so he did not pass the test
      *
      * @queryParam access_token token Example: token
      * @queryParam id The account id to filter Example: 1
@@ -188,6 +188,7 @@ class CourseAppController extends Controller
      * @response
      * {
      * "access_token":"",
+     * "fv": "0 || 1"
      * "tests":[],
      * "token_type":"bearer",
      * "expires_in":21600000}
@@ -195,16 +196,13 @@ class CourseAppController extends Controller
     function getTestsById()
     {
         try {
-            $fv = CourseController::finishedVideo();
-            dd($fv);
             $tests = [];
-            if ($fv)
+            if ($this->finishedVideo())
                 $tests = $this->service->getTestsById(request('id'), request('account_id'));
-
             return response()->json([
                 'access_token' => request('token'),
                 'tests' => $tests,
-                'finishedVideo' => $fv,
+                'fv' => $this->finishedVideo(),
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
@@ -305,6 +303,54 @@ class CourseAppController extends Controller
                 }
             }
         }
+        return $isFinished;
+    }
+
+    /**
+     * Check Course Test count
+     * get watched the test video or not
+     *
+     * @queryParam access_token token. Example: token
+     * @queryParam id The course id to filter. Example: 1
+     * @queryParam user_id The account id to filter. Example: 2
+     *
+     *
+     * @response
+     *{
+     * "": "1|0 true or false"
+     * }
+     */
+    public function finishedVideo()
+    {
+        $isFinished = 1;
+        $videos = Courses::select('id', 'videos')
+            ->with(['account_course' => function ($query) {
+                $query->select('course_id')->where('course_id', request('id'));
+            }])
+            ->where('id', request('id'))
+            ->first();
+        if (!empty($videos->account_course)) {
+            if (!empty($videos->videos)) {
+                $videos = json_decode($videos->videos);
+
+                if (!empty($videos)) {
+
+                    foreach ($videos as $index => $video) {
+                        $status = AccountVideo::select('status')
+                            ->where([["video_id", $video], ['account_id', request('user_id')]])
+                            ->first();
+
+                        if ((!empty($status) && $status->status != "finished")
+                            || empty($status)) {
+
+                            $isFinished = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        } else
+            $isFinished = -1;
         return $isFinished;
     }
 

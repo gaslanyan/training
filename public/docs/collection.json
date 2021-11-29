@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "\u0532\u0548\u0552\u053a\u0531\u0547\u053d\u0531\u054f\u0548\u0542\u0546\u0535\u0550\u053b \u0547\u0531\u0550\u0548\u0552\u0546\u0531\u053f\u0531\u053f\u0531\u0546 \u0544\u0531\u054d\u0546\u0531\u0533\u053b\u054f\u0531\u053f\u0531\u0546 \u0536\u0531\u0550\u0533\u0531\u0551\u0544\u0531\u0546 \u053f\u0535\u0546\u054f\u0550\u0548\u0546 API",
-        "_postman_id": "9b0eaaab-0989-4ec8-aed8-e45268d8f672",
+        "_postman_id": "8075cec7-214d-463d-b954-5df1d7c3459d",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -12,13 +12,32 @@
             "description": "\nAPIs for a account course",
             "item": [
                 {
-                    "name": "api\/auth\/gettestsbyaid",
+                    "name": "get Tests Result\nget watched the test video or not",
                     "request": {
                         "url": {
                             "protocol": "https",
                             "host": "training.gtech.am",
                             "path": "api\/auth\/gettestsbyaid",
-                            "query": []
+                            "query": [
+                                {
+                                    "key": "access_token",
+                                    "value": "token",
+                                    "description": "token.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The course id to filter.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "user_id",
+                                    "value": "2",
+                                    "description": "The account id to filter.",
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "method": "POST",
                         "header": [
@@ -77,7 +96,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "sit",
+                                    "value": "repudiandae",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -130,7 +149,7 @@
                             "query": [
                                 {
                                     "key": "ClientID",
-                                    "value": "consequuntur",
+                                    "value": "temporibus",
                                     "description": "The client ID Example:",
                                     "disabled": false
                                 },
@@ -303,7 +322,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "nam",
+                                    "value": "fugit",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -409,7 +428,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "rerum",
+                                    "value": "architecto",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -456,7 +475,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "fuga",
+                                    "value": "et",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -641,7 +660,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "commodi",
+                                    "value": "dolorem",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -760,7 +779,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "commodi",
+                                    "value": "ex",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -844,13 +863,32 @@
                     }
                 },
                 {
-                    "name": "api\/auth\/getcoursebyspec",
+                    "name": "Get all courses by specialty\nget all courses by specialty",
                     "request": {
                         "url": {
                             "protocol": "https",
                             "host": "training.gtech.am",
                             "path": "api\/auth\/getcoursebyspec",
-                            "query": []
+                            "query": [
+                                {
+                                    "key": "access_token",
+                                    "value": "cumque",
+                                    "description": "token",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "%2230%22+for+%D5%88%D6%82%D5%BC%D5%B8%D5%AC%D5%B8%D5%A3%D5%AB%D5%A1",
+                                    "description": "The professions id ex for \u0548\u0582\u057c\u0578\u056c\u0578\u0563\u056b\u0561.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "mobile",
+                                    "value": "%22false%22",
+                                    "description": "Check request from the mobile devise or not.",
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "method": "POST",
                         "header": [
@@ -928,13 +966,26 @@
                     }
                 },
                 {
-                    "name": "api\/auth\/book",
+                    "name": "Get book by id\nget book`s page count and path\n\u0581\u056b\u056f\u056c\u0578\u057e count-\u0578\u057e \u057d\u057f\u057d\u0576\u0561\u056c \u0576\u0561\u056f\u0561\u0580\u0576\u0565\u0580\u0568 \u056b\u0576\u0564\u0565\u0584\u0576\u0565\u0580\u0578\u057e\u2024jpg\n\u0585\u0580\u055d 1.jpg, 2.jpg, 3.jpg",
                     "request": {
                         "url": {
                             "protocol": "https",
                             "host": "training.gtech.am",
                             "path": "api\/auth\/book",
-                            "query": []
+                            "query": [
+                                {
+                                    "key": "access_token",
+                                    "value": "illum",
+                                    "description": "token",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "aut",
+                                    "description": "The course id",
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "method": "POST",
                         "header": [
@@ -956,7 +1007,7 @@
                     }
                 },
                 {
-                    "name": "Course Test\nget Test by id",
+                    "name": "Course Tests for tests menu\nget Test by id\nif in response the tests = [] \/\/ \u0534\u0578\u0582\u0584 \u0564\u0565\u057c \u0569\u0565\u057d\u057f \u0579\u0565\u0584 \u0561\u0576\u0581\u0565\u056c",
                     "request": {
                         "url": {
                             "protocol": "https",
@@ -972,12 +1023,6 @@
                                 {
                                     "key": "id",
                                     "value": "1",
-                                    "description": "The course id to filter",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "account_id",
-                                    "value": "2",
                                     "description": "The account id to filter",
                                     "disabled": false
                                 }
@@ -1078,7 +1123,7 @@
                     }
                 },
                 {
-                    "name": "api\/allcourses",
+                    "name": "All courses\nget all courses\nif image = nul by default get \/css\/frontend\/img\/logo.png",
                     "request": {
                         "url": {
                             "protocol": "https",
@@ -1193,441 +1238,10 @@
         },
         {
             "name": "Front page",
-            "description": "\nAPIs for front page",
+            "description": "Api for Front pages",
             "item": [
                 {
-                    "name": "Fetch all profession",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/prof",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "Fetch all profession",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "api\/edu",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/edu",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "api\/educate",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/educate",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "api\/spec",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/spec",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                }
-            ]
-        },
-        {
-            "name": "general",
-            "description": "",
-            "item": [
-                {
-                    "name": "The account registration",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/auth\/register",
-                            "query": [
-                                {
-                                    "key": "name",
-                                    "value": "%22name%22",
-                                    "description": "The account name.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "surname",
-                                    "value": "%22surname%22",
-                                    "description": "The account surname.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "father_name",
-                                    "value": "%22father_name%22",
-                                    "description": "The account father_name.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "date_of_expiry",
-                                    "value": "%222022-06-13%22",
-                                    "description": "The date of expiry.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "date_of_issue",
-                                    "value": "%222020-06-02%22",
-                                    "description": "The date of issue",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "diplomas",
-                                    "value": "%22%5B%22OfU5qs_2.jpeg%22%5D%22",
-                                    "description": "The rest after removing.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "j_diplomas",
-                                    "value": "%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22",
-                                    "description": "The passport field \/all img from db.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "diploma_1",
-                                    "value": "%22%28binary%29%22",
-                                    "description": "The new upload file.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "passport",
-                                    "value": "%22AN0771747%22",
-                                    "description": "The passport field.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "re_passport",
-                                    "value": "%22AN0771747%22",
-                                    "description": "The confirm passport field.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "member_of_palace",
-                                    "value": "%220%22",
-                                    "description": "The member of palace 0 or 1.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "bday",
-                                    "value": "%221978-09-13%22%2C",
-                                    "description": "The bday",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "email",
-                                    "value": "%22g_aslanyan%40mail.ru%22%2C",
-                                    "description": "The account email",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "phone",
-                                    "value": "%2293610174%22%2C",
-                                    "description": "The account phone",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "h_region",
-                                    "value": "%223%22%2C",
-                                    "description": "The home region id",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "h_street",
-                                    "value": "%22%D5%B0%D5%AB%D5%B4%D5%B6%D5%A1%D5%AF%D5%A1%D5%B6+7%22%2C",
-                                    "description": "The home street name",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "h_territory",
-                                    "value": "%22145%22%2C",
-                                    "description": "The home territory id",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "w_region",
-                                    "value": "%223%22%2C",
-                                    "description": "The work region id",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "w_street",
-                                    "value": "dolores",
-                                    "description": "The work street name \"\u0570\u056b\u0574\u0576\u0561\u056f\u0561\u0576 7\",",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "w_territory",
-                                    "value": "velit",
-                                    "description": "The work territory id \"145\",",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "workplace_name",
-                                    "value": "laudantium",
-                                    "description": "The work place name \"\u057a\u0578\u056c\u056b\u056f\u0576\u056b\u056f\u0561\",",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "specialty_id",
-                                    "value": "laborum",
-                                    "description": "\u053f\u0580\u0569\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568  \"30\",",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "education_id",
-                                    "value": "reprehenderit",
-                                    "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u0581\u0578\u0582\u0574\u0568 \"7\",",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "profession",
-                                    "value": "sit",
-                                    "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u056d\u0578\u0582\u0574\u0562\u0568 \"3\",",
-                                    "disabled": false
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Get a JWT via given credentials.",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/auth\/login",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Handle the incoming request.",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/auth\/verify\/:id\/:key",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Log the user out (Invalidate the token).",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/auth\/logout",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Refresh a token.",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/auth\/refresh",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Get the authenticated User.",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/auth\/me",
-                            "query": []
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "api\/about",
+                    "name": "About us\nget about page content.",
                     "request": {
                         "url": {
                             "protocol": "https",
@@ -1823,12 +1437,40 @@
                     }
                 },
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "Fetch all profession",
                     "request": {
                         "url": {
                             "protocol": "https",
                             "host": "training.gtech.am",
-                            "path": "api\/regions",
+                            "path": "api\/prof",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "Fetch all profession",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "api\/edu",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/edu",
                             "query": []
                         },
                         "method": "POST",
@@ -1851,12 +1493,12 @@
                     }
                 },
                 {
-                    "name": "api\/territory",
+                    "name": "api\/educate",
                     "request": {
                         "url": {
                             "protocol": "https",
                             "host": "training.gtech.am",
-                            "path": "api\/territory",
+                            "path": "api\/educate",
                             "query": []
                         },
                         "method": "POST",
@@ -1879,43 +1521,15 @@
                     }
                 },
                 {
-                    "name": "api\/reset-password",
+                    "name": "api\/spec",
                     "request": {
                         "url": {
                             "protocol": "https",
                             "host": "training.gtech.am",
-                            "path": "api\/reset-password",
+                            "path": "api\/spec",
                             "query": []
                         },
                         "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Handle reset password",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/reset\/password",
-                            "query": []
-                        },
-                        "method": "PUT",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -2000,6 +1614,475 @@
                             "query": []
                         },
                         "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Reset Password",
+            "description": "Api for Password Reset",
+            "item": [
+                {
+                    "name": "Send Password Reset Link\nSend email for a reset password link.",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/reset-password",
+                            "query": [
+                                {
+                                    "key": "email",
+                                    "value": "15",
+                                    "description": "The account email to filter.",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Send the given user's password.",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/reset\/password",
+                            "query": [
+                                {
+                                    "key": "email",
+                                    "value": "4",
+                                    "description": "The account email.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "1",
+                                    "description": "The account new password.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "password_confirmation",
+                                    "value": "15",
+                                    "description": "The account password_confirmation.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "_method",
+                                    "value": "nisi",
+                                    "description": "Put",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "general",
+            "description": "",
+            "item": [
+                {
+                    "name": "The account registration",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/auth\/register",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "%22name%22",
+                                    "description": "The account name.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "surname",
+                                    "value": "%22surname%22",
+                                    "description": "The account surname.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "father_name",
+                                    "value": "%22father_name%22",
+                                    "description": "The account father_name.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "date_of_expiry",
+                                    "value": "%222022-06-13%22",
+                                    "description": "The date of expiry.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "date_of_issue",
+                                    "value": "%222020-06-02%22",
+                                    "description": "The date of issue",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "diplomas",
+                                    "value": "%22%5B%22OfU5qs_2.jpeg%22%5D%22",
+                                    "description": "The rest after removing.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "j_diplomas",
+                                    "value": "%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22",
+                                    "description": "The passport field \/all img from db.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "diploma_1",
+                                    "value": "%22%28binary%29%22",
+                                    "description": "The new upload file.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "passport",
+                                    "value": "%22AN0771747%22",
+                                    "description": "The passport field.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "re_passport",
+                                    "value": "%22AN0771747%22",
+                                    "description": "The confirm passport field.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "member_of_palace",
+                                    "value": "%220%22",
+                                    "description": "The member of palace 0 or 1.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "bday",
+                                    "value": "%221978-09-13%22%2C",
+                                    "description": "The bday",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "email",
+                                    "value": "%22g_aslanyan%40mail.ru%22%2C",
+                                    "description": "The account email",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "phone",
+                                    "value": "%2293610174%22%2C",
+                                    "description": "The account phone",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "h_region",
+                                    "value": "%223%22%2C",
+                                    "description": "The home region id",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "h_street",
+                                    "value": "%22%D5%B0%D5%AB%D5%B4%D5%B6%D5%A1%D5%AF%D5%A1%D5%B6+7%22%2C",
+                                    "description": "The home street name",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "h_territory",
+                                    "value": "%22145%22%2C",
+                                    "description": "The home territory id",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "w_region",
+                                    "value": "%223%22%2C",
+                                    "description": "The work region id",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "w_street",
+                                    "value": "nisi",
+                                    "description": "The work street name \"\u0570\u056b\u0574\u0576\u0561\u056f\u0561\u0576 7\",",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "w_territory",
+                                    "value": "inventore",
+                                    "description": "The work territory id \"145\",",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "workplace_name",
+                                    "value": "ea",
+                                    "description": "The work place name \"\u057a\u0578\u056c\u056b\u056f\u0576\u056b\u056f\u0561\",",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "specialty_id",
+                                    "value": "incidunt",
+                                    "description": "\u053f\u0580\u0569\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568  \"30\",",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "education_id",
+                                    "value": "nisi",
+                                    "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u0581\u0578\u0582\u0574\u0568 \"7\",",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "profession",
+                                    "value": "consequatur",
+                                    "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u056d\u0578\u0582\u0574\u0562\u0568 \"3\",",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get a JWT via given credentials.",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/auth\/login",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Handle the incoming request.",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/auth\/verify\/:id\/:key",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Log the user out (Invalidate the token).",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/auth\/logout",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Refresh a token.",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/auth\/refresh",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get the authenticated User.",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/auth\/me",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/regions",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "api\/territory",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "api\/territory",
+                            "query": []
+                        },
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -3307,6 +3390,62 @@
                     }
                 },
                 {
+                    "name": "backend\/course\/result",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "backend\/course\/result",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "backend\/course\/result-speciality",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "training.gtech.am",
+                            "path": "backend\/course\/result-speciality",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
                     "name": "backend\/course",
                     "request": {
                         "url": {
@@ -3512,62 +3651,6 @@
                             "query": []
                         },
                         "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "backend\/course\/result",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "backend\/course\/result",
-                            "query": []
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "backend\/course\/result-speciality",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "backend\/course\/result-speciality",
-                            "query": []
-                        },
-                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",

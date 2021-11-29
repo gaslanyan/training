@@ -67,18 +67,19 @@ class AccountCourseController extends Controller
     }
 
     /**
-     * get Tests Result
-     * get watched the test video or not
+     * get Account`s Tests --- for tests menu
+     * get the all passed tests by account
+     * if in response the tests = [] // Դուք դեռ թեստ չեք անցել
      *
-     * @queryParam access_token token. Example: token
-     * @queryParam id The course id to filter. Example: 1
-     * @queryParam user_id The account id to filter. Example: 2
-     *
+     * @queryParam access_token token Example: token
+     * @queryParam id The account id to filter Example: 1
      *
      * @response
-     *{
-     * "": "1|0 true or false"
-     * }
+     * {
+     * "access_token":"",
+     * "tests":[],
+     * "token_type":"bearer",
+     * "expires_in":21600000}
      */
     function getTestsResult()
     {
