@@ -93,10 +93,10 @@ class AccountCourseService
 
     public function getTestsResult($id)
     {
-        $tests = $this->model->selected(['id','account_id', 'course_id', 'percent','image','updated_at'])
+        $tests = $this->model->selected(['id','account_id', 'course_id', 'percent','updated_at'])
             ->with(['course' =>
                 function ($query) {
-                    $query->select('id', 'name', 'credit');
+                    $query->select('id', 'name', 'credit', 'image');
                 }])
             ->where('account_id', $id)
             ->where('percent', '>=', 50)

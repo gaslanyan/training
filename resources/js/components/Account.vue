@@ -70,7 +70,7 @@
                         <div class="row media post_item">
                             <
                             <router-link :to="'/coursedetails/'+info.id" class="nav-link">
-                                <img class="col-2" v-bind:src="certificateName">
+                                <img class="col-2" v-bind:src="certificateName + info.course.image">
                             </router-link>
                             <div class="col-10 media-body">
                                 <router-link :to="'/coursedetails/'+info.id" class="nav-link">
@@ -136,7 +136,7 @@ export default {
             return src;
         },
         certificateName: function () {
-            return "/images/logos/logo_new_sm.jpg";
+            return "/css/frontend/img/";
         }
     },
     beforeMount() {

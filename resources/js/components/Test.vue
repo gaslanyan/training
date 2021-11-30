@@ -223,7 +223,7 @@ export default {
                             this.$refs.form.style.display = 'none';
                             this.msg = coursetexts.unsuccess;
                             setTimeout(() => {
-                                this.logout();
+                                // this.logout();
                             }, 1000)
                         }
                         }
@@ -268,7 +268,7 @@ export default {
         this.id = this.$route.params.id;
         this.getPercentAndCount();
         if (this.percent < 50) {
-            if (this.count <= 3)
+            if (this.count < 3)
                 this.getTests(this.id);
         } else {
             this.certificate();
