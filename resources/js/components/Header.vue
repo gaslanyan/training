@@ -163,9 +163,13 @@ export default {
     },
     mounted() {
         let currentUrl = window.location.pathname;
-        console.log(currentUrl)
+
         if(currentUrl !== "/")
             this.$refs.home.$el.classList.remove('router-link-active')
+    },
+    updated() {
+        let currentUrl = window.location.pathname;
+        console.log(currentUrl)
     },
     created() {
         window.addEventListener("scroll", this.handleScroll);
