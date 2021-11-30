@@ -193,13 +193,12 @@ class CourseAppController extends Controller
      * "token_type":"bearer",
      * "expires_in":21600000}
      */
-    function getTestsById()
+    function getTestsByCheckVideo()
     {
         try {
             $tests = [];
             if ($this->finishedVideo())
-                dd($this->finishedVideo());
-                $tests = $this->service->getTestsById(request('id'), request('account_id'));
+            $tests = $this->service->getTestsById(request('id'), request('account_id'));
             return response()->json([
                 'access_token' => request('token'),
                 'tests' => $tests,
@@ -326,16 +325,16 @@ class CourseAppController extends Controller
         $isFinished = 1;
         $videos = Courses::select('id', 'videos')
             ->with(['account_course' => function ($query) {
-                $query->select('course_id')->where('course_id', request('id'));
+                $query->select('course_id')->
+                where('course_id', request('id'));
             }])
             ->where('id', request('id'))
             ->first();
+
         if (!empty($videos->account_course)) {
             if (!empty($videos->videos)) {
                 $videos = json_decode($videos->videos);
-
                 if (!empty($videos)) {
-
                     foreach ($videos as $index => $video) {
                         $status = AccountVideo::select('status')
                             ->where([["video_id", $video], ['account_id', request('user_id')]])

@@ -28,7 +28,7 @@ class AccountCourseController extends Controller
     }
 
     /**
-     * Course Test Result
+     *  Test Result
      *
      * get the result by test
      * if percent < 50% 3x block account
@@ -67,7 +67,7 @@ class AccountCourseController extends Controller
     }
 
     /**
-     * get Account`s Tests --- for tests menu
+     * get Account`s Tests certificates--- for tests menu
      * get the all passed tests by account
      * if in response the tests = [] // Դուք դեռ թեստ չեք անցել
      *

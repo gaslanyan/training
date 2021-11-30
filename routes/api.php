@@ -41,7 +41,7 @@ Route::group(['prefix' => 'auth',
     Route::post('getbook', 'Frontend\CourseAppController@getBookById');
     Route::post('book', 'Frontend\CourseAppController@getBooksById');
     Route::post('gettests', 'Frontend\CourseAppController@getTestsById');
-    Route::post('gettestsbyid', 'Frontend\AccountCourseController@getTestsResult');
+    Route::post('gettestsbyaid', 'Frontend\AccountCourseController@getTestsResult');
     Route::post('getpaymentbyid', 'Frontend\AccountCourseController@getPaymentById');
     Route::post('getresult', 'Frontend\AccountCourseController@getResult');
     Route::post('payment', 'Frontend\AccountCourseController@payment');

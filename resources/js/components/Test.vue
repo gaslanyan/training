@@ -10,11 +10,11 @@
 
                                 <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
                                     <router-link :to="{ name: 'home' }" class="nav-link">{{
-                                        coursetexts.home
+                                            coursetexts.home
                                         }}
                                     </router-link>
                                     <router-link :to="{ name: 'coursedetails'}" class="nav-link">{{
-                                        coursetexts.lessons
+                                            coursetexts.lessons
                                         }}
                                     </router-link>
                                     <router-link to="" class="nav-link">{{ b.text }}</router-link>
@@ -59,7 +59,7 @@
                                 </ul>
                             </div>
                             <button type="submit" class="btn primary-btn mt-3 float-right">{{
-                                coursetexts.test
+                                    coursetexts.test
                                 }}
                             </button>
                         </form>
@@ -96,7 +96,7 @@ export default {
             res: "",
             cert: "",
             count: 0,
-            percent:0
+            percent: 0
 
         }
     },
@@ -219,11 +219,13 @@ export default {
 
                             }
                         } else {
+                            if (this.percent < 50) {
                             this.$refs.form.style.display = 'none';
                             this.msg = coursetexts.unsuccess;
                             setTimeout(() => {
                                 this.logout();
                             }, 1000)
+                        }
                         }
                     }
 
@@ -265,8 +267,6 @@ export default {
     beforeMount() {
         this.id = this.$route.params.id;
         this.getPercentAndCount();
-        console.log('this.percent', this.percent)
-        console.log('this.count', this.count)
         if (this.percent < 50) {
             if (this.count <= 3)
                 this.getTests(this.id);
