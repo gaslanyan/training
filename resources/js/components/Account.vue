@@ -68,9 +68,8 @@
                 <ul>
                     <li v-for="info in this.tests" class="d-flex flex-column test-actual">
                         <div class="row media post_item">
-                            <
                             <router-link :to="'/coursedetails/'+info.id" class="nav-link">
-                                <img class="col-2" v-bind:src="certificateName + info.course.image">
+                                <img class="col-2" v-bind:src="certificateName + info.course.image" alt="certificate">
                             </router-link>
                             <div class="col-10 media-body">
                                 <router-link :to="'/coursedetails/'+info.id" class="nav-link">

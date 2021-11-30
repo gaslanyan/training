@@ -213,7 +213,6 @@ export default {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (3 - this.count) + coursetexts.possibility;
                                 this.$refs.form.style.display = 'none';
-
                             }
                             else{
                                 this.msg = coursetexts.unsuccess;
@@ -267,6 +266,8 @@ export default {
     beforeMount() {
         this.id = this.$route.params.id;
         this.getPercentAndCount();
+        console.log('count',this.count)
+        console.log('percent',this.percent)
         if (this.percent < 50) {
             if (this.count < 3)
                 this.getTests(this.id);
