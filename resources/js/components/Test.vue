@@ -214,7 +214,8 @@ export default {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (3 - this.count) + coursetexts.possibility;
                                 this.$refs.form.style.display = 'none';
-                            } else {
+                            }
+                            else{
                                 this.msg = coursetexts.unsuccess;
                                 setTimeout(() => {
                                     // this.logout();
@@ -265,19 +266,20 @@ export default {
     },
     beforeMount() {
         this.id = this.$route.params.id;
-        if (this.getPercentAndCount()) {
-            console.log('count', this.count)
-            console.log('percent', this.percent)
-            if (this.percent < 50) {
-                if (this.count < 3)
-                    this.getTests(this.id);
-            } else {
-                this.certificate();
-                this.getCourseTitle(this.id);
-            }
-        }
+        this.getPercentAndCount();
+
+
     },
     mounted() {
+        console.log('count',this.count)
+        console.log('percent',this.percent)
+        if (this.percent < 50) {
+            if (this.count < 3)
+                this.getTests(this.id);
+        } else {
+            this.certificate();
+            this.getCourseTitle(this.id);
+        }
         this.finishedVideo();
     }
 
