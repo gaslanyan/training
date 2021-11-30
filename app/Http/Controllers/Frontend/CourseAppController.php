@@ -193,16 +193,14 @@ class CourseAppController extends Controller
      * "token_type":"bearer",
      * "expires_in":21600000}
      */
-    function getTestsByCheckVideo()
+    function getTestsById()
     {
         try {
-            $tests = [];
-            if ($this->finishedVideo())
             $tests = $this->service->getTestsById(request('id'), request('account_id'));
+
             return response()->json([
                 'access_token' => request('token'),
                 'tests' => $tests,
-                'fv' => $this->finishedVideo(),
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
@@ -283,7 +281,20 @@ class CourseAppController extends Controller
     }
 
     /**
-     * @return bool
+     * Get Tests
+     * get Test by id if watched the videos
+     * if in response the fV = 0 // so he did not pass the test
+     *
+     * @queryParam access_token token Example: token
+     * @queryParam id The account id to filter Example: 1
+     *
+     * @response
+     * {
+     * "access_token":"",
+     * "fv": "0 || 1"
+     * "tests":[],
+     * "token_type":"bearer",
+     * "expires_in":21600000}
      */
     public function finishedCount()
     {

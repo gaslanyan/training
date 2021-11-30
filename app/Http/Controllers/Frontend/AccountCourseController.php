@@ -75,10 +75,8 @@ class AccountCourseController extends Controller
      * @queryParam id The account id to filter Example: 1
      *
      * @response
-     * {"access_token":"",
-     * "tests":[{"id":1,"account_id":1,"course_id":1,"count":3,"status":"success","percent":75,"random_test":"[1, 2, 3, 4]","test":"{\"1\": {\"4\": true}, \"2\": {\"2\": true}, \"3\": {\"3\": true}, \"4\": {\"1\": true}}","payment":"{\"Amount\": 10, \"DateTime\": \"22\/11\/2021 23:11:23\", \"PaymentID\": \"d72f5e87-2a54-4d45-b370-f783d054b404\", \"ClientName\": \"KRISTINE GYULBEKYAN\", \"DepositedAmount\": 10}","raiting":5,"paid":1,"panding":"unread","comment":null,"updated_at":"2021-11-30T18:49:33.000000Z","created_at":"2021-11-22T19:11:30.000000Z","course":{"id":1,"name":"\u053f\u0578\u057e\u056b\u0564\u056b \u054f\u0561\u0580\u0561\u056e\u0578\u0582\u0574\u0568","credit":"[{\"name\": \"theoretical\", \"credit\": \"40\"}, {\"name\": \"practical\", \"credit\": \"30\"}, {\"name\": \"selfeducation\", \"credit\": \"30\"}]"}}],
-     * "token_type":"bearer",
-     * "expires_in":21600000}
+     * {"access_token":"..",
+     * "tests":[{"id":1,"account_id":1,"course_id":1,"percent":75,"updated_at":"2021-11-30T18:49:33.000000Z","course":{"id":1,"name":"\u053f\u0578\u057e\u056b\u0564\u056b \u054f\u0561\u0580\u0561\u056e\u0578\u0582\u0574\u0568","credit":"[{\"name\": \"theoretical\", \"credit\": \"40\"}, {\"name\": \"practical\", \"credit\": \"30\"}, {\"name\": \"selfeducation\", \"credit\": \"30\"}]"}}],"token_type":"bearer","expires_in":21600000}
      */
     function getTestsResult()
     {
