@@ -205,6 +205,7 @@ export default {
                 .then(res => {
                     let info = JSON.parse(res.info);
                     if (!!info) {
+                        console.log('info', info)
                         this.percent = info.percent;
                         this.count = info.count;
 
