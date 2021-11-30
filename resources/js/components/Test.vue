@@ -68,7 +68,7 @@
                         </div>
                         <div id="certificate" v-if="cert">
                             <p>{{ coursetexts.cert }}</p>
-                            <img id="finishimg" v-bind:src="'/css/frontend/img/' + cert" alt="certificate">
+                            <img id="finishimg" v-bind:src="'/uploads/courses/' + cert" alt="certificate">
                         </div>
                     </div>
                 </div>
@@ -208,25 +208,25 @@ export default {
                         this.percent = info.percent;
                         this.count = info.count;
 
-                        if (this.count < 3) {
-                            if (this.percent < 50) {
+                        if (this.percent < 50) {
+                            if (this.count < 3) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (3 - this.count) + coursetexts.possibility;
-                            } else {
-                                this.msg = coursetexts.result + this.percent + coursetexts.point;
                                 this.$refs.form.style.display = 'none';
-                                // window.location.reload();
 
                             }
+                            else{
+                                this.msg = coursetexts.unsuccess;
+                                setTimeout(() => {
+                                    // this.logout();
+                                }, 1000)
+                            }
                         } else {
-                            if (this.percent < 50) {
+                            this.msg = coursetexts.result + this.percent + coursetexts.point;
                             this.$refs.form.style.display = 'none';
-                            this.msg = coursetexts.unsuccess;
-                            setTimeout(() => {
-                                // this.logout();
-                            }, 1000)
                         }
-                        }
+
+
                     }
 
                 })

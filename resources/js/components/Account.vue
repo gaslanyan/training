@@ -136,7 +136,7 @@ export default {
             return src;
         },
         certificateName: function () {
-            return "/css/frontend/img/";
+            return "/uploads/courses/";
         }
     },
     beforeMount() {
