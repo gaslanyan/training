@@ -105,6 +105,7 @@ export default {
              return this.activeItem === menuItem
         },
         setActive: function (menuItem) {
+            console.log('s',this.$route.path);
             this.activeItem = menuItem // no need for Vue.set()
         },
         handleScroll() {
@@ -163,13 +164,13 @@ export default {
     },
     mounted() {
         // let currentUrl = window.location.pathname;
-        console.log(this.$route.path);
+        console.log('m',this.$route.path);
         // if(currentUrl !== "/")
         //     this.$refs.home.$el.classList.remove('router-link-active')
     },
     updated() {
         let currentUrl = window.location.pathname;
-        console.log(currentUrl)
+        console.log('u',currentUrl)
     },
     created() {
         window.addEventListener("scroll", this.handleScroll);

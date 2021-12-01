@@ -66,7 +66,8 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
-                        <div id="certificate" v-if="certif">
+                        {{ diploma }}
+                        <div id="certificate" v-if="diploma">
                             <p>{{ coursetexts.cert }}</p>
                             <img id="finishimg" v-bind:src="'/uploads/courses/' + cert" alt="certificate">
                         </div>
@@ -101,7 +102,7 @@ export default {
         }
     },
     name: 'app-header',
-    props:['count', 'percent'],
+    props: ['count', 'percent'],
     methods: {
         logout() {
             this.$store.commit('logout');
@@ -164,7 +165,7 @@ export default {
                     getPromiseResult(credentials)
                         .then(res => {
                             this.tests = res.percent;
-                            console.log(res.percent)
+
                             // this.$refs.form.style.display = 'none';
                             // this.$refs.msg.innerText = 'none';
                             // window.location.reload();
@@ -206,7 +207,7 @@ export default {
                 .then(res => {
                     let info = JSON.parse(res.info);
                     if (!!info) {
-                        console.log(info)
+
                         this.$props.percent = info.percent;
                         this.$props.count = info.count;
 
@@ -263,29 +264,28 @@ export default {
                 return JSON.parse(localStorage.getItem('user'));
             return this.$store.getters.currentUser
         },
-        certif: function(){
-            console.log('count', this.$props.count)
-            console.log('percent', this.$props.percent)
-            if (this.$props.percent < 50
-            ) {
+        diploma: function () {
+           let isTestFinish = !1;
+            if (this.$props.percent < 50) {
                 if (this.$props.count < 3)
                     this.getTests(this.id);
             } else {
                 this.certificate();
-                this.getCourseTitle(this.id);
+                isTestFinish = 1;
             }
+            return isTestFinish;
         }
     },
 
     beforeMount() {
         this.id = this.$route.params.id;
+        this.getCourseTitle(this.id);
     },
     mounted() {
         this.getPercentAndCount();
-
         this.finishedVideo();
     },
-    }
+}
 </script>
 <style>
 
