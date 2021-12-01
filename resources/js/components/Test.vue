@@ -205,7 +205,7 @@ export default {
                 .then(res => {
                     let info = JSON.parse(res.info);
                     if (!!info) {
-
+                        console.log(info)
                         this.percent = info.percent;
                         this.count = info.count;
 
@@ -263,10 +263,9 @@ export default {
             return this.$store.getters.currentUser
         }
     },
-    beforeCreate() {
-        this.getPercentAndCount();
-    },
+
     beforeMount() {
+        this.getPercentAndCount();
         this.id = this.$route.params.id;
     },
     mounted() {
