@@ -39,17 +39,16 @@
                                              :class="{ active: isActive('lesson') }">{{ text.lessons }}
                                 </router-link>
                             </li>
-
-                            <li class="nav-item">
-                                <router-link :to="{ name: 'howtouse' }" class="nav-link"
-                                             v-on:click.native="setActive('howtouse')"
-                                             :class="{ active: isActive('howtouse') }">{{ text.howtouse }}
-                                </router-link>
-                            </li>
                             <li class="nav-item">
                                 <router-link :to="{ name: 'contact' }" class="nav-link"
                                              v-on:click="setActive('contact')" :class="{ active: isActive('contact') }">
                                     {{ text.contact }}
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{ name: 'howtouse' }" class="nav-link"
+                                             v-on:click.native="setActive('howtouse')"
+                                             :class="{ active: isActive('howtouse') }">{{ text.howtouse }}
                                 </router-link>
                             </li>
                         </ul>

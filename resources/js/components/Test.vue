@@ -66,7 +66,7 @@
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
                         </div>
-                        <div id="certificate" v-if="cert">
+                        <div id="certificate" v-if="certif">
                             <p>{{ coursetexts.cert }}</p>
                             <img id="finishimg" v-bind:src="'/uploads/courses/' + cert" alt="certificate">
                         </div>
@@ -95,12 +95,13 @@ export default {
             again: "",
             res: "",
             cert: "",
-            count: 0,
-            percent: 0
+            // count: 0,
+            // percent: 0
 
         }
     },
     name: 'app-header',
+    props:['count', 'percent'],
     methods: {
         logout() {
             this.$store.commit('logout');
@@ -206,13 +207,13 @@ export default {
                     let info = JSON.parse(res.info);
                     if (!!info) {
                         console.log(info)
-                        this.percent = info.percent;
-                        this.count = info.count;
+                        this.$props.percent = info.percent;
+                        this.$props.count = info.count;
 
-                        if (this.percent < 50) {
-                            if (this.count < 3) {
+                        if (this.$props.percent < 50) {
+                            if (this.$props.count < 3) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
-                                this.again = coursetexts.again + (3 - this.count) + coursetexts.possibility;
+                                this.again = coursetexts.again + (3 - this.$props.count) + coursetexts.possibility;
                                 this.$refs.form.style.display = 'none';
                             } else {
                                 this.msg = coursetexts.unsuccess;
@@ -221,7 +222,7 @@ export default {
                                 }, 1000)
                             }
                         } else {
-                            this.msg = coursetexts.result + this.percent + coursetexts.point;
+                            this.msg = coursetexts.result + this.$props.percent + coursetexts.point;
                             this.$refs.form.style.display = 'none';
                         }
 
@@ -261,25 +262,27 @@ export default {
             if (!this.$store.getters.currentUser)
                 return JSON.parse(localStorage.getItem('user'));
             return this.$store.getters.currentUser
+        },
+        certif: function(){
+            console.log('count', this.$props.count)
+            console.log('percent', this.$props.percent)
+            if (this.$props.percent < 50
+            ) {
+                if (this.$props.count < 3)
+                    this.getTests(this.id);
+            } else {
+                this.certificate();
+                this.getCourseTitle(this.id);
+            }
         }
     },
 
     beforeMount() {
-
         this.id = this.$route.params.id;
     },
     mounted() {
         this.getPercentAndCount();
-        console.log('count', this.count)
-        console.log('percent', this.percent)
-        if (this.percent < 50
-        ) {
-            if (this.count < 3)
-                this.getTests(this.id);
-        } else {
-            this.certificate();
-            this.getCourseTitle(this.id);
-        }
+
         this.finishedVideo();
     },
     }
