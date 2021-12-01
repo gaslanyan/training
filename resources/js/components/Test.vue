@@ -265,10 +265,11 @@ export default {
     },
 
     beforeMount() {
-        this.getPercentAndCount();
+
         this.id = this.$route.params.id;
     },
     mounted() {
+        this.getPercentAndCount();
         console.log('count', this.count)
         console.log('percent', this.percent)
         if (this.percent < 50
