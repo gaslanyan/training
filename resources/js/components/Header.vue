@@ -30,18 +30,21 @@
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'about' }" class="nav-link" v-on:click="setActive('about')"
+                                <router-link :to="{ name: 'about' }" class="nav-link"
+                                             v-on:click.native="setActive('about')"
                                              :class="{ active: isActive('about') }">{{ text.aboutus }}
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{ name: 'lesson' }" class="nav-link" v-on:click="setActive('lessons')"
+                                <router-link :to="{ name: 'lesson' }" class="nav-link"
+                                             v-on:click.native="setActive('lessons')"
                                              :class="{ active: isActive('lesson') }">{{ text.lessons }}
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{ name: 'contact' }" class="nav-link"
-                                             v-on:click="setActive('contact')" :class="{ active: isActive('contact') }">
+                                             v-on:click.native="setActive('contact')"
+                                             :class="{ active: isActive('contact') }">
                                     {{ text.contact }}
                                 </router-link>
                             </li>
@@ -102,10 +105,11 @@ export default {
     name: 'app-header',
     methods: {
         isActive: function (menuItem) {
-             return this.activeItem === menuItem
+            return this.activeItem === menuItem
         },
         setActive: function (menuItem) {
-            console.log('s',this.$route.path);
+            if (this.$route.path !== "/")
+                this.$refs.home.$el.classList.remove('router-link-active')
             this.activeItem = menuItem // no need for Vue.set()
         },
         handleScroll() {
@@ -161,16 +165,6 @@ export default {
     },
     beforeMount() {
         this.getAccountById();
-    },
-    mounted() {
-        // let currentUrl = window.location.pathname;
-        console.log('m',this.$route.path);
-        // if(currentUrl !== "/")
-        //     this.$refs.home.$el.classList.remove('router-link-active')
-    },
-    updated() {
-        let currentUrl = window.location.pathname;
-        console.log('u',currentUrl)
     },
     created() {
         window.addEventListener("scroll", this.handleScroll);
