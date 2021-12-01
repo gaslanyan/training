@@ -162,10 +162,10 @@ export default {
         this.getAccountById();
     },
     mounted() {
-        let currentUrl = window.location.pathname;
-
-        if(currentUrl !== "/")
-            this.$refs.home.$el.classList.remove('router-link-active')
+        // let currentUrl = window.location.pathname;
+        console.log(this.$route.path);
+        // if(currentUrl !== "/")
+        //     this.$refs.home.$el.classList.remove('router-link-active')
     },
     updated() {
         let currentUrl = window.location.pathname;
