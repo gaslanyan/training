@@ -68,7 +68,7 @@
                         </div>
                         <div id="certificate" v-if="diploma">
                             <p>{{ coursetexts.cert }}</p>
-                            <img id="finishimg" v-bind:src="'/uploads/courses/' + cert" alt="certificate">
+                            <img id="finishimg" v-bind:src="'/uploads/diplomas/' + cert" alt="certificate">
                         </div>
                     </div>
                 </div>
