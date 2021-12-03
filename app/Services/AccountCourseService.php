@@ -227,12 +227,12 @@ class AccountCourseService
             $color = imagecolorallocate($imgg, 000, 000, 000);
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
             $text = strtoupper($account_name->name . " " . $account_name->surname);
-            $text_send = strtoupper($account_name->name . "_" . $account_name->surname)."_".$id.".png";
+            $text_send = strtoupper($account_name->name . "_" . $account_name->surname)."_".$id;
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
             imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
             imagettftext($imgg, 12, 0, ($coordinates->end_date->x) - 10, ($coordinates->end_date->y) + 10, $color, $font, $end);
             header('Content-type:image/png');
-            imagepng($imgg, public_path() . '/css/frontend/img/' . $text_send . '.png', 5);
+            imagepng($imgg, public_path() . '/uploads/diplomas/' . $text_send . '.png', 5);
             return $text_send;
     }
 }
