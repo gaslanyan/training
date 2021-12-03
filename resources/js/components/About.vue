@@ -35,7 +35,7 @@
                     <div class="col-lg-7">
                         <div class="dpmt_right" v-for="data in datas" :key="data.id">
                             <p> {{ data.description }}</p>
-                            <router-link :to="{ name: 'lesson' }" class="primary-btn text-uppercase">
+                            <router-link :to="{ name: 'lessons' }" class="primary-btn text-uppercase">
                                 {{ text.lessons }}
                             </router-link>
                         </div>

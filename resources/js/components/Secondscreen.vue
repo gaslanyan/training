@@ -9,16 +9,6 @@
 
                 <div class="col-lg-12">
                     <div class="dpmt_courses row ">
-
-                        <!-- single course -->
-                        <div class="col-lg-2 col-12 mb-4 mr-lg-4 text-center ">
-                            <div class="single_department">
-                                <div class="dpmt_icon">
-                                    <img :src="nurse" alt="">
-                                </div>
-                                <h4>{{ text.nurse }}</h4>
-                            </div>
-                        </div>
                         <!-- single course -->
                         <div class="col-lg-2 col-12 mb-4 mr-lg-4 text-center">
                             <div class="single_department">
@@ -27,6 +17,15 @@
                                 </div>
                                 <h4>{{ text.doctor }}</h4>
 
+                            </div>
+                        </div>
+                        <!-- single course -->
+                        <div class="col-lg-2 col-12 mb-4 mr-lg-4 text-center ">
+                            <div class="single_department">
+                                <div class="dpmt_icon">
+                                    <img :src="nurse" alt="">
+                                </div>
+                                <h4>{{ text.nurse }}</h4>
                             </div>
                         </div>
                         <!-- single course -->
@@ -64,7 +63,7 @@
                     <h2 class="pt-4 home_title"> {{text.title}} </h2>
                     <div class="dpmt_right" v-html="data.homedescription" v-for="data in datas" :key="data.id">
                         <p>{{ data.homedescription }}</p>
-                        <router-link :to="{ name: 'lesson' }" class="primary-btn text-uppercase search_course_btn">
+                        <router-link :to="{ name: 'lessons' }" class="primary-btn text-uppercase search_course_btn">
                             {{ text.lessons }}
                         </router-link>
                     </div>

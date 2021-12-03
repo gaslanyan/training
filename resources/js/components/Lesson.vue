@@ -153,7 +153,7 @@ export default {
             })
             let r = (id === 0) ?
                 this.$refs.course_0 :
-                this.$refs.course_[id - 1];
+                this.$refs.course_[(id - 1)];
             r.classList.add('class_active')
         },
         getCoursesByProf(id) {

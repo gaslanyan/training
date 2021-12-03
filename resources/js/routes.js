@@ -91,12 +91,12 @@ export const routes = [
         },
     },
     {
-        path: '/lesson',
-        name: 'lesson',
+        path: '/lessons',
+        name: 'lessons',
         component: Lesson,
         meta: {
             breadCrumbs: [{
-                to: '/lesson', // hyperlink
+                to: '/lessons', // hyperlink
                 text: 'ԴԱՍԸՆԹԱՑՆԵՐ' // crumb text
             }]
         },

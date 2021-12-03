@@ -129,6 +129,16 @@ name('backend.')
         Route::resource('logs', 'Backend\LogController')->only([
             'index', 'show'
         ]);
+        //check specialty
+        Route::post('specialtyCheck', 'Backend\SpecialtyController@checkSpecialty');
+        Route::post('ajaxImageUpload', 'Backend\BaseController@ajaxImageUpload');
+        Route::delete('ajaxRemoveImage', 'Backend\BaseController@ajaxRemoveImage');
+        Route::post('typeCheck', 'Backend\TypeController@typeCheck');
+        Route::get('specialty/list', "Backend\SpecialtyController@list");
+        Route::resource('specialty', 'Backend\SpecialtyController');
+        Route::resource('pages', 'Backend\PageController');
+        Route::resource('comments', 'Backend\CommentController');
+
     });
 //tests
 Route::get('test/getCourses', "Backend\TestsController@getCourses");
@@ -136,18 +146,9 @@ Route::resource('test', 'Backend\TestsController');
 Route::post('test/{id}', 'Backend\TestsController@update');
 Route::post('territory', 'Backend\AccountController@getTerritory');
 //todo compare with SpecialtyController
-Route::post('specialtyCheck', 'Backend\SpecialtyController@checkSpecialty');
-Route::post('ajaxImageUpload', 'Backend\BaseController@ajaxImageUpload');
-Route::delete('ajaxRemoveImage', 'Backend\BaseController@ajaxRemoveImage');
 
-//check specialty
-Route::post('typeCheck', 'Backend\TypeController@typeCheck');
-Route::get('specialty/list', "Backend\SpecialtyController@list");
-Route::resource('specialty', 'Backend\SpecialtyController');
-Route::resource('pages', 'Backend\PageController');
-Route::resource('comments', 'Backend\CommentController');
-Route::resource('payments', 'Backend\PaymentController');
 //payment
+Route::resource('payments', 'Backend\PaymentController');
 Route::get('account/cancelPayment', 'Backend\AccountController@cancelPayment')->name('account.cancelPayment');
 
 Route::post('delete-video', 'Backend\VideoController@removeVideo');

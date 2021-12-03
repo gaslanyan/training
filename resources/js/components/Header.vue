@@ -23,35 +23,10 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset col-lg-10 col-12" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto col-9">
-                            <li class="nav-item">
-                                <router-link ref="home" :to="{ name: 'home' }" class="nav-link"
-                                             v-on:click="setActive('home')" :class="{ active: isActive('home') }">
-                                    {{ text.main }}
-                                </router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link :to="{ name: 'about' }" class="nav-link"
-                                             v-on:click.native="setActive('about')"
-                                             :class="{ active: isActive('about') }">{{ text.aboutus }}
-                                </router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link :to="{ name: 'lesson' }" class="nav-link"
-                                             v-on:click.native="setActive('lessons')"
-                                             :class="{ active: isActive('lesson') }">{{ text.lessons }}
-                                </router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link :to="{ name: 'contact' }" class="nav-link"
-                                             v-on:click.native="setActive('contact')"
-                                             :class="{ active: isActive('contact') }">
-                                    {{ text.contact }}
-                                </router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link :to="{ name: 'howtouse' }" class="nav-link"
-                                             v-on:click.native="setActive('howtouse')"
-                                             :class="{ active: isActive('howtouse') }">{{ text.howtouse }}
+                            <li class="nav-item" v-for="menu in menuitems">
+                                <router-link :ref="menu" :to="{ name: menu }" class="nav-link"
+                                             v-on:click.native="setActive(menu)" :class="{ active: isActive(menu) }">
+                                    {{ text[menu] }}
                                 </router-link>
                             </li>
                         </ul>
@@ -91,8 +66,6 @@
                 </div>
             </nav>
         </header>
-
-
     </div>
     <!--================ End Header Menu Area =================-->
 </template>
@@ -103,13 +76,14 @@ import {getPromiseResult} from "../partials/help";
 
 export default {
     name: 'app-header',
+    props: [],
     methods: {
         isActive: function (menuItem) {
             return this.activeItem === menuItem
         },
         setActive: function (menuItem) {
             if (this.$route.path !== "/")
-                this.$refs.home.$el.classList.remove('router-link-active')
+                this.$refs.home[0].$el.classList.remove('router-link-active')
             this.activeItem = menuItem // no need for Vue.set()
         },
         handleScroll() {
@@ -187,7 +161,8 @@ export default {
             lastPosition: 0,
             text: pagestext,
             account: "",
-            activeItem: ''
+            activeItem: '',
+            menuitems: ['home', 'about', 'lessons', 'contact', 'howtouse']
         };
     },
 }

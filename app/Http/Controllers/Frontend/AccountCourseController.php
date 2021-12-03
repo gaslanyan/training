@@ -236,26 +236,7 @@ class AccountCourseController extends Controller
      */
     public function certificate(Request $request)
     {
-        $account_name = Account::where('id', '=', $request->user_id)->first();
-
-        $course = Courses::where('id', '=', $request->id)->first();
-        $certificate = $course->certificate;
-        $start = $course->start_date;
-        $end = $course->duration_date;
-        if ($course->coordinates != "") {
-            $coordinates = \GuzzleHttp\json_decode($course->coordinates);
-
-            $img = public_path() . '/uploads/diplomas/' . $certificate;
-            $imgg = imagecreatefrompng($img);
-            $color = imagecolorallocate($imgg, 000, 000, 000);
-            $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
-            $text = strtoupper($account_name->name . " " . $account_name->surname);
-            $text_send = strtoupper($account_name->name . "_" . $account_name->surname) . "_" . rand(1, 11111);
-            imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
-            imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
-            imagettftext($imgg, 12, 0, ($coordinates->end_date->x) - 10, ($coordinates->end_date->y) + 10, $color, $font, $end);
-            header('Content-type:image/png');
-            imagepng($imgg, public_path() . '/css/frontend/img/' . $text_send . '.png', 5);
+       $text_send = $this->service->getCertificate($request->user_id,$request->id);
             return response()->json([
                 'data' => $text_send . ".png",
                 'access_token' => request('token'),
@@ -264,4 +245,3 @@ class AccountCourseController extends Controller
             ]);
         }
     }
-}
