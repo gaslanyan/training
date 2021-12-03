@@ -256,7 +256,7 @@ class CoursesController extends Controller
             $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
             $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
-            $cours['content'] = preg_replace('<p [data-f-id="pbf">].*<\/p>/i', '', $request->content_data);
+            $cours['content'] = preg_replace('/<p [data-f-id="pbf">].*<\/p>/i', '', $request->content_data);
             $this->model->create($cours);
             return redirect('backend/course')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
@@ -389,7 +389,7 @@ class CoursesController extends Controller
             $cours['videos'] = $request->videos ? json_encode($request->videos) : null;
             $cours['books'] = $request->books ? json_encode($request->books) : null;
             $cours['cost'] = $request->cost;
-            $cours['content'] = preg_replace('<p [data-f-id="pbf">].*<\/p>/i', '', $request->content_data);
+            $cours['content'] = preg_replace('/<p [data-f-id="pbf">].*<\/p>/i', '', $request->content_data);
             $this->model->update($cours, $id);
             return redirect('backend/course')->with('success', Lang::get('messages.updated'));
         } catch (\Exception $exception) {
