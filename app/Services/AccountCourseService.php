@@ -102,7 +102,7 @@ class AccountCourseService
             ->where('percent', '>=', 50)
             ->get();
         foreach ($tests as $index => $test) {
-            $tests[$index]['certificate'] = $this->getCertificate($test->course->id,$id);
+            $tests[$index]['certificate'] = $this->getCertificate($test->course->id,$id).'.png';
 }
         if (!$tests)
             throw new ModelNotFoundException('Account course not get!');
