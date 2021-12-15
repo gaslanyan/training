@@ -50,7 +50,7 @@ class CourseService
         if ($prof->parent_id == 1 && !$mobile) {
             $courses = $this->getCoursesById($prof->parent_id);
         } else
-            $courses = Courses::select('id', 'name','image', 'cost', 'start_date')->
+            $courses = Courses::select('id', 'name', 'image', 'cost', 'start_date')->
             whereRaw('JSON_CONTAINS(`specialty_ids`,
          \'["' . $spec->specialty_id . '"]\')')
                 ->where('status', "=", "active")
@@ -68,7 +68,7 @@ class CourseService
 
     public function getCoursesById($id)
     {
-        $spec = Specialties::select('id')->where('parent_id', $id)->paginate(10);
+        $spec = Specialties::select('id')->where('parent_id', $id)->get();
 
         $courses = [];
         foreach ($spec as $index => $item) {
@@ -76,17 +76,17 @@ class CourseService
             whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . $item->id . '"]\')')
                 ->where('status', "=", "active")
 //               ->where('start_date', ">=", date("Y-m-d"))
-                ->first();
-
+                ->get()->toArray();
             if (!empty($c))
-//                 dd($c);
-                $courses[$c['id']] = $c;
+            {
+                foreach ($c as $key => $val) {
+                    $courses[$val['id']] = $val;
+                }
+            }
         }
-//        dd($courses);
-
         $result = (!empty($courses)) ? $courses : __('messages.noting');
-        if (!$courses)
-            throw new ModelNotFoundException('Course not found by ID ');
+//        if (!$courses)
+//            throw new ModelNotFoundException('Course not found by ID ');
         return $result;
     }
 
@@ -141,7 +141,7 @@ class CourseService
      */
     public function all()
     {
-        $messages = $this->model->selected(['id', 'name','image', 'cost', 'start_date'])
+        $messages = $this->model->selected(['id', 'name', 'image', 'cost', 'start_date'])
             ->whereDate('start_date', "<=", date("Y-m-d"))
             ->get();
 

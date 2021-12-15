@@ -68,22 +68,22 @@
                 <ul>
                     <li v-for="info in this.tests" class="d-flex flex-column test-actual">
                         <div class="row media post_item">
-                            <router-link :to="'/coursedetails/'+info.id" class="col-3 account_cert">
+                            <router-link :to="'/coursedetails/'+info.id" class="col-6 account_cert">
                                 <img class="col-12 mt-5" v-bind:src="certificateName + info.certificate " alt="certificate">
                             </router-link>
-                            <div class="col-9 media-body">
+                            <div class="col-6 media-body">
                                 <router-link :to="'/coursedetails/'+info.id" class="nav-link">
                                     <p class="router-link-active">{{ info.course.name }}</p>
                                 </router-link>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12">
                         <span v-for="c in JSON.parse(info.course.credit)">
                             <i>{{ c.name }} - </i>
                             <span>{{ c.credit }}</span>
                             <br>
                         </span>
                                     </div>
-                                    <ul class="col-6">
+                                    <ul class="col-12">
                                         <li><i>{{ texts.result }} - {{ info.percent }}%</i></li>
                                         <li><span>{{ info.updated_at.substr(0, 10) }}</span></li>
                                     </ul>
