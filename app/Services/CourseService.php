@@ -54,7 +54,7 @@ class CourseService
             whereRaw('JSON_CONTAINS(`specialty_ids`,
          \'["' . $spec->specialty_id . '"]\')')
                 ->where('status', "=", "active")
-                ->where('start_date', ">=", date("Y-m-d"))
+//                ->where('start_date', ">=", date("Y-m-d"))
                 ->with(['account_course' => function ($query) use ($id) {
                     $query->select('course_id', 'paid')
                         ->where('account_id', $id);
