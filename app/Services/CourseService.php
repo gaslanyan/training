@@ -50,7 +50,7 @@ class CourseService
         if ($prof->parent_id == 1 && !$mobile) {
             $courses = $this->getCoursesById($prof->parent_id);
         } else
-            $courses = Courses::select('id', 'name', 'image', 'cost', 'start_date')->
+            $courses = Courses::select('id', 'name', 'image', 'cost','credit', 'start_date')->
             whereRaw('JSON_CONTAINS(`specialty_ids`,
          \'["' . $spec->specialty_id . '"]\')')
                 ->where('status', "=", "active")

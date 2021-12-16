@@ -435,7 +435,6 @@
             this.getAccountInfo();
             this.getRegions();
             this.getProfessions();
-
         },
         methods: {
             getCredentials() {
@@ -558,11 +557,10 @@
                         this.getEducations(this.$data.formEdit.education_id);
                     })
             },
-
             updateApp() {
                 this.$validator.validateAll(this.$data.appEdit).then((result) => {
                     if (result) {
-
+                        console.log('result', this.$data.appEdit)
                         approveUser(this.$data.appEdit,
                             this.files, this.$data.formEdit.token)
                             .then(res => {
@@ -684,7 +682,8 @@
         computed: {
             editError() {
                 return this.$store.getters.editError
-            }, editedUser() {
+            },
+            editedUser() {
                 return this.$store.getters.editedUser
             }
         },
