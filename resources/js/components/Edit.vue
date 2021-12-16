@@ -560,7 +560,7 @@
             updateApp() {
                 this.$validator.validateAll(this.$data.appEdit).then((result) => {
                     if (result) {
-                        console.log('result', this.$data.appEdit)
+                        console.log('result', result)
                         approveUser(this.$data.appEdit,
                             this.files, this.$data.formEdit.token)
                             .then(res => {
