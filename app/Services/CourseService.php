@@ -47,9 +47,9 @@ class CourseService
         $spec = Profession::select('specialty_id')->where('account_id', $id)->first();
         $prof = Specialties::select('parent_id')->where('id', $spec->specialty_id)->first();
 
-        if ($prof->parent_id == 1 && !$mobile) {
-            $courses = $this->getCoursesById($prof->parent_id);
-        } else
+//        if ($prof->parent_id == 1 && !$mobile) {
+//            $courses = $this->getCoursesById($prof->parent_id);
+//        } else
             $courses = Courses::select('id', 'name', 'image', 'cost', 'credit', 'start_date')->
             whereRaw('JSON_CONTAINS(`specialty_ids`,
          \'["' . $spec->specialty_id . '"]\')')
