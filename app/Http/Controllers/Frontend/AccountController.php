@@ -183,6 +183,7 @@ class AccountController extends Controller
     public function editApprove(AccountApproveRequest $accountRequest,
                                 ProfessionApproveRequest $professionRequest, $id)
     {
+
         try {
             $this->service->updateFAccount($accountRequest, $professionRequest, $id);
             return response()->json(['success' => 'pending', 'user' => $id], 200);

@@ -51,6 +51,7 @@ class AccountCourseController extends Controller
      */
     function getResult()
     {
+        var_dump(request('model'));
         try {
             $percent = $this->service->getTestResult(request('id'), request('user_id'), request('model'));
             return response()->json([

@@ -13,6 +13,7 @@ class ProfessionApproveRequest extends FormRequest
      */
     public function response(array $errors)
     {
+
         return Redirect::back()->withErrors($errors)->withInput();
     }
 
