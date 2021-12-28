@@ -141,7 +141,7 @@ name('backend.')
         Route::resource('payments', 'Backend\PaymentController');
         Route::get('account/cancelPayment', 'Backend\AccountController@cancelPayment')->name('account.cancelPayment');
 
-    });
+
 //tests
 Route::get('test/getCourses', "Backend\TestsController@getCourses");
 Route::resource('test', 'Backend\TestsController');
@@ -149,7 +149,7 @@ Route::post('test/{id}', 'Backend\TestsController@update');
 Route::post('territory', 'Backend\AccountController@getTerritory');
 //todo compare with SpecialtyController
 
-//payment
+    });
 
 Route::post('delete-video', 'Backend\VideoController@removeVideo');
 Route::post('delete-book', 'Backend\BookController@removeBook');
