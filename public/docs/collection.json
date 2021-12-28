@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "\u0532\u0548\u0552\u053a\u0531\u0547\u053d\u0531\u054f\u0548\u0542\u0546\u0535\u0550\u053b \u0547\u0531\u0550\u0548\u0552\u0546\u0531\u053f\u0531\u053f\u0531\u0546 \u0544\u0531\u054d\u0546\u0531\u0533\u053b\u054f\u0531\u053f\u0531\u0546 \u0536\u0531\u0550\u0533\u0531\u0551\u0544\u0531\u0546 \u053f\u0535\u0546\u054f\u0550\u0548\u0546 API",
-        "_postman_id": "8075cec7-214d-463d-b954-5df1d7c3459d",
+        "_postman_id": "d5570ad6-4ad8-42bf-ad2b-071289ac814e",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -12,7 +12,7 @@
             "description": "\nAPIs for a account course",
             "item": [
                 {
-                    "name": "get Tests Result\nget watched the test video or not",
+                    "name": "Account`s Tests certificates--- for tests menu\nget the all passed tests by account\nif in response the tests = [] \/\/ \u0534\u0578\u0582\u0584 \u0564\u0565\u057c \u0569\u0565\u057d\u057f \u0579\u0565\u0584 \u0561\u0576\u0581\u0565\u056c",
                     "request": {
                         "url": {
                             "protocol": "https",
@@ -22,19 +22,13 @@
                                 {
                                     "key": "access_token",
                                     "value": "token",
-                                    "description": "token.",
+                                    "description": "token",
                                     "disabled": false
                                 },
                                 {
                                     "key": "id",
                                     "value": "1",
-                                    "description": "The course id to filter.",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "user_id",
-                                    "value": "2",
-                                    "description": "The account id to filter.",
+                                    "description": "The account id to filter",
                                     "disabled": false
                                 }
                             ]
@@ -87,7 +81,7 @@
                     }
                 },
                 {
-                    "name": "Course Test Result",
+                    "name": "Test Result",
                     "request": {
                         "url": {
                             "protocol": "https",
@@ -96,7 +90,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "repudiandae",
+                                    "value": "occaecati",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -149,7 +143,7 @@
                             "query": [
                                 {
                                     "key": "ClientID",
-                                    "value": "temporibus",
+                                    "value": "quia",
                                     "description": "The client ID Example:",
                                     "disabled": false
                                 },
@@ -322,7 +316,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "fugit",
+                                    "value": "aspernatur",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -428,7 +422,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "architecto",
+                                    "value": "non",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -475,7 +469,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "et",
+                                    "value": "est",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -660,7 +654,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "dolorem",
+                                    "value": "officiis",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -779,7 +773,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "ex",
+                                    "value": "quaerat",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -872,7 +866,7 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "cumque",
+                                    "value": "debitis",
                                     "description": "token",
                                     "disabled": false
                                 },
@@ -975,55 +969,14 @@
                             "query": [
                                 {
                                     "key": "access_token",
-                                    "value": "illum",
+                                    "value": "porro",
                                     "description": "token",
                                     "disabled": false
                                 },
                                 {
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "est",
                                     "description": "The course id",
-                                    "disabled": false
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "[]"
-                        },
-                        "description": "",
-                        "response": []
-                    }
-                },
-                {
-                    "name": "Course Tests for tests menu\nget Test by id\nif in response the tests = [] \/\/ \u0534\u0578\u0582\u0584 \u0564\u0565\u057c \u0569\u0565\u057d\u057f \u0579\u0565\u0584 \u0561\u0576\u0581\u0565\u056c",
-                    "request": {
-                        "url": {
-                            "protocol": "https",
-                            "host": "training.gtech.am",
-                            "path": "api\/auth\/gettests",
-                            "query": [
-                                {
-                                    "key": "access_token",
-                                    "value": "token",
-                                    "description": "token",
-                                    "disabled": false
-                                },
-                                {
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "The account id to filter",
                                     "disabled": false
                                 }
                             ]
@@ -1648,7 +1601,7 @@
                             "query": [
                                 {
                                     "key": "email",
-                                    "value": "15",
+                                    "value": "13",
                                     "description": "The account email to filter.",
                                     "disabled": false
                                 }
@@ -1683,25 +1636,25 @@
                             "query": [
                                 {
                                     "key": "email",
-                                    "value": "4",
+                                    "value": "16",
                                     "description": "The account email.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "password",
-                                    "value": "1",
+                                    "value": "13",
                                     "description": "The account new password.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "password_confirmation",
-                                    "value": "15",
+                                    "value": "4",
                                     "description": "The account password_confirmation.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "_method",
-                                    "value": "nisi",
+                                    "value": "nihil",
                                     "description": "Put",
                                     "disabled": false
                                 }
@@ -1850,37 +1803,37 @@
                                 },
                                 {
                                     "key": "w_street",
-                                    "value": "nisi",
+                                    "value": "saepe",
                                     "description": "The work street name \"\u0570\u056b\u0574\u0576\u0561\u056f\u0561\u0576 7\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "w_territory",
-                                    "value": "inventore",
+                                    "value": "qui",
                                     "description": "The work territory id \"145\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "workplace_name",
-                                    "value": "ea",
+                                    "value": "corporis",
                                     "description": "The work place name \"\u057a\u0578\u056c\u056b\u056f\u0576\u056b\u056f\u0561\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "specialty_id",
-                                    "value": "incidunt",
+                                    "value": "autem",
                                     "description": "\u053f\u0580\u0569\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568  \"30\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "education_id",
-                                    "value": "nisi",
+                                    "value": "molestias",
                                     "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u0581\u0578\u0582\u0574\u0568 \"7\",",
                                     "disabled": false
                                 },
                                 {
                                     "key": "profession",
-                                    "value": "consequatur",
+                                    "value": "incidunt",
                                     "description": "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u056d\u0578\u0582\u0574\u0562\u0568 \"3\",",
                                     "disabled": false
                                 }

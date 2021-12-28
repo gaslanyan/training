@@ -25,14 +25,15 @@ Welcome to the generated API reference.
 
 APIs for a account course
 <!-- START_73fe40f73a354522414284f5a0299a8a -->
-## get Tests Result
-get watched the test video or not
+## Account`s Tests certificates--- for tests menu
+get the all passed tests by account
+if in response the tests = [] // Դուք դեռ թեստ չեք անցել
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/gettestsbyaid?access_token=token&id=1&user_id=2" \
+    "https://training.gtech.am/api/auth/gettestsbyaid?access_token=token&id=1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -45,7 +46,6 @@ const url = new URL(
 let params = {
     "access_token": "token",
     "id": "1",
-    "user_id": "2",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -68,7 +68,23 @@ fetch(url, {
 
 ```json
 {
-    "": "1|0 true or false"
+    "access_token": "..",
+    "tests": [
+        {
+            "id": 1,
+            "account_id": 1,
+            "course_id": 1,
+            "percent": 75,
+            "updated_at": "2021-11-30T18:49:33.000000Z",
+            "course": {
+                "id": 1,
+                "name": "Կովիդի Տարածումը",
+                "credit": "[{\"name\": \"theoretical\", \"credit\": \"40\"}, {\"name\": \"practical\", \"credit\": \"30\"}, {\"name\": \"selfeducation\", \"credit\": \"30\"}]"
+            }
+        }
+    ],
+    "token_type": "bearer",
+    "expires_in": 21600000
 }
 ```
 
@@ -79,9 +95,8 @@ fetch(url, {
 
 Parameter | Status | Description
 --------- | ------- | ------- | -----------
-    `access_token` |  optional  | token.
-    `id` |  optional  | The course id to filter.
-    `user_id` |  optional  | The account id to filter.
+    `access_token` |  optional  | token
+    `id` |  optional  | The account id to filter
 
 <!-- END_73fe40f73a354522414284f5a0299a8a -->
 
@@ -123,7 +138,7 @@ fetch(url, {
 <!-- END_6f448d5c55c35e8c44456de7f5c14084 -->
 
 <!-- START_e94f62009c3f968869eb41a8048f24a8 -->
-## Course Test Result
+## Test Result
 
 get the result by test
 if percent < 50% 3x block account
@@ -134,7 +149,7 @@ if answer the checkbox, then true ex: 2_3: true, or radio button then answers nu
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/getresult?access_token=repudiandae&model=%7B1_2%3A+2%2C+1_3%3A+3%2C+2_2%3A+true%2C+2_3%3A+true%2C+3_2%3A+true%2C+3_3%3A+true%2C+4_1%3A+true%2C+4_2%3A+true%2C+5_2%3A+true%7D&user_id=2&course_id=1" \
+    "https://training.gtech.am/api/auth/getresult?access_token=occaecati&model=%7B1_2%3A+2%2C+1_3%3A+3%2C+2_2%3A+true%2C+2_3%3A+true%2C+3_2%3A+true%2C+3_3%3A+true%2C+4_1%3A+true%2C+4_2%3A+true%2C+5_2%3A+true%7D&user_id=2&course_id=1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -145,7 +160,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "repudiandae",
+    "access_token": "occaecati",
     "model": "{1_2: 2, 1_3: 3, 2_2: true, 2_3: true, 3_2: true, 3_3: true, 4_1: true, 4_2: true, 5_2: true}",
     "user_id": "2",
     "course_id": "1",
@@ -201,7 +216,7 @@ important for mobile --- send account_id, course_id, token, mobile=true
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/payment?ClientID=temporibus&Username=username&Password=password&Currency=AMD&Description=SHMZ&Amount=10&OrderID=AMD&BackURL=https%3A%2F%2Fwww.shmz.am%2Flesson&Opaque=Opaque+VPOS&CardHolderID=CARD+VPOS" \
+    "https://training.gtech.am/api/auth/payment?ClientID=quia&Username=username&Password=password&Currency=AMD&Description=SHMZ&Amount=10&OrderID=AMD&BackURL=https%3A%2F%2Fwww.shmz.am%2Flesson&Opaque=Opaque+VPOS&CardHolderID=CARD+VPOS" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -212,7 +227,7 @@ const url = new URL(
 );
 
 let params = {
-    "ClientID": "temporibus",
+    "ClientID": "quia",
     "Username": "username",
     "Password": "password",
     "Currency": "AMD",
@@ -390,7 +405,7 @@ get the result by test
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/addpoint?access_token=fugit&point=7.199989&user_id=2&id=3" \
+    "https://training.gtech.am/api/auth/addpoint?access_token=aspernatur&point=7.199989&user_id=2&id=3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -401,7 +416,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "fugit",
+    "access_token": "aspernatur",
     "point": "7.199989",
     "user_id": "2",
     "id": "3",
@@ -521,7 +536,7 @@ change avatar by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/avatar/1?access_token=architecto&avatar=%22%28binary%29%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/avatar/1?access_token=non&avatar=%22%28binary%29%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -532,7 +547,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "architecto",
+    "access_token": "non",
     "avatar": ""(binary)"",
     "_method": "PUT",
 };
@@ -585,7 +600,7 @@ edit profile by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/approve/1?access_token=et&name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&member_of_palace=%220%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/approve/1?access_token=est&name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&member_of_palace=%220%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -596,7 +611,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "et",
+    "access_token": "est",
     "name": ""name"",
     "surname": ""surname"",
     "father_name": ""father_name"",
@@ -822,7 +837,7 @@ edit profile by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/edit/1?access_token=dolorem&phone=%2293656565%22&bday=%222022-06-13%22&workplace_name=%22name%22&h_region=%222%22&w_region=%222%22&h_territory=%222%22&w_territory=%222%22&w_street=%22name%22&h_street=%22name%22&profession=%220%22&specialty_id=%2230%22&education_id=%223%22&info=%22%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/edit/1?access_token=officiis&phone=%2293656565%22&bday=%222022-06-13%22&workplace_name=%22name%22&h_region=%222%22&w_region=%222%22&h_territory=%222%22&w_territory=%222%22&w_street=%22name%22&h_street=%22name%22&profession=%220%22&specialty_id=%2230%22&education_id=%223%22&info=%22%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -833,7 +848,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "dolorem",
+    "access_token": "officiis",
     "phone": ""93656565"",
     "bday": ""2022-06-13"",
     "workplace_name": ""name"",
@@ -911,7 +926,7 @@ change password by account id
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/auth/changePass/1?access_token=ex&old_password=%22111111111%22&password=%226666666%22&re-password=%226666666%22&_method=PUT" \
+    "https://training.gtech.am/api/auth/changePass/1?access_token=quaerat&old_password=%22111111111%22&password=%226666666%22&re-password=%226666666%22&_method=PUT" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -922,7 +937,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "ex",
+    "access_token": "quaerat",
     "old_password": ""111111111"",
     "password": ""6666666"",
     "re-password": ""6666666"",
@@ -1020,7 +1035,7 @@ get all courses by specialty
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/getcoursebyspec?access_token=cumque&id=%2230%22+for+%D5%88%D6%82%D5%BC%D5%B8%D5%AC%D5%B8%D5%A3%D5%AB%D5%A1&mobile=%22false%22" \
+    "https://training.gtech.am/api/auth/getcoursebyspec?access_token=debitis&id=%2230%22+for+%D5%88%D6%82%D5%BC%D5%B8%D5%AC%D5%B8%D5%A3%D5%AB%D5%A1&mobile=%22false%22" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -1031,7 +1046,7 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "cumque",
+    "access_token": "debitis",
     "id": ""30" for Ուռոլոգիա",
     "mobile": ""false"",
 };
@@ -1175,7 +1190,7 @@ get book`s page count and path
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/book?access_token=illum&id=aut" \
+    "https://training.gtech.am/api/auth/book?access_token=porro&id=est" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -1186,8 +1201,8 @@ const url = new URL(
 );
 
 let params = {
-    "access_token": "illum",
-    "id": "aut",
+    "access_token": "porro",
+    "id": "est",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -1231,69 +1246,6 @@ Parameter | Status | Description
     `id` |  optional  | The course id
 
 <!-- END_8a8c43917aadf44a47770adbca8548bd -->
-
-<!-- START_03e55876cf479e1d6ca5a88365052913 -->
-## Course Tests for tests menu
-get Test by id
-if in response the tests = [] // Դուք դեռ թեստ չեք անցել
-
-> Example request:
-
-```bash
-curl -X POST \
-    "https://training.gtech.am/api/auth/gettests?access_token=token&id=1" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
-    "https://training.gtech.am/api/auth/gettests"
-);
-
-let params = {
-    "access_token": "token",
-    "id": "1",
-};
-Object.keys(params)
-    .forEach(key => url.searchParams.append(key, params[key]));
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (200):
-
-```json
-{
-    "access_token": "",
-    "tests": [],
-    "token_type": "bearer",
-    "expires_in": 21600000
-}
-```
-
-### HTTP Request
-`POST api/auth/gettests`
-
-#### Query Parameters
-
-Parameter | Status | Description
---------- | ------- | ------- | -----------
-    `access_token` |  optional  | token
-    `id` |  optional  | The account id to filter
-
-<!-- END_03e55876cf479e1d6ca5a88365052913 -->
 
 <!-- START_a437d75ef646b50af992896c66563c68 -->
 ## api/auth/gettitle
@@ -2160,7 +2112,7 @@ Send email for a reset password link.
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/reset-password?email=15" \
+    "https://training.gtech.am/api/reset-password?email=13" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -2171,7 +2123,7 @@ const url = new URL(
 );
 
 let params = {
-    "email": "15",
+    "email": "13",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -2217,7 +2169,7 @@ Parameter | Status | Description
 
 ```bash
 curl -X PUT \
-    "https://training.gtech.am/api/reset/password?email=4&password=1&password_confirmation=15&_method=nisi" \
+    "https://training.gtech.am/api/reset/password?email=16&password=13&password_confirmation=4&_method=nihil" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -2228,10 +2180,10 @@ const url = new URL(
 );
 
 let params = {
-    "email": "4",
-    "password": "1",
-    "password_confirmation": "15",
-    "_method": "nisi",
+    "email": "16",
+    "password": "13",
+    "password_confirmation": "4",
+    "_method": "nihil",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -2284,7 +2236,7 @@ Parameter | Status | Description
 
 ```bash
 curl -X POST \
-    "https://training.gtech.am/api/auth/register?name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&re_passport=%22AN0771747%22&member_of_palace=%220%22&bday=%221978-09-13%22%2C&email=%22g_aslanyan%40mail.ru%22%2C&phone=%2293610174%22%2C&h_region=%223%22%2C&h_street=%22%D5%B0%D5%AB%D5%B4%D5%B6%D5%A1%D5%AF%D5%A1%D5%B6+7%22%2C&h_territory=%22145%22%2C&w_region=%223%22%2C&w_street=nisi&w_territory=inventore&workplace_name=ea&specialty_id=incidunt&education_id=nisi&profession=consequatur" \
+    "https://training.gtech.am/api/auth/register?name=%22name%22&surname=%22surname%22&father_name=%22father_name%22&date_of_expiry=%222022-06-13%22&date_of_issue=%222020-06-02%22&diplomas=%22%5B%22OfU5qs_2.jpeg%22%5D%22&j_diplomas=%22OfU5qs_2.jpeg%2C3NqMqY_2.jpeg%22&diploma_1=%22%28binary%29%22&passport=%22AN0771747%22&re_passport=%22AN0771747%22&member_of_palace=%220%22&bday=%221978-09-13%22%2C&email=%22g_aslanyan%40mail.ru%22%2C&phone=%2293610174%22%2C&h_region=%223%22%2C&h_street=%22%D5%B0%D5%AB%D5%B4%D5%B6%D5%A1%D5%AF%D5%A1%D5%B6+7%22%2C&h_territory=%22145%22%2C&w_region=%223%22%2C&w_street=saepe&w_territory=qui&workplace_name=corporis&specialty_id=autem&education_id=molestias&profession=incidunt" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -2313,12 +2265,12 @@ let params = {
     "h_street": ""հիմնական 7",",
     "h_territory": ""145",",
     "w_region": ""3",",
-    "w_street": "nisi",
-    "w_territory": "inventore",
-    "workplace_name": "ea",
-    "specialty_id": "incidunt",
-    "education_id": "nisi",
-    "profession": "consequatur",
+    "w_street": "saepe",
+    "w_territory": "qui",
+    "workplace_name": "corporis",
+    "specialty_id": "autem",
+    "education_id": "molestias",
+    "profession": "incidunt",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
