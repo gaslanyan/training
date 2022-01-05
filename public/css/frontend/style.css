@@ -8,9 +8,11 @@
     url('fonts/ArmHmksBebasNeueRegular.svg#ArmHmksBebasNeueRegular') format('svg');
     font-display: swap;
 }
-.message{
+
+.message {
     font-size: 14px;
 }
+
 .contact_message .message_item h6 {
     color: #580b7f;
 }
@@ -25,7 +27,7 @@
 }
 
 #lookOpened {
-    width: 21.5%;
+    width: 10%;
 }
 
 .contact_content {
@@ -67,7 +69,7 @@ body {
 .coursedetails_banner {
     background-image: url(/css/frontend/img/coursedetails_bg.png);
     height: 299px;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -93,9 +95,9 @@ body {
     padding-top: 20px;
 }
 
-.view-video{
+.view-video {
     height: 400px;
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 .course_details_carousel {
@@ -198,9 +200,11 @@ a:hover, a:focus, input, textarea, button {
     color: #505050;
     font-size: 16px;
 }
-.color_text{
-color:#42036e;
+
+.color_text {
+    color: #42036e;
 }
+
 .gradient-bg, #search_input_box, .header-top .header-top-right a:hover, .single_feature:nth-child(3), .single_course .course_content .course_meta .price, .testimonial_area .owl-thumb-item.active .overlay-grad, .testimonial_area .owl-thumb-item .overlay-grad:hover, .testimonial_area .owl-thumb-item .overlay-grad.active, .registration_area, .categories_details .blog-pagination .page-item.active .page-link, .blog-pagination .page-link:hover, .comments-area .btn-reply:hover, .blog_btn:hover, .footer-area .footer-bottom .footer-social a:hover {
     background: -webkit-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);
     background: -moz-linear-gradient(90deg, #580b7f 0%, #b130c4 100%);
@@ -405,6 +409,7 @@ color:#42036e;
 .home_banner_area .search_course_wrap .search_course_btn:hover {
     background-position: right center;
 }
+
 .class_active {
     /*background-color: rgb(159, 18, 173) ;*/
     background: -webkit-linear-gradient(
@@ -415,12 +420,14 @@ color:#42036e;
     height: 100%;
     padding: 10px;
 }
-.active{
-    color:#b131c4;
+
+.active {
+    color: #b131c4;
 }
+
 .text_class {
-    font-size: 14px;
-    color: #fff
+    color: #fff;
+    font-weight: bold;
 }
 
 .single_department {
@@ -506,6 +513,7 @@ color:#42036e;
     list-style: decimal;
     /*text-align: justify;*/
 }
+
 .dpmt_right .primary-btn {
     margin-top: 30px;
 }
@@ -676,7 +684,7 @@ color:#42036e;
 
 .pay_btn {
     height: 55px;
-    width: 18.5vw;
+    width: 10vw;
     background: -webkit-linear-gradient(
         45deg, #5f1b80, #b233c5);
     border-radius: 360px;
@@ -690,6 +698,7 @@ color:#42036e;
     width: 50%;
     margin-bottom: 10px;
 }
+
 .right-contents .star .checked {
     color: #fff800;
 }
@@ -1190,9 +1199,10 @@ color:#42036e;
     color: #631ed8;
 }
 
-.categories_details img{
+.categories_details img {
     width: 60%;
 }
+
 .categories_post .categories_details p, .slide_carousel .categories_details p {
     font-weight: 300;
     font-size: 18px;
@@ -1243,6 +1253,7 @@ color:#42036e;
     -moz-background-clip: text;
     -moz-text-fill-color: #fff;
 }
+
 .view_btn {
     font-size: 14px;
     line-height: 36px;
@@ -1252,6 +1263,7 @@ color:#42036e;
     padding: 0px 30px;
     background: #fff;
 }
+
 .mb-20 {
     margin-bottom: 20px;
 }
@@ -2575,6 +2587,7 @@ h6 {
     /*height: 650px;*/
     padding: 0 0 58% 0;
 }
+
 .help_info {
     flex-direction: column;
     padding: 15px;
@@ -2845,7 +2858,14 @@ li {
     color: #fff;
 }
 
+@media (min-width: 1619px) {
+    .coursedetails_banner {
+        height: 370px;
+    }
+}
+
 @media (max-width: 1619px) {
+
     /* Main Menu Area css
   ============================================================================================ */
     .header_area .navbar .search {
@@ -2857,6 +2877,7 @@ li {
 }
 
 @media (max-width: 1199px) {
+
     /* Main Menu Area css
   ============================================================================================ */
     .header_area .navbar .nav .nav-item {
@@ -3159,7 +3180,7 @@ li {
         margin-top: 30px;
     }
 
-       .d-flex {
+    .d-flex {
         /*display: block !important;*/
         list-style-type: none;
     }

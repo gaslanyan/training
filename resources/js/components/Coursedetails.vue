@@ -4,11 +4,11 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{ texts.class }}</h3>
-                <p><span v-if="specialites" class="text_class"
-                         v-for="spec in specialites">{{ spec.name + `, ` }}</span>
-                </p>
-
+                <h3>{{ texts.class }}
+                    <p><span v-if="specialites" class="text_class"
+                             v-for="spec in specialites">{{ spec.name + `, ` }}</span>
+                    </p>
+                </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
         <section class="course_details_area section_gap">

@@ -120,10 +120,8 @@ class AccountCourseService
             $paid = $this->model->selected('paid')
                 ->where('account_id', $account_id)
                 ->where('course_id', $course_id)->first();
-            $paid = $paid->paid;
+            $paid = ($paid) ? $paid->paid : 0;
         }
-        if (!$paid)
-            throw new ModelNotFoundException('Account course not get!');
         return $paid;
     }
 
