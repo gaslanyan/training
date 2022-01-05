@@ -113,7 +113,8 @@ class AccountCourseService
     public function getPaymentById($account_id, $course_id)
     {
         $m_b_p = Profession::select('member_of_palace')->first();
-        if (!$m_b_p->member_of_palace)
+
+        if ($m_b_p->member_of_palace)
             $paid = 1;
         else {
             $paid = $this->model->selected('paid')
