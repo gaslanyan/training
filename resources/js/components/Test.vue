@@ -215,7 +215,7 @@ export default {
                             if (this.$props.count < 3) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (3 - this.$props.count) + coursetexts.possibility;
-                                this.$refs.form.style.display = 'none';
+                                // this.$refs.form.style.display = 'none';
                             } else {
                                 this.msg = coursetexts.unsuccess;
                                 setTimeout(() => {
@@ -226,8 +226,6 @@ export default {
                             this.msg = coursetexts.result + this.$props.percent + coursetexts.point;
                             this.$refs.form.style.display = 'none';
                         }
-
-
                     }
 
                 })
