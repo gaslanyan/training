@@ -206,10 +206,11 @@ export default {
                 .then(res => {
                     let info = JSON.parse(res.info);
                     if (!!info) {
-
+                        if (!info.percent)
+                            info.percent = 0;
                         this.$props.percent = info.percent;
                         this.$props.count = info.count;
-
+                        console.log('if', this.$props.count)
                         if (this.$props.percent < 50) {
                             if (this.$props.count < 3) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
@@ -264,7 +265,7 @@ export default {
             return this.$store.getters.currentUser
         },
         diploma: function () {
-           let isTestFinish = !1;
+            let isTestFinish = !1;
             if (this.$props.percent < 50) {
                 if (this.$props.count < 3)
                     this.getTests(this.id);

@@ -8,6 +8,7 @@ use App\Models\Account;
 use App\Models\AccountCourse;
 use App\Models\Courses;
 use App\Models\Message;
+use App\Models\Profession;
 use App\Models\Tests;
 use App\Models\User;
 use App\Notifications\ManageUserStatus;
@@ -93,7 +94,7 @@ class AccountCourseService
 
     public function getTestsResult($id)
     {
-        $tests = $this->model->selected(['id','account_id', 'course_id', 'percent','updated_at'])
+        $tests = $this->model->selected(['id', 'account_id', 'course_id', 'percent', 'updated_at'])
             ->with(['course' =>
                 function ($query) {
                     $query->select('id', 'name', 'credit', 'image');
@@ -102,8 +103,8 @@ class AccountCourseService
             ->where('percent', '>=', 50)
             ->get();
         foreach ($tests as $index => $test) {
-            $tests[$index]['certificate'] = $this->getCertificate($test->course->id,$id).'.png';
-}
+            $tests[$index]['certificate'] = $this->getCertificate($test->course->id, $id) . '.png';
+        }
         if (!$tests)
             throw new ModelNotFoundException('Account course not get!');
         return $tests;
@@ -111,10 +112,15 @@ class AccountCourseService
 
     public function getPaymentById($account_id, $course_id)
     {
-        $paid = $this->model->selected('paid')
-            ->where('account_id', $account_id)
-            ->where('course_id', $course_id)->first();
-
+        $m_b_p = Profession::select('member_of_palace')->first();
+        if (!$m_b_p->member_of_palace)
+            $paid = 1;
+        else {
+            $paid = $this->model->selected('paid')
+                ->where('account_id', $account_id)
+                ->where('course_id', $course_id)->first();
+            $paid = $paid->paid;
+        }
         if (!$paid)
             throw new ModelNotFoundException('Account course not get!');
         return $paid;
@@ -212,7 +218,9 @@ class AccountCourseService
             throw new ModelNotFoundException('Account not get!');
         return $payments;
     }
-    function getCertificate($user_id,$id){
+
+    function getCertificate($user_id, $id)
+    {
         $account_name = Account::where('id', '=', $user_id)->first();
 
         $course = Courses::where('id', '=', $id)->first();
@@ -227,13 +235,13 @@ class AccountCourseService
             $color = imagecolorallocate($imgg, 000, 000, 000);
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
             $text = strtoupper($account_name->name . " " . $account_name->surname);
-            $text_send = strtoupper($account_name->name . "_" . $account_name->surname)."_".$id;
+            $text_send = strtoupper($account_name->name . "_" . $account_name->surname) . "_" . $id;
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
             imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
             imagettftext($imgg, 12, 0, ($coordinates->end_date->x) - 10, ($coordinates->end_date->y) + 10, $color, $font, $end);
             header('Content-type:image/png');
             imagepng($imgg, public_path() . '/uploads/diplomas/' . $text_send . '.png', 5);
             return $text_send;
+        }
     }
-}
 }
