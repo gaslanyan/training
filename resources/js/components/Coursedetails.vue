@@ -5,9 +5,8 @@
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
                 <h3>{{ texts.class }}
-                    <p><span v-if="specialites" class="text_class"
-                             v-for="spec in specialites">{{ spec.name + `, ` }}</span>
-                    </p>
+                <span v-if="specialites" class=""
+                         v-for="spec in specialites">{{`&nbsp;` + spec.name + `, ` }}</span>
                 </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -553,34 +552,4 @@ export default {
 }
 
 </script>
-<style>
-.home_banner_area {
-    min-height: 234px;
-}
-
-.hooper_carousel {
-    height: 43vh !important;
-}
-
-.hooper-slide {
-    height: 100vh;
-}
-
-.hooper-pagination {
-    top: 0
-}
-
-.isDisabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-    text-decoration: none;
-    pointer-events: none;
-}
-
-.btn-none {
-    background-color: transparent;
-    outline: none;
-    color: #fff;
-}
-</style>
 

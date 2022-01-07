@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Account;
-use App\Models\Courses;
 use App\Services\AccountCourseService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -51,12 +49,13 @@ class AccountCourseController extends Controller
      */
     function getResult()
     {
-        var_dump(request('model'));
+
         try {
-            $percent = $this->service->getTestResult(request('id'), request('user_id'), request('model'));
+//            $percent = $this->service->getTestResult(request('id'), request('user_id'), request('model'));
             return response()->json([
                 'access_token' => request('token'),
-                'percent' => $percent,
+//                'percent' => $percent,
+                'model' => request('model'),
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
@@ -237,12 +236,12 @@ class AccountCourseController extends Controller
      */
     public function certificate(Request $request)
     {
-       $text_send = $this->service->getCertificate($request->user_id,$request->id);
-            return response()->json([
-                'data' => $text_send . ".png",
-                'access_token' => request('token'),
-                'token_type' => 'bearer',
-                'expires_in' => auth('api')->factory()->getTTL() * 60
-            ]);
-        }
+        $text_send = $this->service->getCertificate($request->user_id, $request->id);
+        return response()->json([
+            'data' => $text_send . ".png",
+            'access_token' => request('token'),
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
     }
+}

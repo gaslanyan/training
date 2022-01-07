@@ -116,6 +116,7 @@ name('backend.')
         Route::get('admin_gdExcel', 'Backend\AdminController@gdExcel');
         Route::get('course_gdPDF', 'Backend\CoursesController@gdPDF');
         Route::get('course_gdExcel', 'Backend\CoursesController@gdExcel');
+        Route::get('course_gdExcel_account/{id}', 'Backend\CoursesController@gdExcelByAccount');
         Route::get('type_gdPDF', 'Backend\TypeController@gdPDF');
         Route::get('type_gdExcel', 'Backend\TypeController@gdExcel');
         Route::get('account_gdPDF', 'Backend\AccountController@gdPDFRole');

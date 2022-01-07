@@ -60,7 +60,7 @@ class DashboardController extends Controller
         $courses = Courses::query()->rightJoin('accounts_courses',
             'accounts_courses.course_id',
             '=', 'courses.id')
-            ->select('courses.name',
+            ->select('courses.id','courses.name',
                 'accounts_courses.course_id',
                 DB::raw('count(course_id) as total')
 //                DB::raw('IF(`paid`,1,0) as isPaid')

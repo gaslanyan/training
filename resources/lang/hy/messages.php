@@ -205,6 +205,7 @@ return [
     'course_name' => 'Դասընթացի անվանում',
     'course_list' => 'Դասընթացների ցուցակ',
     'course_status' => 'Կարգավիճակ',
+    'course_count' => 'Դիտումների քանակ',
     'course_status_active' => 'Ակտիվ',
     'course_status_deactive' => 'Անջատված',
     'course_status_delete' => 'Ջնջված',

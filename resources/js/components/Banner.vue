@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid m-0 p-0">
+<!--    <div class="container-fluid m-0 p-0">-->
         <!--================ Start Home Banner Area =================-->
         <section class="home_banner_area">
             <div class="banner_inner">
@@ -56,7 +56,7 @@
         <!--================ End Home Banner Area =================-->
 
 
-    </div>
+<!--    </div>-->
 </template>
 
 <script>

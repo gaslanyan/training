@@ -24,13 +24,12 @@
                 <div class="row">
                     <div class="col-lg-12 pb-5">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195167.5734712645!2d44.34848097149138!3d40.15356842368178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406aa2dab8fc8b5b%3A0x3d1479ae87da526a!2sYerevan%2C%20Armenia!5e0!3m2!1sen!2s!4v1589744207208!5m2!1sen!2s"
-                            width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""
-                            aria-hidden="false" tabindex="0"></iframe>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3046.968471352781!2d44.51394271475528!3d40.20976427612583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abd4af34ee447%3A0x48f135c3fdb10069!2s48%20Mamikoniants%20St%2C%20Yerevan%2C%20Armenia!5e0!3m2!1sen!2s!4v1641396532450!5m2!1sen!2s"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
-                <div class="container pt-4 pb-4 contact_content">
+            <div class="container pt-4 pb-4 contact_content">
                 <div class="row">
                     <div class="col-12 pt-5 ">
                         <div class="row contact_message col-12 justify-content-center">
@@ -52,7 +51,8 @@
                         </div>
                     </div>
                     <div class="col-lg-12 pt-5 pb-5 justify-content-center">
-                        <form class="row contact_form flex-column align-items-center" @submit.prevent="sendMail" method="post" id="contactForm"
+                        <form class="row contact_form flex-column align-items-center" @submit.prevent="sendMail"
+                              method="post" id="contactForm"
                               novalidate="novalidate">
                             <div class="col-md-6 col-12 col-lg-6 ">
                                 <div class="form-group">
@@ -103,7 +103,7 @@
                         </form>
                     </div>
                 </div>
-                </div>
+            </div>
 
         </section>
         <!--================Contact Area =================-->
@@ -178,8 +178,8 @@ export default {
 }
 </script>
 <style>
-input, textarea{
-    border:none!important;
-    border-bottom:1px solid #eeeeee!important;
+input, textarea {
+    border: none !important;
+    border-bottom: 1px solid #eeeeee !important;
 }
 </style>

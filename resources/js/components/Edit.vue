@@ -2,36 +2,37 @@
     <div class="register  justify-content-center container">
         <div class="form row position-relative" style="height: 1100px">
             <p class="error col-12" v-if="editError">
-                {{editError}}
+                {{ editError }}
             </p>
             <p class="error col-12" v-if="editedUser">
-                {{editedUser}}
+                {{ editedUser }}
             </p>
 
             <input autocomplete="off" type="radio" id="profile" value="1" name="tractor" checked='checked'>
             <input autocomplete="off" type="radio" id="address" value="2" name="tractor">
             <input autocomplete="off" type="radio" id="education" value="3" name="tractor">
             <nav class="edit_nav">
-                <label for="profile" class='fa fa-user-o nav_label col-lg-4'></label>
-                <label for="address" class='fa fa-address-card-o nav_label col-lg-4'></label>
-                <label for="education" class='fa fa-user-secret nav_label col-lg-4'></label>
+                <label for="profile" class='fa fa-user-o nav_label col-lg-4 col-4'></label>
+                <label for="address" class='fa fa-address-card-o nav_label col-lg-4 col-4'></label>
+                <label for="education" class='fa fa-user-secret nav_label col-lg-4 col-4'></label>
             </nav>
             <article class='bio container'>
                 <form @submit.prevent="updateInfo" enctype="multipart/form-data">
                     <input autocomplete="off" type="hidden" name="_method" value="PUT">
                     <div class="form-group row">
                         <div class="form-group col-lg-4">
-                            <label for="phone">{{texts.phone}}</label>
+                            <label for="phone">{{ texts.phone }}</label>
                             <input autocomplete="off" id="phone" type="tel" name="phone"
                                    class="form-control" :placeholder="texts.valid_phone"
                                    v-validate="{required: true, regex: /^([0-9]+)$/ }"
                                    :class="{'input': true,
                                    'is-invalid': errors.has('phone') }"
                                    v-model="formEdit.phone">
-                            <span ref="phone" v-show="errors.has('phone')" class="help is-danger">{{ errors.first('phone') }}</span>
+                            <span ref="phone" v-show="errors.has('phone')"
+                                  class="help is-danger">{{ errors.first('phone') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="email">{{texts.email}}</label>
+                            <label for="email">{{ texts.email }}</label>
                             <input autocomplete="off" id="email" type="email" name="email"
                                    v-validate="'required|email'" v-on:blur="checkLang('email','en','formEdit')"
                                    :class="{'input': true, 'is-invalid': errors.has('email') }"
@@ -39,27 +40,29 @@
                             <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="bday">{{texts.birthday}}</label>
+                            <label for="bday">{{ texts.birthday }}</label>
                             <datepicker :language="hy" value="state.date" v-validate="'required'" id="bday"
                                         format="dd-MM-yyyy" :open-date="openDate"
                                         :class="{'input': true, 'is-invalid': errors.has('bday') }"
                                         name="bday" v-model="formEdit.bday"></datepicker>
-                            <span ref="bday" v-show="errors.has('bday')" class="help is-danger">{{ errors.first('bdsy') }}</span>
+                            <span ref="bday" v-show="errors.has('bday')" class="help is-danger">{{
+                                    errors.first('bdsy')
+                                }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="profession">{{texts.profession}}</label>
+                            <label for="profession">{{ texts.profession }}</label>
                             <select id="profession" name="profession" class="form-control" v-validate="'required'"
                                     :class="{'input': true, 'is-invalid': errors.has('profession') }"
                                     :data-vv-as="texts.profession"
                                     v-model="formEdit.profession" @change="getSpecialties(formEdit.profession)">
-                                <option value="">{{texts.selectaprofession}}</option>
-                                <option v-for="(prof) in professions" v-bind:value="prof.id">{{prof.name}}</option>
+                                <option value="">{{ texts.selectaprofession }}</option>
+                                <option v-for="(prof) in professions" v-bind:value="prof.id">{{ prof.name }}</option>
                             </select>
                             <span v-show="errors.has('profession')" ref="profession"
                                   class="help is-danger">{{ errors.first('profession') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="specialty_id">{{texts.specialty}}</label>
+                            <label for="specialty_id">{{ texts.specialty }}</label>
                             <select id="specialty_id" name="education_id" class="form-control" v-validate="'required'"
                                     :class="{'input': true, 'is-invalid': errors.has('education_id') }" ref="spec"
                                     :data-vv-as="texts.specialty"
@@ -72,11 +75,11 @@
                                   class="help is-danger">{{ errors.first('education_id') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="education_id">{{texts.education}}</label>
+                            <label for="education_id">{{ texts.education }}</label>
                             <select id="education_id" name="specialty_id" class="form-control" v-validate="'required'"
                                     :class="{'input': true, 'is-invalid': errors.has('specialty_id') }"
                                     v-model="formEdit.specialty_id" ref="edu" :data-vv-as="texts.education">
-                                <option v-for="(edu) in educations" v-bind:value="edu.id">{{edu.name}}</option>
+                                <option v-for="(edu) in educations" v-bind:value="edu.id">{{ edu.name }}</option>
                             </select>
                             <span ref="specialty_id" v-show="errors.has('specialty_id')"
                                   class="help is-danger">{{ errors.first('specialty_id') }}</span>
@@ -84,7 +87,7 @@
 
 
                         <div class="form-group col-lg-12">
-                            <label for="info">{{texts.info}}</label>
+                            <label for="info">{{ texts.info }}</label>
                             <textarea autocomplete="off" id="info" name="info"
                                       class="form-control" :data-vv-as="texts.info"
                                       v-validate="'max:1024'"
@@ -94,7 +97,7 @@
                                   class="help is-danger">{{ errors.first('info') }}</span>
                         </div>
                         <div class="form-group col-lg-12">
-                            <label for="workplace_name">{{texts.workplace}}</label>
+                            <label for="workplace_name">{{ texts.workplace }}</label>
                             <input autocomplete="off" id="workplace_name" type="text" name="workplace_name"
                                    class="form-control" :data-vv-as="texts.workplace"
                                    v-validate="'required'"
@@ -105,22 +108,23 @@
                         </div>
                         <div class="form-group col-lg-12">
                             <div class="row ">
-                                <p class="form-group-lg col-lg-12">{{texts.workaddress}} </p>
+                                <p class="form-group-lg col-lg-12">{{ texts.workaddress }} </p>
                                 <div class="form-group col-lg-4">
-                                    <label for="w_region">{{texts.region}}</label>
+                                    <label for="w_region">{{ texts.region }}</label>
                                     <select id="w_region" name="w_region" class="form-control"
                                             :class="{'input': true, 'is-invalid': errors.has('w_region') }"
                                             v-validate="'required'" @change="getTerritory(formEdit.w_region,'w')"
                                             v-model="formEdit.w_region" :data-vv-as="texts.region"
                                             v-on:blur="checkLang('workplace_name', 'hy', 'formEdit')">
                                         <option v-for="(region, key) in regions" v-bind:value="region.id">
-                                            {{region.name}}
+                                            {{ region.name }}
                                         </option>
                                     </select>
-                                    <span ref="w_region" v-show="errors.has('w_region')" class="help is-danger">{{ errors.first('w_region') }}</span>
+                                    <span ref="w_region" v-show="errors.has('w_region')"
+                                          class="help is-danger">{{ errors.first('w_region') }}</span>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <label for="w_territory">{{texts.territory}}</label>
+                                    <label for="w_territory">{{ texts.territory }}</label>
                                     <select id="w_territory" name="w_territory" ref="w_territory" class="form-control"
                                             v-validate="'required'" :data-vv-as="texts.territory"
                                             :class="{'input': true, 'is-invalid': errors.has('w_territory') }"
@@ -140,34 +144,36 @@
                                           class="help is-danger">{{ errors.first('w_territory') }}</span>
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <label for="w_street">{{texts.street}}</label>
+                                    <label for="w_street">{{ texts.street }}</label>
                                     <input autocomplete="off" id="w_street" type="text" name="w_street"
                                            class="form-control" v-on:blur="checkLang('h_street', 'hy', 'formEdit')"
                                            v-validate="'required'" :data-vv-as="texts.street"
                                            :class="{'input': true, 'is-invalid': errors.has('w_street') }"
                                            v-model="formEdit.w_street">
-                                    <span ref="w_street" v-show="errors.has('w_street')" class="help is-danger">{{ errors.first('w_street') }}</span>
+                                    <span ref="w_street" v-show="errors.has('w_street')"
+                                          class="help is-danger">{{ errors.first('w_street') }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group col-lg-12">
                             <div class="row ">
-                                <p class="form-group-lg col-lg-12">{{texts.homeaddress}} </p>
+                                <p class="form-group-lg col-lg-12">{{ texts.homeaddress }} </p>
                                 <div class="form-group col-lg-4">
-                                    <label for="h_region">{{texts.region}}</label>
+                                    <label for="h_region">{{ texts.region }}</label>
                                     <select id="h_region" name="h_region" class="form-control"
                                             v-validate="'required'" @change="getTerritory(formEdit.h_region,'h')"
                                             :class="{'input': true, 'is-invalid': errors.has('h_region') }"
                                             v-model="formEdit.h_region" :data-vv-as="texts.region">
                                         <option v-for="(region, key) in regions" v-bind:value="region.id">
-                                            {{region.name}}
+                                            {{ region.name }}
                                         </option>
                                     </select>
-                                    <span ref="h_region" v-show="errors.has('h_region')" class="help is-danger">{{ errors.first('h_region') }}</span>
+                                    <span ref="h_region" v-show="errors.has('h_region')"
+                                          class="help is-danger">{{ errors.first('h_region') }}</span>
 
                                 </div>
                                 <div class="form-group col-lg-4">
-                                    <label for="h_territory">{{texts.territory}}</label>
+                                    <label for="h_territory">{{ texts.territory }}</label>
                                     <select id="h_territory" name="h_territory" ref="h_territory" class="form-control"
                                             v-validate="'required'" :data-vv-as="texts.territory"
                                             :class="{'input': true, 'is-invalid': errors.has('h_territory') }"
@@ -189,19 +195,20 @@
                                 </div>
                                 <div class="form-group col-lg-4">
 
-                                    <label for="h_street">{{texts.street}}</label>
+                                    <label for="h_street">{{ texts.street }}</label>
                                     <input autocomplete="off" id="h_street" type="text" name="h_street"
                                            class="form-control" v-on:blur="checkLang('h_street', 'hy','formEdit')"
                                            v-validate="'required'" :data-vv-as="texts.street"
                                            :class="{'input': true, 'is-invalid': errors.has('h_street') }"
                                            v-model="formEdit.h_street">
-                                    <span ref="h_street" v-show="errors.has('h_street')" class="help is-danger">{{ errors.first('h_street') }}</span>
+                                    <span ref="h_street" v-show="errors.has('h_street')"
+                                          class="help is-danger">{{ errors.first('h_street') }}</span>
                                 </div>
                             </div>
                         </div>
                         <footer class="form-group col-lg-12">
                             <label for="address" class='fa fa-arrow-right nav_label col-lg-4 float-right'></label>
-                            <button type="submit" class="btn primary-btn mt-3">{{texts.edit}}</button>
+                            <button type="submit" class="btn primary-btn mt-3">{{ texts.edit }}</button>
                         </footer>
                     </div>
 
@@ -211,16 +218,18 @@
                 <form @submit.prevent="updateApp" enctype="multipart/form-data">
                     <div class="form-group row ">
                         <div class="form-group col-lg-4">
-                            <label for="name">{{texts.name}}</label>
+                            <label for="name">{{ texts.name }}</label>
                             <input autocomplete="off" id="name" type="text" name="name" class="form-control" ref="name"
                                    v-validate="'required'" :data-vv-as="texts.name"
                                    v-on:blur="checkLang('name','hy', 'appEdit')"
                                    :class="{'input': true, 'is-invalid': errors.has('name') }" v-model="appEdit.name">
-                            <span ref="name" v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</span>
+                            <span ref="name" v-show="errors.has('name')" class="help is-danger">{{
+                                    errors.first('name')
+                                }}</span>
 
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="surname">{{texts.surname}}</label>
+                            <label for="surname">{{ texts.surname }}</label>
                             <input autocomplete="off" id="surname" type="text" name="surname" class="form-control "
                                    :class="{'input': true, 'is-invalid': errors.has('surname') }"
                                    v-validate="'required'" v-model="appEdit.surname" ref="surname"
@@ -229,43 +238,47 @@
                                   class="help is-danger">{{ errors.first('surname') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="father_name">{{texts.fathername}}</label>
+                            <label for="father_name">{{ texts.fathername }}</label>
                             <input autocomplete="off" id="father_name" type="text" name="father_name"
                                    class="form-control" :data-vv-as="texts.fathername" ref="father_name"
                                    :class="{'input': true, 'is-invalid': errors.has('father_name') }"
                                    v-validate="'required'" v-on:blur="checkLang('father_name','hy','appEdit')"
                                    v-model="appEdit.father_name">
-                            <span v-show="errors.has('father_name')" class="help is-danger" ref="father_name">{{ errors.first('father_name') }}</span>
+                            <span v-show="errors.has('father_name')" class="help is-danger"
+                                  ref="father_name">{{ errors.first('father_name') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="passport">{{texts.serianumber}}</label>
+                            <label for="passport">{{ texts.serianumber }}</label>
                             <input autocomplete="off" id="passport" type="text" name="passport" ref="pass"
                                    class="form-control" v-on:blur="checkLang('serianumber','en')"
                                    v-validate="'required'" :data-vv-as="texts.serianumber"
                                    v-model="appEdit.passport">
-                            <span ref="password" v-if="errors.has('passport')" class="help is-danger" role="alert">{{ errors.first('passport') }}</span>
+                            <span ref="password" v-if="errors.has('passport')" class="help is-danger"
+                                  role="alert">{{ errors.first('passport') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="issue">{{texts.dateofissue}}</label>
+                            <label for="issue">{{ texts.dateofissue }}</label>
                             <datepicker :language="hy" value="state.date" v-validate="'required'" id="issue"
                                         format="dd-MM-yyyy" :open-date="startDate" :data-vv-as="texts.dateofissue"
                                         :class="{'input': true, 'is-invalid': errors.has('date_of_issue') }"
                                         name="date_of_issue" v-model="appEdit.date_of_issue"></datepicker>
 
-                            <span ref="date_of_issue" v-show="errors.has('date_of_issue')" class="help is-danger">{{ errors.first('date_of_issue') }}</span>
+                            <span ref="date_of_issue" v-show="errors.has('date_of_issue')"
+                                  class="help is-danger">{{ errors.first('date_of_issue') }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            <label for="expiry">{{texts.dateofexpire}}</label>
+                            <label for="expiry">{{ texts.dateofexpire }}</label>
                             <datepicker :language="hy" value="state.date" v-validate="'required'" id="expiry"
                                         name="date_of_expiry" :open-date="startDate"
                                         :disabled-dates="{from:endDate}"
                                         format="dd-MM-yyyy" :data-vv-as="texts.dateofexpire"
                                         :class="{'input': true, 'is-invalid': errors.has('date_of_expiry') }"
                                         v-model="appEdit.date_of_expiry"></datepicker>
-                            <span ref="date_of_expiry" v-show="errors.has('date_of_expiry')" class="help is-danger">{{ errors.first('date_of_expiry') }}</span>
+                            <span ref="date_of_expiry" v-show="errors.has('date_of_expiry')"
+                                  class="help is-danger">{{ errors.first('date_of_expiry') }}</span>
                         </div>
                         <div class="form-group col-lg-12">
-                            <div class="form-group  col-lg-6"><span>{{texts.member_of_palace}}</span></div>
+                            <div class="form-group  col-lg-6"><span>{{ texts.member_of_palace }}</span></div>
                             <div class="form-group  col-lg-6">
                                 <div class="confirm-switch">
                                     <input autocomplete="off" type="checkbox" id="confirm-switch"
@@ -276,7 +289,9 @@
                                     <label for="confirm-switch"></label>
                                 </div>
                             </div>
-                            <span ref="member_of_palace" v-show="errors.has('member_of_palace')" class="help is-danger">{{ errors.first('member_of_palace') }}</span>
+                            <span ref="member_of_palace" v-show="errors.has('member_of_palace')" class="help is-danger">{{
+                                    errors.first('member_of_palace')
+                                }}</span>
                         </div>
                         <div class="form-group col-lg-12 diploms_container">
                             <div class="large-12 medium-12 small-12 filezone">
@@ -284,7 +299,7 @@
                                        type="file" id="files" multiple :data-vv-as="texts.uploadfiles"
                                        name="files" v-validate="'required'">
                                 <p>
-                                    {{texts.uploadfiles}}
+                                    {{ texts.uploadfiles }}
                                 </p>
                             </div>
 
@@ -316,7 +331,7 @@
                         </div>
                         <footer class="form-group col-lg-12">
                             <label for="education" class='fa fa-arrow-right nav_label col-lg-4 float-right'></label>
-                            <button type="submit" class="btn primary-btn mt-3">{{texts.edit}}</button>
+                            <button type="submit" class="btn primary-btn mt-3">{{ texts.edit }}</button>
                         </footer>
                     </div>
                 </form>
@@ -326,18 +341,16 @@
                     <input autocomplete="off" type="hidden" name="_method" value="PUT">
                     <div class="form-group row">
                         <div class="form-group  col-lg-4">
-                            <div class="row">
-                                <label for="old_password">{{texts.oldpassword}}</label>
-                                <input autocomplete="off" id="old_password" type="password" name="old_password"
-                                       class="form-control" :data-vv-as="texts.oldpassword"
-                                       v-validate="'required|min:8'" v-model="passEdit.old_password"
-                                       :class="{'input': true, 'is-invalid': errors.has('old_password') }">
-                                <span v-show="errors.has('old_password')"
-                                      class="help is-danger">{{ errors.first('old_password') }}</span>
-                            </div>
+                            <label for="old_password">{{ texts.oldpassword }}</label>
+                            <input autocomplete="off" id="old_password" type="password" name="old_password"
+                                   class="form-control" :data-vv-as="texts.oldpassword"
+                                   v-validate="'required|min:8'" v-model="passEdit.old_password"
+                                   :class="{'input': true, 'is-invalid': errors.has('old_password') }">
+                            <span v-show="errors.has('old_password')"
+                                  class="help is-danger">{{ errors.first('old_password') }}</span>
                         </div>
                         <div class="form-group  col-lg-4">
-                            <label for="password">{{texts.newpassword}}</label>
+                            <label for="password">{{ texts.newpassword }}</label>
                             <input autocomplete="off" id="password" type="password" name="password" class="form-control"
                                    v-validate="'required|min:8'" v-model="passEdit.password"
                                    :data-vv-as="texts.password" ref="pass"
@@ -347,18 +360,19 @@
                                   class="help is-danger">{{ errors.first('password') }}</span>
                         </div>
                         <div class="form-group  col-lg-4">
-                            <label for="re_password">{{texts.confirmpassword}}</label>
+                            <label for="re_password">{{ texts.confirmpassword }}</label>
                             <input autocomplete="off" id="re_password" type="password" name="re_password"
                                    class="form-control" v-on:blur="checkLang('re_password','en', 'passEdit')"
                                    :class="{'input': true, 'is-invalid': errors.has('re_password') }"
                                    v-validate="'required|confirmed:pass'" v-model="passEdit.re_password"
                                    :data-vv-as="texts.confirmpassword">
-                            <span v-show="errors.has('re_password')" class="help is-danger">{{ errors.first('re_password') }}</span>
+                            <span v-show="errors.has('re_password')"
+                                  class="help is-danger">{{ errors.first('re_password') }}</span>
                         </div>
 
                         <footer class="form-group col-lg-12">
                             <label for="address" class='fa fa-arrow-left nav_label col-lg-4 float-left'></label>
-                            <button type="submit" class="btn primary-btn mt-3 float-right">{{texts.edit}}</button>
+                            <button type="submit" class="btn primary-btn mt-3 float-right">{{ texts.edit }}</button>
                         </footer>
                     </div>
                 </form>
@@ -368,328 +382,329 @@
 </template>
 
 <script>
-    function changeCalender(_date) {
-        const current_date = new Date();
-        return current_date.getFullYear() + (_date);
-    }
-    import {approveUser, changePassword, editUser} from '../partials/auth';
-    import {getPromiseResult, langs, territory} from '../partials/help';
-    import Datepicker from 'vuejs-datepicker';
-    import registertexts from './json/registertexts.json'
-    import hy from './json/hy.json';
+function changeCalender(_date) {
+    const current_date = new Date();
+    return current_date.getFullYear() + (_date);
+}
 
-    export default {
-        props: ['input_name'],
-        data() {
+import {approveUser, changePassword, editUser} from '../partials/auth';
+import {getPromiseResult, langs} from '../partials/help';
+import Datepicker from 'vuejs-datepicker';
+import registertexts from './json/registertexts.json'
+import hy from './json/hy.json';
+
+export default {
+    props: ['input_name'],
+    data() {
+        return {
+            hy: hy,
+            formEdit: {
+                id: '',
+                phone: '',
+                bday: '',
+                workplace_name: '',
+                h_region: '',
+                w_region: '',
+                h_territory: '',
+                w_territory: '',
+                w_street: '',
+                h_street: '',
+                profession: '',
+                specialty_id: '',
+                education_id: '',
+                info: '',
+            },
+            appEdit: {
+                name: '',
+                surname: '',
+                father_name: '',
+                passport: '',
+                date_of_expiry: '',
+                date_of_issue: '',
+                member_of_palace: '',
+                email: '',
+                diplomas: '',
+                j_diplomas: '',
+            },
+            passEdit: {
+                old_password: '',
+                password: '',
+                re_password: ''
+            },
+            files: [],
+            regions: [],
+            w_territories: [],
+            h_territories: [],
+            educations: [],
+            professions: [],
+            specialties: [],
+            openDate: new Date('January 31 1930'),
+            startDate: new Date('January 31 ' + changeCalender(-10)),
+            endDate: new Date('January 31 ' + changeCalender(11)),
+            error:
+                null,
+            texts: registertexts
+        }
+    },
+    created() {
+        this.getAccountInfo();
+        this.getRegions();
+        this.getProfessions();
+    },
+    methods: {
+        getCredentials() {
             return {
-                hy: hy,
-                formEdit: {
-                    id: '',
-                    phone: '',
-                    bday: '',
-                    workplace_name: '',
-                    h_region: '',
-                    w_region: '',
-                    h_territory: '',
-                    w_territory: '',
-                    w_street: '',
-                    h_street: '',
-                    profession: '',
-                    specialty_id: '',
-                    education_id: '',
-                    info: '',
-                },
-                appEdit: {
-                    name: '',
-                    surname: '',
-                    father_name: '',
-                    passport: '',
-                    date_of_expiry: '',
-                    date_of_issue: '',
-                    member_of_palace: '',
-                    email: '',
-                    diplomas: '',
-                    j_diplomas: '',
-                },
-                passEdit: {
-                    old_password: '',
-                    password: '',
-                    re_password: ''
-                },
-                files: [],
-                regions: [],
-                w_territories: [],
-                h_territories: [],
-                educations: [],
-                professions: [],
-                specialties: [],
-                openDate: new Date('January 31 1930'),
-                startDate: new Date('January 31 ' + changeCalender(-10)),
-                endDate: new Date('January 31 ' + changeCalender(11)),
-                error:
-                    null,
-                texts: registertexts
-            }
+                token: this.currentUser.token
+            };
         },
-        created() {
-            this.getAccountInfo();
-            this.getRegions();
-            this.getProfessions();
+        getEducations(id) {
+            let credentials = {
+                id: id,
+                auth: false,
+                url: 'edu'
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.$refs.edu.style.border = '1px solid #9f12ad';
+                    this.$refs.spec.style.border = '1px solid #ced4da';
+                    this.educations = res.edu;
+                })
+                .catch(error => {
+                    this.$store.commit("getContentFailed", {error});
+                });
         },
-        methods: {
-            getCredentials() {
-                return {
-                    token: this.currentUser.token
-                };
-            },
-            getEducations(id) {
-                let credentials = {
-                    id: id,
-                    auth: false,
-                    url: 'edu'
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        this.$refs.edu.style.border = '1px solid #9f12ad';
-                        this.$refs.spec.style.border = '1px solid #ced4da';
-                        this.educations = res.edu;
-                    })
-                    .catch(error => {
-                        this.$store.commit("getContentFailed", {error});
-                    });
-            },
-            getSpecialties(id) {
-                let credentials = {
-                    id: id,
-                    auth: false,
-                    url: 'spec'
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        this.$refs.spec.style.border = '1px solid #9f12ad';
-                        this.specialties = res.spec;
-                    })
-                    .catch(error => {
-                        this.$store.commit("getContentFailed", {error});
-                    });
-            },
-            getRegions() {
-                let credentials = {
-                    auth: false,
-                    url: 'regions'
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        this.regions = res.regions;
-                    })
-                    .catch(error => {
-                        this.$store.commit("getContentFailed", {error});
-                    });
+        getSpecialties(id) {
+            let credentials = {
+                id: id,
+                auth: false,
+                url: 'spec'
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.$refs.spec.style.border = '1px solid #9f12ad';
+                    this.specialties = res.spec;
+                })
+                .catch(error => {
+                    this.$store.commit("getContentFailed", {error});
+                });
+        },
+        getRegions() {
+            let credentials = {
+                auth: false,
+                url: 'regions'
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.regions = res.regions;
+                })
+                .catch(error => {
+                    this.$store.commit("getContentFailed", {error});
+                });
 
-            },
-            getProfessions() {
-                let credentials = {
-                    auth: false,
-                    url: 'prof'
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        this.professions = res.prof;
-                    })
-                    .catch(error => {
-                        this.$store.commit("getContentFailed", {error});
-                    });
+        },
+        getProfessions() {
+            let credentials = {
+                auth: false,
+                url: 'prof'
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.professions = res.prof;
+                })
+                .catch(error => {
+                    this.$store.commit("getContentFailed", {error});
+                });
 
-            },
-            getTerritory(id, prefix) {
-                let credentials = {
-                    id:id,
-                    auth: false,
-                    url: 'territory'
-                };
-                getPromiseResult(credentials)
-                    .then(res => {
-                        if (prefix === 'w') {
-                            this.w_territories = res.territories;
+        },
+        getTerritory(id, prefix) {
+            let credentials = {
+                id: id,
+                auth: false,
+                url: 'territory'
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    if (prefix === 'w') {
+                        this.w_territories = res.territories;
 
-                        } else {
-                            this.h_territories = res.territories;
-                        }
-                    })
-                    .catch(error => {
-                        this.$store.commit("getContentFailed", {error});
-                    });
-            },
-            getAccountInfo() {
-                let user = JSON.parse(localStorage.getItem('user'));
-                const token = user.token;
-
-                axios.get('/api/auth/edit/' + user.id, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
+                    } else {
+                        this.h_territories = res.territories;
                     }
                 })
-                    .then(response => {
-
-                        let obj = response.data;
-
-                        let w_address = JSON.parse(obj.user.work_address);
-                        let h_address = JSON.parse(obj.user.home_address);
-                        let diplomas = JSON.parse(obj.app.prof.diplomas);
-
-                        this.$data.formEdit = obj.user;
-                        this.$data.appEdit = obj.app;
-                        this.$data.formEdit.w_region = w_address.w_region;
-                        this.$data.formEdit.w_territory = w_address.w_territory;
-                        this.$data.formEdit.w_street = w_address.w_street;
-                        this.$data.formEdit.h_region = h_address.h_region;
-                        this.$data.formEdit.h_territory = h_address.h_territory;
-                        this.$data.formEdit.h_street = h_address.h_street;
-                        this.$data.appEdit.diplomas = obj.app.prof.diplomas;
-                        this.$data.appEdit.j_diplomas = diplomas;
-                        this.$data.appEdit.member_of_palace = obj.app.prof.member_of_palace;
-                        this.$data.formEdit.token = token;
-
-
-                        this.getTerritory(this.$data.formEdit.w_region, 'w');
-                        this.getTerritory(this.$data.formEdit.h_region, 'h');
-                        this.getSpecialties(this.$data.formEdit.profession);
-                        this.getEducations(this.$data.formEdit.education_id);
-                    })
-            },
-            updateApp() {
-                this.$validator.validateAll(this.$data.appEdit).then((result) => {
-                    if (result) {
-                        console.log('result', result)
-                        approveUser(this.$data.appEdit,
-                            this.files, this.$data.formEdit.token)
-                            .then(res => {
-                                this.$store.commit("editSuccess", res);
-                                this.logout();
-                            })
-                            .catch(error => {
-                                this.$store.commit("editFailed", {error});
-                            });
-                        return;
-                    }
-                    console.log('Correct them errors!');
+                .catch(error => {
+                    this.$store.commit("getContentFailed", {error});
                 });
-            },
-            updateInfo() {
-                this.$validator.validateAll(this.$data.formEdit).then((result) => {
-                    if (result) {
+        },
+        getAccountInfo() {
+            let user = JSON.parse(localStorage.getItem('user'));
+            const token = user.token;
 
-                        editUser(this.$data.formEdit.id, this.$data.formEdit,
-                            this.files, this.$data.formEdit.token)
-                            .then(res => {
+            axios.get('/api/auth/edit/' + user.id, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(response => {
 
-                                this.$store.commit("editSuccess", res);
-                                this.$router.push({path: '/account'});
-                            })
-                            .catch(error => {
+                    let obj = response.data;
 
-                                this.$store.commit("editFailed", {error});
-                            });
-                        return;
-                    }
-                    console.log('Correct them errors!');
-                });
-            },
-            update() {
-                this.$validator.validateAll(this.$data.passEdit).then((result) => {
-                    if (result) {
+                    let w_address = JSON.parse(obj.user.work_address);
+                    let h_address = JSON.parse(obj.user.home_address);
+                    let diplomas = JSON.parse(obj.app.prof.diplomas);
 
-                        return;
-                    }
-                    console.log('Correct them errors!');
-                });
-                let user = JSON.parse(localStorage.getItem('user'));
-                const token = user.token;
-                const id = user.id;
+                    this.$data.formEdit = obj.user;
+                    this.$data.appEdit = obj.app;
+                    this.$data.formEdit.w_region = w_address.w_region;
+                    this.$data.formEdit.w_territory = w_address.w_territory;
+                    this.$data.formEdit.w_street = w_address.w_street;
+                    this.$data.formEdit.h_region = h_address.h_region;
+                    this.$data.formEdit.h_territory = h_address.h_territory;
+                    this.$data.formEdit.h_street = h_address.h_street;
+                    this.$data.appEdit.diplomas = obj.app.prof.diplomas;
+                    this.$data.appEdit.j_diplomas = diplomas;
+                    this.$data.appEdit.member_of_palace = obj.app.prof.member_of_palace;
+                    this.$data.formEdit.token = token;
 
-                changePassword(id, this.$data.passEdit, token)
-                    .then(res => {
 
-                        if (res.success) {
+                    this.getTerritory(this.$data.formEdit.w_region, 'w');
+                    this.getTerritory(this.$data.formEdit.h_region, 'h');
+                    this.getSpecialties(this.$data.formEdit.profession);
+                    this.getEducations(this.$data.formEdit.education_id);
+                })
+        },
+        updateApp() {
+            this.$validator.validateAll(this.$data.appEdit).then((result) => {
+                if (result) {
+                    console.log('result', result)
+                    approveUser(this.$data.appEdit,
+                        this.files, this.$data.formEdit.token)
+                        .then(res => {
                             this.$store.commit("editSuccess", res);
                             this.logout();
-                        }
-                    })
-                    .catch(error => {
-                        this.$store.commit("editFailed", {error});
-                    });
-            },
-            logout() {
-
-                this.$store.commit('logout');
-                this.$router.push('/login');
-            },
-            removeFile(key) {
-                this.files.splice(key, 1);
-                this.getImagePreviews();
-            },
-            removeDiploma(key) {
-                let diplomas = JSON.parse(this.appEdit.diplomas);
-                diplomas.splice(key, 1);
-                this.appEdit.diplomas = JSON.stringify(diplomas);
-                this.$refs.diploma[key].remove();
-            },
-            handleFiles() {
-                let uploadedFiles = this.$refs.files.files;
-
-                for (var i = 0; i < uploadedFiles.length; i++) {
-                    this.files.push(uploadedFiles[i]);
-                    // this.images.push(uploadedFiles[i]);
-                }
-                this.getImagePreviews();
-            },
-            getImagePreviews() {
-                for (let i = 0; i < this.files.length; i++) {
-                    if (/\.(jpe?g|png|gif)$/i.test(this.files[i].name)) {
-                        let reader = new FileReader();
-
-                        reader.addEventListener("load", function () {
-                            this.$refs['preview' + parseInt(i)][0].src = reader.result;
-                        }.bind(this), false);
-                        reader.readAsDataURL(this.files[i]);
-                    } else {
-                        this.$nextTick(function () {
-                            this.$refs['preview' + parseInt(i)][0].src = '/images/avatars/generic.png';
+                        })
+                        .catch(error => {
+                            this.$store.commit("editFailed", {error});
                         });
-                    }
+                    return;
                 }
-            },
-            checkLang(val, lng, model) {
-                let el = "";
-                switch (model) {
-                    case 'appEdit':
-                        el = this.$data.appEdit[val];
-                        break;
-                    case 'passEdit':
-                        el = this.$data.passEdit[val];
-                        break;
-                    case 'formEdit':
-                        el = this.$data.formEdit[val];
-                        break;
-                }
+                console.log('Correct them errors!');
+            });
+        },
+        updateInfo() {
+            this.$validator.validateAll(this.$data.formEdit).then((result) => {
+                if (result) {
 
-                let isArm = langs(el, lng);
-                if (!isArm) {
-                    this.$data.appEdit[val] = "";
+                    editUser(this.$data.formEdit.id, this.$data.formEdit,
+                        this.files, this.$data.formEdit.token)
+                        .then(res => {
+
+                            this.$store.commit("editSuccess", res);
+                            this.$router.push({path: '/account'});
+                        })
+                        .catch(error => {
+
+                            this.$store.commit("editFailed", {error});
+                        });
+                    return;
+                }
+                console.log('Correct them errors!');
+            });
+        },
+        update() {
+            this.$validator.validateAll(this.$data.passEdit).then((result) => {
+                if (result) {
+
+                    return;
+                }
+                console.log('Correct them errors!');
+            });
+            let user = JSON.parse(localStorage.getItem('user'));
+            const token = user.token;
+            const id = user.id;
+
+            changePassword(id, this.$data.passEdit, token)
+                .then(res => {
+
+                    if (res.success) {
+                        this.$store.commit("editSuccess", res);
+                        this.logout();
+                    }
+                })
+                .catch(error => {
+                    this.$store.commit("editFailed", {error});
+                });
+        },
+        logout() {
+
+            this.$store.commit('logout');
+            this.$router.push('/login');
+        },
+        removeFile(key) {
+            this.files.splice(key, 1);
+            this.getImagePreviews();
+        },
+        removeDiploma(key) {
+            let diplomas = JSON.parse(this.appEdit.diplomas);
+            diplomas.splice(key, 1);
+            this.appEdit.diplomas = JSON.stringify(diplomas);
+            this.$refs.diploma[key].remove();
+        },
+        handleFiles() {
+            let uploadedFiles = this.$refs.files.files;
+
+            for (var i = 0; i < uploadedFiles.length; i++) {
+                this.files.push(uploadedFiles[i]);
+                // this.images.push(uploadedFiles[i]);
+            }
+            this.getImagePreviews();
+        },
+        getImagePreviews() {
+            for (let i = 0; i < this.files.length; i++) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.files[i].name)) {
+                    let reader = new FileReader();
+
+                    reader.addEventListener("load", function () {
+                        this.$refs['preview' + parseInt(i)][0].src = reader.result;
+                    }.bind(this), false);
+                    reader.readAsDataURL(this.files[i]);
+                } else {
+                    this.$nextTick(function () {
+                        this.$refs['preview' + parseInt(i)][0].src = '/images/avatars/generic.png';
+                    });
                 }
             }
         },
-        computed: {
-            editError() {
-                return this.$store.getters.editError
-            },
-            editedUser() {
-                return this.$store.getters.editedUser
+        checkLang(val, lng, model) {
+            let el = "";
+            switch (model) {
+                case 'appEdit':
+                    el = this.$data.appEdit[val];
+                    break;
+                case 'passEdit':
+                    el = this.$data.passEdit[val];
+                    break;
+                case 'formEdit':
+                    el = this.$data.formEdit[val];
+                    break;
             }
-        },
-        components: {
-            Datepicker
+
+            let isArm = langs(el, lng);
+            if (!isArm) {
+                this.$data.appEdit[val] = "";
+            }
         }
+    },
+    computed: {
+        editError() {
+            return this.$store.getters.editError
+        },
+        editedUser() {
+            return this.$store.getters.editedUser
+        }
+    },
+    components: {
+        Datepicker
     }
+}
 </script>
 

@@ -39,7 +39,9 @@
                             <li>
                                 <div class="justify-content-between d-flex">
                                     <p>{{ texts.profilename }}</p>
-                                    <span class="or text-capitalize text-right">{{ account.name }} {{ account.surname }} {{ account.father_name }}</span>
+                                    <span class="or text-capitalize text-right">{{ account.name }} {{ account.surname }} {{
+                                            account.father_name
+                                        }}</span>
                                 </div>
                             </li>
                             <li>
@@ -69,7 +71,8 @@
                     <li v-for="info in this.tests" class="d-flex flex-column test-actual">
                         <div class="row media post_item">
                             <router-link :to="'/coursedetails/'+info.id" class="col-6 account_cert">
-                                <img class="col-12 mt-5" v-bind:src="certificateName + info.certificate " alt="certificate">
+                                <img class="col-12 mt-5" v-bind:src="certificateName + info.certificate "
+                                     alt="certificate">
                             </router-link>
                             <div class="col-6 media-body">
                                 <router-link :to="'/coursedetails/'+info.id" class="nav-link">
@@ -139,6 +142,7 @@ export default {
         }
     },
     beforeMount() {
+
         this.getTestsResultById(this.currentUser.id);
         this.getAccountById();
     },

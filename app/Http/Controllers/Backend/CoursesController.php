@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\CourseAccountExport;
 use App\Exports\CourseExport;
 use App\Http\Controllers\Controller;
 use App\Models\AccountCourse;
@@ -461,6 +462,11 @@ class CoursesController extends Controller
     public function gdExcel()
     {
         return Excel::download(new CourseExport(),
+            sprintf('Courses_%s.xlsx', date('d-m-Y')));
+    }
+    function gdExcelByAccount($id)
+    {
+        return Excel::download(new CourseAccountExport($id),
             sprintf('Courses_%s.xlsx', date('d-m-Y')));
     }
 }

@@ -52,7 +52,7 @@
 													<i class="la la-gear"></i>
 												</span>
                         <h3 class="kt-portlet__head-title">
-                            Դասընթացներ
+                            {{__('messages.courses')}}
                         </h3>
                     </div>
                 </div>
@@ -62,9 +62,9 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Դասընթաց</th>
-                            <th>Դիտումների քանակ</th>
-                            <th>Վճարովի/Անվճար</th>
+                            <th>{{__('messages.course')}}</th>
+                            <th>{{__('messages.course_count')}}</th>
+                            <th>{{__('messages.export')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -74,7 +74,14 @@
                                     <td>{{$key+1}}</td>
                                     <td>{{$course->name}}</td>
                                     <td>{{$course->total}}</td>
-                                    <td>{{$course->isPaid ? 'Վճարովի' : 'Անվճար'}}</td>
+                                    {{--                                    <td>{{$course->isPaid ? 'Վճարովի' : 'Անվճար'}}</td>--}}
+                                    <td><a
+                                            href="{{action('Backend\CoursesController@gdExcelByAccount',$course->id )}}"
+                                            class="kt-nav__link">
+                                            <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                            <span class="kt-nav__link-text">{{__('messages.excel')}}</span>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif

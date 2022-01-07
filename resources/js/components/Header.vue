@@ -104,6 +104,7 @@ export default {
         logout() {
             this.$store.commit('logout');
             this.$router.push('/login');
+            location.reload();
         },
         getAccountById: function () {
             if (this.currentUser) {

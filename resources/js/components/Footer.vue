@@ -63,7 +63,11 @@
         </div>
         <div class="container-fluid">
             <div class="row footer-bottom  d-flex justify-content-center">
-                <p class="col-lg-8 col-sm-12 footer-text m-0" v-html="text.copyright">{{text.copyright}}</p>
+                <p class="col-lg-8 col-sm-12 footer-text m-0" >
+                    <span v-html="text.copyright_time">{{text.copyright_time }}</span>
+                        <span v-html="new Date().getFullYear()">{{new Date().getFullYear()}}</span>
+                    <span v-html="text.copyright">{{text.copyright}}</span>
+                </p>
             </div>
         </div>
     </footer>
