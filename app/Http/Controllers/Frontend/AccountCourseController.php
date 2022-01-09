@@ -51,11 +51,10 @@ class AccountCourseController extends Controller
     {
 
         try {
-//            $percent = $this->service->getTestResult(request('id'), request('user_id'), request('model'));
+            $percent = $this->service->getTestResult(request('id'), request('user_id'), request('model'));
             return response()->json([
                 'access_token' => request('token'),
-//                'percent' => $percent,
-                'model' => request('model'),
+                'percent' => $percent,
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
