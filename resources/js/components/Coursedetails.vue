@@ -86,7 +86,7 @@
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>{{ texts.duration }} </p>
-                                    <span class="or text-nowrap">{{ datas.duration_date }}</span>
+                                    <span class="or text-nowrap">{{ datas.duration }}</span>
                                 </a>
                             </li>
                             <li>

@@ -65,7 +65,7 @@
                         </form>
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
-                        </div>
+                        </div>{{diploma}}
                         <div id="certificate" v-if="diploma">
                             <p>{{ coursetexts.cert }}</p>
                             <img id="finishimg" v-bind:src="'/uploads/diplomas/' + cert" alt="certificate">

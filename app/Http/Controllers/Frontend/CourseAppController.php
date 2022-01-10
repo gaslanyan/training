@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\AccountVideo;
 use App\Models\Book;
 use App\Models\Courses;
@@ -333,35 +334,41 @@ class CourseAppController extends Controller
      */
     public function finishedVideo()
     {
-        $isFinished = 1;
-        $videos = Courses::select('id', 'videos')
-            ->with(['account_course' => function ($query) {
-                $query->select('course_id')->
-                where('course_id', request('id'));
-            }])
-            ->where('id', request('id'))
+        $isMamber = Profession::select('member_of_palace')
+            ->where('account_id',request('user_id'))
             ->first();
+        $isFinished = 1;
+        if(!$isMamber->member_of_palace) {
+            $videos = Courses::select('id', 'videos')
+                ->with(['account_course' => function ($query) {
+                    $query->select('course_id')->
+                    where('course_id', request('id'));
+                }])
+                ->where('id', request('id'))
+                ->first();
 
-        if (!empty($videos->account_course)) {
-            if (!empty($videos->videos)) {
-                $videos = json_decode($videos->videos);
-                if (!empty($videos)) {
-                    foreach ($videos as $index => $video) {
-                        $status = AccountVideo::select('status')
-                            ->where([["video_id", $video], ['account_id', request('user_id')]])
-                            ->first();
+            if (!empty($videos->account_course)) {
+                if (!empty($videos->videos)) {
+                    $videos = json_decode($videos->videos);
+                    if (!empty($videos)) {
+                        foreach ($videos as $index => $video) {
+                            $status = AccountVideo::select('status')
+                                ->where([["video_id", $video], ['account_id', request('user_id')]])
+                                ->first();
 
-                        if ((!empty($status) && $status->status != "finished")
-                            || empty($status)) {
+                            if ((!empty($status) && $status->status != "finished")
+                                || empty($status)) {
 
-                            $isFinished = 0;
-                            break;
+                                $isFinished = 0;
+                                break;
+                            }
                         }
                     }
                 }
-            }
-        } else
-            $isFinished = -1;
+            } else
+                $isFinished = -1;
+        }
+
         return $isFinished;
     }
 

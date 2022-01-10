@@ -64,9 +64,9 @@
                                         <div class="kt-wizard-v3__form">
                                             <div class="form-group row">
                                                 <label for="name"
-                                                       class="col-lg-2 col-form-label">{{__('messages.course_name')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.course_name')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <input id="name" type="text" name="name"
                                                            class="form-control @error('name') is-invalid @enderror"
                                                            value="{{isset($course) ?  $course->name : old('name')}}">
@@ -77,9 +77,9 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="special"
-                                                       class="col-lg-2 col-form-label">{{__('messages.course_list')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.course_list')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <select class="js-example-basic-multiple form-control @error('specialty_ids') is-invalid @enderror"
                                                             id="special"
                                                             name="specialty_ids[]" multiple="multiple">
@@ -107,9 +107,9 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="status"
-                                                       class="col-lg-2 col-form-label">{{__('messages.course_status')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.course_status')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <select class="js-example-basic-multiple form-control @error('status') is-invalid @enderror"
                                                             id="status"
                                                             name="status">
@@ -124,9 +124,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label">{{__('messages.course_start_date')}}
+                                                <label class="col-lg-3 col-form-label">{{__('messages.course_start_date')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <div class="input-group date">
                                                         <input id="kt_datepicker_3" type="text" readonly
                                                                name="start_date"
@@ -145,9 +145,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label">{{__('messages.course_end_date')}}
+                                                <label class="col-lg-3 col-form-label">{{__('messages.course_end_date')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <div class="input-group date">
                                                         <input id="kt_datepicker_3" type="text" name="end_date"
                                                                readonly
@@ -167,9 +167,9 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="duration"
-                                                       class="col-lg-2 col-form-label">{{__('messages.duration')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.duration')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <input id="duration" type="number" name="duration"
                                                            value="{{isset($course) ? $course->duration : old('duration')}}"
                                                            class="form-control @error('duration') is-invalid @enderror">
@@ -181,7 +181,7 @@
                                             @foreach($credit_types as $c_key => $credit_type)
                                                 <div class="form-group row">
                                                     <label for="credit_theoretical"
-                                                           class="col-lg-2 col-form-label">{{__('messages.course_credit')}}
+                                                           class="col-lg-3 col-form-label">{{__('messages.course_credit')}}
                                                         {{$credit_type['key'] == 'theoretical'? '*':''}}</label>
                                                     <div class="col-lg-5">
                                                         <input id="{{sprintf('credit_%s', $credit_type['key'])}}"
@@ -206,9 +206,9 @@
 
                                             <div class="form-group row">
                                                 <label for="cost"
-                                                       class="col-lg-2 col-form-label">{{__('messages.cost')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.cost')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <input id="cost" type="number" name="cost"
                                                            value="{{isset($course) ? $course->cost : old('cost')}}"
                                                            class="form-control @error('cost') is-invalid @enderror">
@@ -220,8 +220,8 @@
 
                                             <div class="form-group row">
                                                 <label for="course_videos"
-                                                       class="col-lg-2 col-form-label">{{__('messages.videos')}}</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.videos')}}</label>
+                                                <div class="col-lg-9">
                                                     <select class="js-example-basic-multiple form-control @error('videos') is-invalid @enderror"
                                                             id="course_videos" name="videos[]" multiple="multiple">
                                                         @if($videos)
@@ -241,8 +241,8 @@
 
                                             <div class="form-group row">
                                                 <label for="course_books"
-                                                       class="col-lg-2 col-form-label">{{__('messages.books')}}</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.books')}}</label>
+                                                <div class="col-lg-9">
                                                     <select class="js-example-basic-multiple form-control @error('books') is-invalid @enderror"
                                                             id="course_books" name="books[]" multiple="multiple">
                                                         @if($books)
@@ -261,7 +261,7 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="cert_1" class="col-lg-2 col-form-label">
+                                                <label for="cert_1" class="col-lg-3 col-form-label">
                                                     1 Անուն Կոորդինատ </label>
                                                 <div class="col-lg-5">
                                                     <input id="cert_1"
@@ -277,7 +277,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="cert_2" class="col-lg-2 col-form-label">
+                                                <label for="cert_2" class="col-lg-3 col-form-label">
                                                     2 Մեկնարկի Ամս․ </label>
                                                 <div class="col-lg-5">
                                                     <input id="cert_2"
@@ -294,7 +294,7 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="cert_3" class="col-lg-2 col-form-label">
+                                                <label for="cert_3" class="col-lg-3 col-form-label">
                                                     3 Ավարտի Ամս․ </label>
                                                 <div class="col-lg-5">
                                                     <input id="cert_3"
@@ -310,7 +310,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <div class="form-group">
                                                         <label class="btn btn-success" for="fileuploader-image">
                                                             Բեռնել դիպլոմ
@@ -353,7 +353,7 @@
                                                 <label class="btn btn-success" for="image-course">
                                                     {{__('messages.image')}}
                                                 </label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <input type="file" name="image" id="image-course"
                                                            accept="image/*">
                                                     @error('image')

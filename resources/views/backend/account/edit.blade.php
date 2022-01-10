@@ -135,9 +135,9 @@
                                                     <div class="col-lg-9">
                                                         <div class="form-group row">
                                                             <label for="name"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.name')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.name')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input type="hidden" name="id" value="{{$account->id}}">
                                                                 <input id="name" type="text" name="name"
                                                                        class="form-control m-input"
@@ -148,18 +148,18 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="surname"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.surname')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.surname')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="surname" type="text" name="surname"
                                                                        class="form-control m-input"
                                                                        value="{{$account->surname}}"></div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="father_name"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.father_name')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.father_name')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="father_name" type="text" name="father_name"
                                                                        class="form-control m-input"
                                                                        value="{{$account->father_name}}">
@@ -169,9 +169,9 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group row">
                                                             <label for="email"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.email')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.email')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="email" type="email" name="email"
                                                                        class="form-control m-input"
                                                                        value="{{$account->user->email}}">
@@ -180,9 +180,9 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="phone"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.phone')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.phone')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="phone" type="tel" name="phone"
                                                                        class="form-control m-input"
                                                                        value="{{$account->phone}}">
@@ -190,9 +190,9 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="bday"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.bday')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.bday')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="bday" type="date" name="bday"
                                                                        class="form-control m-input"
                                                                        value="{{$account->bday}}">
@@ -200,9 +200,9 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="passport"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.passport')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.passport')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="passport" type="text" name="passport"
                                                                        class="form-control m-input"
                                                                        value="{{$account->passport}}">
@@ -210,9 +210,9 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="date_of_issue"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.date_of_issue')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.date_of_issue')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="date_of_issue" type="date"
                                                                        name="date_of_issue"
                                                                        class="form-control m-input"
@@ -221,9 +221,9 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="date_of_expiry"
-                                                                   class="col-lg-2 col-form-label">{{__('messages.date_of_expiry')."*"}}
+                                                                   class="col-lg-3 col-form-label">{{__('messages.date_of_expiry')."*"}}
                                                             </label>
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-9">
                                                                 <input id="date_of_expiry" type="date"
                                                                        name="date_of_expiry"
                                                                        class="form-control m-input"
@@ -240,17 +240,17 @@
                                         <h4 class="form-group row">{{__('messages.work_address')}}</h4>
                                         <div class="form-group row">
                                             <label for="workplace_name"
-                                                   class="col-lg-2 col-form-label">{{__('messages.workplace_name')."*"}}
+                                                   class="col-lg-3 col-form-label">{{__('messages.workplace_name')."*"}}
                                             </label>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-9">
                                                 <input id="workplace_name" name="workplace_name"
                                                        class="form-control " value="{{$account->workplace_name}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label"
+                                            <label class="col-lg-3 col-form-label"
                                                    for="w_region">{{__('messages.region')."*"}}</label>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-9">
                                                 <select id="w_region" name="w_region" class="form-control">
                                                     <option value="">{{__('messages.select_region')}}</option>
                                                     @foreach($regions->regions as $key=>$region)
@@ -268,8 +268,8 @@
                                         @endphp
                                         <div class="form-group row">
                                             <label for="w_territory"
-                                                   class="col-lg-2 col-form-label">{{__('messages.territory')."*"}}</label>
-                                            <div class="col-lg-10">
+                                                   class="col-lg-3 col-form-label">{{__('messages.territory')."*"}}</label>
+                                            <div class="col-lg-9">
                                                 <select id="w_territory" name="w_territory"
                                                         class="form-control">
                                                     <option value="{{$w['w_territory']}}">{{$account->w_territory}}</option>
@@ -278,8 +278,8 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="w_street"
-                                                   class="col-lg-2 col-form-label">{{__('messages.street')."*"}}</label>
-                                            <div class="col-lg-10">
+                                                   class="col-lg-3 col-form-label">{{__('messages.street')."*"}}</label>
+                                            <div class="col-lg-9">
                                                 <input id="w_street" type="text" name="w_street"
                                                        class="form-control"
                                                        value="{{$account->w_street}}{{old('w_street')}}">
@@ -288,9 +288,9 @@
                                         </div>
                                         <h4 class="form-group row">{{__('messages.home_address')}}</h4>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label"
+                                            <label class="col-lg-3 col-form-label"
                                                    for="w_region">{{__('messages.region')."*"}}</label>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-9">
                                                 <select id="h_region" name="h_region" class="form-control">
                                                     <option value="">{{__('messages.select_region')}}</option>
                                                     @foreach($regions->regions as $key=>$region)
@@ -308,8 +308,8 @@
                                         @endphp
                                         <div class="form-group row">
                                             <label for="h_territory"
-                                                   class="col-lg-2 col-form-label">{{__('messages.territory')."*"}}</label>
-                                            <div class="col-lg-10">
+                                                   class="col-lg-3 col-form-label">{{__('messages.territory')."*"}}</label>
+                                            <div class="col-lg-9">
                                                 <select id="h_territory" name="h_territory"
                                                         class="form-control">
                                                     <option value="{{$w['w_territory']}}">{{$account->w_territory}}</option>
@@ -318,8 +318,8 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="h_street"
-                                                   class="col-lg-2 col-form-label">{{__('messages.street')."*"}}</label>
-                                            <div class="col-lg-10">
+                                                   class="col-lg-3 col-form-label">{{__('messages.street')."*"}}</label>
+                                            <div class="col-lg-9">
                                                 <input id="h_street" type="text" name="h_street"
                                                        class="form-control"
                                                        value="{{$account->h_street}}{{old('h_street')}}">
@@ -332,9 +332,9 @@
                                          role="tabpanel">
                                         <h4 class="form-group row">{{__('messages.section')}}</h4>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label"
+                                            <label class="col-lg-3 col-form-label"
                                                    for="prof">{{__('messages.prof')."*"}}</label>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-9">
 
                                                 <select id="prof" name="profession" class="form-control">
                                                     @if(!empty($prof))
@@ -353,9 +353,9 @@
                                         {{--dd($edu);--}}
                                         {{--@endphp--}}
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label"
+                                            <label class="col-lg-3 col-form-label"
                                                    for="edu">{{__('messages.education')}}</label>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-9">
                                                 <select id="edu" name="education_id" class="form-control">
                                                     @if(!empty($profession))
 
@@ -369,9 +369,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label"
+                                            <label class="col-lg-3 col-form-label"
                                                    for="spec">{{__('messages.education')}}</label>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-9">
                                                 <select id="spec" name="specialty_id" class="form-control">
                                                     <option class="form-control"
                                                             value="@if(!empty(old('specialty_id'))){{old('specialty_id')}}@else{{$profession->specialty_id}}@endif">

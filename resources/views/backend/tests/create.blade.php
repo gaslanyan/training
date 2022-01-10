@@ -47,11 +47,11 @@
                                         <div class="kt-wizard-v3__form">
                                             <div class="form-group row">
                                                 <label for="courses"
-                                                       class="col-lg-2 col-form-label">{{__('messages.course_list')}}</label>
-                                                <div class="col-sm-10">
+                                                       class="col-lg-2 col-form-label">{{__('messages.course')}}</label>
+                                                <div class="col-lg-9">
                                                     <select class="js-data-example-ajax form-control @error('course_id') is-invalid @enderror"
                                                             id="courses"
-                                                            data-placeholder="{{__('messages.choose_profession')}}"
+                                                            data-placeholder="{{__('messages.choose_course')}}"
                                                             name="course_id">
                                                         @if(old('course_id'))
                                                             @if($course = $courses->getByID(old('course_id')))
@@ -74,7 +74,7 @@
                                             <div class="form-group row">
                                                 <label for="test_name"
                                                        class="col-lg-2 col-form-label">{{__('messages.test_name')}}</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
 
                                                     <input id="test_name" type="text" name="question"
                                                            value="{{isset($test) ? $test->question : ""}}"
@@ -87,7 +87,7 @@
                                             <div class="form-group row">
                                                 <label for="answer"
                                                        class="col-lg-2 col-form-label">{{__('messages.test_answer')}}</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-lg-9">
                                                     <div class="dynamic-wrap">
                                                         @if($old = old('fields'))
                                                             @foreach($old as $j => $item)
@@ -96,7 +96,7 @@
                                                                      role="alert">{{$message}}</div>
                                                                 @enderror
                                                                 <div class="entry input-group custom_counter_g">
-                                                                    <div class="col-sm-10">
+                                                                    <div class="col-lg-9">
                                                                     <textarea
                                                                             class="form-control froala-editor @error('fields') is-invalid @enderror @error(sprintf('fields.%d.inp', $j)) is-invalid @enderror"
                                                                             name="fields[{{$j}}][inp]"
@@ -146,7 +146,7 @@
                                                             <?php $i = 0;?>
                                                             @foreach (json_decode($test->answers) as $key=>$value)
                                                                 <div class="entry input-group custom_counter_g">
-                                                                    <div class="col-sm-10">
+                                                                    <div class="col-lg-9">
                                                                     <textarea
                                                                             class="form-control froala-editor @error(sprintf('fields.%d.inp', $i)) is-invalid @enderror"
                                                                             name="fields[{{$i}}][inp]"
@@ -190,7 +190,7 @@
                                                             @endforeach
                                                         @elseif(!isset($test))
                                                             <div class="entry input-group custom_counter_g">
-                                                                <div class="col-sm-10">
+                                                                <div class="col-lg-9">
                                                                     <textarea
                                                                             class="form-control froala-editor"
                                                                             name="fields[0][inp]"

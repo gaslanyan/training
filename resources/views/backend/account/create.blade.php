@@ -84,8 +84,8 @@
                                             <div class="kt-wizard-v3__form">
                                                 <div class="form-group row validated">
                                                     <label for="name"
-                                                           class="col-lg-2 col-form-label">{{__('messages.name').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.name').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="name" type="text" name="name"
                                                                placeholder="{{__('messages.arm')}}"
                                                                class="form-control @if($errors->first('name')){{'is-invalid'}} @endif"
@@ -97,8 +97,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="surname"
-                                                           class="col-lg-2 col-form-label">{{__('messages.surname').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.surname').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="surname" type="text" name="surname"
                                                                placeholder="{{__('messages.arm')}}"
                                                                class="form-control @if($errors->first('surname')){{'is-invalid'}} @endif"
@@ -110,8 +110,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="father_name"
-                                                           class="col-lg-2 col-form-label">{{__('messages.father_name').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.father_name').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="father_name" type="text" name="father_name"
                                                                placeholder="{{__('messages.arm')}}"
                                                                class="form-control @if($errors->first('father_name')){{'is-invalid'}} @endif"
@@ -123,8 +123,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="phone"
-                                                           class="col-lg-2 col-form-label">{{__('messages.phone').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.phone').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="phone" type="text" name="phone"
                                                                class="form-control @if($errors->first('phone')){{'is-invalid'}} @endif"
                                                                value="{{old('phone')}}">
@@ -136,8 +136,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="email"
-                                                           class="col-lg-2 col-form-label">{{__('messages.email').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.email').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="email" type="email" name="email"
                                                                class="form-control @if($errors->first('email')){{'is-invalid'}} @endif"
                                                                value="{{old('email')}}">
@@ -149,8 +149,8 @@
 
                                                 <div class="form-group row date validated">
                                                     <label for="bday"
-                                                           class="col-lg-2 col-form-label">{{__('messages.bday').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.bday').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="bday" type="date" name="bday"
                                                                value="{{old('bday')}}"
                                                                class="form-control @if($errors->first('bday')){{'is-invalid'}} @endif">
@@ -161,8 +161,8 @@
                                                 </div>
                                                 <div class="form-group row date validated">
                                                     <label for="passport"
-                                                           class="col-lg-2 col-form-label">{{__('messages.passport').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.passport').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="passport" type="text" name="passport"
                                                                value="{{old('passport')}}"
                                                                class="form-control @if($errors->first('passport')){{'is-invalid'}} @endif">
@@ -177,8 +177,8 @@
                                                 @endphp
                                                 <div class="form-group row date validated">
                                                     <label for="date_of_issue"
-                                                           class="col-lg-2 col-form-label">{{__('messages.date_of_issue').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.date_of_issue').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="date_of_issue" type="date" name="date_of_issue"
                                                                min="{{date('Y-m-d', $date)}}" max="{{date('Y-m-d')}}"
                                                                class="form-control @if($errors->first('date_of_issue')){{'is-invalid'}} @endif"
@@ -195,8 +195,8 @@
                                                 @endphp
                                                 <div class="form-group row date validated">
                                                     <label for="date_of_expiry"
-                                                           class="col-lg-2 col-form-label">{{__('messages.date_of_expiry').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.date_of_expiry').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="date_of_expiry" type="date" name="date_of_expiry"
                                                                min="{{date('Y-m-d', $date_start)}}"
                                                                max="{{date('Y-m-d', $date_end)}}"
@@ -219,8 +219,8 @@
                                                 <h4 class="form-group row">{{__('messages.work_address')}}</h4>
                                                 <div class="form-group row validated">
                                                     <label for="workplace_name"
-                                                           class="col-lg-2 col-form-label">{{__('messages.workplace_name').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.workplace_name').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="workplace_name" type="text" name="workplace_name"
                                                                placeholder="{{__('messages.arm')}}"
                                                                value="{{old('workplace_name')}}"
@@ -232,9 +232,9 @@
                                                 </div>
 
                                                 <div class="form-group row was-validated">
-                                                    <label class="col-lg-2 col-form-label"
+                                                    <label class="col-lg-3 col-form-label"
                                                            for="w_region">{{__('messages.region').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-9">
                                                         <select id="w_region" name="w_region"
                                                                 class="form-control @if($errors->first('w_region')){{'is-invalid'}} @endif">
                                                             <option value="">{{__('messages.select_region')}}</option>
@@ -252,8 +252,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="w_territory"
-                                                           class="col-lg-2 col-form-label">{{__('messages.territory').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.territory').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <select id="w_territory" name="w_territory"
                                                                 class="form-control @if($errors->first('w_territory')){{'is-invalid'}} @endif">
                                                         </select>
@@ -264,8 +264,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="w_street"
-                                                           class="col-lg-2 col-form-label">{{__('messages.street').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.street').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="w_street" type="text" name="w_street"
                                                                placeholder="{{__('messages.arm')}}"
                                                                class="form-control @if($errors->first('w_street')){{'is-invalid'}} @endif"
@@ -280,9 +280,9 @@
 
 
                                                 <div class="form-group row validated">
-                                                    <label class="col-lg-2 col-form-label"
+                                                    <label class="col-lg-3 col-form-label"
                                                            for="h_region">{{__('messages.region').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-9">
                                                         <select id="h_region" name="h_region"
                                                                 class="form-control @if($errors->first('h_region')){{'is-invalid'}} @endif">
                                                             <option value="">{{__('messages.select_region')}}</option>
@@ -299,8 +299,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="h_territory"
-                                                           class="col-lg-2 col-form-label">{{__('messages.territory').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.territory').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <select id="h_territory" name="h_territory"
                                                                 class="form-control @if($errors->first('h_territory')){{'is-invalid'}} @endif">
                                                         </select>
@@ -311,8 +311,8 @@
                                                 </div>
                                                 <div class="form-group row validated">
                                                     <label for="h_street"
-                                                           class="col-lg-2 col-form-label">{{__('messages.street').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">{{__('messages.street').'*'}}</label>
+                                                    <div class="col-lg-9">
                                                         <input id="h_street" type="text" name="h_street"
                                                                placeholder="{{__('messages.arm')}}"
                                                                class="form-control @if($errors->first('h_street')){{'is-invalid'}} @endif"
@@ -331,9 +331,9 @@
                                             <div class="kt-wizard-v3__form">
                                                 <h4 class="form-group row">{{__('messages.education').'*'}}</h4>
                                                 <div class="form-group row validated">
-                                                    <label class="col-lg-2 col-form-label"
+                                                    <label class="col-lg-3 col-form-label"
                                                            for="prof">{{__('messages.prof')}}</label>
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-9">
 
                                                         <select id="prof" name="profession"
                                                                 class="form-control @if($errors->first('profession')){{'is-invalid'}} @endif">
@@ -352,9 +352,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row validated">
-                                                    <label class="col-lg-2 col-form-label"
+                                                    <label class="col-lg-3 col-form-label"
                                                            for="edu">{{__('messages.spec').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-9">
                                                         <select id="edu" name="education_id"
                                                                 class="form-control @if($errors->first('education_id')){{'is-invalid'}} @endif">
                                                         </select>
@@ -364,9 +364,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row validated">
-                                                    <label class="col-lg-2 col-form-label"
+                                                    <label class="col-lg-3 col-form-label"
                                                            for="spec">{{__('messages.education').'*'}}</label>
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-9">
                                                         <select id="spec" name="specialty_id"
                                                                 class="form-control @if($errors->first('specialty_id')){{'is-invalid'}} @endif">
                                                         </select>
