@@ -58,10 +58,12 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div>
                             <button type="submit" class="btn primary-btn mt-3 float-right">{{
                                     coursetexts.test
                                 }}
                             </button>
+                            </div>
                         </form>
                         <div class="col-lg-12 m-0 pb-5">
                             <p ref="msg"></p>
@@ -276,6 +278,8 @@ export default {
     },
 
     beforeMount() {
+        this.$props.percent = 0;
+        this.$props.count = 0;
         this.id = this.$route.params.id;
         this.getCourseTitle(this.id);
     },

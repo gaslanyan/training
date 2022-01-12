@@ -54,8 +54,8 @@
                                         <div class="kt-wizard-v3__form">
                                             <div class="form-group row">
                                                 <label for="first_name"
-                                                       class="col-lg-2 col-form-label">{{__('messages.name')}}*</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.name')}}*</label>
+                                                <div class="col-lg-9">
 
                                                     <input id="name" type="text" name="title"
                                                            class="form-control @error('title') is-invalid @enderror"
@@ -69,9 +69,9 @@
 
                                             <div class="form-group row">
                                                 <label for="first_name"
-                                                       class="col-lg-2 col-form-label">{{__('messages.lecture')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.lecture')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <select class="js-example-basic-multiple form-control @error('lecture') is-invalid @enderror"
                                                             name="lecture">
                                                         @if(isset($lectures))
@@ -90,9 +90,9 @@
 
                                             <div class="form-group row">
                                                 <label for="email"
-                                                       class="col-lg-2 col-form-label">{{__('messages.video')}}
+                                                       class="col-lg-3 col-form-label">{{__('messages.video')}}
                                                     *</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <div class="kt-section kt-section--last">
                                                         <div class="kt-section__content">
                                                             <div class="progress fileupload-progress" hidden>
@@ -127,7 +127,7 @@
                                                     <input type="hidden"
                                                            id="duration"
                                                            name="duration">
-                                                    <video id="video" class="view-video col-lg-10" controls hidden>
+                                                    <video id="video" class="view-video col-lg-9" controls hidden>
                                                         <source src="" type="video/mp4">
                                                         {{__('messages.not_support_html5_video')}}
                                                     </video>

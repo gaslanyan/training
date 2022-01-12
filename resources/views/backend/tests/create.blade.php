@@ -47,7 +47,7 @@
                                         <div class="kt-wizard-v3__form">
                                             <div class="form-group row">
                                                 <label for="courses"
-                                                       class="col-lg-2 col-form-label">{{__('messages.course')}}</label>
+                                                       class="col-lg-3 col-form-label">{{__('messages.course')}}</label>
                                                 <div class="col-lg-9">
                                                     <select class="js-data-example-ajax form-control @error('course_id') is-invalid @enderror"
                                                             id="courses"
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="test_name"
-                                                       class="col-lg-2 col-form-label">{{__('messages.test_name')}}</label>
+                                                       class="col-lg-3 col-form-label">{{__('messages.test_name')}}</label>
                                                 <div class="col-lg-9">
 
                                                     <input id="test_name" type="text" name="question"
@@ -86,7 +86,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="answer"
-                                                       class="col-lg-2 col-form-label">{{__('messages.test_answer')}}</label>
+                                                       class="col-lg-3 col-form-label">{{__('messages.test_answer')}}</label>
                                                 <div class="col-lg-9">
                                                     <div class="dynamic-wrap">
                                                         @if($old = old('fields'))

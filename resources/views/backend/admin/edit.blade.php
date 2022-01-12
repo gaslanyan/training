@@ -128,8 +128,8 @@
                                                     <div class="col-lg-9">
                                                         <div class="form-group row validated">
                                                             <label for="first_name"
-                                                                   class="col-lg-2 col-form-label">Անուն*</label>
-                                                            <div class="col-lg-10">
+                                                                   class="col-lg-3 col-form-label">Անուն*</label>
+                                                            <div class="col-lg-9">
                                                                 <input type="hidden" name="id" value="{{$user->id}}">
                                                                 <input id="first_name" type="text" name="first_name"
                                                                        class="form-control m-input @if($errors->first('first_name')){{'is-invalid'}} @endif"
@@ -142,8 +142,8 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="last_name"
-                                                                   class="col-lg-2 col-form-label">Ազգանուն*</label>
-                                                            <div class="col-lg-10">
+                                                                   class="col-lg-3 col-form-label">Ազգանուն*</label>
+                                                            <div class="col-lg-9">
                                                                 <input id="last_name" type="text" name="last_name"
                                                                        class="form-control m-input"
                                                                        placeholder="Enter Last Name"
@@ -152,9 +152,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="email" class="col-lg-2 col-form-label">Էլ.
+                                                    <label for="email" class="col-lg-3 col-form-label">Էլ.
                                                         փոստ*</label>
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-9">
                                                         <input id="email" type="email" name="email"
                                                                class="form-control m-input"
                                                                placeholder="Enter Email" value="{{$user->email}}">
@@ -163,8 +163,8 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="phone"
-                                                           class="col-lg-2 col-form-label">Հեռախոս*</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">Հեռախոս*</label>
+                                                    <div class="col-lg-9">
                                                         <input id="phone" type="tel" name="phone"
                                                                class="form-control m-input"
                                                                placeholder="Enter Phone" value="{{$user->phone}}">
@@ -172,17 +172,17 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="password"
-                                                           class="col-lg-2 col-form-label">Ծածկագիր</label>
-                                                    <div class="col-lg-10">
+                                                           class="col-lg-3 col-form-label">Ծածկագիր</label>
+                                                    <div class="col-lg-9">
                                                         <input id="password" type="password" name="password"
                                                                class="form-control m-input">
                                                         <span class="form-text text-muted">Լրացնել միայն փոփոխելու կամ նորը սահմանելու դեպքում</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="c_password" class="col-lg-2 col-form-label">Կրկնել
+                                                    <label for="c_password" class="col-lg-3 col-form-label">Կրկնել
                                                         ծածկագիր</label>
-                                                    <div class="col-lg-10">
+                                                    <div class="col-lg-9">
                                                         <input id="c_password" type="password"
                                                                name="confirm_password"
                                                                class="form-control m-input">
@@ -192,8 +192,8 @@
 
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="group" class="col-lg-2 col-form-label">Դեր*</label>
-                                                    <div class="col-lg-10">
+                                                    <label for="group" class="col-lg-3 col-form-label">Դեր*</label>
+                                                    <div class="col-lg-9">
                                                         <select id="group" name="group"
                                                                 class="form-control ">
 
@@ -211,8 +211,8 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="status"
-                                                           class="col-lg-2 col-form-label">Ակտիվ*</label>
-                                                    <div class="col-lg-10 m-select2">
+                                                           class="col-lg-3 col-form-label">Ակտիվ*</label>
+                                                    <div class="col-lg-9 m-select2">
                                                         <select id="status" name="status"
                                                                 class="form-control m-input m-input--air m_selectpicker">
                                                             <option value="1">Ակտիվ</option>

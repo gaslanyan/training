@@ -70,8 +70,8 @@
                                         <div class="kt-wizard-v3__form">
                                             <div class="form-group row validated">
                                                 <label for="first_name"
-                                                       class="col-lg-2 col-form-label">{{__('messages.name')}}*</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.name')}}*</label>
+                                                <div class="col-lg-9">
 
                                                     <input id="name" type="text" name="name"
                                                            class="form-control @if($errors->first('name')){{'is-invalid'}} @endif"
@@ -84,8 +84,8 @@
 
                                             <div class="form-group row validated">
                                                 <label for="email"
-                                                       class="col-lg-2 col-form-label">{{__('messages.email')}}*</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.email')}}*</label>
+                                                <div class="col-lg-9">
                                                     <input id="email" type="email" name="email"
                                                            class="form-control @if($errors->first('email')){{'is-invalid'}} @endif"
                                                            value="{{old('email')}}">
@@ -97,8 +97,8 @@
 
                                             <div class="form-group row validated">
                                                 <label for="password"
-                                                       class="col-lg-2 col-form-label">{{__('messages.password')}}</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.password')}}</label>
+                                                <div class="col-lg-9">
                                                     <input id="password" type="password" name="password"
                                                            class="form-control @if($errors->first('password')){{'is-invalid'}} @endif">
                                                     <span class="form-text text-muted">{{__('messages.complete_pass')}}</span>
@@ -109,8 +109,8 @@
                                             </div>
                                             <div class="form-group row validated">
                                                 <label for="c_password"
-                                                       class="col-lg-2 col-form-label">{{__('messages.confirm')}}</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.confirm')}}</label>
+                                                <div class="col-lg-9">
                                                     <input id="c_password" type="password" name="password_confirmation"
                                                            class="form-control @if($errors->first('password_confirmation')){{'is-invalid'}} @endif">
                                                     <span class="form-text text-muted">{{__('messages.complete_pass')}}</span>

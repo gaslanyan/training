@@ -54,8 +54,8 @@
                                         <div class="kt-wizard-v3__form">
                                             <div class="form-group row">
                                                 <label for="first_name"
-                                                       class="col-lg-2 col-form-label">{{__('messages.name')}}*</label>
-                                                <div class="col-lg-10">
+                                                       class="col-lg-3 col-form-label">{{__('messages.name')}}*</label>
+                                                <div class="col-lg-9">
 
                                                     <input id="name" type="text" name="title"
                                                            class="form-control @error('title') is-invalid @enderror"
@@ -67,9 +67,9 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label">{{__('messages.book')}}
+                                                <label class="col-lg-3 col-form-label">{{__('messages.book')}}
                                                     (.pdf)*</label>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-9">
                                                     <div class="form-group">
                                                         <label class="btn btn-success" for="fileuploader-book">
                                                             {{__('messages.upload')}}
