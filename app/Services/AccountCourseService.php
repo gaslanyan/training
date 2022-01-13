@@ -60,7 +60,7 @@ class AccountCourseService
         }
         $percent = ((count($account_answers) - count($deff)) / count($account_answers)) * 100;
         $count = $this->getCountOfTest($id, $account_id);
-dd($count);
+
         $account_course = [];
         $account_course['account_id'] = $account_id;
         $account_course['course_id'] = $id;
@@ -72,7 +72,7 @@ dd($count);
         if (empty($count->count)) {
             $c = 1;
             $account_course['count'] = $c;
-            $ca = $this->model->update($account_course, $count->id);
+            $ca = $this->model->create($account_course);
         } elseif ($count->count < 4) {
             $c = $count->count + 1;
             $account_course['count'] = $c;
