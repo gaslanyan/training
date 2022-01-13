@@ -60,7 +60,7 @@ class AccountCourseService
         }
         $percent = ((count($account_answers) - count($deff)) / count($account_answers)) * 100;
         $count = $this->getCountOfTest($id, $account_id);
-
+dd($count);
         $account_course = [];
         $account_course['account_id'] = $account_id;
         $account_course['course_id'] = $id;
