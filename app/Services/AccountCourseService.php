@@ -68,11 +68,13 @@ class AccountCourseService
         $account_course['status'] = $status;
         $account_course['percent'] = $percent;
         $account_course['test'] = json_encode($account_answers);
-
         if (empty($count->count)) {
             $c = 1;
             $account_course['count'] = $c;
-            $ca = $this->model->create($account_course);
+            if (is_array($count))
+                $ca = $this->model->update($account_course, $count->id);
+            else
+                $ca = $this->model->create($account_course);
         } elseif ($count->count < 4) {
             $c = $count->count + 1;
             $account_course['count'] = $c;
