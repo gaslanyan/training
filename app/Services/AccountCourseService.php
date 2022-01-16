@@ -220,7 +220,7 @@ class AccountCourseService
         return $payments;
     }
 
-    function getCertificate($user_id, $id)
+    function getCertificate( $id, $user_id)
     {
         $account_name = Account::where('id', '=', $user_id)->first();
 
