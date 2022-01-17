@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="col-12">
                         <span v-for="c in JSON.parse(info.course.credit)">
-                            <i>{{ c.name }} - </i>
+                            <i>{{ texts[c.name] }} - </i>
                             <span>{{ c.credit }}</span>
                             <br>
                         </span>
@@ -115,7 +115,8 @@ export default {
             url: null,
             texts: registertexts,
             account: '',
-            tests: []
+            tests: [],
+            credit:''
         }
     },
 
