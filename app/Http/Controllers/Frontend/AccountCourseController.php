@@ -235,7 +235,7 @@ class AccountCourseController extends Controller
      */
     public function certificate(Request $request)
     {
-        $text_send = $this->service->getCertificate($request->user_id, $request->id);
+        $text_send = $this->service->getCertificate( $request->id, $request->user_id);
         return response()->json([
             'data' => $text_send . ".png",
             'access_token' => request('token'),

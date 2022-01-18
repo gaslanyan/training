@@ -222,9 +222,7 @@ class AccountCourseService
 
     function getCertificate( $id, $user_id)
     {
-
         $account_name = Account::where('id', '=', $user_id)->first();
-dd($user_id);
         $course = Courses::where('id', '=', $id)->first();
         $certificate = $course->certificate;
         $start = $course->start_date;
