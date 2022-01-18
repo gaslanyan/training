@@ -222,8 +222,9 @@ class AccountCourseService
 
     function getCertificate( $id, $user_id)
     {
-        $account_name = Account::where('id', '=', $user_id)->first();
 
+        $account_name = Account::where('id', '=', $user_id)->first();
+dd($account_name);
         $course = Courses::where('id', '=', $id)->first();
         $certificate = $course->certificate;
         $start = $course->start_date;
@@ -237,7 +238,7 @@ class AccountCourseService
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
             $text = strtoupper($account_name->name . " " . $account_name->surname);
             $text_send = $id. "_" . $user_id;
-            dd(            $text );
+
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
             imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
             imagettftext($imgg, 12, 0, ($coordinates->end_date->x) - 10, ($coordinates->end_date->y) + 10, $color, $font, $end);
