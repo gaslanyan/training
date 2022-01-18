@@ -224,7 +224,7 @@ class AccountCourseService
     {
 
         $account_name = Account::where('id', '=', $user_id)->first();
-dd($account_name);
+dd($user_id);
         $course = Courses::where('id', '=', $id)->first();
         $certificate = $course->certificate;
         $start = $course->start_date;
