@@ -350,7 +350,13 @@ class AccountService
             $check = ($check == "1") ? 0 : 1;
             $prof = Profession::where('account_id', $id)
                 ->update(['member_of_palace' => $check]);
-
+            if ($check)
+                AccountCourse::where('account_id', $id)
+                    ->update(['paid' => 1]);
+            else
+                AccountCourse::where('account_id', $id)
+                    ->whereNull('percent')
+                    ->update(['paid' => 0]);
             return $prof;
         } catch (\Exception $exception) {
             return $exception->getCode();
@@ -435,10 +441,10 @@ class AccountService
             if (!empty($diplomas) && !empty($n_d)) {
                 $result = array_diff($n_d, $diplomas);
 
-                foreach ($result as  $item) {
-                    try{
-                   unlink(public_path() . Config::get('constants.DIPLOMA') . $item);
-                   }catch (\Exception $exception) {
+                foreach ($result as $item) {
+                    try {
+                        unlink(public_path() . Config::get('constants.DIPLOMA') . $item);
+                    } catch (\Exception $exception) {
                         dd($exception);
                         logger()->error($exception);
                     }
@@ -460,8 +466,8 @@ class AccountService
 //                    $allFile->move(public_path() . Config::get('constants.DIPLOMA'), $name);
                 }
             } else
-                if(empty(array_diff($n_d, $a_f)))
-                $a_f = $n_d;
+                if (empty(array_diff($n_d, $a_f)))
+                    $a_f = $n_d;
         }
         if (!empty($professionRequest->specialty_id))
             $specialty_id = $professionRequest->specialty_id;

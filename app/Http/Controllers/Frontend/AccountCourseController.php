@@ -163,7 +163,7 @@ class AccountCourseController extends Controller
             $data["BackURL"] = env('BACK_URL') . request('course_id');
             $data['Username'] = env('PAY_USERNAME');
             $data['Password'] = env('PAY_PASSWORD');
-            $data['Description'] = env($info->name);
+            $data['Description'] = utf8_encode($info->name);
             $data['Cardholder'] = 'CARD VPOS';
             $data['Currency'] = 'AMD';
             $data['Opaque'] = 'Opaque VPOS';
