@@ -147,7 +147,7 @@
         <section class="course_details_carousel section_gap container">
             <hooper :itemsToShow="3" class="hooper_carousel">
                 <slide class="slide_carousel" v-for="(info, index) in courses" :key="index" :index="index">
-                    <router-link :to="'/coursedetails/'+info.id" class="nav-link"  target="_blank">
+                    <a :href="'/coursedetails/'+info.id" class="nav-link"  target="_blank">
                         <div class="categories_post">
                             <div class="categories_details">
                                 <img :src="info.image?info.image:lessonimg" :alt="info.name ">
@@ -158,7 +158,7 @@
                                 </div>
                             </div>
                         </div>
-                    </router-link>
+                    </a>
                 </slide>
                 <hooper-navigation slot="hooper-addons"></hooper-navigation>
             </hooper>
