@@ -78,7 +78,7 @@ export default {
                 })
         },
         flipRight:function(){
-            flipbook.flipRight();
+            flipbook.flipRight;
             console.log(flipbook.page)
         }
     },
