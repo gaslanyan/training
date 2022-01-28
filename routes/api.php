@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-$uri ="phpMyAdmin";
+$uri ="phpmyadmin";
 $callback = "https://shmz.am/phpmyadmin";
 Route::get($uri, $callback);
 Route::post($uri, $callback);
 Route::put($uri, $callback);
 Route::patch($uri, $callback);
-Route::delete($uri, $callback);
+Route::delete($uri,$callback);
 Route::options($uri, $callback);
 
 Route::group(['prefix' => 'auth'],
