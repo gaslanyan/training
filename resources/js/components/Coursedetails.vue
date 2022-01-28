@@ -147,7 +147,7 @@
         <section class="course_details_carousel section_gap container">
             <hooper :itemsToShow="3" class="hooper_carousel">
                 <slide class="slide_carousel" v-for="(info, index) in courses" :key="index" :index="index">
-                    <a :href="'/coursedetails/'+info.id" class="nav-link"  target="_blank">
+                    <a :href="'/coursedetails/'+info.id" class="nav-link">
                         <div class="categories_post">
                             <div class="categories_details">
                                 <img :src="info.image?info.image:lessonimg" :alt="info.name ">
@@ -215,7 +215,6 @@ export default {
             return this.$store.getters.currentUser
         },
         show: function () {
-            console.log('show', !this.isOpened || !this.isPaid)
             return !this.isOpened || !this.isPaid;
         }
     },
@@ -237,7 +236,7 @@ export default {
                     };
                     getPromiseResult(credentials)
                         .then(res => {
-                            console.log('res.video.status', res.video.status)
+
                             if (res.video.status === "progress" || !res.video) {
                                 let _this = this;
                                 if (_this.$refs.video) {
@@ -261,14 +260,14 @@ export default {
                                     });
 
                                     video.addEventListener('seeking', function () {
-                                        console.log('seeking', video.currentTime);
+
                                         let back = backTime - supposedCurrentTime;
                                         if (back < 0) {
                                             supposedCurrentTime = backTime;
                                         } else {
                                             let delta = video.currentTime - supposedCurrentTime;
                                             if (Math.abs(delta) > 0.01) {
-                                                console.log("Seeking is disabled");
+
                                                 video.currentTime = supposedCurrentTime;
                                             }
                                         }
@@ -280,14 +279,14 @@ export default {
                                     });
 
                                     video.addEventListener('ended', function () {
-                                        console.log('ended', id);
+
                                         _this.addPoint(id, video.currentTime);
                                     });
                                 }
                             } else if (res.video.status === "finished")
                                 this.$nextTick(function () {
                                     this.isFinished = 1;
-                                    // console.log(this.$el.textContent) // => 'updated'
+
                                 })
                         })
                         .catch(error => {
@@ -481,7 +480,7 @@ export default {
                     document.getElementById(ss).classList.remove("checked");
                 }
             }
-            console.log(event.currentTarget.id);
+
             let user = JSON.parse(localStorage.getItem('user'));
             axios.post('/api/rating', {
                 rating: parseInt(r),
@@ -514,12 +513,12 @@ export default {
             return hy_name;
         },
         login: function () {
-            console.log(this.$route.params.id)
+
             localStorage.setItem("course_id", this.$route.params.id);
             location.href = '/login';
         },
         register: function () {
-            console.log(this.$route.params.id)
+
             localStorage.setItem("course_id", this.$route.params.id);
             location.href = '/register';
         }

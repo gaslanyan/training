@@ -90,7 +90,7 @@
                             <div class="kt-widget__head">
                                 <div class="kt-widget__media">
                                     <img class="kt-widget__img "
-                                         src="{{ Config::get('constants.AVATAR_PATH_UPLOADED').$account->image_name}}"
+                                         src="{{ Config::get('constants.AVATAR_PATH').$account->image_name}}"
                                          alt="image">
                                 </div>
                                 @if(!empty($account->name) || !empty($account->surname || !empty($account->father_name)))
