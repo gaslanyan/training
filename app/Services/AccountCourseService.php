@@ -74,8 +74,11 @@ class AccountCourseService
             $account_course['count'] = $c;
             if (is_object($count)) {
                 $ca = $this->model->update($account_course, $count->id);
-            } else
+            } else{
+                $account_course['paid'] = 1;
                 $ca = $this->model->create($account_course);
+            }
+
         } elseif ($count->count < 4) {
             $c = $count->count + 1;
             $account_course['count'] = $c;
