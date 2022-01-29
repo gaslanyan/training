@@ -8,7 +8,7 @@
                 <button @click="flipbook.flipLeft" class="flip_button_left btn left disabled">
                     <i class="fa fa-angle-left fa-8x"></i>
                 </button>
-                <button @click=" clickFlipRight();flipbook.flipRight;" class="flip_button_right btn right disabled">
+                <button @click="flipbook.flipRight; clickFlipRight()" class="flip_button_right btn right disabled">
                     <i class="fa fa-angle-right fa-8x"></i>
                 </button>
             </div>
@@ -78,7 +78,7 @@ export default {
                 })
         },
         clickFlipRight:function(){
-console.log("hhh",this.flipbook)
+console.log("hhh",Flipbook)
         }
     },
     mounted() {
