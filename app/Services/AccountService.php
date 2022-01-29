@@ -347,7 +347,7 @@ class AccountService
     public function change_status($id, $check)
     {
         try {
-            $check = ($check == "1") ? 1 : 0;
+            $check = ($check == "1") ? 0 : 1;
             $prof = Profession::where('account_id', $id)
                 ->update(['member_of_palace' => $check]);
             if ($check)
