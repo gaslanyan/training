@@ -18,7 +18,7 @@ class CreateAccountsCoursesTable extends Migration
             $table->bigInteger('account_id')->unsigned();
             $table->bigInteger('course_id')->unsigned();
             $table->bigInteger('count')->unsigned();
-            $table->enum('status',['success', 'unsuccess']);
+            $table->enum('status', ['success', 'unsuccess']);
             $table->float('percent')->nullable();
             $table->json('random_test')->nullable();
             $table->json('payment')->nullable();
@@ -26,7 +26,8 @@ class CreateAccountsCoursesTable extends Migration
             $table->integer('raiting')->nullable();
             $table->string('comment')->nullable();
             $table->tinyInteger('paid')->default(0);
-            $table->string('panding')->default('unread');
+            $table->integer('page')->default(0);
+            $table->tinyInteger('reading')->default(0);
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
         });

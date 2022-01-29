@@ -243,4 +243,16 @@ class AccountCourseController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+
+
+    public function readingBook(Request $request)
+    {
+        $read = $this->service->readingBook( $request);
+        return response()->json([
+            'data' => $read,
+            'access_token' => request('token'),
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
+    }
 }

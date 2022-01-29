@@ -5,8 +5,8 @@
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
                 <h3>{{ texts.class }}
-                <span v-if="specialites" class=""
-                         v-for="spec in specialites">{{`&nbsp;` + spec.name + `, ` }}</span>
+                    <span v-if="specialites" class=""
+                          v-for="spec in specialites">{{ `&nbsp;` + spec.name + `, ` }}</span>
                 </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -441,6 +441,7 @@ export default {
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
                     this.id = res.data.id;
+                    localStorage.setItem('cb_id', this.id);
                 })
                 .catch(error => {
                     console.log(error);

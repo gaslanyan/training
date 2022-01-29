@@ -74,7 +74,7 @@ class AccountCourseService
             $account_course['count'] = $c;
             if (is_object($count)) {
                 $ca = $this->model->update($account_course, $count->id);
-            } else{
+            } else {
                 $account_course['paid'] = 1;
                 $ca = $this->model->create($account_course);
             }
@@ -179,6 +179,27 @@ class AccountCourseService
         return $this->model->selected(['id', 'count', 'percent'])
             ->where('account_id', $account_id)
             ->where('course_id', $id)->first();
+
+    }
+
+    public function readingBook($req)
+    {
+        $read = 0;
+        $count = $req->count;
+        $page = $req->page;
+        $data = [];
+        $data['page'] = $page;
+        if ($count % 2 == 0) {
+            if ($page == $count)
+                $read = 1;
+        } else
+            if ($page == $count - 1)
+                $read = 1;
+        $data['reading'] = $read;
+        $ac = $this->model->selected('id')
+            ->where('account_id', $req->account_id)
+            ->where('course_id', $req->course_id)->first();
+        return $this->model->update($data, $ac->id);
 
     }
 

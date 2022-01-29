@@ -1,6 +1,6 @@
 <template>
     <div id="flipbook">
-        <flipbook class="flipbook" :pages="images" v-slot="flipbook" ref="flip">
+        <flipbook class="flipbook" :pages="images" :startPage="page" v-slot="flipbook" ref="flip">
             <div class="action-bar">
         <span class="page-num or text-uppercase">
            {{ flipbook.page }}-ը  {{ flipbook.numPages }} {{ text.page }}
@@ -29,6 +29,8 @@ export default {
             images: [
                 null,
             ],
+            count: 0,
+            page: null,
             text: text
         };
     },
@@ -54,6 +56,7 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
+                    this.count = res.book.count;
                     for (let i = 0; i < res.book.count; i++) {
                         let name = i + 1;
                         this.images.push(`${res.book.path}/${name}.jpg`);
@@ -77,9 +80,26 @@ export default {
                     }
                 })
         },
-        clickFlipRight:function(){
-console.log("hhh0",this.$refs.flip.page)
-console.log("hhh",this.$refs.flip.flipRight())
+        clickFlipRight: function () {
+            let page = this.$refs.flip.page;
+            let credentials = {
+                token: this.currentUser.token,
+                account_id: this.currentUser.id,
+                course_id: localStorage.getItem('cb_id'),
+                page: page,
+                count: this.count,
+                url: 'readingBook',
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    console.log(res)
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            this.$refs.flip.flipRight();
         }
     },
     mounted() {
