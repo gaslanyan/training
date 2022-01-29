@@ -68,7 +68,7 @@ class AccountCourseService
         $account_course['status'] = $status;
         $account_course['percent'] = $percent;
         $account_course['test'] = json_encode($account_answers);
-dd($count);
+dd(is_object($count));
        if (empty($count->count)) {
             $c = 1;
             $account_course['count'] = $c;

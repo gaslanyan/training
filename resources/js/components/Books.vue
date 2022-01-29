@@ -8,7 +8,7 @@
                 <button @click="flipbook.flipLeft" class="flip_button_left btn left disabled">
                     <i class="fa fa-angle-left fa-8x"></i>
                 </button>
-                <button @click="flipRight" class="flip_button_right btn right disabled">
+                <button @click="flipbook.flipRight" class="flip_button_right btn right disabled">
                     <i class="fa fa-angle-right fa-8x"></i>
                 </button>
             </div>
@@ -78,12 +78,13 @@ export default {
                 })
         },
         flipRight:function(){
-            flipbook.flipRight;
-            console.log(flipbook.page)
+
+
         }
     },
     mounted() {
         this.getBook();
+        console.log(flipbook.page)
     }
 
 }
