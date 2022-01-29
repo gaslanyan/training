@@ -1,6 +1,6 @@
 <template>
     <div id="flipbook">
-        <flipbook class="flipbook" :pages="images" v-slot="flipbook">
+        <flipbook class="flipbook" :pages="images" v-slot="flipbook" ref="flip">
             <div class="action-bar">
         <span class="page-num or text-uppercase">
            {{ flipbook.page }}-ը  {{ flipbook.numPages }} {{ text.page }}
@@ -78,8 +78,8 @@ export default {
                 })
         },
         clickFlipRight:function(){
-console.log("hhh0",Flipbook.page)
-console.log("hhh",Flipbook.flipRight())
+console.log("hhh0",this.$refs.flip.page)
+console.log("hhh",this.$refs.flip.flipRight())
         }
     },
     mounted() {
