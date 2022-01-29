@@ -73,7 +73,7 @@ class AccountCourseService
             $c = 1;
             $account_course['count'] = $c;
             if (is_object($count)) {
-                dd(is_object($count));
+                dd($count->id);
                 $ca = $this->model->update($account_course, $count->id);
             }
             else
