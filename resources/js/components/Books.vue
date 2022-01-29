@@ -78,7 +78,8 @@ export default {
                 })
         },
         clickFlipRight:function(){
-console.log("hhh",Flipbook)
+console.log("hhh0",Flipbook.page)
+console.log("hhh",Flipbook.flipRight())
         }
     },
     mounted() {
