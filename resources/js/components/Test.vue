@@ -59,10 +59,10 @@
                                 </ul>
                             </div>
                             <div>
-                            <button type="submit" class="btn primary-btn mt-3 float-right">{{
-                                    coursetexts.test
-                                }}
-                            </button>
+                                <button type="submit" class="btn primary-btn mt-3 float-right">{{
+                                        coursetexts.test
+                                    }}
+                                </button>
                             </div>
                         </form>
                         <div class="col-lg-12 m-0 pb-5">
@@ -70,7 +70,8 @@
                         </div>
                         <div id="certificate" v-if="diploma">
                             <p>{{ coursetexts.cert }}</p>
-                            <img v-if="diploma" id="finishimg" v-bind:src="'/uploads/diplomas/' + cert" alt="certificate">
+                            <img v-if="diploma" id="finishimg" v-bind:src="'/uploads/diplomas/' + cert"
+                                 alt="certificate">
                         </div>
                     </div>
                 </div>
@@ -245,11 +246,8 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    if (res === 0)
+                    if (res !== 1)
                         this.$router.push('/coursedetails/' + this.$route.params.id);
-                    else if (res === -1)
-                        this.$router.push('/404');
-
                 })
                 .catch(error => {
                     console.log('error', error);
