@@ -69,15 +69,12 @@ class AccountCourseService
         $account_course['percent'] = $percent;
         $account_course['test'] = json_encode($account_answers);
 
-       if (empty($count->count)) {
+        if (empty($count->count)) {
             $c = 1;
             $account_course['count'] = $c;
             if (is_object($count)) {
-
                 $ca = $this->model->update($account_course, $count->id);
-                dd($ca);
-            }
-            else
+            } else
                 $ca = $this->model->create($account_course);
         } elseif ($count->count < 4) {
             $c = $count->count + 1;
@@ -224,7 +221,7 @@ class AccountCourseService
         return $payments;
     }
 
-    function getCertificate( $id, $user_id)
+    function getCertificate($id, $user_id)
     {
         $account_name = Account::where('id', '=', $user_id)->first();
         $course = Courses::where('id', '=', $id)->first();
@@ -239,7 +236,7 @@ class AccountCourseService
             $color = imagecolorallocate($imgg, 000, 000, 000);
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
             $text = strtoupper($account_name->name . " " . $account_name->surname);
-            $text_send = $id. "_" . $user_id;
+            $text_send = $id . "_" . $user_id;
 
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
             imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
