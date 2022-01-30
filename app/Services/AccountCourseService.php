@@ -133,7 +133,7 @@ class AccountCourseService
             $paid = ($paid) ? $paid->paid : 0;
 
         }
-        $data['reading'] = $reading;
+        $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
         return $data;
     }
@@ -207,6 +207,7 @@ class AccountCourseService
         $ac = $this->model->selected('id')
             ->where('account_id', $req->account_id)
             ->where('course_id', $req->course_id)->first();
+        dd($ac->id);
         return $this->model->update($data, $ac->id);
 
     }
