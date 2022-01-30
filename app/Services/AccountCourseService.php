@@ -197,13 +197,11 @@ class AccountCourseService
         $page = $req->page;
         $data = [];
         $data['page'] = $page;
-        if ($count % 2 == 0) {
-            if ($page == $count - 1)
-                $read = 1;
-        } else
+        echo "page: $page";
             if ($page == $count - 2)
                 $read = 1;
         $data['reading'] = $read;
+        var_export($data);
         $ac = $this->model->selected('id')
             ->where('account_id', $req->account_id)
             ->where('course_id', $req->course_id)->first();
