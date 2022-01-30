@@ -43,7 +43,6 @@ export default {
     },
     components: {
         'flipbook': Flipbook
-
     },
     methods: {
         getBook: function () {
@@ -100,10 +99,32 @@ export default {
                     console.log(error)
                 })
             this.$refs.flip.flipRight();
+        },
+        getPage: function () {
+
+            let credentials = {
+                token: this.currentUser.token,
+                account_id: this.currentUser.id,
+                course_id: localStorage.getItem('cb_id'),
+                page: page,
+                count: this.count,
+                url: 'readingBook',
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.page =res.page;
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            this.$refs.flip.flipRight();
         }
     },
     mounted() {
         this.getBook();
+        this.getPage();
     }
 
 }
