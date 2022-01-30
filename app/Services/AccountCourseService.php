@@ -204,8 +204,11 @@ class AccountCourseService
         $ac = $this->model->selected('id')
             ->where('account_id', $req->account_id)
             ->where('course_id', $req->course_id)->first();
-
-        return $this->model->update($data, $ac->id);
+        $p = AccountCourse::find($ac->id);
+        $p->page = $page;
+        $p->reading = $read;
+        return $p->save();
+//        return $this->model->update($data, $ac->id);
     }
 
     public function getPage($req)
