@@ -256,4 +256,14 @@ class AccountCourseController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+    public function getPage(Request $request)
+    {
+        $page = $this->service->getPage( $request);
+        return response()->json([
+            'page' => $page->page,
+            'access_token' => request('token'),
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
+    }
 }

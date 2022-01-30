@@ -92,7 +92,7 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    this.page =res.page;
+                    console.log(res)
 
                 })
                 .catch(error => {
@@ -106,9 +106,7 @@ export default {
                 token: this.currentUser.token,
                 account_id: this.currentUser.id,
                 course_id: localStorage.getItem('cb_id'),
-                page: page,
-                count: this.count,
-                url: 'readingBook',
+                url: 'getPage',
                 auth: true
             };
             getPromiseResult(credentials)

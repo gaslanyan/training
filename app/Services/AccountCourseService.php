@@ -186,7 +186,7 @@ class AccountCourseService
         $data = $this->model->selected(['id', 'count', 'percent'])
             ->where('account_id', $account_id)
             ->where('course_id', $id)->first();
-        $data->count = Config::get('constants.COUNT_OF_TEST') -$data->count;
+        $data->count = Config::get('constants.COUNT_OF_TEST') - $data->count;
         return $data;
     }
 
@@ -197,16 +197,24 @@ class AccountCourseService
         $page = $req->page;
         $data = [];
         $data['page'] = $page;
-            if ($page == $count - 2)
-                $read = 1;
+        if ($page == $count - 2)
+            $read = 1;
         $data['reading'] = $read;
 
         $ac = $this->model->selected('id')
             ->where('account_id', $req->account_id)
             ->where('course_id', $req->course_id)->first();
-        var_export($ac->id);dd($data);
+        var_export($ac->id);
+        dd($data);
         return $this->model->update($data, $ac->id);
 
+    }
+
+    public function getPage($req)
+    {
+        return $this->model->selected('page')
+            ->where('account_id', $req->account_id)
+            ->where('course_id', $req->course_id)->first();
     }
 
     public function uploadPayment($id, $account_id, $data)

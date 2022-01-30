@@ -52,6 +52,7 @@ Route::group(['prefix' => 'auth',
     Route::post('videoinfo', 'Frontend\AccountVideoController@getVideoById');
     Route::post('addpoint', 'Frontend\AccountVideoController@addPointById');
     Route::post('readingBook', 'Frontend\AccountCourseController@readingBook');
+    Route::post('getpage', 'Frontend\AccountCourseController@getPage');
     Route::post('certificate', 'Frontend\AccountCourseController@certificate');
 
 });
