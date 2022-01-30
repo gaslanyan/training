@@ -18,6 +18,7 @@ class Repository implements RepositoryInterface
     {
         return $this->model->all();
     }
+
     // todo kareli e poxel Get selected  instances of model
     public function selected($data)
     {
@@ -33,10 +34,12 @@ class Repository implements RepositoryInterface
     // update record in the database
     public function update(array $data, $id)
     {
-        $record = $this->model->find($id);
-        var_export($record);
-        dd($record->update($data));
-        return $record->update($data);
+        try {
+            $record = $this->model->find($id);
+            return $record->update($data);
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
     }
 
     // remove record from the database
