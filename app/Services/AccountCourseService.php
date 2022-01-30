@@ -197,7 +197,7 @@ class AccountCourseService
         $page = $req->page;
         $data = [];
         $data['page'] = $page;
-        if ($page == $count - 2)
+        if ($page >= $count - 2)
             $read = 1;
         $data['reading'] = $read;
 
@@ -206,7 +206,6 @@ class AccountCourseService
             ->where('course_id', $req->course_id)->first();
 
         return $this->model->update($data, $ac->id);
-
     }
 
     public function getPage($req)

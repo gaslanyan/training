@@ -34,6 +34,8 @@ class Repository implements RepositoryInterface
     public function update(array $data, $id)
     {
         $record = $this->model->find($id);
+        var_export($record);
+        dd($record->update($data));
         return $record->update($data);
     }
 
