@@ -105,6 +105,8 @@
                                     <template v-for="book in books">
                                         <!--<i class="fa fa-book text"></i>-->
                                         <router-link :to="{name: 'book',params: {id: book.id}}" class="text"
+                                                     :disabled="!isOpened && !isPaid"
+                                                     :event="(isOpened || isPaid)? 'click' : ''"
                                                      target="_blank">{{ book.title }}
                                         </router-link>
                                     </template>
@@ -114,8 +116,8 @@
 
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
-                                     :disabled="!isFinished && !isPaid"
-                                     :event="isFinished ? 'click' : ''">{{ texts.test }}
+                                     :disabled="!isFinished && !isPaid && !isRead"
+                                     :event="(isFinished && isRead) ? 'click' : ''">{{ texts.test }}
                         </router-link>
 
                         <div class="content">
@@ -196,6 +198,7 @@ export default {
             isActive: false,
             isOpened: false,
             isPaid: false,
+            isRead: false,
             objects: [
                 {id: 1},
                 {id: 2},
@@ -364,6 +367,8 @@ export default {
                 .then(res => {
                     if (res.data == 1)
                         this.isPaid = true;
+                    if (res.read == 1)
+                        this.isRead = true;
                 })
                 .catch(error => {
                     this.isPaid = false;

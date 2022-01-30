@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Notifications\ManageUserStatus;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Config;
 
 
 class AccountCourseService
@@ -119,7 +120,10 @@ class AccountCourseService
     public function getPaymentById($account_id, $course_id)
     {
         $m_b_p = Profession::select('member_of_palace')->first();
-
+        $data = [];
+        $reading = $this->model->selected('reading')
+            ->where('account_id', $account_id)
+            ->where('course_id', $course_id)->first();
         if ($m_b_p->member_of_palace)
             $paid = 1;
         else {
@@ -127,8 +131,11 @@ class AccountCourseService
                 ->where('account_id', $account_id)
                 ->where('course_id', $course_id)->first();
             $paid = ($paid) ? $paid->paid : 0;
+
         }
-        return $paid;
+        $data['reading'] = $reading;
+        $data['paid'] = $paid;
+        return $data;
     }
 
 //todo  inchi get
@@ -176,10 +183,11 @@ class AccountCourseService
 
     public function getCountOfTest($id, $account_id)
     {
-        return $this->model->selected(['id', 'count', 'percent'])
+        $data = $this->model->selected(['id', 'count', 'percent'])
             ->where('account_id', $account_id)
             ->where('course_id', $id)->first();
-
+        $data->count = Config::get('constants.COUNT_OF_TEST') -$data->count;
+        return $data;
     }
 
     public function readingBook($req)
@@ -190,10 +198,10 @@ class AccountCourseService
         $data = [];
         $data['page'] = $page;
         if ($count % 2 == 0) {
-            if ($page == $count)
+            if ($page == $count - 1)
                 $read = 1;
         } else
-            if ($page == $count - 1)
+            if ($page == $count - 2)
                 $read = 1;
         $data['reading'] = $read;
         $ac = $this->model->selected('id')

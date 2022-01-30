@@ -98,10 +98,11 @@ class AccountCourseController extends Controller
     function getPaymentById()
     {
         try {
-            $paid = $this->service->getPaymentById(request('account_id'), request('course_id'));
+            $data = $this->service->getPaymentById(request('account_id'), request('course_id'));
             return response()->json([
                 'access_token' => request('token'),
-                'data' => $paid,
+                'data' => $data['paid'],
+                'read' => $data['reading'],
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);

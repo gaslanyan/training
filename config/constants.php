@@ -22,4 +22,5 @@ return [
     'TERRITORY' => 'territory',
     'RESIDENCE' => 'residence',
     'BOOKS' => '/books/',
+    'COUNT_OF_TEST' => 3,
 ];
