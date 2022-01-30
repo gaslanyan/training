@@ -93,7 +93,7 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    console.log(res)
+                    this.page =res.page;
 
                 })
                 .catch(error => {

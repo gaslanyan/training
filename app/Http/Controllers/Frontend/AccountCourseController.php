@@ -250,7 +250,7 @@ class AccountCourseController extends Controller
     {
         $read = $this->service->readingBook( $request);
         return response()->json([
-            'data' => $read,
+            'page' => $request->page,
             'access_token' => request('token'),
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
