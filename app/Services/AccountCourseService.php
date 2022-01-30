@@ -204,8 +204,7 @@ class AccountCourseService
         $ac = $this->model->selected('id')
             ->where('account_id', $req->account_id)
             ->where('course_id', $req->course_id)->first();
-        var_export($ac->id);
-        dd($data);
+
         return $this->model->update($data, $ac->id);
 
     }

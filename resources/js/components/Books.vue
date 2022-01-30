@@ -106,7 +106,7 @@ export default {
                 token: this.currentUser.token,
                 account_id: this.currentUser.id,
                 course_id: localStorage.getItem('cb_id'),
-                url: 'getPage',
+                url: 'getpage',
                 auth: true
             };
             getPromiseResult(credentials)
