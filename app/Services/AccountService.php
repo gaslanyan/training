@@ -355,7 +355,7 @@ class AccountService
                     ->update(['paid' => 1]);
             else
                 AccountCourse::where('account_id', $id)
-                    ->whereNull('percent')
+                    ->where('status', 'unsuccess')
                     ->update(['paid' => 0]);
             return $prof;
         } catch (\Exception $exception) {
