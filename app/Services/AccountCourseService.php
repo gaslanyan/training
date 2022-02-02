@@ -133,7 +133,7 @@ class AccountCourseService
 
         }
         $reading = $this->getField($account_id, $course_id, 'reading');
-        dd($reading);
+        var_export($reading);
         $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
         return $data;
