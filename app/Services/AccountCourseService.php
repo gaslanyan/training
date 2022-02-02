@@ -128,13 +128,12 @@ class AccountCourseService
             $paid = 1;
 
         } else {
-            $paid = $this->model->selected('paid')
-                ->where('account_id', $account_id)
-                ->where('course_id', $course_id)->first();
+            $paid = $this->getField($account_id, $course_id,'paid');
             $paid = ($paid) ? $paid->paid : 0;
 
         }
         $reading = $this->getField($account_id, $course_id, 'reading');
+        dd($reading);
         $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
         return $data;
