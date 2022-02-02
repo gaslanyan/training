@@ -123,6 +123,7 @@ class AccountCourseService
         $data = [];
         if ($m_b_p->member_of_palace) {
             $cu = $this->getField($account_id, $course_id, 'id');
+            dd($cu);
             if (!$cu)
                 $this->model->create(['account_id' => $account_id, 'course_id' => $course_id]);
             $paid = 1;
