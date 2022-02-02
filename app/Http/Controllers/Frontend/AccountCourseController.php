@@ -98,7 +98,9 @@ class AccountCourseController extends Controller
     function getPaymentById()
     {
         try {
+//            if(!request('mobile')) {
             $data = $this->service->getPaymentById(request('account_id'), request('course_id'));
+
             return response()->json([
                 'access_token' => request('token'),
                 'data' => $data['paid'],
@@ -106,6 +108,15 @@ class AccountCourseController extends Controller
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
+//            }else{
+//                $paid= $this->service->getPaymentByMobile(request('account_id'), request('course_id'));
+//                return response()->json([
+//                    'access_token' => request('token'),
+//                    'data' => $paid,
+//                    'token_type' => 'bearer',
+//                    'expires_in' => auth('api')->factory()->getTTL() * 60
+//                ]);
+//            }
         } catch (MethodNotAllowedHttpException$exception) {
 
             logger()->error($exception);
@@ -116,12 +127,15 @@ class AccountCourseController extends Controller
     function getCPCourse()
     {
         try {
+            $pass = false;
             $info = $this->service->getCountOfTest(request('id'), request('user_id'));
-
+            if ($info->percent >= config('constants.COUNT_OF_TEST'))
+                $pass = true;
             return response()->json([
                 'access_token' => request('token'),
                 'info' => json_encode($info),
                 'token_type' => 'bearer',
+                'pass' => $pass,
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
         } catch (MethodNotAllowedHttpException$exception) {
@@ -164,7 +178,7 @@ class AccountCourseController extends Controller
             $data["BackURL"] = env('BACK_URL') . request('course_id');
             $data['Username'] = env('PAY_USERNAME');
             $data['Password'] = env('PAY_PASSWORD');
-            $data['Description'] = mb_convert_encoding($info->name,'UTF-8');
+            $data['Description'] = mb_convert_encoding($info->name, 'UTF-8');
             $data['Cardholder'] = 'CARD VPOS';
             $data['Currency'] = 'AMD';
             $data['Opaque'] = 'Opaque VPOS';
@@ -236,7 +250,7 @@ class AccountCourseController extends Controller
      */
     public function certificate(Request $request)
     {
-        $text_send = $this->service->getCertificate( $request->id, $request->user_id);
+        $text_send = $this->service->getCertificate($request->id, $request->user_id);
         return response()->json([
             'data' => $text_send . ".png",
             'access_token' => request('token'),
@@ -248,7 +262,7 @@ class AccountCourseController extends Controller
 
     public function readingBook(Request $request)
     {
-        $read = $this->service->readingBook( $request);
+        $read = $this->service->readingBook($request);
         return response()->json([
             'page' => $request->page,
             'access_token' => request('token'),
@@ -256,9 +270,10 @@ class AccountCourseController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+
     public function getPage(Request $request)
     {
-        $page = $this->service->getPage( $request);
+        $page = $this->service->getPage($request);
         return response()->json([
             'page' => $page->page,
             'access_token' => request('token'),

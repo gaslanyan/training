@@ -65,7 +65,7 @@
                                 </button>
                             </div>
                         </form>
-                        <div class="col-lg-12 m-0 pb-5">
+                        <div class="col-lg-12 m-0">
                             <p ref="msg"></p>
                         </div>
                         <div id="certificate" v-if="diploma">
@@ -215,15 +215,15 @@ export default {
                         this.$props.count = info.count;
                         console.log('if', this.$props.count)
                         if (this.$props.percent < 50) {
-                            if (this.$props.count < 3) {
+                            if (this.$props.count <= 0) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (this.$props.count) + coursetexts.possibility;
                                 // this.$refs.form.style.display = 'none';
                             } else {
                                 this.msg = coursetexts.unsuccess;
                                 setTimeout(() => {
-                                    // this.logout();
-                                }, 1000)
+                                    this.logout();
+                                }, 100)
                             }
                         } else {
                             this.msg = coursetexts.result + this.$props.percent + coursetexts.point;

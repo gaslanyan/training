@@ -361,7 +361,8 @@ export default {
                 token: this.currentUser.token,
                 course_id: this.$route.params.id,
                 url: "getpaymentbyid",
-                auth: true
+                auth: true,
+                mobile:false
             };
             getPromiseResult(credentials)
                 .then(res => {

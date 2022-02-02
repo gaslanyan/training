@@ -65,7 +65,7 @@ class AccountCourseService
         $account_course = [];
         $account_course['account_id'] = $account_id;
         $account_course['course_id'] = $id;
-        $status = ($percent >= 50) ? 'success' : 'unsuccess';
+        $status = ($percent >= Config::get('constants.PERCENT')) ? 'success' : 'unsuccess';
         $account_course['status'] = $status;
         $account_course['percent'] = $percent;
         $account_course['test'] = json_encode($account_answers);
@@ -107,7 +107,7 @@ class AccountCourseService
                     $query->select('id', 'name', 'credit', 'image');
                 }])
             ->where('account_id', $id)
-            ->where('percent', '>=', 50)
+            ->where('percent', '>=', Config::get('constants.PERCENT'))
             ->get();
         foreach ($tests as $index => $test) {
             $tests[$index]['certificate'] = $this->getCertificate($test->course->id, $id) . '.png';
@@ -121,22 +121,39 @@ class AccountCourseService
     {
         $m_b_p = Profession::select('member_of_palace')->first();
         $data = [];
-        $reading = $this->model->selected('reading')
-            ->where('account_id', $account_id)
-            ->where('course_id', $course_id)->first();
-        if ($m_b_p->member_of_palace)
+        if ($m_b_p->member_of_palace) {
+            $cu = $this->getField($account_id, $course_id, 'id');
+            if (!$cu)
+                $this->model->create(['account_id' => $account_id, 'course_id' => $course_id]);
             $paid = 1;
-        else {
+
+        } else {
             $paid = $this->model->selected('paid')
                 ->where('account_id', $account_id)
                 ->where('course_id', $course_id)->first();
             $paid = ($paid) ? $paid->paid : 0;
 
         }
+        $reading = $this->getField($account_id, $course_id, 'reading');
         $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
         return $data;
     }
+//
+//    public function getPaymentByMobile($account_id, $course_id)
+//    {
+//        $m_b_p = Profession::select('member_of_palace')->first();
+//
+//        if ($m_b_p->member_of_palace)
+//            $paid = 1;
+//        else {
+//            $paid = $this->model->selected('paid')
+//                ->where('account_id', $account_id)
+//                ->where('course_id', $course_id)->first();
+//            $paid = ($paid) ? $paid->paid : 0;
+//        }
+//        return $paid;
+//    }
 
 //todo  inchi get
     public function getTestById($a_id, $id)
@@ -183,9 +200,10 @@ class AccountCourseService
 
     public function getCountOfTest($id, $account_id)
     {
-        $data = $this->model->selected(['id', 'count', 'percent'])
-            ->where('account_id', $account_id)
-            ->where('course_id', $id)->first();
+        $data =$this->getField($account_id, $id, ['id', 'count', 'percent']);
+//            $this->model->selected(['id', 'count', 'percent'])
+//            ->where('account_id', $account_id)
+//            ->where('course_id', $id)->first();
         $data->count = Config::get('constants.COUNT_OF_TEST') - $data->count;
         return $data;
     }
@@ -213,9 +231,13 @@ class AccountCourseService
 
     public function getPage($req)
     {
-        return $this->model->selected('page')
+        $page = $this->model->selected('page')
             ->where('account_id', $req->account_id)
             ->where('course_id', $req->course_id)->first();
+        if (!$page)
+            return null;
+        return $page;
+
     }
 
     public function uploadPayment($id, $account_id, $data)
@@ -285,5 +307,15 @@ class AccountCourseService
             imagedestroy($imgg);
             return $text_send;
         }
+    }
+
+    function getField($account_id, $course_id, $f)
+    {
+        $field = $this->model->selected($f)
+            ->where('account_id', $account_id)
+            ->where('course_id', $course_id)->first();
+        if (!$field)
+            $field = null;
+        return null;
     }
 }
