@@ -133,6 +133,7 @@ class AccountCourseService
             $paid = ($paid) ? $paid->paid : 0;
         }
         $reading = $this->getField($account_id, $course_id, 'reading');
+        $reading = ($reading) ? $reading->reading : 0;
         $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
         return $data;
