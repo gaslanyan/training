@@ -118,7 +118,8 @@
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
                                      :disabled="!isFinished && !isPaid && !isRead"
-                                     :event="(isFinished && isRead) ? 'click' : 'showswal'">{{ texts.test }}
+                                     :event="(isFinished && isRead) ? 'click' : ''"
+                        v-if="!isFinished && !isPaid && !isRead" @click="showswal">{{ texts.test }}
                         </router-link>
 
                         <div class="content">
@@ -531,6 +532,7 @@ export default {
             location.href = '/register';
         },
         showswal:function(){
+            console.log('mtav')
             Swal.fire({
                 icon: 'error',
                 title: pagetexts.warning,
