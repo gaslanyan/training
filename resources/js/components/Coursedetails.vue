@@ -115,13 +115,20 @@
                             </li>
 
                         </ul>
-                        <router-link :to="{ name: 'test',params: {id: this.id} }"
-                                     class="primary-btn text-uppercase enroll "
-                                     :disabled="!isFinished && !isPaid && !isRead"
-                                     :event="(isFinished && isRead) ? 'click' : ''"
-                        v-if="!isFinished && !isPaid && !isRead" @click="showswal">{{ texts.test }}
-                        </router-link>
+                        <div v-if="!isFinished && !isPaid && !isRead">
+                            <button class="primary-btn text-uppercase enroll " @click="showswal">{{
+                                    texts.test
+                                }}
+                            </button>
+                        </div>
+                        <div v-else>
+                            <router-link :to="{ name: 'test',params: {id: this.id} }"
+                                         class="primary-btn text-uppercase enroll ">{{ texts.test }}
+                                <!--                                         :disabled="!isFinished && !isPaid && !isRead"-->
+                                <!--                                         :event="(isFinished && isRead) ? 'click' : ''"-->
 
+                            </router-link>
+                        </div>
                         <div class="content">
                             <div class="review-top row pt-40">
                                 <div class="col-lg-12">
@@ -531,7 +538,7 @@ export default {
             localStorage.setItem("course_id", this.$route.params.id);
             location.href = '/register';
         },
-        showswal:function(){
+        showswal: function () {
             console.log('mtav')
             Swal.fire({
                 icon: 'error',
