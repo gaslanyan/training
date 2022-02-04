@@ -41,31 +41,33 @@
                                                    v-on:loadeddata="manageEvents(info.id, index)">
                                                 <source :src="info.path">
                                             </video>
-                                            <div class="col-6 col-xs-12">
-                                                <img :src="lectureimg+info.lectures.image_name" alt="lectures"
-                                                     class="col-2">
-                                                <div class="col-8">
-                                                    <h5 class="vid_content">{{
-                                                            `${info.lectures.name} ${info.lectures.surname}
+                                            <div class="col-lg-12 row">
+                                                <div class="col-6 col-xs-12">
+                                                    <img :src="lectureimg+info.lectures.image_name" alt="lectures"
+                                                         class="col-2">
+                                                    <div class="col-8">
+                                                        <h5 class="vid_content">{{
+                                                                `${info.lectures.name} ${info.lectures.surname}
                                                     ${info.lectures.father_name}`
-                                                        }}</h5>
-                                                    <h4>{{ info.spec }}</h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xs-12">
-                                                <a class="justify-content-between d-flex" href="#">
-
-                                                    <div class="attachment-mark" v-if="books">
-                                                        <img :src="bookimg" alt="book">
-                                                        <template v-for="book in books">
-                                                            <!--<i class="fa fa-book text"></i>-->
-                                                            <router-link :to="{name: 'book',params: {id: book.id}}"
-                                                                         class="text"
-                                                                         target="_blank">{{ book.title }}
-                                                            </router-link>
-                                                        </template>
+                                                            }}</h5>
+                                                        <h4>{{ info.spec }}</h4>
                                                     </div>
-                                                </a>
+                                                </div>
+                                                <div class="col-6 col-xs-12">
+                                                    <a class="justify-content-between d-flex" href="#">
+
+                                                        <div class="attachment-mark" v-if="books">
+                                                            <img :src="bookimg" alt="book">
+                                                            <template v-for="book in books">
+                                                                <!--<i class="fa fa-book text"></i>-->
+                                                                <router-link :to="{name: 'book',params: {id: book.id}}"
+                                                                             class="text"
+                                                                             target="_blank">{{ book.title }}
+                                                                </router-link>
+                                                            </template>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </slide>
                                         <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -113,21 +115,13 @@
                             </li>
 
                         </ul>
-                        <div v-if="!isFinished && !isPaid && !isRead">
-                            <button class="primary-btn text-uppercase enroll " @click="showswal">{{
-                                    texts.test
-                                }}
-                            </button>
-                        </div>
-                        <div v-else>
-                            <router-link :to="{ name: 'test',params: {id: this.id} }"
-                                         class="primary-btn text-uppercase enroll "
-                                         :disabled="!isFinished && !isPaid && !isRead"
-                                         :event="(isFinished && isRead) ? 'click' : ''"
-                            >{{ texts.test }}
+                        <router-link :to="{ name: 'test',params: {id: this.id} }"
+                                     class="primary-btn text-uppercase enroll "
+                                     :disabled="!isFinished && !isPaid && !isRead"
+                                     :event="(isFinished && isRead) ? 'click' : 'showswal'"
+                        v-if="">{{ texts.test }}
+                        </router-link>
 
-                            </router-link>
-                        </div>
                         <div class="content">
                             <div class="review-top row pt-40">
                                 <div class="col-lg-12">
