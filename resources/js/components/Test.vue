@@ -215,6 +215,7 @@ export default {
                         this.$props.count = info.count;
                         console.log('if', this.$props.count)
                         if (this.$props.percent < 50) {
+
                             if (this.$props.count <= 0) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (this.$props.count) + coursetexts.possibility;
@@ -222,7 +223,7 @@ export default {
                             } else {
                                 this.msg = coursetexts.unsuccess;
                                 setTimeout(() => {
-                                    this.logout();
+                                    // this.logout();
                                 }, 100)
                             }
                         } else {
