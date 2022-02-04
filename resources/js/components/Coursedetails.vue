@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6 col-xs-12" v-if="video_info">
+                                <div v-if="video_info">
                                     <hooper :itemsToShow="1">
                                         <slide v-for="(info, index) in video_info" :key="index" :index="index">
                                             <video ref="video" class="view-video col-lg-12" controls
@@ -42,37 +42,38 @@
                                                 <source :src="info.path">
                                             </video>
                                             <div class="col-lg-12 row">
-
-                                                <img :src="lectureimg+info.lectures.image_name" alt="lectures"
-                                                     class="col-2">
-                                                <div class="col-8">
-                                                    <h5 class="vid_content">{{
-                                                            `${info.lectures.name} ${info.lectures.surname}
+                                                <div class="col-6 col-xs-12">
+                                                    <img :src="lectureimg+info.lectures.image_name" alt="lectures"
+                                                         class="col-2">
+                                                    <div class="col-8">
+                                                        <h5 class="vid_content">{{
+                                                                `${info.lectures.name} ${info.lectures.surname}
                                                     ${info.lectures.father_name}`
-                                                        }}</h5>
-                                                    <h4>{{ info.spec }}</h4>
+                                                            }}</h5>
+                                                        <h4>{{ info.spec }}</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-xs-12">
+                                                    <a class="justify-content-between d-flex" href="#">
+
+                                                        <div class="attachment-mark" v-if="books">
+                                                            <img :src="bookimg" alt="book">
+                                                            <template v-for="book in books">
+                                                                <!--<i class="fa fa-book text"></i>-->
+                                                                <router-link :to="{name: 'book',params: {id: book.id}}"
+                                                                             class="text"
+                                                                             target="_blank">{{ book.title }}
+                                                                </router-link>
+                                                            </template>
+                                                        </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </slide>
                                         <hooper-pagination slot="hooper-addons"></hooper-pagination>
                                     </hooper>
                                 </div>
-                                <div class="col-6 col-xs-12">
-                                    <a class="justify-content-between d-flex" href="#">
 
-                                        <div class="attachment-mark" v-if="books">
-                                            <img :src="bookimg" alt="book">
-                                            <template v-for="book in books">
-                                                <!--<i class="fa fa-book text"></i>-->
-                                                <router-link :to="{name: 'book',params: {id: book.id}}" class="text"
-                                                             :disabled="!isOpened && !isPaid"
-                                                             :event="(isOpened || isPaid)? 'click' : ''"
-                                                             target="_blank">{{ book.title }}
-                                                </router-link>
-                                            </template>
-                                        </div>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
