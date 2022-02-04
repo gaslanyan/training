@@ -199,9 +199,6 @@ class AccountCourseService
     public function getCountOfTest($id, $account_id)
     {
         $data = $this->getField($account_id, $id, ['id', 'count', 'percent']);
-//            $this->model->selected(['id', 'count', 'percent'])
-//            ->where('account_id', $account_id)
-//            ->where('course_id', $id)->first();
         $data->count = Config::get('constants.COUNT_OF_TEST') - $data->count;
         return $data;
     }
