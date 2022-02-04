@@ -115,12 +115,10 @@
                             </li>
 
                         </ul>
-
-
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
                                      :disabled="!isFinished && !isPaid && !isRead"
-                                     :event="(isFinished && isRead) ? 'click' : ''">{{ texts.test }}
+                                     :event="(isFinished && isRead) ? 'click' : 'showswal'">{{ texts.test }}
                         </router-link>
 
                         <div class="content">
@@ -531,6 +529,16 @@ export default {
 
             localStorage.setItem("course_id", this.$route.params.id);
             location.href = '/register';
+        },
+        showswal:function(){
+            Swal.fire({
+                icon: 'error',
+                title: pagetexts.warning,
+                text: pagetexts.warningText,
+                confirmButtonText:
+                    `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                confirmButtonColor: '#631ed8',
+            });
         }
     },
     beforeMount() {
