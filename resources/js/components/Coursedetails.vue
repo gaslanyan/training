@@ -41,8 +41,7 @@
                                                    v-on:loadeddata="manageEvents(info.id, index)">
                                                 <source :src="info.path">
                                             </video>
-                                            <div class="col-lg-12 row">
-                                                <div class="col-6 col-xs-12">
+                                            <div class="col-6 col-xs-12">
                                                     <img :src="lectureimg+info.lectures.image_name" alt="lectures"
                                                          class="col-2">
                                                     <div class="col-8">
@@ -52,7 +51,7 @@
                                                             }}</h5>
                                                         <h4>{{ info.spec }}</h4>
                                                     </div>
-                                                </div>
+
                                                 <div class="col-6 col-xs-12">
                                                     <a class="justify-content-between d-flex" href="#">
 
