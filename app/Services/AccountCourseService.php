@@ -129,12 +129,10 @@ class AccountCourseService
             $paid = 1;
 
         } else {
-            $paid = $this->getField($account_id, $course_id,'paid');
+            $paid = $this->getField($account_id, $course_id, 'paid');
             $paid = ($paid) ? $paid->paid : 0;
-
         }
         $reading = $this->getField($account_id, $course_id, 'reading');
-        var_export($reading);
         $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
         return $data;
@@ -200,7 +198,7 @@ class AccountCourseService
 
     public function getCountOfTest($id, $account_id)
     {
-        $data =$this->getField($account_id, $id, ['id', 'count', 'percent']);
+        $data = $this->getField($account_id, $id, ['id', 'count', 'percent']);
 //            $this->model->selected(['id', 'count', 'percent'])
 //            ->where('account_id', $account_id)
 //            ->where('course_id', $id)->first();
