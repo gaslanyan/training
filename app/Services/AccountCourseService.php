@@ -237,7 +237,6 @@ class AccountCourseService
         if (!$page)
             return null;
         return $page;
-
     }
 
     public function uploadPayment($id, $account_id, $data)
