@@ -17,9 +17,14 @@
                             <li><a href="https://ncdc.am" target="_blank">{{text.ncdc}}
                             </a></li>
                             <li><a href="http://nih.am/am" target="_blank"> {{text.nih}}</a></li>
-
                         </ul>
-
+                        <ul class="text-left">
+                            <li>
+                                <router-link :to="{name: 'payment_methods'}"
+                                             class="text">{{ text.payment }}
+                                </router-link>
+                            </li>
+                        </ul>
                     </div>
                     <div class="col-lg-4 col-md-6 single-footer-widget">
                         <div>

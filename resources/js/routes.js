@@ -14,6 +14,7 @@ import Books from './components/Books.vue';
 import Test from './components/Test.vue';
 import NotFound from './components/NotFound.vue';
 import Howtouse from './components/Howtouse.vue';
+import PaymentMethods from './components/Payment.vue';
 
 
 export const routes = [
@@ -141,7 +142,14 @@ export const routes = [
         component: ForgotPassword,
         meta: {
             auth: false,
-
+        }
+    },
+    {
+        path: '/payment_methods',
+        name: 'payment_methods',
+        component: PaymentMethods,
+        meta: {
+            auth: false,
         }
     },
     {

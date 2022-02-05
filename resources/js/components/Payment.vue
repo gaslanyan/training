@@ -1,0 +1,105 @@
+<template>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 lesson_banner">
+                <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
+                <h2>ՄԵՐ Payment</h2>
+            </div>
+        </div>
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="banner_content">
+                                <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
+                                    <router-link :to="{ name: 'home' }" class="nav-link">{{ text.main }}</router-link>
+                                    <router-link to="" class="nav-link">{{ b.text }}</router-link>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================ Start About Area =================-->
+        <div class="department_area section_gap">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-5 text-center">
+                        <img class="img-fluid pt-3" :src="aboutimg" alt="">
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="dpmt_right" v-for="data in datas" :key="data.id">
+                            <p> {{ data.description }}</p>
+                            <router-link :to="{ name: 'lessons' }" class="primary-btn text-uppercase">
+                                {{ text.lessons }}
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" v-if="!text.documents">
+            <h4 class="title">{{ text.documents }}</h4>
+            <hr class="line">
+            <div class="content">
+                <ul class="course_list" v-for="doc in docs" :key="doc.id">
+                    <li class="justify-content-between d-flex">
+                        <p>{{ doc.doc_path }}</p>
+                        <a class="primary-btn text-uppercase" href="#">{{ text.downloads }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--================ End About Area =================-->
+
+    </div>
+</template>
+
+<script>
+import {getPromiseResult} from '../partials/help';
+import pagestext from './json/pages.json';
+
+export default {
+    data() {
+        return {
+            datas: [],
+            aboutimg: '/css/frontend/img/about_us.jpg',
+            lesson_banner: '/css/frontend/img/lessonbanner.png',
+            docs: [],
+            text: pagestext,
+        };
+    },
+    methods: {
+        aboutpage: function () {
+            let credentials = {
+                url: "about",
+                auth: false
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    this.datas = res.data;
+                    this.docs = res.document;
+                })
+                .catch(error => {
+                    console.log('error');
+                    // this.$store.commit("registerFailed", {error});
+                })
+        }
+    },
+    beforeMount() {
+        this.aboutpage()
+    },
+}
+</script>
+<style>
+.home_banner_area {
+    min-height: 234px;
+}
+</style>
+

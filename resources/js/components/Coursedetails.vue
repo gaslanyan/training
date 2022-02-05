@@ -34,27 +34,26 @@
                                 </div>
                             </div>
 
-                                <div v-if="video_info">
-                                    <hooper :itemsToShow="1">
-                                        <slide v-for="(info, index) in video_info" :key="index" :index="index">
-                                            <video ref="video" class="view-video col-lg-12" controls
-                                                   v-on:loadeddata="manageEvents(info.id, index)">
-                                                <source :src="info.path">
-                                            </video>
-                                            <div class="col-lg-12 row">
-
-                                                    <img :src="lectureimg+info.lectures.image_name" alt="lectures"
-                                                         class="col-2">
-                                                    <div class="col-8">
-                                                        <h5 class="vid_content">{{
-                                                                `${info.lectures.name} ${info.lectures.surname}
+                            <div v-if="video_info">
+                                <hooper :itemsToShow="1">
+                                    <slide v-for="(info, index) in video_info" :key="index" :index="index">
+                                        <video ref="video" class="view-video col-lg-12" controls
+                                               v-on:loadeddata="manageEvents(info.id, index)">
+                                            <source :src="info.path">
+                                        </video>
+                                        <div class="col-lg-12 row">
+                                            <div class="col-6">
+                                                <img :src="lectureimg+info.lectures.image_name" alt="lectures"
+                                                     class="col-2">
+                                                <div class="col-8">
+                                                    <h5 class="vid_content">{{
+                                                            `${info.lectures.name} ${info.lectures.surname}
                                                     ${info.lectures.father_name}`
-                                                            }}</h5>
-                                                        <h4>{{ info.spec }}</h4>
-                                                    </div>
-
+                                                        }}</h5>
+                                                    <h4>{{ info.spec }}</h4>
+                                                </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-6">
                                                 <a class="justify-content-between d-flex" href="#">
 
                                                     <div class="attachment-mark" v-if="books">
@@ -69,10 +68,12 @@
                                                     </div>
                                                 </a>
                                             </div>
-                                        </slide>
-                                        <hooper-pagination slot="hooper-addons"></hooper-pagination>
-                                    </hooper>
-                                </div>
+                                        </div>
+
+                                    </slide>
+                                    <hooper-pagination slot="hooper-addons"></hooper-pagination>
+                                </hooper>
+                            </div>
 
                         </div>
                     </div>
@@ -115,15 +116,18 @@
 
                         </ul>
                         <div v-if="isFinished && isPaid && isRead">
-                        <router-link :to="{ name: 'test',params: {id: this.id} }"
-                                     class="primary-btn text-uppercase enroll "
-                                     :disabled="!isFinished && !isPaid && !isRead"
-                                     :event="(isFinished && isRead) ? 'click' : ''"
-                        v-if="">{{ texts.test }}
-                        </router-link>
+                            <router-link :to="{ name: 'test',params: {id: this.id} }"
+                                         class="primary-btn text-uppercase enroll "
+                                         :disabled="!isFinished && !isPaid && !isRead"
+                                         :event="(isFinished && isRead) ? 'click' : ''"
+                                         v-if="">{{ texts.test }}
+                            </router-link>
                         </div>
                         <div v-else>
-                            <button class="primary-btn text-uppercase enroll" @click="showswal">{{ texts.test }}</button>
+                            <button class="primary-btn text-uppercase enroll" @click="showswal">{{
+                                    texts.test
+                                }}
+                            </button>
                         </div>
                         <div class="content">
                             <div class="review-top row pt-40">
