@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+
                                 <div v-if="video_info">
                                     <hooper :itemsToShow="1">
                                         <slide v-for="(info, index) in video_info" :key="index" :index="index">
@@ -42,7 +42,7 @@
                                                 <source :src="info.path">
                                             </video>
                                             <div class="col-lg-12 row">
-                                                <div class="col-6 col-xs-12">
+
                                                     <img :src="lectureimg+info.lectures.image_name" alt="lectures"
                                                          class="col-2">
                                                     <div class="col-8">
@@ -52,29 +52,28 @@
                                                             }}</h5>
                                                         <h4>{{ info.spec }}</h4>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 col-xs-12">
-                                                    <a class="justify-content-between d-flex" href="#">
 
-                                                        <div class="attachment-mark" v-if="books">
-                                                            <img :src="bookimg" alt="book">
-                                                            <template v-for="book in books">
-                                                                <!--<i class="fa fa-book text"></i>-->
-                                                                <router-link :to="{name: 'book',params: {id: book.id}}"
-                                                                             class="text"
-                                                                             target="_blank">{{ book.title }}
-                                                                </router-link>
-                                                            </template>
-                                                        </div>
-                                                    </a>
-                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <a class="justify-content-between d-flex" href="#">
+
+                                                    <div class="attachment-mark" v-if="books">
+                                                        <img :src="bookimg" alt="book">
+                                                        <template v-for="book in books">
+                                                            <!--<i class="fa fa-book text"></i>-->
+                                                            <router-link :to="{name: 'book',params: {id: book.id}}"
+                                                                         class="text"
+                                                                         target="_blank">{{ book.title }}
+                                                            </router-link>
+                                                        </template>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </slide>
                                         <hooper-pagination slot="hooper-addons"></hooper-pagination>
                                     </hooper>
                                 </div>
 
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 right-contents">
@@ -115,13 +114,17 @@
                             </li>
 
                         </ul>
+                        <div v-if="isFinished && isPaid && isRead">
                         <router-link :to="{ name: 'test',params: {id: this.id} }"
                                      class="primary-btn text-uppercase enroll "
                                      :disabled="!isFinished && !isPaid && !isRead"
-                                     :event="(isFinished && isRead) ? 'click' : 'showswal'"
+                                     :event="(isFinished && isRead) ? 'click' : ''"
                         v-if="">{{ texts.test }}
                         </router-link>
-
+                        </div>
+                        <div v-else>
+                            <button class="primary-btn text-uppercase enroll" @click="showswal">{{ texts.test }}</button>
+                        </div>
                         <div class="content">
                             <div class="review-top row pt-40">
                                 <div class="col-lg-12">
