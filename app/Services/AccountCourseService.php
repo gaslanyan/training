@@ -85,7 +85,7 @@ class AccountCourseService
             $account_course['count'] = $c;
             $ca = $this->model->update($account_course, $count->id);
             if ($count->count === 0 && $status === 'unsuccess') {
-                AccountService::updateUserByParam('pending', $account_id, 'status');
+                AccountService::updateUserByParam('removed', $account_id, 'status');
                 $message = Message::where('key', 'unsuccess_test')->first();
                 $account = Account::where('id', $account_id)->first();
                 $user = User::select('email')->where('account_id', $account_id)->first();
@@ -94,8 +94,8 @@ class AccountCourseService
             }
         }
 
-        if (!$ca)
-            throw new ModelNotFoundException('Account course not created!');
+//        if (!$ca)
+//            throw new ModelNotFoundException('Account course not created!');
         return $percent;
     }
 
