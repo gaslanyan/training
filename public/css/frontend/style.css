@@ -1232,7 +1232,6 @@ a:hover, a:focus, input, textarea, button {
     height: 1px;
 
 }
-
 .line {
     text-align: center;
     height: 1px;
@@ -1240,8 +1239,6 @@ a:hover, a:focus, input, textarea, button {
     background: rgb(99, 30, 216);
     margin: 10%;
 }
-
-
 .categories_post:hover {
     color: #fff;
     background-size: 100%;

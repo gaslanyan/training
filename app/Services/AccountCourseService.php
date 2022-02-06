@@ -89,7 +89,6 @@ class AccountCourseService
                 $message = Message::where('key', 'unsuccess_test')->first();
                 $account = Account::where('id', $account_id)->first();
                 $user = User::select('email')->where('account_id', $account_id)->first();
-
                 $user->notify(new ManageUserStatus($user, $account, $message, 0));
             }
         }

@@ -95,6 +95,7 @@
                         </div>
                     </li>
                 </ul>
+                <div class="line"></div>
             </div>
             <div v-else>
                 <p>{{ texts.testsnoresult }}</p>

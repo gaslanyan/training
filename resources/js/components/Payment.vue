@@ -27,7 +27,7 @@
         <!--================ Start About Area =================-->
         <div class="department_area section_gap">
             <div class="container">
-                <div class="row ">
+                <div class="row">
                     <div class="col-12 text-left">
                         <h2 class="home_title">{{ text.payment_methods }}</h2>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="line"></div>
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row">
                     <div class="col-12 text-left">
                         <h2 class="home_title">{{ text.return_policy }}</h2>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="line"></div>
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row">
                     <div class="col-12 text-left">
                         <h2 class="home_title">{{ text.shipping_methods }}</h2>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="line"></div>
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row">
                     <div class="col-12 text-left">
                         <h2 class="home_title">{{ text.terms_conditions }}</h2>
                     </div>
