@@ -71,7 +71,7 @@ class AccountCourseService
         $account_course['test'] = json_encode($account_answers);
 
         if (empty($count->count)) {
-            $c = 1;
+            $c = Config::get('constants.COUNT');
             $account_course['count'] = $c;
             if (is_object($count)) {
                 $ca = $this->model->update($account_course, $count->id);
@@ -80,7 +80,7 @@ class AccountCourseService
                 $ca = $this->model->create($account_course);
             }
 
-        } elseif ($count->count < Config::get('constants.COUNT') +1) {
+        } elseif ($count->count <= Config::get('constants.COUNT') +1) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
             $ca = $this->model->update($account_course, $count->id);
@@ -94,8 +94,8 @@ class AccountCourseService
             }
         }
 
-//        if (!$ca)
-//            throw new ModelNotFoundException('Account course not created!');
+        if (!$ca)
+            throw new ModelNotFoundException('Account course not created!');
         return $percent;
     }
 

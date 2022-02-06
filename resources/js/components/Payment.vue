@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 lesson_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
-                <h2>ՄԵՐ Payment</h2>
+                <h2 class="home_title">{{ text.payment_terms }}</h2>
             </div>
         </div>
         <section class="banner_area">
@@ -13,9 +13,9 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
                             <div class="banner_content">
-                                <div class="page_link" v-for="b in $route.meta.breadCrumbs" :key="b.to">
+                                <div v-for="b in $route.meta.breadCrumbs" :key="b.to" class="page_link">
                                     <router-link :to="{ name: 'home' }" class="nav-link">{{ text.main }}</router-link>
-                                    <router-link to="" class="nav-link">{{ b.text }}</router-link>
+                                    <router-link class="nav-link" to="">{{ b.text }}</router-link>
 
                                 </div>
                             </div>
@@ -28,31 +28,45 @@
         <div class="department_area section_gap">
             <div class="container">
                 <div class="row ">
-                    <div class="col-lg-5 text-center">
-                        <img class="img-fluid pt-3" :src="aboutimg" alt="">
+                    <div class="col-12 text-left">
+                        <h2 class="home_title">{{ text.payment_methods }}</h2>
                     </div>
 
-                    <div class="col-lg-7">
-                        <div class="dpmt_right" v-for="data in datas" :key="data.id">
-                            <p> {{ data.description }}</p>
-                            <router-link :to="{ name: 'lessons' }" class="primary-btn text-uppercase">
-                                {{ text.lessons }}
-                            </router-link>
-                        </div>
+                    <div class="col-12">
+                        <p> {{ text.payment_methods_desc }}</p>
+                        <div class="line"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="container" v-if="!text.documents">
-            <h4 class="title">{{ text.documents }}</h4>
-            <hr class="line">
-            <div class="content">
-                <ul class="course_list" v-for="doc in docs" :key="doc.id">
-                    <li class="justify-content-between d-flex">
-                        <p>{{ doc.doc_path }}</p>
-                        <a class="primary-btn text-uppercase" href="#">{{ text.downloads }}</a>
-                    </li>
-                </ul>
+                <div class="row ">
+                    <div class="col-12 text-left">
+                        <h2 class="home_title">{{ text.return_policy }}</h2>
+                    </div>
+
+                    <div class="col-12">
+                        <p> {{ text.return_policy_desc }}</p>
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-12 text-left">
+                        <h2 class="home_title">{{ text.shipping_methods }}</h2>
+                    </div>
+
+                    <div class="col-12">
+                        <p> {{ text.shipping_methods_desc }}</p>
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-12 text-left">
+                        <h2 class="home_title">{{ text.terms_conditions }}</h2>
+                    </div>
+
+                    <div class="col-12">
+                        <p> {{ text.terms_conditions_desc }}</p>
+                        <div class="line"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -62,8 +76,8 @@
 </template>
 
 <script>
-import {getPromiseResult} from '../partials/help';
-import pagestext from './json/pages.json';
+
+import pagestext from './json/payment.json';
 
 export default {
     data() {
@@ -75,26 +89,7 @@ export default {
             text: pagestext,
         };
     },
-    methods: {
-        aboutpage: function () {
-            let credentials = {
-                url: "about",
-                auth: false
-            };
-            getPromiseResult(credentials)
-                .then(res => {
-                    this.datas = res.data;
-                    this.docs = res.document;
-                })
-                .catch(error => {
-                    console.log('error');
-                    // this.$store.commit("registerFailed", {error});
-                })
-        }
-    },
-    beforeMount() {
-        this.aboutpage()
-    },
+
 }
 </script>
 <style>
