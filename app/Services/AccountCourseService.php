@@ -70,7 +70,7 @@ class AccountCourseService
         $account_course['percent'] = $percent;
         $account_course['test'] = json_encode($account_answers);
 
-        if (empty($count->count)) {
+        if (empty($count->count) && empty($count->random_test)) {
             $c = Config::get('constants.COUNT_OF_TEST');
             $account_course['count'] = $c;
             if (is_object($count)) {
@@ -80,11 +80,11 @@ class AccountCourseService
                 $ca = $this->model->create($account_course);
             }
 
-        } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST') +1) {
+        } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST')) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
             $ca = $this->model->update($account_course, $count->id);
-            if ($count->count === 1 && $status === 'unsuccess') {
+            if ($count->count === 0 && $status === 'unsuccess'&& !empty($count->random_test)) {
                 AccountService::updateUserByParam('removed', $account_id, 'status');
                 $message = Message::where('key', 'unsuccess_test')->first();
                 $account = Account::where('id', $account_id)->first();
@@ -200,7 +200,7 @@ class AccountCourseService
 
     public function getCountOfTest($id, $account_id)
     {
-        return  $this->getField($account_id, $id, ['id', 'count', 'percent']);
+        return  $this->getField($account_id, $id, ['id', 'count', 'percent','random_test']);
      }
 
     public function readingBook($req)
