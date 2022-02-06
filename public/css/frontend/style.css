@@ -1236,8 +1236,8 @@ a:hover, a:focus, input, textarea, button {
     text-align: center;
     height: 1px;
     width: 80%;
-    background: rgb(99, 30, 216);
-    margin: 10%;
+    background: rgb(205, 182, 245);
+    margin: 5% 10%;
 }
 .categories_post:hover {
     color: #fff;

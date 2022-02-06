@@ -71,7 +71,7 @@ class AccountCourseService
         $account_course['test'] = json_encode($account_answers);
 
         if (empty($count->count)) {
-            $c = Config::get('constants.COUNT');
+            $c = Config::get('constants.COUNT_OF_TEST');
             $account_course['count'] = $c;
             if (is_object($count)) {
                 $ca = $this->model->update($account_course, $count->id);
@@ -80,7 +80,7 @@ class AccountCourseService
                 $ca = $this->model->create($account_course);
             }
 
-        } elseif ($count->count <= Config::get('constants.COUNT') +1) {
+        } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST') +1) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
             $ca = $this->model->update($account_course, $count->id);
@@ -200,10 +200,8 @@ class AccountCourseService
 
     public function getCountOfTest($id, $account_id)
     {
-        $data = $this->getField($account_id, $id, ['id', 'count', 'percent']);
-        $data->count = Config::get('constants.COUNT_OF_TEST') - $data->count;
-        return $data;
-    }
+        return  $this->getField($account_id, $id, ['id', 'count', 'percent']);
+     }
 
     public function readingBook($req)
     {
