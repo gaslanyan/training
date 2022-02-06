@@ -71,7 +71,7 @@ class AccountCourseService
         $account_course['test'] = json_encode($account_answers);
 
         if (empty($count->count) && empty($count->random_test)) {
-            $c = Config::get('constants.COUNT_OF_TEST') - 1;
+            $c = (int)Config::get('constants.COUNT_OF_TEST') - 1;
             $account_course['count'] = $c;
             if (is_object($count)) {
                 $ca = $this->model->update($account_course, $count->id);

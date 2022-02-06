@@ -170,7 +170,7 @@ export default {
 
                             // this.$refs.form.style.display = 'none';
                             // this.$refs.msg.innerText = 'none';
-                            // window.location.reload();
+                            window.location.reload();
 
                         })
                         .catch(err => {
@@ -216,11 +216,12 @@ export default {
                         console.log('if', this.$props.count)
                         if (this.$props.percent < 50) {
 
-                            if (this.$props.count <= 3 && this.$props.count > 0) {
+                            if (this.$props.count < 3 && this.$props.count > 0) {
                                 this.msg = coursetexts.result + info.percent + coursetexts.point;
                                 this.again = coursetexts.again + (this.$props.count) + coursetexts.possibility;
                                 // this.$refs.form.style.display = 'none';
                             } else {
+                                if(this.$props.percent)
                                 this.msg = coursetexts.unsuccess;
                                 setTimeout(() => {
                                     this.logout();
