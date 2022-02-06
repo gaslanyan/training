@@ -42,9 +42,9 @@
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
-                                            <div class="col-6">
+                                            <div class="col-6 row">
                                                 <img :src="lectureimg+info.lectures.image_name" alt="lectures"
-                                                     class="col-2">
+                                                     class="col-4">
                                                 <div class="col-8">
                                                     <h5 class="vid_content">{{
                                                             `${info.lectures.name} ${info.lectures.surname}

@@ -84,7 +84,8 @@ class CourseService
         }
         $result = (!empty($courses)) ? $courses : __('messages.noting');
         if (!$courses)
-            throw new ModelNotFoundException('Course not found by ID ');
+            $result = null;
+//            throw new ModelNotFoundException('Course not found by ID ');
         return $result;
     }
 

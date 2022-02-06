@@ -20,7 +20,7 @@
                         </ul>
                         <ul class="text-left">
                             <li>
-                                <router-link :to="{name: 'payment_methods'}"
+                                <router-link :to="{name: 'payment_terms'}"
                                              class="text">{{ text.payment }}
                                 </router-link>
                             </li>

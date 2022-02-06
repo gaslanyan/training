@@ -80,11 +80,11 @@ class AccountCourseService
                 $ca = $this->model->create($account_course);
             }
 
-        } elseif ($count->count < 4) {
-            $c = $count->count + 1;
+        } elseif ($count->count < Config::get('constants.COUNT') +1) {
+            $c = $count->count - 1;
             $account_course['count'] = $c;
             $ca = $this->model->update($account_course, $count->id);
-            if ($count->count === 3 && $status === 'unsuccess') {
+            if ($count->count === 0 && $status === 'unsuccess') {
                 AccountService::updateUserByParam('pending', $account_id, 'status');
                 $message = Message::where('key', 'unsuccess_test')->first();
                 $account = Account::where('id', $account_id)->first();
