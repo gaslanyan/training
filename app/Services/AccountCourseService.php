@@ -84,7 +84,7 @@ class AccountCourseService
             $c = $count->count - 1;
             $account_course['count'] = $c;
             $ca = $this->model->update($account_course, $count->id);
-            if ($count->count === 0 && $status === 'unsuccess') {
+            if ($count->count === 1 && $status === 'unsuccess') {
                 AccountService::updateUserByParam('removed', $account_id, 'status');
                 $message = Message::where('key', 'unsuccess_test')->first();
                 $account = Account::where('id', $account_id)->first();
