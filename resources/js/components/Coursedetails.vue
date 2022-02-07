@@ -539,7 +539,7 @@ export default {
             location.href = '/register';
         },
         showswal: function () {
-            console.log('mtav')
+            
             Swal.fire({
                 icon: 'error',
                 title: pagetexts.warning,

@@ -118,7 +118,8 @@ class AccountCourseService
 
     public function getPaymentById($account_id, $course_id)
     {
-        $m_b_p = Profession::select('member_of_palace')->first();
+        $m_b_p = Profession::select('member_of_palace')
+        ->where('account_id', $account_id)->first();
         $data = [];
         if ($m_b_p->member_of_palace) {
             $cu = $this->getField($account_id, $course_id, 'id');
