@@ -12,6 +12,7 @@ use App\Models\Profession;
 use App\Models\Tests;
 use App\Models\User;
 use App\Notifications\ManageUserStatus;
+use App\Notifications\PaymentNotification;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Config;
@@ -119,7 +120,7 @@ class AccountCourseService
     public function getPaymentById($account_id, $course_id)
     {
         $m_b_p = Profession::select('member_of_palace')
-        ->where('account_id', $account_id)->first();
+            ->where('account_id', $account_id)->first();
         $data = [];
         if ($m_b_p->member_of_palace) {
             $cu = $this->getField($account_id, $course_id, 'id');
@@ -238,18 +239,24 @@ class AccountCourseService
     public function uploadPayment($id, $account_id, $data)
     {
         $isPayment = false;
-//        $c_a = Courses::select('cost')->where('id', $id)->first();
+        $c_a = Courses::select('name')->where('id', $id)->first();
 //        $ac = $this->model->selected(['id', 'payment'])
 //            ->where('account_id', $account_id)
 //            ->where('course_id', $id)->first();
 //        if (empty($ac->id)) {
         $u_data['course_id'] = $id;
         $u_data['account_id'] = $account_id;
+
         $u_data['payment'] = json_encode($data);
 //            $isPayment = ($data['DepositedAmount'] == $c_a->cost) ? true : false;
 //            if($isPayment)
         $u_data['paid'] = 1;
         $this->model->create($u_data);
+        $message = Message::where('key', 'payment')->first();
+        $account = Account::select('id', 'name', 'surname')
+            ->where('id', $account_id)->first();
+        $user = User::select('email')->where('account_id', $account_id)->first();
+        $user->notify(new PaymentNotification($user, $account, $message, $c_a->name, $data));
 //        } else {
 //
 //            $u_data = json_decode($ac->payment, true);
