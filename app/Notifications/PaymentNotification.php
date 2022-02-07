@@ -89,7 +89,7 @@ class PaymentNotification extends Notification
             ->salutation(__("messages.faithfully"))
             ->line(new HtmlString($this->message->value))
             ->line(new HtmlString(__('messages.thank_you')))
-        ->attachData($pdf->output(), sprintf('payment_%s.pdf'));
+        ->attachData($pdf->output(), sprintf('payment_%s.pdf',date('d-m-Y')));
 
         return $mail;
 
