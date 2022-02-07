@@ -131,7 +131,6 @@ class AccountCourseService
 
         } else {
             $paid = $this->getField($account_id, $course_id, 'paid');
-            dd($paid);
             $paid = ($paid) ? $paid->paid : 0;
         }
         $reading = $this->getField($account_id, $course_id, 'reading');
