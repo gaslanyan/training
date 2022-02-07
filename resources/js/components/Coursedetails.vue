@@ -184,6 +184,9 @@ import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
 
+$(window).focus(function() {
+    console.log("focuse")
+});
 export default {
     data() {
         return {
@@ -539,7 +542,7 @@ export default {
             location.href = '/register';
         },
         showswal: function () {
-            
+
             Swal.fire({
                 icon: 'error',
                 title: pagetexts.warning,
