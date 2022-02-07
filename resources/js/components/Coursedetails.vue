@@ -184,8 +184,8 @@ import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
 
-$(window).focus(function() {
-    console.log("focuse")
+window.addEventListener('focus',function(){
+    console.log('focus')
 });
 export default {
     data() {
