@@ -51,6 +51,13 @@ class MessagesSeeder extends Seeder
                 "updated_at" => Carbon::now()
             ],
             [
+                "name" => "Դասընթացի վճարում",
+                "key" => "payment",
+                "value" => "Վճարումն ավարտելուց հետո Դուք կստանաք Ձեր վճարման օրինակը PDF ֆորմատով Ձեր էլ.փոստին:",
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now()
+            ],
+            [
                 "name" => "Տվյալների փոփոխություն",
                 "key" => "updated_user",
                 "value" => "Սպասե՛ք, ԲՇՄԶ թիմը կհաստատի կատարված փոփոխությունները։",
