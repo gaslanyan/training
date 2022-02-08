@@ -257,7 +257,7 @@ class AccountCourseService
 
         } else {
 
-            $u_data = json_decode($ac->payment, true);
+            $u_data['payment'] = json_decode($ac->payment, true);
 //            $u_data['DepositedAmount'] += $data['DepositedAmount'];
 //            $isPayment = ($u_data['DepositedAmount'] == $c_a->cost) ? true : false;
 //            if($isPayment)
