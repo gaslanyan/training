@@ -34,6 +34,7 @@
 
                     <div class="col-12">
                         <p> {{ text.payment_methods_desc }}</p>
+                        <p> {{ text.payment_methods_info }}</p>
                         <div class="line"></div>
                     </div>
                 </div>
