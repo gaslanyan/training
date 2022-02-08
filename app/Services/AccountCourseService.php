@@ -84,7 +84,7 @@ class AccountCourseService
         } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST')) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
-            if ( $account_course['status'] =="success" )
+            if ($account_course['status'] == "success")
                 $account_course['paid'] = 1;
             $ca = $this->model->update($account_course, $count->id);
             if ($count->count === 0 && $status === 'unsuccess' && !empty($count->random_test)) {
@@ -240,7 +240,6 @@ class AccountCourseService
 
     public function uploadPayment($id, $account_id, $data)
     {
-        $isPayment = false;
         $c_a = Courses::select('name')->where('id', $id)->first();
         $ac = $this->model->selected(['id', 'payment'])
             ->where('account_id', $account_id)
@@ -257,7 +256,7 @@ class AccountCourseService
 
         } else {
 
-            $u_data['payment'] = json_decode($ac->payment, true);
+            $u_data['payment'] = \GuzzleHttp\json_encode($data, true);
 //            $u_data['DepositedAmount'] += $data['DepositedAmount'];
 //            $isPayment = ($u_data['DepositedAmount'] == $c_a->cost) ? true : false;
 //            if($isPayment)
