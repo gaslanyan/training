@@ -74,17 +74,18 @@ class AccountCourseService
         if (empty($count->count) && empty($count->random_test)) {
             $c = (int)Config::get('constants.COUNT_OF_TEST') - 1;
             $account_course['count'] = $c;
-            $account_course['paid'] = 1;
             if (is_object($count)) {
                 $ca = $this->model->update($account_course, $count->id);
             } else {
-
+                $account_course['paid'] = 1;
                 $ca = $this->model->create($account_course);
             }
 
         } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST')) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
+            if ( $account_course['success'] )
+                $account_course['paid'] = 1;
             $ca = $this->model->update($account_course, $count->id);
             if ($count->count === 0 && $status === 'unsuccess' && !empty($count->random_test)) {
                 AccountService::updateUserByParam('removed', $account_id, 'status');
