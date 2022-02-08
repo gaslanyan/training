@@ -84,7 +84,7 @@ class AccountCourseService
         } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST')) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
-            if ( $account_course['success'] )
+            if ( $account_course['status'] =="success" )
                 $account_course['paid'] = 1;
             $ca = $this->model->update($account_course, $count->id);
             if ($count->count === 0 && $status === 'unsuccess' && !empty($count->random_test)) {
