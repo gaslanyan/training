@@ -645,7 +645,7 @@ a:hover, a:focus, input, textarea, button {
     background: #eaeaea;
     border-radius: 20px;
     padding: 10px 22px;
-    margin-bottom: 10px;
+    margin-bottom: 1.1rem;
 }
 
 .right-contents ul li a {
@@ -1232,6 +1232,7 @@ a:hover, a:focus, input, textarea, button {
     height: 1px;
 
 }
+
 .line {
     text-align: center;
     height: 1px;
@@ -1239,6 +1240,7 @@ a:hover, a:focus, input, textarea, button {
     background: rgb(205, 182, 245);
     margin: 5% 10%;
 }
+
 .categories_post:hover {
     color: #fff;
     background-size: 100%;
@@ -2914,6 +2916,10 @@ li {
 
     .right-contents {
         margin-top: 50px;
+    }
+
+    .right-contents ul {
+        margin-bottom: 1.1rem !important;
     }
 
     .generic-banner .generic-banner-content p br {

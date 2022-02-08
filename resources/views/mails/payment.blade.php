@@ -1,3 +1,5 @@
+@extends('layouts.pdf')
+@section('content')
 {{__('messages.payment_title')}} ,
 
 <p>{{__('messages.payment_info')}}</p>
@@ -13,4 +15,4 @@
 
 <i>{{ __('messages.thank').$name}}</i>
 <br>
-
+@endsection
