@@ -81,7 +81,7 @@ class AccountCourseService
                 $ca = $this->model->create($account_course);
             }
 
-        } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST')) {
+        } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST') && $count->count> 0) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
             if ($account_course['status'] == "success")
@@ -119,8 +119,7 @@ class AccountCourseService
         return $tests;
     }
 
-    public
-    function getPaymentById($account_id, $course_id)
+    public function getPaymentById($account_id, $course_id)
     {
         $m_b_p = Profession::select('member_of_palace')
             ->where('account_id', $account_id)->first();
