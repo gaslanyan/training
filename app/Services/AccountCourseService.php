@@ -87,13 +87,12 @@ class AccountCourseService
             if ($account_course['status'] == "success")
                 $account_course['paid'] = 1;
             $ca = $this->model->update($account_course, $count->id);
-            if ($count->count === 0 && $status === 'unsuccess' && !empty($count->random_test)) {
-                AccountService::updateUserByParam('removed', $account_id, 'status');
-                $message = Message::where('key', 'unsuccess_test')->first();
-                $account = Account::where('id', $account_id)->first();
-                $user = User::select('email')->where('account_id', $account_id)->first();
-                $user->notify(new ManageUserStatus($user, $account, $message, 0));
-            }
+        } elseif ($count->count === 0 && $status === 'unsuccess' && !empty($count->random_test)) {
+            AccountService::updateUserByParam('removed', $account_id, 'status');
+            $message = Message::where('key', 'unsuccess_test')->first();
+            $account = Account::where('id', $account_id)->first();
+            $user = User::select('email')->where('account_id', $account_id)->first();
+            $user->notify(new ManageUserStatus($user, $account, $message, 0));
         }
 
         if (!$ca)
@@ -101,7 +100,8 @@ class AccountCourseService
         return $percent;
     }
 
-    public function getTestsResult($id)
+    public
+    function getTestsResult($id)
     {
         $tests = $this->model->selected(['id', 'account_id', 'course_id', 'percent', 'updated_at'])
             ->with(['course' =>
@@ -119,7 +119,8 @@ class AccountCourseService
         return $tests;
     }
 
-    public function getPaymentById($account_id, $course_id)
+    public
+    function getPaymentById($account_id, $course_id)
     {
         $m_b_p = Profession::select('member_of_palace')
             ->where('account_id', $account_id)->first();
@@ -143,6 +144,7 @@ class AccountCourseService
         $data['paid'] = $paid;
         return $data;
     }
+
 //
 //    public function getPaymentByMobile($account_id, $course_id)
 //    {
@@ -160,7 +162,8 @@ class AccountCourseService
 //    }
 
 //todo  inchi get
-    public function getTestById($a_id, $id)
+    public
+    function getTestById($a_id, $id)
     {
         $test = [];
         $tests = $this->model->with(['course' => function ($query) {
@@ -181,7 +184,8 @@ class AccountCourseService
         return $test;
     }
 
-    public function getAccountById($id)
+    public
+    function getAccountById($id)
     {
         $account = Account::select('id', 'name', 'surname', 'father_name', 'phone')
             ->with(['user' => function ($query) {
@@ -193,7 +197,8 @@ class AccountCourseService
         return $account;
     }
 
-    public function getCourseById($id)
+    public
+    function getCourseById($id)
     {
         $course = Courses::select('id', 'name', 'cost')
             ->where('id', $id)->first();
@@ -202,12 +207,14 @@ class AccountCourseService
         return $course;
     }
 
-    public function getCountOfTest($id, $account_id)
+    public
+    function getCountOfTest($id, $account_id)
     {
         return $this->getField($account_id, $id, ['id', 'count', 'percent', 'random_test']);
     }
 
-    public function readingBook($req)
+    public
+    function readingBook($req)
     {
         $read = 0;
         $count = $req->count;
@@ -228,7 +235,8 @@ class AccountCourseService
 //        return $this->model->update($data, $ac->id);
     }
 
-    public function getPage($req)
+    public
+    function getPage($req)
     {
         $page = $this->model->selected('page')
             ->where('account_id', $req->account_id)
@@ -238,7 +246,8 @@ class AccountCourseService
         return $page;
     }
 
-    public function uploadPayment($id, $account_id, $data)
+    public
+    function uploadPayment($id, $account_id, $data)
     {
         $c_a = Courses::select('name')->where('id', $id)->first();
         $ac = $this->model->selected(['id', 'payment'])
@@ -277,7 +286,7 @@ class AccountCourseService
                 $query->select('id', 'name', 'cost');
             }, 'account' => function ($query) {
                 $query->select('id', 'name', 'surname', 'father_name');
-            }])->get();
+            }])->whereNotNull('payment')->get();
         if (!$payments)
             throw new ModelNotFoundException('Account not get!');
         return $payments;
