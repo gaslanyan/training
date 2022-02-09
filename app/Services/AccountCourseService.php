@@ -81,18 +81,20 @@ class AccountCourseService
                 $ca = $this->model->create($account_course);
             }
 
-        } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST') && $count->count> 0) {
+        } elseif ($count->count <= Config::get('constants.COUNT_OF_TEST')) {
             $c = $count->count - 1;
             $account_course['count'] = $c;
-            if ($account_course['status'] == "success")
+            if ($account_course['status'] == "success") {
                 $account_course['paid'] = 1;
+            }
             $ca = $this->model->update($account_course, $count->id);
-        } elseif ($count->count === 0 && $status === 'unsuccess' && !empty($count->random_test)) {
-            AccountService::updateUserByParam('removed', $account_id, 'status');
-            $message = Message::where('key', 'unsuccess_test')->first();
-            $account = Account::where('id', $account_id)->first();
-            $user = User::select('email')->where('account_id', $account_id)->first();
-            $user->notify(new ManageUserStatus($user, $account, $message, 0));
+            if ($count->count === 1 && $percent < Config::get('constants.PERCENT')) {
+                AccountService::updateUserByParam('removed', $account_id, 'status');
+                $message = Message::where('key', 'unsuccess_test')->first();
+                $account = Account::where('id', $account_id)->first();
+                $user = User::select('email')->where('account_id', $account_id)->first();
+                $user->notify(new ManageUserStatus($user, $account, $message, 0));
+            }
         }
 
         if (!$ca)
