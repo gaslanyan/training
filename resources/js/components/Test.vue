@@ -167,7 +167,8 @@ export default {
                     getPromiseResult(credentials)
                         .then(res => {
                             this.tests = res.percent;
-
+                            if(!res.msg)
+                            localStorage.setItem('test_field',coursetexts.unsuccess);
                             // this.$refs.form.style.display = 'none';
                             // this.$refs.msg.innerText = 'none';
                             window.location.reload();
@@ -213,7 +214,6 @@ export default {
                             info.percent = 0;
                         this.$props.percent = info.percent;
                         this.$props.count = info.count;
-                        console.log('if', this.$props.count)
                         if (this.$props.percent < 50) {
 
                             if (this.$props.count <= 3 && this.$props.count > 0) {
@@ -224,6 +224,7 @@ export default {
                                 if(this.$props.percent)
                                 this.msg = coursetexts.unsuccess;
                                 setTimeout(() => {
+
                                     this.logout();
                                 }, 100)
                             }

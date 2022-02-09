@@ -8,6 +8,7 @@ export default {
         isUploadedIn: !!user,
         loading: false,
         auth_error: null,
+        test_error: null,
         unauthorized_error: null,
         unverified_error: null,
         reg_error: null,
@@ -33,6 +34,9 @@ export default {
         },
         authError(state) {
             return state.auth_error;
+        },
+        testError(state) {
+            return state.test_error;
         },
         unauthorizedError(state) {
             return state.unauthorized_error;
@@ -60,9 +64,11 @@ export default {
         login(state) {
             state.loading = true;
             state.auth_error = null;
+            state.test_error = null;
         },
         loginSuccess(state, payload) {
             state.auth_error = null;
+            state.test_error = null;
             state.isLoggedin = true;
             state.loading = false;
             state.currentUser = Object.assign({}, payload.user, {token: payload.access_token});
@@ -79,6 +85,10 @@ export default {
         unverified(state, payload) {
             state.loading = false;
             state.unverified_error = payload.error;
+        },
+        testfied(state, payload) {
+            state.loading = false;
+            state.test_error = payload.error;
         },
         uploadAvatar(state) {
             state.loading = true;

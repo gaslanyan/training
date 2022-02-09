@@ -38,7 +38,7 @@ class AccountCourseService
 
     public function getTestResult($id, $account_id, $model)
     {
-
+        $msg = "";
         $answers = Tests::select('answers')->where('courses_id', $id)
             ->get();
         $test_answers = [];
@@ -93,13 +93,14 @@ class AccountCourseService
                 $message = Message::where('key', 'unsuccess_test')->first();
                 $account = Account::where('id', $account_id)->first();
                 $user = User::select('email')->where('account_id', $account_id)->first();
-                $user->notify(new ManageUserStatus($user, $account, $message, 0));
+                $user->notify(new ManageUserStatus($user, $account, $message, 1));
             }
         }
 
         if (!$ca)
             throw new ModelNotFoundException('Account course not created!');
-        return $percent;
+        return ["percent" => $percent,
+            "msg" => $msg];
     }
 
     public
