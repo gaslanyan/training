@@ -2,30 +2,25 @@
     <div class="login row justify-content-center m-0">
         <div class="col-md-6">
             <div class="register_form">
-                <h3>{{ texts.enter }}</h3>
+                <h3>{{texts.enter}}</h3>
                 <form @submit.prevent="authenticate" class="form_area">
                     <div class="form-group row">
-                        <div v-if="registeredUser" class="text-success">{{ texts.registred }}</div>
-                        <div v-if="verifiedUser" class="text-success">{{ texts.verified }}</div>
+                        <div v-if="registeredUser" class="text-success">{{texts.registred}}</div>
+                        <div v-if="verifiedUser" class="text-success">{{texts.verified}}</div>
                     </div>
                     <div class="form-group row" v-if="unverifiedError">
                         <p class="error m-auto unverified">
-                            {{ unverifiedError }}
+                            {{unverifiedError}}
                         </p>
                     </div>
                     <div class="form-group row" v-else-if="unauthorizedError">
                         <p class="error m-auto">
-                            {{ unauthorizedError }}
+                            {{unauthorizedError}}
                         </p>
                     </div>
                     <div class="form-group row" v-else="authError">
                         <p class="error m-auto">
-                            {{ authError }}
-                        </p>
-                    </div>
-                    <div class="form-group row" v-else="authError">
-                        <p class="error m-auto">
-                            {{ testError }}
+                            {{authError}}
                         </p>
                     </div>
                     <div class="row">
@@ -47,7 +42,7 @@
                         </div>
                         <div class="col-lg-6 text-center m-auto">
                             <div class="btn btn-link">
-                                <router-link to="/reset-password" class="purple"> {{ texts.forgot }}</router-link>
+                                <router-link to="/reset-password" class="purple"> {{texts.forgot}}</router-link>
                             </div>
                             <input type="submit" :value="texts.enter" class="btn primary-btn">
                         </div>
@@ -59,95 +54,91 @@
 </template>
 
 <script>
-import {login, resetPassword} from '../partials/auth';
-import registertexts from './json/registertexts.json';
+    import {login, resetPassword} from '../partials/auth';
+    import registertexts from './json/registertexts.json';
 
-export default {
-    data() {
-        return {
-            formLogin: {
-                email: '',
-                password: ''
-            },
-            error: null,
-            texts: registertexts,
-        }
-    },
-    methods: {
-        authenticate() {
-            this.$validator.validateAll().then((result) => {
-                if (result) {
-                    login(this.$data.formLogin)
-                        .then(res => {
-                            this.$store.commit("loginSuccess", res);
-                            if (localStorage.getItem('course_id')) {
-                                this.$router.push({path: '/coursedetails/' + localStorage.getItem('course_id')});
-                                localStorage.removeItem('course_id')
-                            } else
+    export default {
+        data() {
+            return {
+                formLogin: {
+                    email: '',
+                    password: ''
+                },
+                error: null,
+                texts: registertexts,
+            }
+        },
+        methods: {
+            authenticate() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        login(this.$data.formLogin)
+                            .then(res => {
+                                this.$store.commit("loginSuccess", res);
+                                if(localStorage.getItem('course_id')){
+                                    this.$router.push({path: '/coursedetails/'+localStorage.getItem('course_id')});
+                                    localStorage.removeItem('course_id')
+                                }else
                                 this.$router.push({path: '/account'});
-                        })
-                        .catch(error => {
-                            let msg = "", pattern = /\d+/,
-                                e = pattern.exec(error);
-                            switch (e[0]) {
-                                case '400':
-                                    error = this.texts.unverified;
-                                    msg = 'unverified';
-                                    break;
-                                case '401':
-                                    error = this.texts.unauthorized;
-                                    msg = 'unauthorized';
-                                    break;
-                                default:
-                                    error = this.texts.reject;
-                                    msg = 'loginFailed';
-                            }
-                            if (localStorage.get('test_field'))
-                                msg = localStorage.get('test_field');
-                            this.$store.commit(msg, {error});
-                        });
-                    return;
-                }
-                console.log('Correct them errors!');
-            });
-            this.$store.dispatch('login');
+                            })
+                            .catch(error => {
+                                let msg = "", pattern = /\d+/,
+                                    e = pattern.exec(error);
+                                switch (e[0]) {
+                                    case '400':
+                                        error = this.texts.unverified;
+                                        msg = 'unverified';
+                                        break;
+                                    case '401':
+                                        error = this.texts.unauthorized;
+                                        msg = 'unauthorized';
+                                        break;
+                                    default:
+                                        error = this.texts.reject;
+                                        msg = 'loginFailed';
+                                }
 
-        },
-        reset() {
-            resetPassword().then(res => {
-                // this.professions = res.prof;
-            })
-                .catch(error => {
-                    this.$store.commit("getContentFailed", {error});
+                                this.$store.commit(msg, {error});
+                            });
+                        return;
+                    }
+                    console.log('Correct them errors!');
+                });
+                this.$store.dispatch('login');
+
+            },
+            reset() {
+                resetPassword().then(res => {
+                    // this.professions = res.prof;
                 })
-        }
-    },
-    computed: {
-        authError() {
-            return this.$store.getters.authError
+                    .catch(error => {
+                        this.$store.commit("getContentFailed", {error});
+                    })
+            }
         },
-        testError() {
-            return this.$store.getters.testError
-        },
-        unauthorizedError() {
-            return this.$store.getters.unauthorizedError
-        },
-        unverifiedError() {
-            return this.$store.getters.unverifiedError
-        },
-        registeredUser() {
-            return this.$store.getters.registeredUser
-        },
-        verifiedUser() {
-            return this.$store.getters.verifiedUser
+        computed: {
+            authError() {
+                return this.$store.getters.authError
+            },
+            unauthorizedError() {
+                return this.$store.getters.unauthorizedError
+            },
+            unverifiedError() {
+                return this.$store.getters.unverifiedError
+            },
+            registeredUser() {
+                return this.$store.getters.registeredUser
+            },
+            verifiedUser() {
+                return this.$store.getters.verifiedUser
+            }
         }
     }
-}
 </script>
 
 <style scoped>
-.error {
-    text-align: center;
-    color: red;
-}
+    .error {
+        text-align: center;
+        color: red;
+    }
 </style>
