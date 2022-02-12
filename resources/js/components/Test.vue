@@ -43,9 +43,10 @@
                                 <h3 class="question">{{ index + 1 }}. {{ info.question }}</h3>
                                 <ul class="test-actual">
                                     <li v-for="(answer, i) in JSON.parse(info.answers)" class="d-flex flex-row">
-                                        <label class="test-answer">
-                                            <input :type="info.type" :value="(i+1)" class=""
+                                        <label :class="'test-answer_'+(index +1)">
+                                            <input :type="info.type" :value="(i+1)"
                                                    v-model="formTest[(index +1)+'_'+(i+1)]"
+                                                   :id="'test-answer_'+(index +1)"
                                                    :name="'test_'+(index +1)" v-validate="'required|included:1,2,3,4'">
                                         </label>
                                         <span class="test" v-if="answer.answer"
@@ -70,7 +71,7 @@
                         </div>
                         <div id="certificate" v-if="diploma">
                             <p>{{ coursetexts.cert }}</p>
-                            <img v-if="diploma" id="finishimg" v-bind:src="'/uploads/diplomas/' + cert"
+                            <img v-if="diploma" id="finishimg" v-bind:src="cert"
                                  alt="certificate">
                         </div>
                     </div>
@@ -176,7 +177,6 @@ export default {
                         .catch(err => {
                             console.log(err)
                         });
-                    console.log('Form Submitted!');
                     return;
                 }
                 console.log('Correct them errors!');
@@ -221,8 +221,8 @@ export default {
                                 this.again = coursetexts.again + (this.$props.count) + coursetexts.possibility;
                                 // this.$refs.form.style.display = 'none';
                             } else {
-                                if(this.$props.percent)
-                                this.msg = coursetexts.unsuccess;
+                                if (this.$props.percent)
+                                    this.msg = coursetexts.unsuccess;
                                 setTimeout(() => {
                                     this.logout();
                                 }, 100)

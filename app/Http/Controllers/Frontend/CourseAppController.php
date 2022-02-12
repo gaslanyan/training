@@ -12,6 +12,7 @@ use App\Models\Specialty;
 use App\Models\Videos;
 use App\Services\CourseService;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 /**
@@ -143,6 +144,13 @@ class CourseAppController extends Controller
             if (is_int($result)) {
                 $book['count'] = $result;
                 $book['path'] = Config::get('constants.UPLOADS') . Config::get('constants.BOOKS') . request('id');
+                $book['links'] = [];
+
+                $storage = Storage::disk('s3');
+
+                for($i = 1; $i <= $result; $i++) {
+                    $book['links'][$i] = $storage->temporaryUrl(sprintf('%s/%d.jpg', $book['path'], $i), now()->addHours());
+                }
 
                 return response()->json([
                     'access_token' => request('token'),

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class RemoveImagePDFJob implements ShouldQueue
 {
@@ -33,8 +33,7 @@ class RemoveImagePDFJob implements ShouldQueue
      */
     public function handle()
     {
-        $path = public_path() . Config::get('constants.UPLOADS') . "/books/" . $this->book->id . '/';
-
-        File::deleteDirectory($path);
+        $folder = sprintf('%s/books/%d', Config::get('constants.UPLOADS'), $this->book->id);
+        Storage::disk('s3')->deleteDirectory($folder);
     }
 }

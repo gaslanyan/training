@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Courses;
 use App\Models\Tests;
 use App\Repositories\Repository;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
@@ -104,7 +105,7 @@ class TestsController extends Controller
             $data = [];
             $data['courses_id'] = $request->course_id;
             $data['question'] = $request->question;
-            $data['answers'] = json_encode($request->fields);
+            $data['answers'] = preg_replace('/<p [data-f-id="pbf">].*<\/p>/i', '',json_encode($request->fields));
             $this->model->create($data);
             return redirect('backend/test')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
@@ -118,7 +119,7 @@ class TestsController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-   public function destroy($id)
+    public function destroy($id)
     {
         try {
             $this->model->delete($id);
@@ -189,7 +190,7 @@ class TestsController extends Controller
             $data = [];
             $data['courses_id'] = $request->course_id;
             $data['question'] = $request->question;
-            $data['answers'] = json_encode($request->fields);
+            $data['answers'] = preg_replace('/<p [data-f-id="pbf">].*<\/p>/i', '', json_encode($request->fields));
             $this->model->update($data, $id);
             return redirect('backend/test')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {

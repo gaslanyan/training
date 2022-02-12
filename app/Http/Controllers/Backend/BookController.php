@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\MakeImagesFromPDFJob;
 use App\Jobs\RemoveImagePDFJob;
 use App\Models\Book;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
@@ -69,7 +70,8 @@ class BookController extends Controller
 
         try {
             if ($model->save()) {
-                $path = public_path(Config::get('constants.UPLOADS') . '/books/' . $model->id);
+                $folder = Config::get('constants.UPLOADS') . "/books/" . $model->id;
+                $path = sprintf('%s%s/',  storage_path('app'), $folder);
 
                 if (!File::isDirectory($path)) {
                     File::makeDirectory($path, 0775, true, true);
