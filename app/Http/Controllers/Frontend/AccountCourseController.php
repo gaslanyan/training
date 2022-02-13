@@ -253,7 +253,7 @@ class AccountCourseController extends Controller
     {
         $text_send = $this->service->getCertificate($request->id, $request->user_id);
         return response()->json([
-            'data' => config('constants.DIPLOMA').$text_send . ".png",
+            'data' => $text_send . ".png",
             'access_token' => request('token'),
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
