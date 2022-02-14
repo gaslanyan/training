@@ -54,7 +54,7 @@ class MakeImagesFromPDFJob implements ShouldQueue
 
             foreach ($files as $f) {
                 /** @var $f SplFileInfo */
-                Storage::disk('s3')->put(sprintf('%s/%s', $folder, $f->getBasename()), File::get($f->getPathname()));
+                Storage::disk('s3')->put(sprintf('%s/%s', trim($folder,"/"), $f->getBasename()), File::get($f->getPathname()));
             }
 
             Storage::disk()->deleteDirectory($path);

@@ -143,7 +143,7 @@ class CourseAppController extends Controller
 
             if (is_int($result)) {
                 $book['count'] = $result;
-                $book['path'] = Config::get('constants.UPLOADS') . Config::get('constants.BOOKS') . request('id');
+                $book['path'] = trim(Config::get('constants.UPLOADS'),"/") . Config::get('constants.BOOKS') . request('id');
                 $book['links'] = [];
                 $storage = Storage::disk('s3');
                 for($i = 1; $i <= $result; $i++) {
