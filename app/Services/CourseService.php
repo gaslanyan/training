@@ -18,6 +18,7 @@ use App\Models\Tests;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 
 
 class CourseService
@@ -163,9 +164,10 @@ class CourseService
 
     public function getBook($id)
     {
-        $path = public_path() . Config::get('constants.UPLOADS') . Config::get('constants.BOOKS') . $id;
+
+        $path = trim(Config::get('constants.UPLOADS'),"/") . Config::get('constants.BOOKS') . $id;
         $book = '';
-        if (file_exists($path)) {
+        if (Storage::disk('s3')->exists($path)) {
             $book = count(glob("$path/*.jpg"));;
         } else
             throw new ModelNotFoundException('Book not found by ID ');

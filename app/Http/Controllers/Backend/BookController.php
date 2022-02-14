@@ -76,9 +76,7 @@ class BookController extends Controller
                 if (!File::isDirectory($path)) {
                     File::makeDirectory($path, 0775, true, true);
                 }
-
                 $file->move($path, $new_name);
-
                 $this->dispatch((new MakeImagesFromPDFJob($model))->delay(5));
 
                 return redirect('backend/book/create')->with('success', Lang::get('messages.success'));
