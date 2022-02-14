@@ -56,9 +56,8 @@ export default {
             getPromiseResult(credentials)
                 .then(res => {
                     this.count = res.book.count;
-                    for (let i = 0; i < res.book.count; i++) {
-                        let name = i + 1;
-                        this.images.push(`${res.book.links[i]}`);
+                    for (let i = 0; i < res.book.count; i++) {                        let name = i + 1;
+                        this.images.push(`${res.book.links[i+1]}`);
                     }
                 })
                 .catch(error => {
