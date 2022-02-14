@@ -58,8 +58,7 @@ export default {
                     this.count = res.book.count;
                     for (let i = 0; i < res.book.count; i++) {
                         let name = i + 1;
-                        this.images.push(`${res.book.path}/${name}.jpg`);
-
+                        this.images.push(`${res.book.links[i]}`);
                     }
                 })
                 .catch(error => {

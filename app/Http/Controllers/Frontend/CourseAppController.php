@@ -145,9 +145,7 @@ class CourseAppController extends Controller
                 $book['count'] = $result;
                 $book['path'] = Config::get('constants.UPLOADS') . Config::get('constants.BOOKS') . request('id');
                 $book['links'] = [];
-
                 $storage = Storage::disk('s3');
-
                 for($i = 1; $i <= $result; $i++) {
                     $book['links'][$i] = $storage->temporaryUrl(sprintf('%s/%d.jpg', $book['path'], $i), now()->addHours());
                 }
@@ -238,8 +236,8 @@ class CourseAppController extends Controller
 
                     $s3_books[$index] = $b;
                     $s3_books[$index]['count'] = $this->service->getBook($book);
-//                    $s3_books[$index]['path'] = $path;
-                    $s3_books[$index]['path'] = sprintf("%s/%s", env('AWS_URL_ACL'), $b->path);
+                    $s3_books[$index]['path'] = $path;
+//                    $s3_books[$index]['path'] = sprintf("%s/%s", env('AWS_URL_ACL'), $b->path);
                 }
                 $courses->books = json_encode($s3_books, true);
 
