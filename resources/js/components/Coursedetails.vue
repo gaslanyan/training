@@ -60,13 +60,15 @@
                                                         <div class="col-2">
                                                             <img :src="bookimg" alt="book">
                                                         </div>
-                                                        <template v-for="book in books" class="col-10">
+                                                        <div class="col-10">
+                                                        <template v-for="book in books" >
                                                             <!--<i class="fa fa-book text"></i>-->
                                                             <router-link :to="{name: 'book',params: {id: book.id}}"
                                                                          class="text"
                                                                          target="_blank">{{ book.title }}
                                                             </router-link>
                                                         </template>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
