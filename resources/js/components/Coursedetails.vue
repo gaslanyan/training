@@ -54,11 +54,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <a class="justify-content-between d-flex" href="#">
+                                                <div class="justify-content-between d-flex">
 
-                                                    <div class="attachment-mark" v-if="books">
-                                                        <img :src="bookimg" alt="book">
-                                                        <template v-for="book in books">
+                                                    <div class="attachment-mark row" v-if="books">
+                                                        <div class="col-2">
+                                                            <img :src="bookimg" alt="book">
+                                                        </div>
+                                                        <template v-for="book in books" class="col-10">
                                                             <!--<i class="fa fa-book text"></i>-->
                                                             <router-link :to="{name: 'book',params: {id: book.id}}"
                                                                          class="text"
@@ -66,7 +68,7 @@
                                                             </router-link>
                                                         </template>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -184,7 +186,7 @@ import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
 
-window.addEventListener('focus',function(){
+window.addEventListener('focus', function () {
     console.log('focus')
 });
 export default {
