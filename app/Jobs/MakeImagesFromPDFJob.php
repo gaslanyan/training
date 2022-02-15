@@ -57,7 +57,7 @@ class MakeImagesFromPDFJob implements ShouldQueue
                 Storage::disk('s3')->put(sprintf('%s/%s', trim($folder,"/"), $f->getBasename()), File::get($f->getPathname()));
             }
 
-            Storage::disk()->deleteDirectory($path);
+            Storage::disk()->deleteDirectory(trim($folder,"/"));
         }
     }
 }

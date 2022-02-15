@@ -33,7 +33,7 @@ class RemoveImagePDFJob implements ShouldQueue
      */
     public function handle()
     {
-        $folder = sprintf('%s/books/%d', Config::get('constants.UPLOADS'), $this->book->id);
+        $folder = sprintf('%s/books/%d', trim(Config::get('constants.UPLOADS'),"/"), $this->book->id);
         Storage::disk('s3')->deleteDirectory($folder);
     }
 }
