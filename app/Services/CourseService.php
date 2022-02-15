@@ -150,7 +150,7 @@ class CourseService
 
     public function getBookById($id)
     {
-        $book = Book::select('id', 'title', 'path')
+        $book = Book::select('id', 'title', 'path', 'count')
             ->where('id', $id)
             ->first();
         $result = (!empty($book)) ? $book : __('messages.noting');
