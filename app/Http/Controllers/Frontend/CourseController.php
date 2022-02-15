@@ -110,6 +110,7 @@ class CourseController extends Controller
 
                 $courses->credit = json_encode($c, true);
             }
+            $specialties_obj =[];
             if ($courses->specialty_ids) {
                 $spec_ids = json_decode($courses->specialty_ids);
                 for ($i = 0; $i < count($spec_ids); $i++) {
