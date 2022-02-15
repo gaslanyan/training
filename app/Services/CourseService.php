@@ -166,7 +166,7 @@ class CourseService
             ->first();
         if (!$book)
             throw new ModelNotFoundException('Book not found by ID ');
-        return $book;
+        return $book->count;
     }
 
     public function getTestsById($id, $a_id)
