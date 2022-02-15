@@ -85,13 +85,14 @@
                                         <input name="_method" type="hidden" value="DELETE">
                                         <input name="_id" type="hidden" value="{{$book->id}}">
                                         <button data-ref="" type="button"
-                                                                                            data-title="admin"
+                                                data-title="book"
                                         class="delete btn btn-danger kt-badge--lg kt-badge  "
                                         data-original-title="{{__('messages.delete')}}">
                                         <i class="la la-trash"></i>
 
                                         </button>
-                                                                                        <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>
+
+{{--                                            <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>--}}
                                         </form>
                                     </div>
                                 </td>

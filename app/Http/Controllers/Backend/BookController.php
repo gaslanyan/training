@@ -206,4 +206,7 @@ class BookController extends Controller
 
         return redirect('backend/book')->with('error', Lang::get('messages.wrong'));
     }
+    public function checkBook(){
+
+    }
 }

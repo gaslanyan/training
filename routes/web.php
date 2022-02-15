@@ -82,6 +82,7 @@ name('backend.')
         Route::resource('image', 'Backend\ImageController');
 //books
         Route::resource('book', 'Backend\BookController');
+        Route::post('bookCheck', 'Backend\BookController@checkBook')->name('book.check');
 
         Route::post('book/{id}', 'Backend\BookController@update');
 

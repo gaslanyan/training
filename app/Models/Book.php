@@ -21,4 +21,10 @@ class Book extends Model
             'book' => 'required|file|mimes:pdf'
         ];
     }
+
+    public function checkBook($id)
+    {
+        $b = Self::query()->whereRaw('JSON_CONTAINS(`books`), \'["' . $id . '"]\')')->exists();
+        dd($b);
+    }
 }
