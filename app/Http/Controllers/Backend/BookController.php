@@ -194,6 +194,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        dd($book);
         try {
             if ($book->delete()) {
                 $this->dispatch((new RemoveImagePDFJob($book))->delay(5));
