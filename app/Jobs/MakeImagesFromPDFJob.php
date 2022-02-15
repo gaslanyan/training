@@ -46,9 +46,8 @@ class MakeImagesFromPDFJob implements ShouldQueue
 
         if (file_exists($pathToImage)) {
             $pdf = new Pdf($pathToImage);
-            $np = $pdf->getNumberOfPages();
 
-            foreach(range(1, $pdf->getNumberOfPages()) as $pageNumber) {
+            foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
                 $pdf->setPage($pageNumber)->saveImage($path . $pageNumber . '.jpg');
             }
 
@@ -58,8 +57,9 @@ class MakeImagesFromPDFJob implements ShouldQueue
                 /** @var $f SplFileInfo */
                 Storage::disk('s3')->put(sprintf('%s/%s', trim($folder, "/"), $f->getBasename()), File::get($f->getPathname()));
             }
-
-           logger( Book::find($this->pdf->id)->update(['count'=>$np]));
+            $b = Book::find($this->pdf->id);
+            $b->count = $pdf->getNumberOfPages();
+            $b->save();
             Storage::disk()->deleteDirectory(trim($folder, "/"));
         }
     }
