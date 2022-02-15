@@ -79,20 +79,20 @@
                                             <i class="la la-edit"></i>
                                         </a>
 
-                                        {{--<form action="{{action('Backend\BookController@destroy', $book->id)}}"--}}
-                                        {{--id="_form" method="post">--}}
-                                        {{--@csrf--}}
-                                        {{--<input name="_method" type="hidden" value="DELETE">--}}
-                                        {{--<input name="_id" type="hidden" value="{{$book->id}}">--}}
-                                        {{--<button data-ref="" type="button"--}}
-                                        {{--                                                    data-title="admin"--}}
-                                        {{--class="delete btn btn-danger kt-badge--lg kt-badge  "--}}
-                                        {{--data-original-title="{{__('messages.delete')}}">--}}
-                                        {{--<i class="la la-trash"></i>--}}
+                                        <form action="{{action('Backend\BookController@destroy', $book->id)}}"
+                                        id="_form" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <input name="_id" type="hidden" value="{{$book->id}}">
+                                        <button data-ref="" type="button"
+                                                                                            data-title="admin"
+                                        class="delete btn btn-danger kt-badge--lg kt-badge  "
+                                        data-original-title="{{__('messages.delete')}}">
+                                        <i class="la la-trash"></i>
 
-                                        {{--</button>--}}
-                                        {{--                                                <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>--}}
-                                        {{--</form>--}}
+                                        </button>
+                                                                                        <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
