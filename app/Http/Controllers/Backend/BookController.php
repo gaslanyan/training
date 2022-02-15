@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Jobs\MakeImagesFromPDFJob;
 use App\Jobs\RemoveImagePDFJob;
 use App\Models\Book;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -47,7 +45,7 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -71,7 +69,7 @@ class BookController extends Controller
         try {
             if ($model->save()) {
                 $folder = Config::get('constants.UPLOADS') . "/books/" . $model->id;
-                $path = sprintf('%s%s/',  storage_path('app'), $folder);
+                $path = sprintf('%s%s/', storage_path('app'), $folder);
 
                 if (!File::isDirectory($path)) {
                     File::makeDirectory($path, 0775, true, true);
@@ -91,7 +89,7 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -102,7 +100,7 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -124,8 +122,8 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -206,7 +204,9 @@ class BookController extends Controller
 
         return redirect('backend/book')->with('error', Lang::get('messages.wrong'));
     }
-    public function checkBook(){
 
+    public function checkBook()
+    {
+        Book::checkBook(\request('id'));
     }
 }
