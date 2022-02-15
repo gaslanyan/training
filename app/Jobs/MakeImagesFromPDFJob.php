@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Book;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -45,8 +46,9 @@ class MakeImagesFromPDFJob implements ShouldQueue
 
         if (file_exists($pathToImage)) {
             $pdf = new Pdf($pathToImage);
+            $np = $pdf->getNumberOfPages();
 
-            foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
+            foreach(range(1, $np) as $pageNumber) {
                 $pdf->setPage($pageNumber)->saveImage($path . $pageNumber . '.jpg');
             }
 
@@ -54,10 +56,10 @@ class MakeImagesFromPDFJob implements ShouldQueue
 
             foreach ($files as $f) {
                 /** @var $f SplFileInfo */
-                Storage::disk('s3')->put(sprintf('%s/%s', trim($folder,"/"), $f->getBasename()), File::get($f->getPathname()));
+                Storage::disk('s3')->put(sprintf('%s/%s', trim($folder, "/"), $f->getBasename()), File::get($f->getPathname()));
             }
-
-            Storage::disk()->deleteDirectory(trim($folder,"/"));
+            Book::find('id')->update(['count'=>$np]);
+            Storage::disk()->deleteDirectory(trim($folder, "/"));
         }
     }
 }

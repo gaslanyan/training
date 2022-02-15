@@ -17,8 +17,6 @@ use App\Models\Specialties;
 use App\Models\Tests;
 use App\Repositories\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Storage;
 
 
 class CourseService
@@ -47,7 +45,7 @@ class CourseService
     {
         $spec = Profession::select('specialty_id')->where('account_id', $id)->first();
         $prof = Specialties::select('parent_id')->where('id', $spec->specialty_id)->first();
-                if ($prof->parent_id == 1 && !$mobile) {
+        if ($prof->parent_id == 1 && !$mobile) {
             $courses = $this->getCoursesById($prof->parent_id);
         } else
             $courses = Courses::select('id', 'name', 'image', 'cost', 'credit', 'start_date')->
@@ -76,8 +74,7 @@ class CourseService
                 ->where('status', "=", "active")
 //               ->where('start_date', ">=", date("Y-m-d"))
                 ->get()->toArray();
-            if (!empty($c))
-            {
+            if (!empty($c)) {
                 foreach ($c as $key => $val) {
                     $courses[$val['id']] = $val;
                 }
@@ -164,12 +161,10 @@ class CourseService
 
     public function getBook($id)
     {
-
-        $path = trim(Config::get('constants.UPLOADS'),"/") . Config::get('constants.BOOKS') . $id;
-        $book = '';
-        if (Storage::disk('s3')->exists($path)) {
-            $book = count(glob("$path/*.jpg"));;
-        } else
+        $book = Book::select('id', 'count')
+            ->where('id', $id)
+            ->first();
+        if (!$book)
             throw new ModelNotFoundException('Book not found by ID ');
         return $book;
     }

@@ -67,7 +67,8 @@
                             <tr>
                                 <td></td>
                                 <td><a target="_blank" class="text text-info"
-                                       href="{{sprintf('%s/%s',Config::get('constants.UPLOADS') . '/books/' . $book->id,$book->path)}}">{{$book->title}}</a>
+                               href="{{\Illuminate\Support\Facades\Storage::disk('s3')->temporaryUrl(sprintf('%s/books/%d/%s', trim(Config::get('constants.UPLOADS'),'/'), $book->id, $book->path), now()->addHour())}}">{{$book->title}}</a>
+
                                 </td>
                                 <td>
                                     <div class="row justify-content-end">
@@ -77,6 +78,7 @@
                                            data-original-title="{{__('messages.edit')}}">
                                             <i class="la la-edit"></i>
                                         </a>
+
                                         {{--<form action="{{action('Backend\BookController@destroy', $book->id)}}"--}}
                                         {{--id="_form" method="post">--}}
                                         {{--@csrf--}}
