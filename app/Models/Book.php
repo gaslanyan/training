@@ -24,7 +24,7 @@ class Book extends Model
 
     public static function checkBook($id)
     {
-        $b = Self::query()->whereRaw('JSON_CONTAINS(`books`), \'["' . $id . '"]\')')->get();
+        $b = Self::query()->whereRaw("JSON_CONTAINS(`books`), [' . $id . ']")->get();
         dd($b);
     }
 }
