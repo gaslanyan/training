@@ -77,7 +77,7 @@ class CourseController extends Controller
                     $b = Book::select('id', 'title')->where('id', $book)->first();
 
                     $s3_books[$index] = $b;
-                    $s3_books[$index]['count'] = $this->service->getBook($book);
+                    $s3_books[$index]['count'] = $this->service->getBook($book)->count;
                     $s3_books[$index]['path'] = $path;
 //                    $s3_books[$index]['path'] = sprintf("%s/%s", env('AWS_URL_ACL'), $b->path);
                 }
