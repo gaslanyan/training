@@ -161,7 +161,7 @@ class CourseService
 
     public function getBook($id)
     {
-        $book = Book::select('id', 'count')
+        $book = Book::select('count')
             ->where('id', $id)
             ->first();
         if (!$book)
