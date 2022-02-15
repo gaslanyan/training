@@ -22,9 +22,5 @@ class Book extends Model
         ];
     }
 
-    public static function checkBook($id)
-    {
-        $b = Self::query()->whereRaw('JSON_CONTAINS(`books`, \'["' . $id . '"]\')')->exists();
-        dd($b);
-    }
+
 }

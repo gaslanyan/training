@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\MakeImagesFromPDFJob;
 use App\Jobs\RemoveImagePDFJob;
 use App\Models\Book;
+use App\Models\Courses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
@@ -207,6 +208,6 @@ class BookController extends Controller
 
     public function checkBook()
     {
-        Book::checkBook(\request('id'));
+        Courses::checkBook(\request('id'));
     }
 }

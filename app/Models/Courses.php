@@ -267,4 +267,8 @@ class Courses extends Model implements JWTSubject
     {
         return $this->hasMany('App\Models\Tests');
     }
+    public static function checkBook($id)
+    {
+        $b = Self::query()->whereRaw('JSON_CONTAINS(`books`, \'["' . $id . '"]\')')->exists();
+    }
 }
