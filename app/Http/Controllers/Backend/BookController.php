@@ -210,9 +210,10 @@ class BookController extends Controller
     public function checkBook()
     {
         $isVerified = true;
+
         $check = Courses::checkBook(\request('id'));
         if(!$check)
-            $isVerified = false;
+            $isVerified = null;
         return response()->json(['success' => $isVerified]);
     }
 }

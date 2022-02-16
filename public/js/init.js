@@ -91,7 +91,9 @@ $(document).ready(function () {
                                     if (result.value) {
                                         if ($('[name=removed]').val() == 0)
                                             $('[name=removed]').val('1');
+
                                         this.element.parent().submit();
+
                                     }
                                 });
                             }
