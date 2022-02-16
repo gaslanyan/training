@@ -57,10 +57,10 @@
                                                 <div class="justify-content-between d-flex">
 
                                                     <div class="attachment-mark row" v-if="books">
-                                                        <div class="col-3 col-xs-12">
+                                                        <div class="col-3 col-xs-12 pl-0">
                                                             <img :src="bookimg" alt="book">
                                                         </div>
-                                                        <div class="col-9 col-xs-12">
+                                                        <div class="col-9 col-xs-12 pr-0">
                                                         <template v-for="book in books" >
                                                             <!--<i class="fa fa-book text"></i>-->
                                                             <router-link :to="{name: 'book',params: {id: book.id}}"
