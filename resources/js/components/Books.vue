@@ -153,13 +153,15 @@ export default {
     cursor: pointer;
     z-index: 10;
     opacity: 0.2;
-    right: 0;
     top: 64vh;
     display: block;
 }
 
 .flip_button_left {
     left: 0;
+}
+.flip_button_right {
+    right: 0;
 }
 
 .flip_button_right i, .flip_button_left i {
