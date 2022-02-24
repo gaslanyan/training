@@ -42,7 +42,7 @@
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
-                                            <div class="col-6 row">
+                                            <div class="col-6 col-xs-12 row">
                                                 <img :src="lectureimg+info.lectures.image_name" alt="lectures"
                                                      class="col-4">
                                                 <div class="col-8">
@@ -53,7 +53,7 @@
                                                     <h4>{{ info.spec }}</h4>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-6 col-xs-12">
                                                 <div class="justify-content-between d-flex">
 
                                                     <div class="attachment-mark row" v-if="books">
@@ -61,13 +61,14 @@
                                                             <img :src="bookimg" alt="book">
                                                         </div>
                                                         <div class="col-9 col-xs-12 pr-0">
-                                                        <template v-for="book in books" >
-                                                            <!--<i class="fa fa-book text"></i>-->
-                                                            <router-link :to="{name: 'book',params: {id: book.id}}"
-                                                                         class="text"
-                                                                         target="_blank">{{ book.title }}
-                                                            </router-link><br>
-                                                        </template>
+                                                            <template v-for="book in books">
+                                                                <!--<i class="fa fa-book text"></i>-->
+                                                                <router-link :to="{name: 'book',params: {id: book.id}}"
+                                                                             class="text"
+                                                                             target="_blank">{{ book.title }}
+                                                                </router-link>
+                                                                <br>
+                                                            </template>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -160,7 +161,7 @@
         </div>
         <!--================ End Course Details Area =================-->
         <section class="course_details_carousel section_gap container">
-            <hooper :itemsToShow="3" class="hooper_carousel">
+            <hooper :settings="hooperSettings" class="hooper_carousel">
                 <slide class="slide_carousel" v-for="(info, index) in courses" :key="index" :index="index">
                     <a :href="'/coursedetails/'+info.id" class="nav-link">
                         <div class="categories_post">
@@ -224,7 +225,30 @@ export default {
             ],
             isFinished: 0,
             disabled: 1,
-            pagetexts: pagetexts
+            pagetexts: pagetexts,
+            hooperSettings: {
+                infiniteScroll: true,
+                centerMode: true,
+                autoPlay: true,
+                playSpeed: 3500,
+                breakpoints: {
+                    2400: {
+                        itemsToShow: 5
+                    },
+                    1800: {
+                        itemsToShow: 4
+                    },
+                    1500: {
+                        itemsToShow: 3
+                    },
+                    1100: {
+                        itemsToShow: 2.5
+                    },
+                    0: {
+                        itemsToShow: 1.5
+                    }
+                }
+            }
         };
     },
     computed: {
