@@ -137,9 +137,10 @@ class AccountCourseService
             $paid = $this->getField($account_id, $course_id, 'paid');
             $paid = ($paid) ? $paid->paid : 0;
         }
+        $book = Courses::select('books')->where('id', $course_id)->fisrt();
         $reading = $this->getField($account_id, $course_id, 'reading');
         if (!$reading)
-            $data['reading'] = 0;
+            $data['reading'] = (is_null($book->books)) ? 1 : 0;
         else
             $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
@@ -308,7 +309,7 @@ class AccountCourseService
             $color = imagecolorallocate($imgg, 000, 000, 000);
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
             $text = strtoupper($account_name->name . " " . $account_name->surname);
-            $text_send =Config::get('constants.DIPLOMA'). $id . "_" . $user_id;
+            $text_send = Config::get('constants.DIPLOMA') . $id . "_" . $user_id;
 
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
             imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
