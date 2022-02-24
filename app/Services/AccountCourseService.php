@@ -140,6 +140,7 @@ class AccountCourseService
         $book = Courses::select('books')->where('id', $course_id)->first();
 
         $reading = $this->getField($account_id, $course_id, 'reading');
+        dd($reading);
         if (!$reading){
             dd($book->books);
 

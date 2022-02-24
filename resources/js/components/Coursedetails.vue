@@ -42,7 +42,7 @@
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
-                                            <div class="col-6 col-xs-12 row">
+                                            <div class="col-lg-6 col-md-6 col-xs-12 row">
                                                 <img :src="lectureimg+info.lectures.image_name" alt="lectures"
                                                      class="col-4">
                                                 <div class="col-8">
@@ -53,7 +53,7 @@
                                                     <h4>{{ info.spec }}</h4>
                                                 </div>
                                             </div>
-                                            <div class="col-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-xs-12">
                                                 <div class="justify-content-between d-flex">
 
                                                     <div class="attachment-mark row" v-if="books">
