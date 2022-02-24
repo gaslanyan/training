@@ -242,10 +242,13 @@ export default {
                         itemsToShow: 3
                     },
                     1100: {
-                        itemsToShow: 2.5
+                        itemsToShow: 3
+                    },
+                    900: {
+                        itemsToShow: 2
                     },
                     0: {
-                        itemsToShow: 1.5
+                        itemsToShow: 1
                     }
                 }
             }

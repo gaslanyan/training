@@ -138,10 +138,13 @@ class AccountCourseService
             $paid = ($paid) ? $paid->paid : 0;
         }
         $book = Courses::select('books')->where('id', $course_id)->first();
-        dd($book->books);
+
         $reading = $this->getField($account_id, $course_id, 'reading');
-        if (!$reading)
+        if (!$reading){
+            dd($book->books);
+
             $data['reading'] = (is_null($book->books)) ? 1 : 0;
+        }
         else
             $data['reading'] = $reading->reading;
         $data['paid'] = $paid;
