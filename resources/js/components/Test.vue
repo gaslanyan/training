@@ -298,8 +298,8 @@ export default {
 }
 
 .test {
-    width: 100%;
     display: block;
-    float: left;
+    float: right;
+    margin-left: 10px;
 }
 </style>
