@@ -48,7 +48,7 @@
                                                    v-model="formTest[(index +1)+'_'+(i+1)]"
                                                    :id="'test-answer_'+(index +1)"
                                                    :name="'test_'+(index +1)" v-validate="'required|included:1,2,3,4'">
-                                        </label>
+
                                         <span class="test" v-if="answer.answer"
                                               v-html="answer.answer">{{ answer.answer }}</span>
                                         <div v-if="answer.img" class="test">
@@ -56,6 +56,7 @@
                                         </div>
                                         <span v-show="errors.has('test_'+(index +1))"
                                               class="help is-danger">{{ errors.first('test_' + (index + 1)) }}</span>
+                                        </label>
                                     </li>
                                 </ul>
                             </div>

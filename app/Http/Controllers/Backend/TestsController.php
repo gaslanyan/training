@@ -105,7 +105,7 @@ class TestsController extends Controller
             $data = [];
             $data['courses_id'] = $request->course_id;
             $data['question'] = $request->question;
-            $data['answers'] = preg_replace('/<p [data-f-id="pbf">].*<\/p>/i', '',json_encode($request->fields));
+            $data['answers'] = preg_replace('/<p [data-f-id="pbf">].*p>/i', '',json_encode($request->fields));
             $this->model->create($data);
             return redirect('backend/test')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
@@ -190,7 +190,7 @@ class TestsController extends Controller
             $data = [];
             $data['courses_id'] = $request->course_id;
             $data['question'] = $request->question;
-            $data['answers'] = preg_replace('/<p [data-f-id="pbf">].*<\/p>/i', '', json_encode($request->fields));
+            $data['answers'] = preg_replace('/<p [data-f-id="pbf">].*p>/i', '', json_encode($request->fields));
             $this->model->update($data, $id);
             return redirect('backend/test')->with('success', Lang::get('messages.success'));
         } catch (\Exception $exception) {
