@@ -189,7 +189,7 @@ class CourseService
 
                     if (isset($arr[1]))
                         $answers[$str]['img'] = $arr[1];
-                    $answers[$str]['answer'] = strip_tags($item->inp);
+                    $answers[$str]['answer'] = str_ireplace("Powered by Froala Editor","",strip_tags($item->inp));
                     if (isset($item->check))
                         $answers[$str]['check'] = 1;
                 }
