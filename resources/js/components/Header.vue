@@ -7,7 +7,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <router-link :to="{ name: 'home' }" class="navbar-brand logo_h col-2">
+                    <router-link :to="{ name: 'home' }" class="navbar-brand logo_h col-lg-2 col-4">
                         <img :src="image_src" alt="" style="width:100%;">
                         <!--span class="shmz">ՇՄԶ</span-->
 

@@ -43,7 +43,7 @@
                                 <h3 class="question">{{ index + 1 }}. {{ info.question }}</h3>
                                 <ul class="test-actual">
                                     <li v-for="(answer, i) in JSON.parse(info.answers)" class="d-flex flex-row">
-                                        <label :class="'test-answer_'+(index +1)">
+                                        <label :class="'test-answer_'+(index +1)" :for="'test-answer_'+(index +1)">
                                             <input :type="info.type" :value="(i+1)"
                                                    v-model="formTest[(index +1)+'_'+(i+1)]"
                                                    :id="'test-answer_'+(index +1)"

@@ -42,7 +42,7 @@
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
-                                            <div class="col-lg-6 col-md-6 col-xs-12 row">
+                                            <div class="col-lg-6 col-md-6 col-xs-12 row mb-xs-3" >
                                                 <img :src="lectureimg+info.lectures.image_name" alt="lectures"
                                                      class="col-4">
                                                 <div class="col-8">
@@ -66,8 +66,7 @@
                                                                <h5 class="vid_content"><router-link :to="{name: 'book',params: {id: book.id}}"
                                                                              class="text"
                                                                              target="_blank">{{ book.title }}
-                                                                </router-link></h5>
-                                                                <br>
+                                                               </router-link></h5>
                                                             </template>
                                                         </div>
                                                     </div>

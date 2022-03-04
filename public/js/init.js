@@ -277,6 +277,7 @@ $(document).ready(function () {
                 uploadURL: 'https://natmedpalace.s3.amazonaws.com',
                 region: 'us-west-2',
                 keyStart: 'uploads/test/images',
+                attribution: false,
                 params: {
                     acl: 'public-read', // ACL according to Amazon Documentation.
                     accessKey: 'AKIA4BPCYKMDDCLDSJVK',
