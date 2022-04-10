@@ -3209,7 +3209,13 @@ li {
     }
 
     .register form {
-        height: 1200px;
+        height: 1300px;
+    }
+
+    .cpt {
+        bottom: -2%;
+        left: 15px;
+        right:unset;
     }
 
     .clock_sec {
