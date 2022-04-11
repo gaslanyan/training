@@ -3213,9 +3213,10 @@ li {
     }
 
     .cpt {
-        bottom: -2%;
-        left: 15px;
-        right:unset;
+        left: 0;
+        position: relative;
+        bottom: 0;
+        right: 15%;
     }
 
     .clock_sec {
@@ -3251,8 +3252,8 @@ li {
         width: 100%;
     }
 
-    .coursedetails_banner h2{
-        font-size:24px
+    .coursedetails_banner h2 {
+        font-size: 24px
     }
 }
 
