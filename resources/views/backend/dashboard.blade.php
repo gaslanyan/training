@@ -76,13 +76,13 @@
                                     <td>{{$course->total}}</td>
                                     {{--                                    <td>{{$course->isPaid ? 'Վճարովի' : 'Անվճար'}}</td>--}}
                                     <td>
-                                        <?= $course->id."id"?>
-{{--                                        <a--}}
-{{--                                            href="{{action('Backend\CoursesController@gdExcelByAccount',$course->id )}}"--}}
-{{--                                            class="kt-nav__link">--}}
-{{--                                            <i class="kt-nav__link-icon la la-file-excel-o"></i>--}}
-{{--                                            <span class="kt-nav__link-text">{{__('messages.excel')}}</span>--}}
-{{--                                        </a>--}}
+
+                                        <a
+                                            href="{{action('Backend\CoursesController@gdExcelByAccount',$course->id )}}"
+                                            class="kt-nav__link">
+                                            <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                            <span class="kt-nav__link-text">{{__('messages.excel')}}</span>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
