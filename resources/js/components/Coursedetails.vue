@@ -37,7 +37,7 @@
                             <div v-if="video_info">
                                 <hooper :itemsToShow="1">
                                     <slide v-for="(info, index) in video_info" :key="index" :index="index">
-                                        <video ref="video" class="view-video col-lg-12" controls
+                                        <video ref="video" class="view-video col-lg-12" controls controlsList="nodownload"
                                                v-on:loadeddata="manageEvents(info.id, index)">
                                             <source :src="info.path">
                                         </video>
