@@ -311,7 +311,7 @@ class AccountCourseService
             $imgg = imagecreatefrompng($img);
             $color = imagecolorallocate($imgg, 000, 000, 000);
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
-            $text = strtoupper($account_name->name . " " . $account_name->surname);
+            $text = strtoupper($account_name->name . " " . $account_name->surname)."-ին";
             $text_send = Config::get('constants.DIPLOMA') . $id . "_" . $user_id;
 
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
