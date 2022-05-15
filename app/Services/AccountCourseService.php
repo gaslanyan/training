@@ -318,7 +318,7 @@ class AccountCourseService
             imagettftext($imgg, 12, 0, ($coordinates->start_date->x) - 10, ($coordinates->start_date->y) + 10, $color, $font, $start);
             imagettftext($imgg, 12, 0, ($coordinates->end_date->x) - 10, ($coordinates->end_date->y) + 10, $color, $font, $end);
             header('Content-type:image/png');
-            imagepng($imgg, public_path() . $text_send . '.jpg', 5);
+            imagepng($imgg, public_path() . $text_send . '.png', 5);
             imagedestroy($imgg);
             return $text_send;
         }
