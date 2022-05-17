@@ -61,6 +61,26 @@ class SpecialtyController extends Controller
 
         return json_encode($tmp);
     }
+public function SpecialtyController(Request $request)
+    {
+        $ids = ($request->get('sl') == "senior")?[1,3]:[2,4];
+        $data = Specialty::query()->whereIn('parent_id',$ids)->get()->toArray();
+
+        $tmp = [];
+
+        if (!empty($data)) {
+            foreach ($data as $datum) {
+
+                if (!$datum['parent_id']) {
+                    $tmp[$datum['parent_id']]['children'][] = $datum;
+                } else {
+                    $tmp[$datum['id']] = $datum['id'];
+                }
+            }
+        }
+
+        return json_encode($tmp);
+    }
 
     /**
      * Show the form for creating a new resource.

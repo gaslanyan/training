@@ -143,10 +143,10 @@ class CourseAppController extends Controller
 
             if (is_int($result)) {
                 $book['count'] = $result;
-                $book['path'] = trim(Config::get('constants.UPLOADS'),"/") . Config::get('constants.BOOKS') . request('id');
+                $book['path'] = trim(Config::get('constants.UPLOADS'), "/") . Config::get('constants.BOOKS') . request('id');
                 $book['links'] = [];
                 $storage = Storage::disk('s3');
-                for($i = 1; $i <= $result; $i++) {
+                for ($i = 1; $i <= $result; $i++) {
                     $book['links'][$i] = $storage->temporaryUrl(sprintf('%s/%d.jpg', $book['path'], $i), now()->addHours());
                 }
 
@@ -224,6 +224,7 @@ class CourseAppController extends Controller
      */
     public function coursedetails()
     {
+        $type = "";
         $courses = Courses::where("id", '=', request('id'))->first();
         if (isset($courses)) {
             if ($courses->books) {
@@ -276,6 +277,14 @@ class CourseAppController extends Controller
             }
             if ($courses->specialty_ids) {
                 $spec_ids = json_decode($courses->specialty_ids);
+
+                $parent = Specialty::query()->find($spec_ids[0])->first();
+
+                $count = Specialty::whereIn('parent_id', [$parent->type_id, (int)$parent->type_id + 2])->
+                whereNotNull('parent_id')->count();
+
+                if ($count == count($spec_ids))
+                    $type = ($parent->type_id == "1") ? "senior" : "middle";
                 for ($i = 0; $i < count($spec_ids); $i++) {
                     $specialtis = Specialty::query()->find($spec_ids[$i]);
                     $specialties_obj[] = ["id" => $specialtis->id,
@@ -284,7 +293,7 @@ class CourseAppController extends Controller
             }
             //$courses["specialities"] = $specialties_obj;
         }
-        return response()->json(['data' => $courses, 'specialities' => $specialties_obj]);
+        return response()->json(['data' => $courses, 'specialities' => $specialties_obj, 'type' =>$type]);
     }
 
     /**
@@ -341,10 +350,10 @@ class CourseAppController extends Controller
     public function finishedVideo()
     {
         $isMamber = Profession::select('member_of_palace')
-            ->where('account_id',request('user_id'))
+            ->where('account_id', request('user_id'))
             ->first();
         $isFinished = 1;
-        if(!$isMamber->member_of_palace) {
+        if (!$isMamber->member_of_palace) {
             $videos = Courses::select('id', 'videos')
                 ->with(['account_course' => function ($query) {
                     $query->select('course_id')->

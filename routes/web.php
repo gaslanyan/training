@@ -158,5 +158,6 @@ Route::post('delete-image', 'Backend\ImageController@removeImage');
 Route::post('commentstatus', 'Backend\CommentController@commentstatus');
 Route::post('edu', 'Backend\AccountController@getEducation');
 Route::post('spec', 'Backend\AccountController@getSpecialty');
+Route::post('special_level', 'Backend\SpecialtyController@SpecialtyController');
 Route::post('updateSpec', 'Backend\SpecialtyController@updateSpecialty');
 Route::post('specialty', 'Backend\SpecialtyController@getSpecialty');

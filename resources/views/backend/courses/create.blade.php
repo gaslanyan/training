@@ -15,7 +15,7 @@
     }
 
     ?>
-    <!-- begin:: Content -->
+        <!-- begin:: Content -->
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
         <div class="kt-portlet">
             <div class="kt-portlet__body kt-portlet__body--fit">
@@ -54,8 +54,8 @@
                             {{--                            {{Form::}}--}}
                             <form class="kt-form" id="kt_form" method="post" enctype="multipart/form-data"
                                   action="{{isset($course) ? action('Backend\CoursesController@update',$course->id) : action('Backend\CoursesController@store')}}">
-                            @csrf
-                            <!--begin: Form Wizard Step 1-->
+                                @csrf
+                                <!--begin: Form Wizard Step 1-->
                                 <div id="kt-wizard_general" class="kt-wizard-v3__content"
                                      data-ktwizard-type="step-content"
                                      data-ktwizard-state="current">
@@ -76,13 +76,38 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+
+                                                <div class="col-lg-12 row">
+                                                    <label for="special_senior"
+                                                           class="col-lg-4 col-form-label">{{__('messages.special_senior')}}
+                                                    </label>
+                                                    <input id="special_senior" type="radio" name="special_level"
+                                                           class="col-lg-2 @error('name') is-invalid @enderror"
+                                                           value="senior">
+                                                    @error('name')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                    @enderror
+                                                    <label for="special_middle"
+                                                           class="col-lg-4 col-form-label">{{__('messages.special_middle')}}
+                                                    </label>
+
+                                                    <input id="special_middle" type="radio" name="special_level"
+                                                           class="col-lg-2 @error('name') is-invalid @enderror"
+                                                           value="middle">
+                                                    @error('name')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row special">
                                                 <label for="special"
                                                        class="col-lg-3 col-form-label">{{__('messages.course_list')}}
                                                     *</label>
                                                 <div class="col-lg-9">
-                                                    <select class="js-example-basic-multiple form-control @error('specialty_ids') is-invalid @enderror"
-                                                            id="special"
-                                                            name="specialty_ids[]" multiple="multiple">
+                                                    <select
+                                                        class="js-example-basic-multiple form-control @error('specialty_ids') is-invalid @enderror"
+                                                        id="special"
+                                                        name="specialty_ids[]" multiple="multiple">
                                                         @if(isset($course))
                                                             @for ($i = 0; $i < count($course->specialities); $i++)
                                                                 <option selected
@@ -110,13 +135,16 @@
                                                        class="col-lg-3 col-form-label">{{__('messages.course_status')}}
                                                     *</label>
                                                 <div class="col-lg-9">
-                                                    <select class="js-example-basic-multiple form-control @error('status') is-invalid @enderror"
-                                                            id="status"
-                                                            name="status">
-                                                        <option {{isset($course) && $course->status == "active" || old('status')=="active" ?  'selected' : ''}}
-                                                                value="active">{{__('messages.course_status_active')}}</option>
-                                                        <option {{isset($course) && $course->status == "archive" || old('status')=="archive" ?  'selected' : ''}}
-                                                                value="archive">{{__('messages.course_status_deactive')}}</option>
+                                                    <select
+                                                        class="js-example-basic-multiple form-control @error('status') is-invalid @enderror"
+                                                        id="status"
+                                                        name="status">
+                                                        <option
+                                                            {{isset($course) && $course->status == "active" || old('status')=="active" ?  'selected' : ''}}
+                                                            value="active">{{__('messages.course_status_active')}}</option>
+                                                        <option
+                                                            {{isset($course) && $course->status == "archive" || old('status')=="archive" ?  'selected' : ''}}
+                                                            value="archive">{{__('messages.course_status_deactive')}}</option>
                                                     </select>
                                                     @error('status')
                                                     <div class="invalid-feedback">{{$message}}</div>
@@ -124,7 +152,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label">{{__('messages.course_start_date')}}
+                                                <label
+                                                    class="col-lg-3 col-form-label">{{__('messages.course_start_date')}}
                                                     *</label>
                                                 <div class="col-lg-9">
                                                     <div class="input-group date">
@@ -145,7 +174,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label">{{__('messages.course_end_date')}}
+                                                <label
+                                                    class="col-lg-3 col-form-label">{{__('messages.course_end_date')}}
                                                     *</label>
                                                 <div class="col-lg-9">
                                                     <div class="input-group date">
@@ -222,8 +252,9 @@
                                                 <label for="course_videos"
                                                        class="col-lg-3 col-form-label">{{__('messages.videos')}}</label>
                                                 <div class="col-lg-9">
-                                                    <select class="js-example-basic-multiple form-control @error('videos') is-invalid @enderror"
-                                                            id="course_videos" name="videos[]" multiple="multiple">
+                                                    <select
+                                                        class="js-example-basic-multiple form-control @error('videos') is-invalid @enderror"
+                                                        id="course_videos" name="videos[]" multiple="multiple">
                                                         @if($videos)
                                                             @foreach ($videos as $video)
                                                                 <option {{isset($course) && !empty($course->videos) &&
@@ -243,8 +274,9 @@
                                                 <label for="course_books"
                                                        class="col-lg-3 col-form-label">{{__('messages.books')}}</label>
                                                 <div class="col-lg-9">
-                                                    <select class="js-example-basic-multiple form-control @error('books') is-invalid @enderror"
-                                                            id="course_books" name="books[]" multiple="multiple">
+                                                    <select
+                                                        class="js-example-basic-multiple form-control @error('books') is-invalid @enderror"
+                                                        id="course_books" name="books[]" multiple="multiple">
                                                         @if($books)
                                                             @foreach ($books as $book)
                                                                 <option {{isset($course) && !empty($course->books) &&

@@ -26,7 +26,7 @@ $(document).ready(function () {
     }).draw();
 
     var groupColumn = 1, topColumn = 2;
-     $('#example').DataTable({
+    $('#example').DataTable({
         "columnDefs": [
             {
                 "searchable": false,
@@ -66,7 +66,7 @@ $(document).ready(function () {
         } else {
             t.order([groupColumn, 'asc']).draw();
         }
-        });
+    });
     $(document).on("click", ".delete", function (e) {
         var url_swal = '/js/hy_swal.json';
         var _swal = getJSONData(url_swal);
@@ -96,11 +96,9 @@ $(document).ready(function () {
 
                                     }
                                 });
-                            }
-                            else if(data.success == null){
+                            } else if (data.success == null) {
                                 swal.fire(_swal.info);
-                            }
-                            else {
+                            } else {
                                 this.element.parent().submit();
                             }
                         },
@@ -209,6 +207,27 @@ $(document).ready(function () {
         });
 
     });
+    $(document).on('change', '[name=special_level]', function () {
+        $sl = $(this).val();
+        $('.special_id').remove();
+        $.ajax({
+            url: '/special_level',
+            type: 'POST',
+            context: {element: $(this)},
+            data: {_token: CSRF_TOKEN, sl: $sl},
+            dataType: 'JSON',
+            success: function (data) {
+                $('.special').remove()
+                for (const dataKey in data) {
+                    this.element.parent().append("<input type='hidden' name='specialty_ids[]' value='" + dataKey + "' class='special_id'>");
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+
+    })
 
     $("#course_videos,#course_books").select2();
     $("#special").select2({

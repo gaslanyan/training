@@ -4,9 +4,11 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{ texts.class }}
-                    <span v-if="specialites" class=""
+                <h3>{{  texts.class}}
+                    <span v-if="type.length == 0" class=""
                           v-for="spec in specialites">{{ `&nbsp;` + spec.name + `, ` }}</span>
+                    <span v-if="type==='senior'">{{ `&nbsp;`+texts.senior}}</span>
+                    <span v-else>{{`&nbsp;`+ texts.middle}}</span>
                 </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -210,6 +212,7 @@ export default {
             lectureimg: '/uploads/images/avatars/',
             docs: [],
             texts: texts,
+            type:"",
             feedbacksuccess: '',
             isActive: false,
             isOpened: false,
@@ -489,6 +492,9 @@ export default {
                     this.books = JSON.parse(res.data.books);
                     this.specialites = res.specialities;
                     this.id = res.data.id;
+                    console.log(res.type, "k")
+                    if(res.type != 0)
+                        this.type = res.type;
                     localStorage.setItem('cb_id', this.id);
                 })
                 .catch(error => {
