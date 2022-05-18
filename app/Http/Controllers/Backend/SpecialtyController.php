@@ -63,9 +63,16 @@ class SpecialtyController extends Controller
     }
 public function SpecialtyController(Request $request)
     {
-        $ids = ($request->get('sl') == "senior")?[1,3]:[2,4];
-        $data = Specialty::query()->whereIn('parent_id',$ids)->get()->toArray();
+        $ids =[];
+        $sl = $request->get('sl');
+        if(!empty($sl)){
+            if(count($sl) == 1)
+                $ids = ($sl[0] == "senior")?[1,3]:[2,4];
+            else
+                $ids =[1,2,3,4] ;
+        }
 
+        $data = Specialty::query()->whereIn('parent_id',$ids)->get()->toArray();
         $tmp = [];
 
         if (!empty($data)) {

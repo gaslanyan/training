@@ -8,7 +8,8 @@
                     <span v-if="type.length == 0" class=""
                           v-for="spec in specialites">{{ `&nbsp;` + spec.name + `, ` }}</span>
                     <span v-if="type==='senior'">{{ `&nbsp;`+texts.senior}}</span>
-                    <span v-else>{{`&nbsp;`+ texts.middle}}</span>
+                    <span v-else-if="type==='middle'">{{`&nbsp;`+ texts.middle}}</span>
+                    <span v-else-if="type==='all'">{{`&nbsp;`+ texts.all}}</span>
                 </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -144,7 +145,6 @@
                                         <div class="star">
                                             <i class="fa fa-star" :id="item.id" v-on:click="raiting"
                                                v-bind:class="{ checked: isActive }" v-for="item in objects"></i>
-
                                         </div>
                                     </div>
                                 </div>
@@ -190,9 +190,7 @@ import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
 
-window.addEventListener('focus', function () {
-    console.log('focus')
-});
+
 export default {
     data() {
         return {

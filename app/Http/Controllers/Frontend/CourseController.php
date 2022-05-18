@@ -113,13 +113,16 @@ class CourseController extends Controller
             $specialties_obj =[];
             if ($courses->specialty_ids) {
                 $spec_ids = json_decode($courses->specialty_ids);
-                $parent = Specialty::query()->find($spec_ids[0])->first();
+                $parent_start = Specialty::query()->select('type_id')->where('id', $spec_ids[0])->first();
+                $parent_end = Specialty::query()->select('type_id')->where('id', $spec_ids[count($spec_ids) - 1])->first();
 
-                $count = Specialty::whereIn('parent_id', [$parent->type_id, (int)$parent->type_id + 2])->
+                $count = Specialty::whereIn('parent_id', [$parent_start->type_id, $parent_end->type_id])->
                 whereNotNull('parent_id')->count();
 
                 if ($count == count($spec_ids))
-                    $type = ($parent->type_id == "1") ? "senior" : "middle";
+                    $type = ($parent_start->type_id == "1") ? "senior" : "middle";
+                if($parent_start->type_id == 1 && $parent_end->type_id == 4)
+                    $type = "all";
                 for ($i = 0; $i < count($spec_ids); $i++) {
                     $specialtis = Specialty::query()->find($spec_ids[$i]);
                     $specialties_obj[] = ["id" => $specialtis->id,

@@ -50171,3 +50171,11 @@ li{
 #image-course{
     top:0!important
 }
+#special_level{
+    height: 30px;
+    padding: 2px;
+}
+.refresh{
+    font-size: 1.2em;
+    font-weight: 800;
+}

@@ -79,24 +79,22 @@
 
                                                 <div class="col-lg-12 row">
                                                     <label for="special_senior"
-                                                           class="col-lg-4 col-form-label">{{__('messages.special_senior')}}
+                                                           class="col-lg-3 col-form-label">{{__('messages.special_senior')}}
                                                     </label>
-                                                    <input id="special_senior" type="radio" name="special_level"
-                                                           class="col-lg-2 @error('name') is-invalid @enderror"
-                                                           value="senior">
-                                                    @error('name')
-                                                    <div class="invalid-feedback">{{$message}}</div>
-                                                    @enderror
+                                                    <input id="special_senior" type="checkbox" name="special_level[]"
+                                                           class="col-lg-1  special_level"  value="senior">
+
                                                     <label for="special_middle"
-                                                           class="col-lg-4 col-form-label">{{__('messages.special_middle')}}
+                                                           class="col-lg-3 col-form-label">{{__('messages.special_middle')}}
                                                     </label>
 
-                                                    <input id="special_middle" type="radio" name="special_level"
-                                                           class="col-lg-2 @error('name') is-invalid @enderror"
-                                                           value="middle">
-                                                    @error('name')
-                                                    <div class="invalid-feedback">{{$message}}</div>
-                                                    @enderror
+                                                    <input id="special_middle" type="checkbox" name="special_level[]"
+                                                           class="col-lg-1 special_level"   value="middle">
+                                                    <input  class="col-lg-2 col-form-label" type="button" id="special_level" value="{{__('messages.select_group')}}">
+                                                    <label class="col-lg-2 ">
+                                                       <i class="kt-font-brand flaticon-refresh refresh"> </i>
+                                                        {{__('messages.refresh')}}
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="form-group row special">

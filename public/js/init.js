@@ -207,8 +207,15 @@ $(document).ready(function () {
         });
 
     });
-    $(document).on('change', '[name=special_level]', function () {
-        $sl = $(this).val();
+    $(document).on('click', '.refresh', function () {
+        location.reload();
+    });
+    $(document).on('click', '#special_level', function () {
+        $sl = [];
+        $('.special_level:checked').each(function () {
+            $sl.push($(this).val());
+        });
+
         $('.special_id').remove();
         $.ajax({
             url: '/special_level',
@@ -226,7 +233,6 @@ $(document).ready(function () {
                 console.log(data);
             }
         });
-
     })
 
     $("#course_videos,#course_books").select2();
