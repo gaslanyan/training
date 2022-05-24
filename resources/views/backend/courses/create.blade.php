@@ -209,7 +209,7 @@
                                             @foreach($credit_types as $c_key => $credit_type)
                                                 <div class="form-group row">
                                                     <label for="credit_theoretical"
-                                                           class="col-lg-3 col-form-label">{{__('messages.course_credit')}}
+                                                           class="col-lg-2 col-form-label">{{__('messages.course_credit')}}
                                                         {{$credit_type['key'] == 'theoretical'? '*':''}}</label>
                                                     <div class="col-lg-5">
                                                         <input id="{{sprintf('credit_%s', $credit_type['key'])}}"

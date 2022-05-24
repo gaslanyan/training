@@ -248,6 +248,7 @@ class CoursesController extends Controller
 
             $cours['name'] = $request->name;
             $cours['image'] = $image_name;
+
             $cours['specialty_ids'] = json_encode($request->specialty_ids);
             $cours['status'] = $request->status;
             $cours['start_date'] = date('Y-m-d', strtotime($request->start_date));
@@ -381,6 +382,7 @@ class CoursesController extends Controller
             $cours['name'] = $request->name;
             if ($isNewImage)
                 $cours['image'] = $image_name;
+
             $cours['specialty_ids'] = json_encode($request->specialty_ids);
             $cours['status'] = $request->status;
             $cours['start_date'] = date('Y-m-d', strtotime($request->start_date));
