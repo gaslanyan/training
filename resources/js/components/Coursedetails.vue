@@ -53,7 +53,7 @@
                                                             `${info.lectures.name} ${info.lectures.surname}
                                                     ${info.lectures.father_name}`
                                                         }}</h5>
-                                                    <h4>{{ info.spec }}</h4>
+<!--                                                    <h4>{{ info.spec }}</h4>-->
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-xs-12">
