@@ -19,7 +19,7 @@ trait Expert
 
         try {
             $edu = Specialty::select('id', 'name')->where('parent_id', $id)
-                ->get();
+               ->orderBy('name', 'ASC') ->get();
 
             return response()->json(['edu' => $edu]);
         } catch (\Exception $exception) {
@@ -65,7 +65,7 @@ trait Expert
         try {
 //            $spec = [];
             $spec = Specialty::select('id', 'name')->where('type_id', $id)
-                ->whereNull('parent_id')
+                ->whereNull('parent_id')->orderBy('name', 'ASC')
                 ->get();
 
             return response()->json(['spec' => $spec]);

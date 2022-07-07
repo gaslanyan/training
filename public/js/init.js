@@ -169,7 +169,7 @@ $(document).ready(function () {
 
                 if ($sub.find('option').length > 0)
                     $sub.find('option').remove();
-
+                $sub.append(' <option class="text-capitalize" value="" >Ընտրել մասնագիտական բաժին</option>');
                 for (var i in data.spec) {
                     if (data.spec.hasOwnProperty(i))
                         $sub.append(' <option class="text-capitalize" value="' + data.spec[i].id + '">' + data.spec[i].name + '</option>')
