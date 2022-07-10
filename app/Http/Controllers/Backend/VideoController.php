@@ -196,8 +196,8 @@ class VideoController extends Controller
         try {
 //        $name = $request->post('name');
             $video = Videos::find($id);
-            dd($video);
-            $name = $video->name;
+
+            $name = $video->title;
             if ($name && Storage::disk('s3')->exists($name)) {
                 Storage::disk('s3')->delete($name);
             }
