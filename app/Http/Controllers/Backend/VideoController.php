@@ -196,12 +196,13 @@ class VideoController extends Controller
         try {
 //        $name = $request->post('name');
             $video = Videos::find($id);
-
-            $name = $video->title;
-            if ($name && Storage::disk('s3')->exists($name)) {
-                Storage::disk('s3')->delete($name);
+            if ($video->delete()) {
+                $name = $video->title;
+                if ($name && Storage::disk('s3')->exists($name)) {
+                    Storage::disk('s3')->delete($name);
+                }
+                return redirect('backend/videos/index')->with('success', __('messages.success'));
             }
-            return redirect('backend/video/index')->with('success', __('messages.success'));
         } catch (\Exception $e) {
             logger()->error($e);
             return redirect()->back()
