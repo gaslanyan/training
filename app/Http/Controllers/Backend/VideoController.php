@@ -201,7 +201,7 @@ class VideoController extends Controller
                 if ($name && Storage::disk('s3')->exists($name)) {
                     Storage::disk('s3')->delete($name);
                 }
-                return redirect('backend/videos/index')->with('success', __('messages.success'));
+                return redirect('backend/video')->with('success', __('messages.success'));
             }
         } catch (\Exception $e) {
             logger()->error($e);
