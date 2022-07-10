@@ -91,8 +91,6 @@
                                                 <i class="la la-trash"></i>
 
                                             </button>
-
-                                            {{--                                            <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>--}}
                                         </form>
                                     </div>
                                 </td>

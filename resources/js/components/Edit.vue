@@ -130,14 +130,15 @@
                                             :class="{'input': true, 'is-invalid': errors.has('w_territory') }"
                                             v-model="formEdit.w_territory">
                                         <optgroup v-for="(group) in w_territories"
-                                                  :label="group.name+ 'ի համայք'">
+                                                  :label="group.name+ 'ի համայնք'">
+                                            <option :value="group.id">
+                                                {{ group.name }}
+                                            </option>
                                             <option v-for="(option) in group.residence" v-if="group.residence"
                                                     :value="option.id">
                                                 {{ option.name }}
                                             </option>
-                                            <option :value="group.id">
-                                                {{ group.name }}
-                                            </option>
+
                                         </optgroup>
                                     </select>
                                     <span v-show="errors.has('w_territory')" ref="w_territory"
@@ -166,6 +167,7 @@
                                             v-model="formEdit.h_region" :data-vv-as="texts.region">
                                         <option v-for="(region, key) in regions" v-bind:value="region.id">
                                             {{ region.name }}
+
                                         </option>
                                     </select>
                                     <span ref="h_region" v-show="errors.has('h_region')"
@@ -180,14 +182,15 @@
                                             v-model="formEdit.h_territory">
 
                                         <optgroup v-for="(group) in h_territories"
-                                                  :label="group.name+ 'ի համայք'">
+                                                  :label="group.name+ 'ի համայնք'">
+                                            <option :value="group.id">
+                                                {{ group.name }}
+                                            </option>
                                             <option v-for="(option) in group.residence" v-if="group.residence"
                                                     :value="option.id">
                                                 {{ option.name }}
                                             </option>
-                                            <option :value="group.id">
-                                                {{ group.name }}
-                                            </option>
+
                                         </optgroup>
                                     </select>
                                     <span v-show="errors.has('h_territory')" ref="h_territory"

@@ -74,7 +74,8 @@
                                     <div class="row justify-content-end">
                                         <a href="{{action('Backend\VideoController@edit', $video->id)}}"
                                            class="btn btn-info kt-badge kt-badge--lg"
-                                           data-toggle="m-tooltip" data-placement="top" data-original-title="{{__('messages.edit')}}">
+                                           data-toggle="m-tooltip" data-placement="top"
+                                           data-original-title="{{__('messages.edit')}}">
                                             <i class="la la-edit"></i>
                                         </a>
                                         @if($video->id !== \Illuminate\Support\Facades\Session::get('u_id'))
@@ -84,13 +85,12 @@
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 <input name="_id" type="hidden" value="{{$video->id}}">
                                                 <button data-ref="" type="button"
-                                                        {{--                                                    data-title="admin"--}}
+                                                        data-title="video"
                                                         class="delete btn btn-danger kt-badge--lg kt-badge  "
                                                         data-original-title="{{__('messages.delete')}}">
                                                     <i class="la la-trash"></i>
 
                                                 </button>
-                                                {{--                                                <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>--}}
                                             </form>
                                         @endif
                                     </div>

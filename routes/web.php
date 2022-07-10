@@ -75,7 +75,7 @@ name('backend.')
 
 //videos
         Route::resource('videos', 'Backend\VideoController');
-
+        Route::post('videoCheck', 'Backend\VideoController@checkVideo')->name('video.check');
         Route::post('videos/{id}', 'Backend\VideoController@update');
 
 //images S3
