@@ -59,6 +59,7 @@
                         <th>{{__('messages.name')}}</th>
                         <th>{{__('messages.lecture')}}</th>
                         <th>{{__('messages.duration')}}</th>
+                        <th>{{__('messages.action')}}</th>
                     </tr>
                     </thead>
                     <tbody>
