@@ -87,7 +87,7 @@ class AccountService
             'prof.spec.type' => function ($query) {
                 $query->select(['id', 'name']);
             }]);
-        dd($account);
+
         if (!$account)
             throw new ModelNotFoundException('User not found by ID ');
         return $account;
