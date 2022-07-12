@@ -306,7 +306,7 @@ class AccountController extends Controller
             $load_page = 'backend.account.gd_role_pdf';
             $const = 'constants.ACCOUNT_PATH';
             $pdf = GPDFService::gdPDF($path, $load_page, $const, $data);
-dd($pdf);
+
             return response()->download($pdf);
         } catch (\Exception $exception) {
             logger()->error($exception);
