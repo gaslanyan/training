@@ -298,7 +298,7 @@ class AccountController extends Controller
             $accounts = $this->service->getAccount()->get();
             if (!empty($accounts)) {
                 $accounts = $this->service->getAddresses($accounts);
-                dd($accounts);
+
             }
 
             $data = $accounts;
