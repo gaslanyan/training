@@ -52,9 +52,10 @@ class AccountExport implements FromCollection, WithHeadings, ShouldAutoSize
             unset($account->created_at);
             unset($account->updated_at);
             $prof = getProfession($account->id);
-var_dump($prof);
-            $account['education'] =  $prof->edu_name ;
-            $account['spec']=$prof->spec_name;
+            if (!isEmpty($prof)) {
+                $account['education'] = $prof->edu_name;
+                $account['spec'] = $prof->spec_name;
+            }
             $account['email'] = $account->user->email;
         }
 
