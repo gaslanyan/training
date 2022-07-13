@@ -5,7 +5,6 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{__('messages.image_name')." ".__('messages.surname')." ".__('messages.father_name')}}</th>
             <th>{{__('messages.name')." ".__('messages.surname')." ".__('messages.father_name')}}</th>
             <th>{{__('messages.phone')}}</th>
             <th>{{__('messages.email')}}</th>
@@ -20,22 +19,7 @@
 
             <tr>
                 <td>{{$key +1}}</td>
-                <td>
-                    @php
-                        $img = Config::get('constants.AVATAR_PATH_UPLOADED').'default.jpg';
 
-                    @endphp
-                    @if(file_exists(Config::get('constants.AVATAR_PATH').$d->image_name));
-                    @php
-                        $img = Config::get('constants.AVATAR_PATH').$d->image_name;
-
-                    @endphp
-                    @endif
-                    <img class="kt-widget__img"
-                         src="{{ asset($img)}}"
-                         alt="image">
-
-                </td>
                 <td> @if(!empty($d->name) && !empty($d->surname) && !empty($d->father_name))
                         {{$d->name." ".$d->surname." ".$d->father_name}}@endif</td>
                 <td>@if(!empty($d->phone))
