@@ -10,7 +10,6 @@
                             <p>{{text.content}} </p>
                         </div>
                         <div class="col clockinner1 clockinner">
-
                             <h1>{{count}}</h1>
                             <span class="smalltext">{{text.participants}}</span>
                         </div>
@@ -26,7 +25,9 @@
                     <div class="register_form">
                         <h4>{{text.title}}</h4>
                         <p>{{text.time}}</p>
-
+                        <video ref="video" class="view-video col-lg-12" controls >
+                            <source :src="path">
+                        </video>
                             <div class="col-lg-12 text-center">
                                 <router-link to="/login" class="primary-btn">{{text.login}}</router-link>
                                 <router-link to="/register" class="primary-btn">{{text.register}}</router-link>
@@ -55,6 +56,7 @@
                 count: "",
                 coursecount: "",
                 text: pagestext,
+                path:"https://natmedpalace.s3.us-west-2.amazonaws.com/videos/user_register_help.mp4"
             };
         },
         methods: {
