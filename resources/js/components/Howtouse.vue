@@ -23,8 +23,9 @@
             <article class='reg container'>
                 <div class="help_info row">
                     <h3>{{ text.register }}</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
+                    <video ref="video" class="view-video col-lg-12" controls >
+                        <source :src="path">
+                    </video>
                     <footer class="form-group col-lg-12">
                         <label for="pay" class='fa fa-arrow-right nav_label col-lg-4 float-right'></label>
                         <label for="lesson" class='fa fa-arrow-left nav_label col-lg-4 float-left'></label>
@@ -54,6 +55,7 @@ export default {
     data() {
         return {
             text: howtousetext,
+            path:"https://natmedpalace.s3.us-west-2.amazonaws.com/videos/user_register_help.mp4"
         };
     },
     name: "Howtouse"
