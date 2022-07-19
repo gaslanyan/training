@@ -24,7 +24,7 @@
                 <div class="col-lg-4 offset-lg-1">
                     <div class="register_form">
                         <h4>{{text.title}}</h4>
-                        <p>{{text.time}}</p>
+
                         <video ref="video" class="view-video col-lg-12" controls >
                             <source :src="path">
                         </video>
