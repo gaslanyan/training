@@ -55,7 +55,7 @@ export default {
     data() {
         return {
             text: howtousetext,
-            path:"https://natmedpalace.s3.us-west-2.amazonaws.com/videos/user_register_help.mp4"
+            path:"/videos/user_register_help.mp4"
         };
     },
     name: "Howtouse"
