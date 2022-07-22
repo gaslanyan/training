@@ -66,7 +66,7 @@ class CourseService
     public function getCoursesById($id)
     {
         $spec = Specialties::select('id')->where('parent_id', $id)->get();
-
+dd($spec);
         $courses = [];
         foreach ($spec as $index => $item) {
             $c = Courses::select('id', 'name', 'image', 'cost', 'credit', 'start_date')->
