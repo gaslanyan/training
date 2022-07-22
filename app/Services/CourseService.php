@@ -70,11 +70,11 @@ class CourseService
         $courses = [];
         foreach ($spec as $index => $item) {
             $c = Courses::select('id', 'name', 'image', 'cost', 'credit', 'start_date')->
-            whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . $item->id . '"]\')')
+            whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . 9 . '"]\')')
                 ->where('status', "=", "active")
 //               ->where('start_date', ">=", date("Y-m-d"))
                 ->get()->toArray();
-            dd($item->id);
+            dd($c);
             if (!empty($c)) {
                 foreach ($c as $key => $val) {
                     $courses[$val['id']] = $val;
