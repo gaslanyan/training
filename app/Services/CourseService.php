@@ -74,7 +74,7 @@ class CourseService
                 ->where('status', "=", "active")
 //               ->where('start_date', ">=", date("Y-m-d"))
                 ->get()->toArray();
-            dd($c);
+            dd($item->id);
             if (!empty($c)) {
                 foreach ($c as $key => $val) {
                     $courses[$val['id']] = $val;
