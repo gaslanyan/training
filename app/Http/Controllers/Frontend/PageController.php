@@ -64,7 +64,7 @@ class PageController extends Controller
 
     public function coursescount(Request $request)
     {
-        $courses = Courses::all();
+        $courses = Courses::all()->where('status', "=", "active");
         $coursescount = $courses->count();
 
         return response()->json(['data' => $coursescount]);
