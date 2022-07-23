@@ -40,6 +40,7 @@
                             </li>
                         </ul>
                     </div>
+                  <div v-if="courses">
                     <div :key="course.id" class="col-lg-4" v-for="course in courses">
                         <router-link :to="'/coursedetails/'+course.id" class="nav-link">
                             <div class="categories_post">
@@ -53,6 +54,10 @@
                                 </div>
                             </div>
                         </router-link>
+                      </div>
+                      <div v-else>
+                          <p>{{pagetexts.no_active}}</p>
+                      </div>
                         <!-- single course -->
                         <div v-if="currentUser">
                             <div class="col-lg-12 col-md-12">

@@ -70,11 +70,11 @@ class CourseService
         $courses = [];
         foreach ($spec as $index => $item) {
             $c = Courses::select('id', 'name', 'image', 'cost', 'credit', 'start_date')->
-            whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . 9 . '"]\')')
+            whereRaw('JSON_CONTAINS(`specialty_ids`,\'["' . $item->id . '"]\')')
                 ->where('status', "=", "active")
 //               ->where('start_date', ">=", date("Y-m-d"))
                 ->get()->toArray();
-            dd($c);
+
             if (!empty($c)) {
                 foreach ($c as $key => $val) {
                     $courses[$val['id']] = $val;
@@ -141,6 +141,7 @@ class CourseService
     {
         $messages = $this->model->selected(['id', 'name', 'image', 'cost', 'start_date'])
             ->whereDate('start_date', "<=", date("Y-m-d"))
+            ->where('status', "=", "active")
             ->get();
 
         if (!$messages)
