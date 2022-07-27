@@ -190,7 +190,7 @@ class AccountCourseController extends Controller
             $response = $client->request('POST',
                 $endpoint, ['form_params' => $data]);
             $statusCode = $response->getStatusCode();
-            $content = $response->getBody();
+
             $content = json_decode($response->getBody(), true);
             return response()->json([
                 'access_token' => request('token'),
@@ -219,12 +219,14 @@ class AccountCourseController extends Controller
         $statusCode = $response->getStatusCode();
 //        $content = $response->getBody();
         $content = json_decode($response->getBody(), true);
+
         $upload_data = [];
         $upload_data['PaymentID'] = $data['PaymentID'];
         $upload_data['ClientName'] = $content['ClientName'];
         $upload_data['DateTime'] = $content['DateTime'];
-        $upload_data['DepositedAmount'] = $content['DepositedAmount'];
+        $upload_data['OrderID'] = $content['OrderID'];
         $upload_data['Amount'] = $content['Amount'];
+
 
         $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
         return response()->json([

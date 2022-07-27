@@ -13,8 +13,7 @@
             <article class='bio container'>
                 <div class="help_info row">
                     <h3>{{ text.lesson }}</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
+                    <p>{{text.lessoncontent}}</p>
                     <footer class="form-group col-lg-12">
                         <label for="register" class='fa fa-arrow-right nav_label col-lg-4 float-right'></label>
                     </footer>
@@ -35,8 +34,7 @@
             <article class='pay container'>
                 <div class="help_info row">
                     <h3>{{ text.pay }}</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
+                    <p>{{text.paycontent}}}</p>
                     <footer class="form-group col-lg-12 reg_thd">
                         <label for="register" class='fa fa-arrow-left nav_label col-lg-4 float-left'></label>
                     </footer>

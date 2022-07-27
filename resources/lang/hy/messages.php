@@ -131,6 +131,7 @@ return [
     'created_at' => 'Գրանցման օրը',
     'updated_at' => 'Թարմացման օրը',
     'approve' => 'Հաստատել',
+    'approve_payment' => 'Հաստատել վճարումը',
     'reject' => 'Հեռացնել',
     'removed' => 'Հեռացված',
 

@@ -65,7 +65,7 @@ class CourseService
 
     public function getCoursesById($id)
     {
-        $spec = Specialties::select('id')->where('parent_id', $id)->get();
+        $spec = Specialties::select('id')->where('type_id', $id)->get();
 
         $courses = [];
         foreach ($spec as $index => $item) {
@@ -174,8 +174,8 @@ class CourseService
     public function getTestsById($id, $a_id)
     {
         $tests = Tests::where('courses_id', $id)
-            ->get();
-        //->random(5)
+//            ->get();
+           ->inRandomOrder()->limit(15)->get();
 
         if (!empty($tests)) {
             $random_test = [];
@@ -191,7 +191,7 @@ class CourseService
 
                     if (isset($arr[1]))
                         $answers[$str]['img'] = $arr[1];
-                    $answers[$str]['answer'] = str_ireplace("Powered by Froala Editor","",strip_tags($item->inp));
+                    $answers[$str]['answer'] = str_ireplace("Powered by Froala Editor", "", strip_tags($item->inp));
                     if (isset($item->check))
                         $answers[$str]['check'] = 1;
                 }

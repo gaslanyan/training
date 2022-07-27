@@ -11,11 +11,17 @@ use App\Http\Requests\UserEditRequest;
 use App\Http\Traits\Address;
 use App\Http\Traits\Expert;
 use App\Http\Traits\Registration;
+use App\Models\AccountCourse;
+use App\Models\Courses;
+use App\Models\Specialty;
 use App\Repositories\Repository;
+use App\Services\AccountCourseService;
 use App\Services\AccountService;
+use App\Services\CourseService;
 use App\Services\GPDFService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -92,9 +98,9 @@ class AccountController extends Controller
      * @param UserEditRequest $userRequest
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(AccountRequest $accountRequest,
+    public function store(AccountRequest    $accountRequest,
                           ProfessionRequest $professionRequest,
-                          UserEditRequest $userRequest)
+                          UserEditRequest   $userRequest)
     {
         try {
             Registration::register($accountRequest, $professionRequest, $userRequest, 'lecture', 'approved');
@@ -190,7 +196,7 @@ class AccountController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function updateAccount(AccountRequest $accountRequest, ProfessionEditRequest $professionRequest,
+    public function updateAccount(AccountRequest  $accountRequest, ProfessionEditRequest $professionRequest,
                                   UserEditRequest $userRequest, $id)
     {
 
@@ -360,7 +366,8 @@ class AccountController extends Controller
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    function cancelPayment(){
+    function cancelPayment()
+    {
         $data['Username'] = '19539226_api';
         $data['Password'] = 'zVPawNDZQky7bKhX';
 //        $data['PaymentID'] = request('PaymentID');
@@ -381,4 +388,56 @@ class AccountController extends Controller
         ]);
 
     }
+
+    public function showPayment($id)
+    {
+        try {
+            $cs = new CourseService(new Courses());
+            $t_id = Specialty::select('type_id')->where('id', $id)->first();
+            $courses = $cs->getCoursesById($t_id->type_id);
+
+            return view('backend.account.approve',
+                compact('id', 'courses'));
+        } catch (MethodNotAllowedHttpException $exception) {
+
+            logger()->error($exception);
+            return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
+        }
+    }
+
+    public function approvePayment(Request $request)
+    {
+        try {
+
+            $data['Username'] = env('PAY_USERNAME');
+            $data['Password'] = env('PAY_PASSWORD');
+            $data['PaymentID'] = request('paymentid');
+
+            $endpoint = "https://services.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
+            $client = new \GuzzleHttp\Client();
+
+            $response = $client->request('POST',
+                $endpoint, ['form_params' => $data]);
+
+            $statusCode = $response->getStatusCode();
+
+            $content = json_decode($response->getBody(), true);
+
+            $upload_data = [];
+            $upload_data['PaymentID'] = $data['PaymentID'];
+            $upload_data['ClientName'] = $content['ClientName'];
+            $upload_data['DateTime'] = $content['DateTime'];
+            $upload_data['OrderID'] = $content['OrderID'];
+            $upload_data['Amount'] = $content['Amount'];
+
+            $acs = new AccountCourseService(new AccountCourse());
+            $acs->uploadPayment(request('course_id'),request('account_id'), $upload_data);
+            return  redirect()->action('Backend\PaymentController@index');
+        } catch (MethodNotAllowedHttpException $exception) {
+
+            logger()->error($exception);
+            return redirect('backend/account/' . $this->role)->with('error', __('messages.wrong'));
+        }
+    }
+
 }

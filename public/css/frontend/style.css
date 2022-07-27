@@ -313,7 +313,6 @@ a:hover, a:focus, input, textarea, button {
 
 .home_banner_area {
     z-index: 1;
-    /*min-height: 580px;*/
     display: flex;
     position: relative;
 }
@@ -846,10 +845,6 @@ a:hover, a:focus, input, textarea, button {
     /*border: 1px solid #771FF3;*/
     border-radius: 5px;
     margin-top: 65px;
-}
-
-.home_banner_area {
-    /*min-height: 234px;*/
 }
 
 .hooper {
@@ -3397,7 +3392,7 @@ li {
 
 
 .home_banner_area {
-    min-height: 234px;
+    min-height: 100%;
 }
 
 .hooper_carousel {

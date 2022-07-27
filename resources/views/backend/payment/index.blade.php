@@ -55,7 +55,7 @@
                         <th>{{__('messages.name')." ".__('messages.surname')." ".__('messages.father_name')}}</th>
                         <th>{{__('messages.course_name')}}</th>
                         <th>{{__('messages.cost')}} / {{__('messages.amd')}}</th>
-                        <th>{{__('messages.payments')}} / {{__('messages.amd')}}</th>
+                        <th>{{__('OrderID')}}</th>
                         <th>{{__('messages.date')}}</th>
                     </tr>
                     </thead>
@@ -80,19 +80,8 @@
                                         @php
                                         $pay = json_decode($payment->payment)
                                         @endphp
-                                        @if(!empty($payment->payment)) {{$pay->Amount}}@endif
+                                        @if(!empty($payment->payment)) {{$pay->OrderID}}@endif
                                     </td>
-{{--                                    <td>--}}
-{{--                                        <div class="row justify-content-end">--}}
-{{--                                            <a href="{{action('Backend\PaymentController@show', $payment->id)}}"--}}
-{{--                                               class="btn btn-info kt-badge kt-badge--lg"--}}
-{{--                                               data-toggle="m-tooltip" data-placement="top"--}}
-{{--                                               data-original-title="{{__('messages.show')}}">--}}
-{{--                                                <i class="la la-eye"></i>--}}
-{{--                                            </a>--}}
-
-{{--                                        </div>--}}
-{{--                                    </td>--}}
                                     <td class="text-left">
                                         @if(!empty($payment->created_at)) {{$payment->created_at}}@endif
                                     </td>

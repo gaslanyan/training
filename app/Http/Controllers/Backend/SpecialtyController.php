@@ -61,18 +61,21 @@ class SpecialtyController extends Controller
 
         return json_encode($tmp);
     }
-public function SpecialtyController(Request $request)
+
+    public function SpecialtyLevel(Request $request)
     {
-        $ids =[];
+        $ids = [];
         $sl = $request->get('sl');
-        if(!empty($sl)){
-            if(count($sl) == 1)
-                $ids = ($sl[0] == "senior")?[1,3]:[2,4];
+        if (!empty($sl)) {
+            if (count($sl) == 1)
+                $ids = ($sl[0] == "senior") ? [1, 3] : [2, 4];
             else
-                $ids =[1,2,3,4] ;
+                $ids = [1, 2, 3, 4];
         }
 
-        $data = Specialty::query()->whereIn('parent_id',$ids)->get()->toArray();
+        $data = Specialty::query()->whereIn('type_id', $ids)
+        ->whereNotNull('parent_id')->get()->toArray();
+
         $tmp = [];
 
         if (!empty($data)) {

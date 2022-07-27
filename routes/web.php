@@ -101,6 +101,8 @@ name('backend.')
         Route::match(['put', 'patch'], 'account/{id}', 'Backend\AccountController@update')->name('account.update');
         Route::match(['put', 'patch'], 'updateAccount/{id}', 'Backend\AccountController@updateAccount')->name('account.edit');
         Route::get('account/{id}', 'Backend\AccountController@show')->name('account.show');
+        Route::get('showPayment/{id}', 'Backend\AccountController@showPayment')->name('account.show_payment');
+        Route::post('approvePayment', 'Backend\AccountController@approvePayment')->name('account.payment');
         Route::get('account_tests/{id}', 'Backend\AccountTestController@index')->name('test.tests');
         Route::post('change_status', 'Backend\AccountController@changeStatus')->name('account.member_of_palace');
         Route::get('account_test/{a_id}/{id}', 'Backend\AccountTestController@show')->name('test.show');
@@ -158,6 +160,6 @@ Route::post('delete-image', 'Backend\ImageController@removeImage');
 Route::post('commentstatus', 'Backend\CommentController@commentstatus');
 Route::post('edu', 'Backend\AccountController@getEducation');
 Route::post('spec', 'Backend\AccountController@getSpecialty');
-Route::post('special_level', 'Backend\SpecialtyController@SpecialtyController');
+Route::post('special_level', 'Backend\SpecialtyController@SpecialtyLevel');
 Route::post('updateSpec', 'Backend\SpecialtyController@updateSpecialty');
 Route::post('specialty', 'Backend\SpecialtyController@getSpecialty');

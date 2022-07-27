@@ -106,6 +106,7 @@
                         @if(\Illuminate\Support\Facades\Session::get('role') ==='user')
                             <th>{{__('messages.member_of_palace')}}</th>
                             <th>{{__('messages.status')}}</th>
+                            <th>{{__('messages.approve_payment')}}</th>
                         @endif
                         <th>{{__('messages.action')}}</th>
                     </tr>
@@ -158,7 +159,15 @@
                                                 class="btn {{$class}}">{{__('messages.'.$account->user->status)}}
                                         </span>
                                     </td>
-                                @endif
+                                    <td>
+                                        <a href="{{action('Backend\AccountController@showPayment', $account->id)}}"
+                                           class="btn btn-info kt-badge kt-badge--lg"
+                                           data-toggle="m-tooltip" data-placement="top"
+                                           data-original-title="{{__('messages.approve_payment')}}">
+                                            <i class="la la-credit-card"></i>
+                                        </a>
+                                    </td>
+                                                                    @endif
                                 <td>
                                     <div class="row justify-content-end">
                                         <a href="{{action('Backend\AccountController@show', $account->id)}}"
