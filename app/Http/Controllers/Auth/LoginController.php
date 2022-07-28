@@ -41,6 +41,7 @@ class LoginController extends Controller
 
     public function doLogin(AuthRequest $request)
     {
+
         try {   // create our user data for the authentication
             $userdata = array(
                 'email' => $request->get('email'),

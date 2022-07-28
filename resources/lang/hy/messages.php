@@ -140,8 +140,8 @@ return [
     //login
     'login' => 'Մուտք',
     'password' => 'Գաղտնաբառ',
-    'new_password' => 'Հին ծածկագիր',
-    'old_password' => 'Նոր ծածկագիր',
+    'new_password' => 'Նոր ծածկագիր',
+    'old_password' => 'Հին ծածկագիր',
     'confirm' => 'Հաստատել գաղտնաբառը',
     'confirm_password' => 'Կրկնել ծածկագիր',
     'password_field' => 'Գաղտնաբառ դաշտը ',
