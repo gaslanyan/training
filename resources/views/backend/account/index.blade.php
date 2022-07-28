@@ -143,7 +143,7 @@
                                             @if(!empty($account->prof->member_of_palace == 1))
                                                 {{'checked'}}
                                                 <input type="hidden" name="mop" value="true">
-                                                    @endif>
+                                                    @endif
                                         </form>
                                     </td>
                                     <td>
