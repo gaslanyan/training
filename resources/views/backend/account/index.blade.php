@@ -142,6 +142,7 @@
                                                    value="{{$account->prof->member_of_palace}}"
                                             @if(!empty($account->prof->member_of_palace == 1))
                                                 {{'checked'}}
+                                                <input type="hidden" name="mop" value="true">
                                                     @endif>
                                         </form>
                                     </td>
