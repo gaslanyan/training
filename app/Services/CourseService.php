@@ -175,7 +175,7 @@ class CourseService
     {
         $tests = Tests::where('courses_id', $id)
 //            ->get();
-           ->inRandomOrder()->limit(15)->get();
+           ->inRandomOrder()->limit(5)->get();
 
         if (!empty($tests)) {
             $random_test = [];
