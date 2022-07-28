@@ -83,7 +83,7 @@
                                         @if(!empty($payment->payment)) {{$pay->OrderID}}@endif
                                     </td>
                                     <td class="text-left">
-                                        @if(!empty($payment->created_at)) {{$payment->created_at}}@endif
+                                        @if(!empty($payment->created_at)) {{$pay->DateTime}}@endif
                                     </td>
                                 </tr>
                             @endif

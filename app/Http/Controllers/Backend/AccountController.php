@@ -13,6 +13,7 @@ use App\Http\Traits\Expert;
 use App\Http\Traits\Registration;
 use App\Models\AccountCourse;
 use App\Models\Courses;
+use App\Models\Profession;
 use App\Models\Specialty;
 use App\Repositories\Repository;
 use App\Services\AccountCourseService;
@@ -393,7 +394,9 @@ class AccountController extends Controller
     {
         try {
             $cs = new CourseService(new Courses());
-            $t_id = Specialty::select('type_id')->where('id', $id)->first();
+            $p_id = Profession::select('specialty_id')->where('account_id', $id)->first();
+            $t_id = Specialty::select('type_id')->where('id', $p_id->specialty_id)->first();
+
             $courses = $cs->getCoursesById($t_id->type_id);
 
             return view('backend.account.approve',
