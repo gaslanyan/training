@@ -74,12 +74,14 @@ class BaseController extends Controller
                     $g_email = User::select('email')
                         ->where('account_id', $id)
                         ->first();
-
+                    $g_name = Account::select(['name', 'surname'])->where('id', $id)
+                        ->first();
                     if ($email->save()) {
                         $sender['subject'] = $request->subject;
-                        $sender['name'] = $request->name;
+                        $sender['name'] = $g_name->name. " ". $g_name->surname;
                         $sender['message'] = $request->message;
                         $sender['email'] = trim($g_email->email);
+                        $sender['sender'] = __('messages.thank_you_email');
                         $this->createEmail($sender);
                     }
                 }
@@ -92,11 +94,14 @@ class BaseController extends Controller
 
     public function createEmail($sender)
     {
+
         $objSend = new \stdClass();
         $objSend->subject = $sender['subject'];
         $objSend->receiver = $sender['name'];
         $objSend->message = $sender['message'];
-        $objSend->sender = 'Medical training HR Team';
+        $objSend->sender_content = __('messages.thank_you_content');
+        $objSend->sender_phone = __('messages.thank_you_phone');
+        $objSend->sender_email = __('messages.thank_you_email');
 
         Mail::to($sender['email'])->send(new \App\Mail\SendEmail($objSend));
 

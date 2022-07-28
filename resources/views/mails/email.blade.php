@@ -1,13 +1,10 @@
-Hello <i>{{ $bc->receiver }}</i>,
-<p></p>
+{{__('messages.hello')}} <i>{{ $bc->receiver }}</i>,
 
 <div>
     <p>{{ $bc->message }}</p>
 
 </div>
-Thanks again for your interest in
-Medical training, and good luck!
-<br>
-Thank You,
-<br/>
-<i>{{ $bc->sender }}</i>
+
+<h4>{{ $bc->sender_content }}</h4>
+<p><i>{{ $bc->sender_phone }}</i></p>
+<p><i>{{ $bc->sender_email }}</i></p>
