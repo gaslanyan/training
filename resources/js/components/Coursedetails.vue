@@ -442,6 +442,7 @@ export default {
                         title = pagetexts.thanks;
                         this.isPaid = true;
                     }
+                    console.log(res)
                     // this.logout();
                     Swal.fire({
                         icon: icon,
