@@ -580,9 +580,9 @@ export default {
             Swal.fire({
                 icon: 'error',
                 title: pagetexts.warning,
-                text: pagetexts.warningText,
                 html:
-                    '<h5>'+pagetexts.refreshText+'</h5>',
+                    '<p style="color: #545454">'+pagetexts.warningText+'</p>' +
+                    '<h5 style="color: #545454">'+pagetexts.refreshText+'</h5>',
                 confirmButtonText:
                     `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
                 confirmButtonColor: '#631ed8',
