@@ -453,11 +453,9 @@ export default {
                         confirmButtonColor: '#631ed8',
                     });
 
-                    // setTimeout(function () {
-                    //     window.close();
-                    // }, 5000);
-
-                    location.href = "/coursedetails/" + this.$route.params.id;
+                    setTimeout(function () {
+                        location.href = "/coursedetails/" + this.$route.params.id;
+                    }, 5000);
                 })
                 .catch(error => {
                     let msg = "", pattern = /\d+/,
