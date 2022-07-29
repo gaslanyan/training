@@ -434,13 +434,15 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    let icon = "error", title = pagetexts.error;
+                    let icon = "error";
+                    let title = pagetexts.error;
 
-                    if (res.code === "00")
+                    if (res.code === "00") {
                         icon = 'success';
-                    title = pagetexts.thanks;
-                    this.isPaid = true;
-                    this.logout();
+                        title = pagetexts.thanks;
+                        this.isPaid = true;
+                    }
+                    // this.logout();
                     Swal.fire({
                         icon: icon,
                         title: title,
@@ -449,9 +451,10 @@ export default {
                             `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
                         confirmButtonColor: '#631ed8',
                     });
-                    setTimeout(function () {
-                        window.close();
-                    }, 5000);
+                    }
+                    // setTimeout(function () {
+                    //     window.close();
+                    // }, 5000);
 
                     location.href = "/coursedetails/" + this.$route.params.id;
                 })

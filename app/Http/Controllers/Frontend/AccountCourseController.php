@@ -220,8 +220,9 @@ class AccountCourseController extends Controller
 
 //        $content = $response->getBody();
         $content = json_decode($response->getBody(), true);
+
         $msg = __('messages.payment_success');
-        if ($data['ResponseCode'] == "00") {
+        if ($content['ResponseCode'] == "00") {
             $upload_data = [];
             $upload_data['PaymentID'] = $data['PaymentID'];
             $upload_data['ClientName'] = $content['ClientName'];
@@ -237,7 +238,7 @@ class AccountCourseController extends Controller
             'access_token' => request('token'),
             'getpayment' => $content,
             'msg' => $msg,
-            'code'=> $data['ResponseCode'],
+            'code'=> $content['ResponseCode'],
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
