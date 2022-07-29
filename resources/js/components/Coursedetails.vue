@@ -451,7 +451,7 @@ export default {
                             `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
                         confirmButtonColor: '#631ed8',
                     });
-                    }
+
                     // setTimeout(function () {
                     //     window.close();
                     // }, 5000);
