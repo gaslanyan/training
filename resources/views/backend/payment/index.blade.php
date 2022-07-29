@@ -80,7 +80,7 @@
                                         @php
                                         $pay = json_decode($payment->payment)
                                         @endphp
-                                        @if(!empty($payment->payment)) {{$pay->OrderID}}@endif
+                                        @if(!empty($payment->payment) && isset($pay->OrderID)) {{$pay->OrderID}}@endif
                                     </td>
                                     <td class="text-left">
                                         @if(!empty($payment->created_at)) {{$pay->DateTime}}@endif
