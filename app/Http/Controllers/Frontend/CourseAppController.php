@@ -203,6 +203,7 @@ class CourseAppController extends Controller
     function getTestsById()
     {
         try {
+
             $tests = $this->service->getTestsById(request('id'), request('account_id'));
 
             return response()->json([

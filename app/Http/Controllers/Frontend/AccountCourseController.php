@@ -217,21 +217,27 @@ class AccountCourseController extends Controller
         $response = $client->request('POST',
             $endpoint, ['form_params' => $data]);
         $statusCode = $response->getStatusCode();
+
 //        $content = $response->getBody();
         $content = json_decode($response->getBody(), true);
+        $msg = __('messages.payment_success');
+        if ($data['ResponseCode'] == "00") {
+            $upload_data = [];
+            $upload_data['PaymentID'] = $data['PaymentID'];
+            $upload_data['ClientName'] = $content['ClientName'];
+            $upload_data['DateTime'] = $content['DateTime'];
+            $upload_data['OrderID'] = $content['OrderID'];
+            $upload_data['Amount'] = $content['Amount'];
 
-        $upload_data = [];
-        $upload_data['PaymentID'] = $data['PaymentID'];
-        $upload_data['ClientName'] = $content['ClientName'];
-        $upload_data['DateTime'] = $content['DateTime'];
-        $upload_data['OrderID'] = $content['OrderID'];
-        $upload_data['Amount'] = $content['Amount'];
-
-
-        $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
+            $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
+        } else {
+            $msg = $this->getResponseCode($data['ResponseCode']);
+        }
         return response()->json([
             'access_token' => request('token'),
             'getpayment' => $content,
+            'msg' => $msg,
+            'code'=> $data['ResponseCode'],
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
@@ -283,5 +289,43 @@ class AccountCourseController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
+    }
+
+    public function getResponseCode($code)
+    {
+        $msg = "";
+        switch ($code) {
+            case "0-1":
+                $msg = __('message.sv_unavailable');
+                break;
+            case "0-2001":
+                $msg = __('message.IP_blacklisted');
+                break;
+            case "0-2002":
+                $msg = __('message.payment_over_limit');
+                break;
+            case "0-20010":
+                $msg = __('message.BLOCKED_BY_LIMIT');
+                break;
+            case "0-2003":
+                $msg = __('message.restricted');
+                break;
+            case "0-2006":
+                $msg = __('message.3DSecdecline');
+                break;
+            case "0-2007":
+                $msg = __('message.payment_time_limit');
+                break;
+            case "0-2012":
+                $msg = __('message.not_supported');
+                break;
+            case "0-2013":
+                $msg = __('message.payment_attempts');
+                break;
+
+            default:
+                $msg = __('messages.payment_field');
+        }
+        return $msg;
     }
 }

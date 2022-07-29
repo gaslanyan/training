@@ -4,12 +4,12 @@
             <div class="col-12 coursedetails_banner">
                 <!--img :src="lesson_banner" alt="" style="width: 100%;"-->
                 <h2 class="text-center pt-4">{{ datas.name }}</h2>
-                <h3>{{  texts.class}}
+                <h3>{{ texts.class }}
                     <span v-if="type.length == 0" class=""
                           v-for="spec in specialites">{{ `&nbsp;` + spec.name + `, ` }}</span>
-                    <span v-if="type==='senior'">{{ `&nbsp;`+texts.senior}}</span>
-                    <span v-else-if="type==='middle'">{{`&nbsp;`+ texts.middle}}</span>
-                    <span v-else-if="type==='all'">{{`&nbsp;`+ texts.all}}</span>
+                    <span v-if="type==='senior'">{{ `&nbsp;` + texts.senior }}</span>
+                    <span v-else-if="type==='middle'">{{ `&nbsp;` + texts.middle }}</span>
+                    <span v-else-if="type==='all'">{{ `&nbsp;` + texts.all }}</span>
                 </h3>
             </div>
         </div>        <!--================ Start Course Details Area =================-->
@@ -40,12 +40,13 @@
                             <div v-if="video_info">
                                 <hooper :itemsToShow="1">
                                     <slide v-for="(info, index) in video_info" :key="index" :index="index">
-                                        <video ref="video" class="view-video col-lg-12" controls disablePictureInPicture  controlsList="noplaybackrate nodownload"
+                                        <video ref="video" class="view-video col-lg-12" controls disablePictureInPicture
+                                               controlsList="noplaybackrate nodownload"
                                                v-on:loadeddata="manageEvents(info.id, index)">
                                             <source :src="info.path">
                                         </video>
                                         <div class="col-lg-12 row">
-                                            <div class="col-lg-6 col-md-6 col-xs-12 row mb-xs-3" >
+                                            <div class="col-lg-6 col-md-6 col-xs-12 row mb-xs-3">
                                                 <img :src="lectureimg+info.lectures.image_name" alt="lectures"
                                                      class="col-4">
                                                 <div class="col-8">
@@ -53,7 +54,7 @@
                                                             `${info.lectures.name} ${info.lectures.surname}
                                                     ${info.lectures.father_name}`
                                                         }}</h5>
-<!--                                                    <h4>{{ info.spec }}</h4>-->
+                                                    <!--                                                    <h4>{{ info.spec }}</h4>-->
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-xs-12">
@@ -66,10 +67,13 @@
                                                         <div class="col-9 col-xs-12 pr-0">
                                                             <template v-for="book in books">
                                                                 <!--<i class="fa fa-book text"></i>-->
-                                                               <h5 class="vid_content"><router-link :to="{name: 'book',params: {id: book.id}}"
-                                                                             class="text"
-                                                                             target="_blank">{{ book.title }}
-                                                               </router-link></h5>
+                                                                <h5 class="vid_content">
+                                                                    <router-link
+                                                                        :to="{name: 'book',params: {id: book.id}}"
+                                                                        class="text"
+                                                                        target="_blank">{{ book.title }}
+                                                                    </router-link>
+                                                                </h5>
                                                             </template>
                                                         </div>
                                                     </div>
@@ -210,7 +214,7 @@ export default {
             lectureimg: '/uploads/images/avatars/',
             docs: [],
             texts: texts,
-            type:"",
+            type: "",
             feedbacksuccess: '',
             isActive: false,
             isOpened: false,
@@ -430,23 +434,26 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    if (res.getpayment.PaymentID)
-                        this.isPaid = true;
+                    let icon = "error", title = pagetexts.error;
+
+                    if (res.code === "00")
+                        icon = 'success';
+                    title = pagetexts.thanks;
+                    this.isPaid = true;
+                    this.logout();
+                    Swal.fire({
+                        icon: icon,
+                        title: title,
+                        text: res.msg,
+                        confirmButtonText:
+                            `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
+                        confirmButtonColor: '#631ed8',
+                    });
+                    setTimeout(function () {
+                        window.close();
+                    }, 5000);
+
                     location.href = "/coursedetails/" + this.$route.params.id;
-                    if (localStorage.get('m')) {
-                        this.logout();
-                        Swal.fire({
-                            icon: 'success',
-                            title: pagetexts.thanks,
-                            text: pagetexts.backApp,
-                            confirmButtonText:
-                                `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
-                            confirmButtonColor: '#631ed8',
-                        });
-                        setTimeout(function () {
-                            window.close();
-                        }, 5000);
-                    }
                 })
                 .catch(error => {
                     let msg = "", pattern = /\d+/,
@@ -491,7 +498,7 @@ export default {
                     this.specialites = res.specialities;
                     this.id = res.data.id;
                     console.log(res.type, "k")
-                    if(res.type != 0)
+                    if (res.type != 0)
                         this.type = res.type;
                     localStorage.setItem('cb_id', this.id);
                 })
@@ -581,8 +588,8 @@ export default {
                 icon: 'error',
                 title: pagetexts.warning,
                 html:
-                    '<p style="color: #545454">'+pagetexts.warningText+'</p>' +
-                    '<h5 style="color: #545454">'+pagetexts.refreshText+'</h5>',
+                    '<p style="color: #545454">' + pagetexts.warningText + '</p>' +
+                    '<h5 style="color: #545454">' + pagetexts.refreshText + '</h5>',
                 confirmButtonText:
                     `<i class="fa fa-thumbs-up"></i> ${pagetexts.close} `,
                 confirmButtonColor: '#631ed8',
