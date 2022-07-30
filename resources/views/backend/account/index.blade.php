@@ -105,6 +105,7 @@
                         <th>{{__('messages.email_verified_at')}}</th>
                         @if(\Illuminate\Support\Facades\Session::get('role') ==='user')
                             <th>{{__('messages.member_of_palace')}}</th>
+                            <th>{{__('messages.workplace')}}</th>
                             <th>{{__('messages.status')}}</th>
                             <th>{{__('messages.approve_payment')}}</th>
                         @endif
@@ -148,6 +149,11 @@
                                             @endif
                                         </form>
                                     </td>
+                                <td>
+                                    @if(!empty($account->workplace_name))
+                                        {{$account->workplace_name}}
+                                    @endif
+                                </td>
                                     <td>
                                         @if(!empty($account->user->status))
                                             @php

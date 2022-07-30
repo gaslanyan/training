@@ -4,12 +4,14 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\AccountCourse;
 use App\Models\AccountVideo;
 use App\Models\Book;
 use App\Models\Courses;
 use App\Models\Profession;
 use App\Models\Specialty;
 use App\Models\Videos;
+use App\Services\AccountCourseService;
 use App\Services\CourseService;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
@@ -203,8 +205,11 @@ class CourseAppController extends Controller
     function getTestsById()
     {
         try {
-
-            $tests = $this->service->getTestsById(request('id'), request('account_id'));
+            $ac = new AccountCourseService(new AccountCourse());
+            $data = $ac->getPaymentById(request('account_id'), request('id'));
+            $video = $this->finishedVideo();
+            $tests = ($video && $data['reading'] != 1 && $data['paid']) ? [] :
+                $tests = $this->service->getTestsById(request('id'), request('account_id'));
 
             return response()->json([
                 'access_token' => request('token'),
@@ -287,7 +292,7 @@ class CourseAppController extends Controller
 
                 if ($count == count($spec_ids))
                     $type = ($parent_start->type_id == "1" || $parent_start->type_id == "3") ? "senior" : "middle";
-                if($parent_start->type_id == 1 && $parent_end->type_id == 4)
+                if ($parent_start->type_id == 1 && $parent_end->type_id == 4)
                     $type = "all";
                 for ($i = 0; $i < count($spec_ids); $i++) {
                     $specialtis = Specialty::query()->find($spec_ids[$i]);
@@ -353,8 +358,11 @@ class CourseAppController extends Controller
      */
     public function finishedVideo()
     {
+        $account_id = request('user_id');
+        $account_id = (isset($account_id)) ? request('user_id') : request('account__id');
+
         $isMamber = Profession::select('member_of_palace')
-            ->where('account_id', request('user_id'))
+            ->where('account_id', $account_id)
             ->first();
         $isFinished = 1;
         if (!$isMamber->member_of_palace) {

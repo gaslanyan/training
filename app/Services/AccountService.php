@@ -62,7 +62,7 @@ class AccountService
             },
             'prof.spec.type' => function ($query) {
                 $query->select(['id', 'name']);
-            }])->select('id', 'name', 'surname', 'image_name', 'father_name', 'phone')
+            }])->select('id', 'name', 'surname', 'image_name', 'father_name', 'phone','workplace_name')
             ->where('role', $role)->get();
 
         if (!$accounts)
