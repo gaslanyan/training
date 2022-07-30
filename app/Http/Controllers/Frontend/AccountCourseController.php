@@ -232,7 +232,7 @@ class AccountCourseController extends Controller
 
             $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
         } else {
-            $msg = $this->getResponseCode($data['ResponseCode']);
+            $msg = $this->getResponseCode($content['ResponseCode']);
         }
         return response()->json([
             'access_token' => request('token'),
@@ -297,31 +297,34 @@ class AccountCourseController extends Controller
         $msg = "";
         switch ($code) {
             case "0-1":
-                $msg = __('message.sv_unavailable');
+                $msg = __('messages.sv_unavailable');
+                break;
+                case "0116":
+                $msg = __('messages.enough_money');
                 break;
             case "0-2001":
-                $msg = __('message.IP_blacklisted');
+                $msg = __('messages.IP_blacklisted');
                 break;
             case "0-2002":
-                $msg = __('message.payment_over_limit');
+                $msg = __('messages.payment_over_limit');
                 break;
             case "0-20010":
-                $msg = __('message.BLOCKED_BY_LIMIT');
+                $msg = __('messages.BLOCKED_BY_LIMIT');
                 break;
             case "0-2003":
-                $msg = __('message.restricted');
+                $msg = __('messages.restricted');
                 break;
             case "0-2006":
-                $msg = __('message.3DSecdecline');
+                $msg = __('messages.3DSecdecline');
                 break;
             case "0-2007":
-                $msg = __('message.payment_time_limit');
+                $msg = __('messages.payment_time_limit');
                 break;
             case "0-2012":
-                $msg = __('message.not_supported');
+                $msg = __('messages.not_supported');
                 break;
             case "0-2013":
-                $msg = __('message.payment_attempts');
+                $msg = __('messages.payment_attempts');
                 break;
 
             default:

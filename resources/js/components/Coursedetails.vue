@@ -455,7 +455,7 @@ export default {
 
                     setTimeout(function () {
                         location.href = "/coursedetails/" + this.$route.params.id;
-                    }, 5000);
+                    }, 500);
                 })
                 .catch(error => {
                     let msg = "", pattern = /\d+/,
