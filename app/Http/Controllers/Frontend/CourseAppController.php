@@ -209,7 +209,7 @@ class CourseAppController extends Controller
             $data = $ac->getPaymentById(request('account_id'), request('id'));
             $video = $this->finishedVideo();
             $tests = ($video && $data['reading'] != 1 && $data['paid']) ? [] :
-                $tests = $this->service->getTestsById(request('id'), request('account_id'));
+                $this->service->getTestsById(request('id'), request('account_id'));
 
             return response()->json([
                 'access_token' => request('token'),
