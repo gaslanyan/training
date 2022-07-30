@@ -11,7 +11,7 @@
                 <label for="pay" class='fa fa-credit-card nav_label col-lg-4 col-4'></label>
             </nav>
             <article class='bio container'>
-                <div class="help_info row">
+                <div class="help_info row col-10 offset-1">
                     <h3>{{ text.lesson }}</h3>
                     <p>{{text.lessoncontet}}</p>
                     <footer class="form-group col-lg-12">
@@ -20,7 +20,7 @@
                 </div>
             </article>
             <article class='reg container'>
-                <div class="help_info row">
+                <div class="help_info row col-10 offset-1">
                     <h3>{{ text.register }}</h3>
                     <video ref="video" class="view-video col-lg-12" controls >
                         <source :src="path">
@@ -32,7 +32,7 @@
                 </div>
             </article>
             <article class='pay container'>
-                <div class="help_info row">
+                <div class="help_info row col-10 offset-1">
                     <h3>{{ text.pay }}</h3>
                     <p>{{text.paycontent}}</p>
                     <footer class="form-group col-lg-12 reg_thd">
