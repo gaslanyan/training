@@ -47,7 +47,7 @@
                                             <input :type="info.type" :value="(i+1)"
                                                    v-model="formTest[(index +1)+'_'+(i+1)]"
                                                    :id="'test-answer_'+(index +1)"
-                                                   :name="'test_'+(index +1)" v-validate="'required|included:1,2,3,4,5,6'">
+                                                   :name="'test_'+(index +1)" v-validate="'required|included:1,2,3,4,5'">
 
                                         <span class="test" v-if="answer.answer"
                                               v-html="answer.answer">{{ answer.answer }}</span>

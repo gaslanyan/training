@@ -54,10 +54,13 @@ class AccountCourseService
             $i = explode("_", $index);
             $account_answers[$i[0]][$i[1]] = true;
         }
+
         $deff = [];
         foreach ($test_answers as $i => $ta) {
-            if (array_diff_assoc($ta, $account_answers[$i])) {
-                $deff[] = $i;
+            if (isset($account_answers[$i])) {
+                if (array_diff_assoc($ta, $account_answers[$i])) {
+                    $deff[] = $i;
+                }
             }
         }
         $percent = ((count($account_answers) - count($deff)) / count($account_answers)) * 100;
@@ -311,7 +314,7 @@ class AccountCourseService
             $imgg = imagecreatefrompng($img);
             $color = imagecolorallocate($imgg, 000, 000, 000);
             $font = public_path() . "/css/frontend/fonts/GHEAMariamRIt.otf";
-            $text = strtoupper($account_name->name . " " . $account_name->surname)."-ին";
+            $text = strtoupper($account_name->name . " " . $account_name->surname) . "-ին";
             $text_send = Config::get('constants.DIPLOMA') . $id . "_" . $user_id;
 
             imagettftext($imgg, 12, 0, ($coordinates->name->x) - 10, ($coordinates->name->y) + 10, $color, $font, $text);
