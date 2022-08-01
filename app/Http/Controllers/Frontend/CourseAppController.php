@@ -364,8 +364,9 @@ class CourseAppController extends Controller
         $isMamber = Profession::select('member_of_palace')
             ->where('account_id', $account_id)
             ->first();
+
         $isFinished = 1;
-        if (!$isMamber->member_of_palace) {
+        if (isset($isMamber->member_of_palace) && !$isMamber->member_of_palace) {
             $videos = Courses::select('id', 'videos')
                 ->with(['account_course' => function ($query) {
                     $query->select('course_id')->
