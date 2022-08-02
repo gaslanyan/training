@@ -54,16 +54,21 @@ class AccountCourseService
             $i = explode("_", $index);
             $account_answers[$i[0]][$i[1]] = true;
         }
+        var_export(count($account_answers));
 
         $deff = [];
         foreach ($test_answers as $i => $ta) {
             if (isset($account_answers[$i])) {
                 if (array_diff_assoc($ta, $account_answers[$i])) {
+                    var_export(count($deff));
                     $deff[] = $i;
                 }
             }
         }
+
+
         $percent = ((count($account_answers) - count($deff)) / count($account_answers)) * 100;
+
         $count = $this->getCountOfTest($id, $account_id);
 
         $account_course = [];
@@ -102,6 +107,7 @@ class AccountCourseService
 
         if (!$ca)
             throw new ModelNotFoundException('Account course not created!');
+
         return $percent;
     }
 
