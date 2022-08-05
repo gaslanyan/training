@@ -45,6 +45,8 @@ Route::group(['prefix' => 'auth',
     Route::post('getpaymentbyid', 'Frontend\AccountCourseController@getPaymentById');
     Route::post('getresult', 'Frontend\AccountCourseController@getResult');
     Route::post('payment', 'Frontend\AccountCourseController@payment');
+    Route::post('payment_idram', 'Frontend\AccountCourseController@paymentIdram');
+    Route::get('result_idram', 'Frontend\AccountCourseController@reultIdram');
     Route::post('getpayment', 'Frontend\AccountCourseController@getPayment');
     Route::post('getcpcourse', 'Frontend\AccountCourseController@getCPCourse');
     Route::post('gettitle', 'Frontend\CourseAppController@getCourseTitleById');

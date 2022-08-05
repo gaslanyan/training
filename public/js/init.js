@@ -13,6 +13,9 @@ $(document).ready(function () {
         "columnDefs": [{
             "searchable": false,
             "orderable": false,
+            "paging": false,
+            "info": false,
+            "pagingType": 'full_numbers',
             "targets": 0
         }],
         "language": lang,

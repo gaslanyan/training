@@ -205,6 +205,46 @@ class AccountCourseController extends Controller
         }
     }
 
+    function paymentIdram()
+    {
+        try {
+            $info = $this->service->getCourseById(request('course_id'));
+            $data = [];
+//            $data['EDP_REC_ACCOUNT'] = env('CLIENT_ID');
+//            $data['EDP_AMOUNT'] = $info->cost;
+//            $data['EDP_BILL_NO'] = 1806;
+//            $data['EDP_DESCRIPTION'] = mb_convert_encoding($info->name, 'UTF-8');
+
+            $data['EDP_LANGUAGE'] = 'am';
+//
+            $data = 'EDP_LANGUAGE=' . 'am'
+                . '&EDP_AMOUNT=' . '10'
+                . '&EDP_REC_ACCOUNT=' . env('CLIENT_ID')
+                . '&EDP_BILL_NO=1806'
+                . '&EDP_DESCRIPTION=' .mb_convert_encoding($info->name, 'UTF-8');
+
+
+            $endpoint = " https://banking.idram.am/Payment/GetPayment";
+            $client = new \GuzzleHttp\Client();
+
+            $response = $client->request('POST',
+                $endpoint, ['form_params' => $data]);
+           dd($response);
+
+            $content = json_decode($response->getBody(), true);
+            return response()->json([
+                'access_token' => request('token'),
+                'payment' => $content,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 60
+            ]);
+        } catch (MethodNotAllowedHttpException $exception) {
+
+            logger()->error($exception);
+            return response()->json(['error' => true], 500);
+        }
+    }
+
     function getPayment()
     {
         $data['Username'] = env('PAY_USERNAME');
@@ -238,10 +278,46 @@ class AccountCourseController extends Controller
             'access_token' => request('token'),
             'getpayment' => $content,
             'msg' => $msg,
-            'code'=> $content['ResponseCode'],
+            'code' => $content['ResponseCode'],
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
+    }
+
+    function reultIdram()
+    {
+
+        define("SECRET_KEY", "FakeKey"); // Idram Payment System provide it
+        define("EDP_REC_ACCOUNT", "FakeID"); // Idram Payment System provide it
+        if (isset($_REQUEST['EDP_PRECHECK']) && isset($_REQUEST['EDP_BILL_NO']) &&
+            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
+            if ($_REQUEST['EDP_PRECHECK'] == "YES") {
+                if ($_REQUEST['EDP_REC_ACCOUNT'] == EDP_REC_ACCOUNT) {
+                    $bill_no = $_REQUEST['EDP_BILL_NO'];
+
+                    echo("OK");
+                }
+            }
+        }
+
+        if (isset($_REQUEST['EDP_PAYER_ACCOUNT']) && isset($_REQUEST['EDP_BILL_NO']) &&
+            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])
+            && isset($_REQUEST['EDP_TRANS_ID']) && isset($_REQUEST['EDP_CHECKSUM'])) {
+            $txtToHash =
+                EDP_REC_ACCOUNT . ":" .
+                $_REQUEST['EDP_AMOUNT'] . ":" .
+                SECRET_KEY . ":" .
+                $_REQUEST['EDP_BILL_NO'] . ":" .
+                $_REQUEST['EDP_PAYER_ACCOUNT'] . ":" .
+                $_REQUEST['EDP_TRANS_ID'] . ":" .
+                $_REQUEST['EDP_TRANS_DATE'];
+            if (strtoupper($_REQUEST['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
+// please, write your code here to handle the payment                 fail
+            } else {
+// please, write your code here to handle the payment success
+                echo("OK");
+            }
+        }
     }
 
     /**
@@ -258,7 +334,8 @@ class AccountCourseController extends Controller
      * "token_type": "bearer"
      * }
      */
-    public function certificate(Request $request)
+    public
+    function certificate(Request $request)
     {
         $text_send = $this->service->getCertificate($request->id, $request->user_id);
         return response()->json([
@@ -270,7 +347,8 @@ class AccountCourseController extends Controller
     }
 
 
-    public function readingBook(Request $request)
+    public
+    function readingBook(Request $request)
     {
         $read = $this->service->readingBook($request);
         return response()->json([
@@ -281,7 +359,8 @@ class AccountCourseController extends Controller
         ]);
     }
 
-    public function getPage(Request $request)
+    public
+    function getPage(Request $request)
     {
         $page = $this->service->getPage($request);
         return response()->json([
@@ -292,14 +371,15 @@ class AccountCourseController extends Controller
         ]);
     }
 
-    public function getResponseCode($code)
+    public
+    function getResponseCode($code)
     {
         $msg = "";
         switch ($code) {
             case "0-1":
                 $msg = __('messages.sv_unavailable');
                 break;
-                case "0116":
+            case "0116":
                 $msg = __('messages.enough_money');
                 break;
             case "0-2001":

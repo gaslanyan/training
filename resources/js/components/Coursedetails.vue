@@ -80,7 +80,21 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <v-easy-dialog v-model="payDialog">
+                                            <div class="flex flex-col">
+                                                <div>Check out our stacked Dialog</div>
 
+                                                <div>
+                                                    <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
+                                                </div> <div>
+                                                <img :src="idramimg" alt="idram" @click="paymentIdram(datas.id)">
+                                            </div>
+
+                                                <div class="flex justify-end space-x-2">
+                                                    <button @click="payDialog = false">Close</button>
+                                                </div>
+                                            </div>
+                                        </v-easy-dialog>
                                     </slide>
                                     <hooper-pagination slot="hooper-addons"></hooper-pagination>
                                 </hooper>
@@ -185,6 +199,7 @@
             </hooper>
         </section>
     </div>
+
 </template>
 <script>
 import {getPromiseResult} from '../partials/help';
@@ -193,7 +208,7 @@ import {Hooper, Navigation as HooperNavigation, Pagination as HooperPagination, 
 import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
-
+import VEasyDialog from 'v-easy-dialog'
 
 export default {
     data() {
@@ -211,6 +226,8 @@ export default {
             // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
             lock: '/css/frontend/img/lock.png',
             bookimg: '/css/frontend/img/book.jpg',
+            ameriaimg: '/css/frontend/img/ameria.png',
+            idramimg: '/css/frontend/img/idram.png',
             lectureimg: '/uploads/images/avatars/',
             docs: [],
             texts: texts,
@@ -271,7 +288,7 @@ export default {
     components: {
         Hooper,
         Slide, HooperPagination,
-        HooperNavigation
+        HooperNavigation, VEasyDialog
     },
     methods: {
         manageEvents(id, index) {
@@ -391,6 +408,27 @@ export default {
                 course_id: id,
                 mobile: false,
                 url: "payment",
+                auth: true
+            };
+            getPromiseResult(credentials)
+                .then(res => {
+                    location.href = 'https://services.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
+                })
+                .catch(error => {
+                    console.log(error);
+                    // this.$store.commit("registerFailed", {error});
+                })
+        },
+        paymentIdram(id) {
+            this.course_id = id;
+            localStorage.setItem('c_id', id);
+            localStorage.setItem('a_id', this.currentUser.id);
+            let credentials = {
+                account_id: this.currentUser.id,
+                token: this.currentUser.token,
+                course_id: id,
+                mobile: false,
+                url: "payment_idram",
                 auth: true
             };
             getPromiseResult(credentials)
