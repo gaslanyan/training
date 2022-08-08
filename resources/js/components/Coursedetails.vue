@@ -23,7 +23,7 @@
                                 <img id="lookOpened" v-bind:src="lock" alt="lock">
                                 <div class="d-flex flex-column mt-3">
                                     <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
-                                            @click="simpleDialog = true">{{ texts.pay }}
+                                            @click="() => toggleBind(exampleBtn.bindTo)">{{ texts.pay }}
                                     </button>
 
                                     <div class="d-flex justify-content-center" v-if="!currentUser">
@@ -91,9 +91,10 @@
 
                                     <div>
                                         <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
-                                    </div> <div>
-                                    <img :src="idramimg" alt="idram" @click="paymentIdram(datas.id)">
-                                </div>
+                                    </div>
+                                    <div>
+                                        <img :src="idramimg" alt="idram" @click="paymentIdram(datas.id)">
+                                    </div>
 
                                     <div class="flex justify-end space-x-2">
                                         <button @click="simpleDialog = false">Close</button>
@@ -283,7 +284,12 @@ export default {
         },
         show: function () {
             return !this.isOpened || !this.isPaid;
-        }
+        },
+        exampleBtn() {
+            return [
+                {text: "", bindTo: "simpleDialog"},
+            ];
+        },
     },
     components: {
         Hooper,
@@ -291,6 +297,9 @@ export default {
         HooperNavigation, VEasyDialog
     },
     methods: {
+        toggleBind(attr) {
+            this[attr] = !this[attr];
+        },
         manageEvents(id, index) {
             this.$nextTick(() => {
                 if (this.currentUser.id) {
