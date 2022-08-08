@@ -209,7 +209,7 @@ import {Hooper, Navigation as HooperNavigation, Pagination as HooperPagination, 
 import 'hooper/dist/hooper.css';
 import Swal from "sweetalert2";
 import pagetexts from "./json/pages.json";
-import VEasyDialog from 'v-easy-dialog'
+import {VEasyDialog} from 'v-easy-dialog'
 
 export default {
     data() {
@@ -245,6 +245,7 @@ export default {
                 {id: 4},
                 {id: 5}
             ],
+            simpleDialog: false,
             isFinished: 0,
             disabled: 1,
             pagetexts: pagetexts,
@@ -284,11 +285,6 @@ export default {
         },
         show: function () {
             return !this.isOpened || !this.isPaid;
-        },
-        exampleBtn() {
-            return [
-                {text: "", bindTo: "simpleDialog"},
-            ];
         },
     },
     components: {
