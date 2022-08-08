@@ -280,7 +280,7 @@ class AccountCourseController extends Controller
         ]);
     }
 
-    function reultIdram()
+    function resultIdram()
     {
 
         define("SECRET_KEY", "FakeKey"); // Idram Payment System provide it
