@@ -36,21 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <v-easy-dialog v-model="simpleDialog">
-                                <div class="flex flex-col">
-                                    <div>Check out our stacked Dialog</div>
 
-                                    <div>
-                                        <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
-                                    </div> <div>
-                                    <img :src="idramimg" alt="idram" @click="paymentIdram(datas.id)">
-                                </div>
-
-                                    <div class="flex justify-end space-x-2">
-                                        <button @click="simpleDialog = false">Close</button>
-                                    </div>
-                                </div>
-                            </v-easy-dialog>
                             <div v-if="video_info">
                                 <hooper :itemsToShow="1">
                                     <slide v-for="(info, index) in video_info" :key="index" :index="index">
@@ -99,7 +85,21 @@
                                     <hooper-pagination slot="hooper-addons"></hooper-pagination>
                                 </hooper>
                             </div>
+                            <v-easy-dialog v-model="simpleDialog">
+                                <div class="flex flex-col">
+                                    <div>Check out our stacked Dialog</div>
 
+                                    <div>
+                                        <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
+                                    </div> <div>
+                                    <img :src="idramimg" alt="idram" @click="paymentIdram(datas.id)">
+                                </div>
+
+                                    <div class="flex justify-end space-x-2">
+                                        <button @click="simpleDialog = false">Close</button>
+                                    </div>
+                                </div>
+                            </v-easy-dialog>
                         </div>
                     </div>
                     <div class="col-lg-4 right-contents">
