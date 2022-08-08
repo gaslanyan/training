@@ -23,7 +23,7 @@
                                 <img id="lookOpened" v-bind:src="lock" alt="lock">
                                 <div class="d-flex flex-column mt-3">
                                     <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
-                                            @click="payDialog = true">{{ texts.pay }}
+                                            @click="simpleDialog = true">{{ texts.pay }}
                                     </button>
 
                                     <div class="d-flex justify-content-center" v-if="!currentUser">
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <v-easy-dialog v-model="payDialog">
+                            <v-easy-dialog v-model="simpleDialog">
                                 <div class="flex flex-col">
                                     <div>Check out our stacked Dialog</div>
 
@@ -47,7 +47,7 @@
                                 </div>
 
                                     <div class="flex justify-end space-x-2">
-                                        <button @click="payDialog = false">Close</button>
+                                        <button @click="simpleDialog = false">Close</button>
                                     </div>
                                 </div>
                             </v-easy-dialog>
