@@ -671,3 +671,38 @@ export default {
 
 </script>
 
+<style>
+* {
+    --tw-ring-offset-shadow: 0 0 transparent;
+    --tw-ring-shadow: 0 0 transparent;
+}
+
+pre {
+    background-color: #e4e4e4;
+    padding: 2px;
+    display: inline-block;
+    box-shadow: 2px 2px 5px -3px #000000;
+    border-radius: 3px;
+}
+
+.demo-btn:hover {
+    opacity: 0.8;
+}
+
+.v-card {
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000);
+}
+
+.v-card > * + * {
+    border-top-width: calc(1px * calc(1 - 0));
+    border-bottom-width: calc(1px * 0);
+}
+
+.v-card > * {
+    padding: 1rem;
+}
+</style>
+
