@@ -298,6 +298,7 @@ export default {
     },
     methods: {
         toggleBind(attr) {
+            console.log(attr)
             this[attr] = !this[attr];
         },
         manageEvents(id, index) {
