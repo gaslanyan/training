@@ -210,31 +210,27 @@ class AccountCourseController extends Controller
         try {
             $info = $this->service->getCourseById(request('course_id'));
             $data = [];
-//            $data['EDP_REC_ACCOUNT'] = env('CLIENT_ID');
-//            $data['EDP_AMOUNT'] = $info->cost;
-//            $data['EDP_BILL_NO'] = 1806;
+//            $data['EDP_REC_ACCOUNT'] = env('EDP_REC_ACCOUNT');
+//            $data['EDP_AMOUNT'] = "10";
+////            $data['EDP_AMOUNT'] = $info->cost;
+//            $data['EDP_BILL_NO'] = rand(1, 2000000000);
 //            $data['EDP_DESCRIPTION'] = mb_convert_encoding($info->name, 'UTF-8');
-
-            $data['EDP_LANGUAGE'] = 'am';
-//
-            $data = 'EDP_LANGUAGE=' . 'am'
+//            $data['EDP_LANGUAGE'] = 'am';
+            $action = env('ACTION');
+            $d = 'EDP_LANGUAGE=' . 'am'
                 . '&EDP_AMOUNT=' . '10'
-                . '&EDP_REC_ACCOUNT=' . env('CLIENT_ID')
-                . '&EDP_BILL_NO=1806'
-                . '&EDP_DESCRIPTION=' .mb_convert_encoding($info->name, 'UTF-8');
+                . '&EDP_REC_ACCOUNT=' . env('EDP_REC_ACCOUNT')
+                . '&EDP_BILL_NO=' . rand(1, 2000000000)
+                . '&EDP_DESCRIPTION=' . mb_convert_encoding($info->name, 'UTF-8');
+            $server_output = $this->post_curl_request($action, $d, "IDRAM");
 
-
-            $endpoint = " https://banking.idram.am/Payment/GetPayment";
-            $client = new \GuzzleHttp\Client();
-
-            $response = $client->request('POST',
-                $endpoint, ['form_params' => $data]);
-           dd($response);
-
-            $content = json_decode($response->getBody(), true);
+            preg_match_all('~<a(.*?)href="([^"]+)"(.*?)>~', $server_output, $matches);
+            $redirect_uri =env('REDIRECT_URI');
+            $result_uai = str_replace("&amp;", "&", $matches[2][0]);
+            $redirect_uri .= $result_uai;
             return response()->json([
                 'access_token' => request('token'),
-                'payment' => $content,
+                'url' => $redirect_uri,
                 'token_type' => 'bearer',
                 'expires_in' => auth('api')->factory()->getTTL() * 60
             ]);
@@ -411,5 +407,26 @@ class AccountCourseController extends Controller
                 $msg = __('messages.payment_field');
         }
         return $msg;
+    }
+    public function post_curl_request($action, $el, $r_u)
+    {
+        $redirect_uri = "";
+        $ch = curl_init();
+        if ($el == "IDRAM") {
+            $headers = array();
+            $headers[] = "Accept: application/json";
+            $headers[] = "Content-Type: application/x-www-form-urlencoded";
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
+        curl_setopt($ch, CURLOPT_URL, $action);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS,
+            $el);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+        return $server_output;
     }
 }

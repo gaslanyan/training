@@ -439,7 +439,7 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    location.href = 'https://services.ameriabank.am/VPOS/Payments/Pay?id=' + res.payment.PaymentID + '&lang=am';
+                    location.href = res.url;
                 })
                 .catch(error => {
                     console.log(error);
