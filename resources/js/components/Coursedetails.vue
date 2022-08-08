@@ -23,7 +23,7 @@
                                 <img id="lookOpened" v-bind:src="lock" alt="lock">
                                 <div class="d-flex flex-column mt-3">
                                     <button class=" text-uppercase pay_btn btn" v-if="!isPaid"
-                                            @click="() => toggleBind(exampleBtn.bindTo)">{{ texts.pay }}
+                                            @click="() => toggleBind('simpleDialog')">{{ texts.pay }}
                                     </button>
 
                                     <div class="d-flex justify-content-center" v-if="!currentUser">
