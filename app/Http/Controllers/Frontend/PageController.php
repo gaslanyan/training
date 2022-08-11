@@ -12,6 +12,8 @@ use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+
 /**
  * @group Front page
  * Api for Front pages
@@ -31,6 +33,7 @@ class PageController extends Controller
     {
 
     }
+
     /**
      * About us
      * get about page content.
@@ -71,25 +74,23 @@ class PageController extends Controller
     }
 
 
-
     public function savecomment(Request $request)
     {
- $course_id = $request->course_id;
+        $course_id = $request->course_id;
         $user_id = $request->account_id;
         $comment = $request->comment;
-        $result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id','=',$course_id)->get();
+        $result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id', '=', $course_id)->get();
 
 
         try {
-            if(count($result) < 1) {
+            if (count($result) < 1) {
                 $accountcourses = new AccountCourse();
                 $accountcourses->course_id = $course_id;
                 $accountcourses->account_id = $user_id;
                 $accountcourses->comment = $comment;
                 $accountcourses->panding = "unread";
                 $accountcourses->save();
-            }
-            else{
+            } else {
                 $accountcourses = AccountCourse::query()->find($result[0]->id);
                 $accountcourses->comment = $comment;
                 $accountcourses->panding = "unread";
@@ -97,7 +98,7 @@ class PageController extends Controller
             }
 
         } catch (\Exception $exception) {
-           //
+            //
             logger()->error($exception);
             // return redirect('backend/courses')->with('error', Lang::get('messages.wrong'));
         }
@@ -105,31 +106,29 @@ class PageController extends Controller
         return true;
 
 
-
-
     }
+
     public function rating(Request $request)
     {
         $course_id = $request->course_id;
         $user_id = $request->account_id;
-        $rating= $request->rating;
+        $rating = $request->rating;
 
         //$result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id','=',$course_id)->get();
-                       $result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id','=',$course_id)->get();
+        $result = DB::table('accounts_courses')->where('account_id', '=', $user_id)->where('course_id', '=', $course_id)->get();
 
-          try {
-              if(count($result) < 1) {
-                  $accountcourses = new AccountCourse();
-                  $accountcourses->course_id = $course_id;
-                  $accountcourses->account_id = $user_id;
-                  $accountcourses->raiting = $rating;
-                  $accountcourses->save();
-              }
-              else{
-                  $accountcourses = AccountCourse::query()->find($result[0]->id);
-                  $accountcourses->raiting = $rating;
-                  $accountcourses->save();
-              }
+        try {
+            if (count($result) < 1) {
+                $accountcourses = new AccountCourse();
+                $accountcourses->course_id = $course_id;
+                $accountcourses->account_id = $user_id;
+                $accountcourses->raiting = $rating;
+                $accountcourses->save();
+            } else {
+                $accountcourses = AccountCourse::query()->find($result[0]->id);
+                $accountcourses->raiting = $rating;
+                $accountcourses->save();
+            }
 
         } catch (\Exception $exception) {
 
@@ -149,31 +148,32 @@ class PageController extends Controller
         return view('app', ['ssr' => $ssr]);
     }
 
-    public function sendMail(ContactRequest $contactRequest){
+    public function sendMail(ContactRequest $contactRequest)
+    {
         try {
-        $data = array('name'=>\request('name'),
-            'subject'=>\request('subject'),
-            'email'=>\request('email'),
-            'body'=>\request('message'));
-        Mail::send('mails/contact', $data, function($message) {
-            $message->to('info@training.gtech.am', \request('subject'))->subject
-            (\request('message'));
-            $message->from(\request('email'),request('subject'));
-        });
-             return response()->json([
-                 'success' => true
-             ]);
+            $data = array('name' => \request('name'),
+                'subject' => \request('subject'),
+                'email' => \request('email'),
+                'body' => \request('message'));
+            Mail::send('mails/contact', $data, function ($message) {
+                $message->to('info@training.gtech.am', \request('subject'))->subject
+                (\request('message'));
+                $message->from(\request('email'), request('subject'));
+            });
+            return response()->json([
+                'success' => true
+            ]);
         } catch (\Exception $exception) {
             logger()->error($exception);
             return response()->json(['error' => true], 500);
         }
     }
 
-   public function resultIdram()
+    public function resultIdram()
     {
 
-        define("SECRET_KEY", env('SECRET_KEY')); // Idram Payment System provide it
-        define("EDP_REC_ACCOUNT", env('EDP_REC_ACCOUNT')); // Idram Payment System provide it
+        define("SECRET_KEY", env('SECRET_KEY'));
+        define("EDP_REC_ACCOUNT", env('EDP_REC_ACCOUNT'));
 
         if (isset($_REQUEST['EDP_PRECHECK']) && isset($_REQUEST['EDP_BILL_NO']) &&
             isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
@@ -198,9 +198,9 @@ class PageController extends Controller
                 $_REQUEST['EDP_TRANS_ID'] . ":" .
                 $_REQUEST['EDP_TRANS_DATE'];
             if (strtoupper($_REQUEST['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
-// please, write your code here to handle the payment                 fail
+                Session::put('idram_error_msg', __('messages.payment_field'));
             } else {
-// please, write your code here to handle the payment success
+                Session::put('idram_request', $_REQUEST);
                 echo("OK");
             }
         }

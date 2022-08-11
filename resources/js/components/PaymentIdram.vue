@@ -38,36 +38,7 @@
                         <div class="line"></div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 text-left">
-                        <h2 class="home_title">{{ text.return_policy }}</h2>
-                    </div>
 
-                    <div class="col-12">
-                        <p> {{ text.return_policy_desc }}</p>
-                        <div class="line"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-left">
-                        <h2 class="home_title">{{ text.shipping_methods }}</h2>
-                    </div>
-
-                    <div class="col-12">
-                        <p> {{ text.shipping_methods_desc }}</p>
-                        <div class="line"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-left">
-                        <h2 class="home_title">{{ text.terms_conditions }}</h2>
-                    </div>
-
-                    <div class="col-12">
-                        <p> {{ text.terms_conditions_desc }}</p>
-                        <div class="line"></div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -94,7 +65,7 @@ export default {
     methods: {
         getPaymentIdramQuery(query) {
             let credentials = {
-                PaymentID: `${query.paymentID}`,
+                PaymentID: `${query.EDP_BILL_NO}`,
                 account_id: this.currentUser.id,
                 token: this.currentUser.token,
                 course_id: localStorage.getItem('c_id'),

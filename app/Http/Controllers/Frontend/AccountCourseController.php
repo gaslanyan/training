@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\AccountCourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -209,13 +210,7 @@ class AccountCourseController extends Controller
     {
         try {
             $info = $this->service->getCourseById(request('course_id'));
-            $data = [];
-//            $data['EDP_REC_ACCOUNT'] = env('EDP_REC_ACCOUNT');
-//            $data['EDP_AMOUNT'] = "10";
-////            $data['EDP_AMOUNT'] = $info->cost;
-//            $data['EDP_BILL_NO'] = rand(1, 2000000000);
-//            $data['EDP_DESCRIPTION'] = mb_convert_encoding($info->name, 'UTF-8');
-//            $data['EDP_LANGUAGE'] = 'am';
+
             $action = env('ACTION');
             $d = 'EDP_LANGUAGE=' . 'am'
                 . '&EDP_AMOUNT=' . '10'
@@ -280,40 +275,36 @@ class AccountCourseController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+
     function getPaymentIdram()
     {
-        $data['Username'] = env('PAY_USERNAME');
-        $data['Password'] = env('PAY_PASSWORD');
-        $data['PaymentID'] = request('PaymentID');
 
-        $endpoint = "https://services.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
-        $client = new \GuzzleHttp\Client();
-
-        $response = $client->request('POST',
-            $endpoint, ['form_params' => $data]);
-        $statusCode = $response->getStatusCode();
-
-//        $content = $response->getBody();
-        $content = json_decode($response->getBody(), true);
-
+        $ir = Session::get('idram_request');
         $msg = __('messages.payment_success');
-        if ($content['ResponseCode'] == "00") {
-            $upload_data = [];
-            $upload_data['PaymentID'] = $data['PaymentID'];
-            $upload_data['ClientName'] = $content['ClientName'];
-            $upload_data['DateTime'] = $content['DateTime'];
-            $upload_data['OrderID'] = $content['OrderID'];
-            $upload_data['Amount'] = $content['Amount'];
+        $code ="00";
 
-            $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
+        if (!empty($ir)) {
+            if (request('EDP_BILL_NO') == $ir['EDP_BILL_NO']) {
+                $upload_data = [];
+                $upload_data['PaymentID'] = $ir['EDP_BILL_NO'];
+//            $upload_data['ClientName'] = $content['ClientName'];
+                $upload_data['DateTime'] = $ir['EDP_BILL_DATE'];
+                $upload_data['OrderID'] = $ir['EDP_PAYER_ACCOUNT'];
+                $upload_data['Amount'] = $ir['EDP_AMOUNT'];
+
+                $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
+            } else {
+                $msg = $this->getResponseCode('');
+                $code = "";
+            }
         } else {
-            $msg = $this->getResponseCode($content['ResponseCode']);
+            $msg = $this->getResponseCode('');
         }
         return response()->json([
             'access_token' => request('token'),
-            'getpayment' => $content,
+            'getpayment' => \GuzzleHttp\json_encode($ir),
             'msg' => $msg,
-            'code' => $content['ResponseCode'],
+            'code' => $code,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
