@@ -168,4 +168,41 @@ class PageController extends Controller
             return response()->json(['error' => true], 500);
         }
     }
+
+   public function resultIdram()
+    {
+
+        define("SECRET_KEY", env('SECRET_KEY')); // Idram Payment System provide it
+        define("EDP_REC_ACCOUNT", env('EDP_REC_ACCOUNT')); // Idram Payment System provide it
+
+        if (isset($_REQUEST['EDP_PRECHECK']) && isset($_REQUEST['EDP_BILL_NO']) &&
+            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
+            if ($_REQUEST['EDP_PRECHECK'] == "YES") {
+                if ($_REQUEST['EDP_REC_ACCOUNT'] == env('EDP_REC_ACCOUNT')) {
+                    $bill_no = $_REQUEST['EDP_BILL_NO'];
+
+                    echo("OK");
+                }
+            }
+        }
+
+        if (isset($_REQUEST['EDP_PAYER_ACCOUNT']) && isset($_REQUEST['EDP_BILL_NO']) &&
+            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])
+            && isset($_REQUEST['EDP_TRANS_ID']) && isset($_REQUEST['EDP_CHECKSUM'])) {
+            $txtToHash =
+                EDP_REC_ACCOUNT . ":" .
+                $_REQUEST['EDP_AMOUNT'] . ":" .
+                SECRET_KEY . ":" .
+                $_REQUEST['EDP_BILL_NO'] . ":" .
+                $_REQUEST['EDP_PAYER_ACCOUNT'] . ":" .
+                $_REQUEST['EDP_TRANS_ID'] . ":" .
+                $_REQUEST['EDP_TRANS_DATE'];
+            if (strtoupper($_REQUEST['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
+// please, write your code here to handle the payment                 fail
+            } else {
+// please, write your code here to handle the payment success
+                echo("OK");
+            }
+        }
+    }
 }

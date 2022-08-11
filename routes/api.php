@@ -46,8 +46,8 @@ Route::group(['prefix' => 'auth',
     Route::post('getresult', 'Frontend\AccountCourseController@getResult');
     Route::post('payment', 'Frontend\AccountCourseController@payment');
     Route::post('payment_idram', 'Frontend\AccountCourseController@paymentIdram');
-    Route::get('result_idram', 'Frontend\AccountCourseController@reultIdram');
     Route::post('getpayment', 'Frontend\AccountCourseController@getPayment');
+    Route::post('getpaymentidram', 'Frontend\AccountCourseController@getPaymentIdram');
     Route::post('getcpcourse', 'Frontend\AccountCourseController@getCPCourse');
     Route::post('gettitle', 'Frontend\CourseAppController@getCourseTitleById');
     Route::post('finishedvideo', 'Frontend\CourseAppController@finishedVideo');
@@ -66,6 +66,8 @@ Route::post('coursestitle', 'Frontend\PageController@coursestitle');
 Route::post('applicantcount', 'Frontend\PageController@applicantcount');
 Route::post('coursescount', 'Frontend\PageController@coursescount');
 Route::post('allcourses', 'Frontend\CourseController@allcourses');
+Route::post('result_idram', 'Frontend\PageController@resultIdram');
+
 
 //get courses
 
@@ -83,4 +85,5 @@ Route::post('reset-password', 'Frontend\PasswordResetController@sendPasswordRese
 Route::match(['put', 'patch'],'reset/password', 'Frontend\PasswordResetController@callResetPassword');
 Route::post('getcoursebyprof', 'Frontend\CourseController@getCourseByProf');
 Route::post('getcoursebyid', 'Frontend\CourseController@getCoursesById');
+
 

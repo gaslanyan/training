@@ -221,11 +221,12 @@ class AccountCourseController extends Controller
                 . '&EDP_AMOUNT=' . '10'
                 . '&EDP_REC_ACCOUNT=' . env('EDP_REC_ACCOUNT')
                 . '&EDP_BILL_NO=' . rand(1, 2000000000)
-                . '&EDP_DESCRIPTION=' . mb_convert_encoding($info->name, 'UTF-8');
+                . '&EDP_DESCRIPTION=' . mb_convert_encoding($info->name, 'UTF-8')
+                . 'SECRET_KEY=' . env('SECRET_KEY');
             $server_output = $this->post_curl_request($action, $d, "IDRAM");
 
             preg_match_all('~<a(.*?)href="([^"]+)"(.*?)>~', $server_output, $matches);
-            $redirect_uri =env('REDIRECT_URI');
+            $redirect_uri = env('REDIRECT_URI');
             $result_uai = str_replace("&amp;", "&", $matches[2][0]);
             $redirect_uri .= $result_uai;
             return response()->json([
@@ -279,42 +280,45 @@ class AccountCourseController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
-
-    function resultIdram()
+    function getPaymentIdram()
     {
+        $data['Username'] = env('PAY_USERNAME');
+        $data['Password'] = env('PAY_PASSWORD');
+        $data['PaymentID'] = request('PaymentID');
 
-        define("SECRET_KEY", "FakeKey"); // Idram Payment System provide it
-        define("EDP_REC_ACCOUNT", "FakeID"); // Idram Payment System provide it
-        if (isset($_REQUEST['EDP_PRECHECK']) && isset($_REQUEST['EDP_BILL_NO']) &&
-            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
-            if ($_REQUEST['EDP_PRECHECK'] == "YES") {
-                if ($_REQUEST['EDP_REC_ACCOUNT'] == EDP_REC_ACCOUNT) {
-                    $bill_no = $_REQUEST['EDP_BILL_NO'];
+        $endpoint = "https://services.ameriabank.am/VPOS/api/VPOS/GetPaymentDetails";
+        $client = new \GuzzleHttp\Client();
 
-                    echo("OK");
-                }
-            }
+        $response = $client->request('POST',
+            $endpoint, ['form_params' => $data]);
+        $statusCode = $response->getStatusCode();
+
+//        $content = $response->getBody();
+        $content = json_decode($response->getBody(), true);
+
+        $msg = __('messages.payment_success');
+        if ($content['ResponseCode'] == "00") {
+            $upload_data = [];
+            $upload_data['PaymentID'] = $data['PaymentID'];
+            $upload_data['ClientName'] = $content['ClientName'];
+            $upload_data['DateTime'] = $content['DateTime'];
+            $upload_data['OrderID'] = $content['OrderID'];
+            $upload_data['Amount'] = $content['Amount'];
+
+            $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
+        } else {
+            $msg = $this->getResponseCode($content['ResponseCode']);
         }
-
-        if (isset($_REQUEST['EDP_PAYER_ACCOUNT']) && isset($_REQUEST['EDP_BILL_NO']) &&
-            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])
-            && isset($_REQUEST['EDP_TRANS_ID']) && isset($_REQUEST['EDP_CHECKSUM'])) {
-            $txtToHash =
-                EDP_REC_ACCOUNT . ":" .
-                $_REQUEST['EDP_AMOUNT'] . ":" .
-                SECRET_KEY . ":" .
-                $_REQUEST['EDP_BILL_NO'] . ":" .
-                $_REQUEST['EDP_PAYER_ACCOUNT'] . ":" .
-                $_REQUEST['EDP_TRANS_ID'] . ":" .
-                $_REQUEST['EDP_TRANS_DATE'];
-            if (strtoupper($_REQUEST['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
-// please, write your code here to handle the payment                 fail
-            } else {
-// please, write your code here to handle the payment success
-                echo("OK");
-            }
-        }
+        return response()->json([
+            'access_token' => request('token'),
+            'getpayment' => $content,
+            'msg' => $msg,
+            'code' => $content['ResponseCode'],
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
     }
+
 
     /**
      * Certificate
@@ -408,6 +412,7 @@ class AccountCourseController extends Controller
         }
         return $msg;
     }
+
     public function post_curl_request($action, $el, $r_u)
     {
         $redirect_uri = "";

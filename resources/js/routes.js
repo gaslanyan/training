@@ -15,6 +15,7 @@ import Test from './components/Test.vue';
 import NotFound from './components/NotFound.vue';
 import Howtouse from './components/Howtouse.vue';
 import PaymentTerms from './components/Payment.vue';
+import PaymentIdram from './components/PaymentIdram.vue';
 
 
 export const routes = [
@@ -150,6 +151,14 @@ export const routes = [
         component: PaymentTerms,
         meta: {
             auth: false,
+        }
+    },
+    {
+        path: '/payment_idram',
+        name: 'payment_idram',
+        component: PaymentIdram,
+        meta: {
+            auth: true,
         }
     },
     {
