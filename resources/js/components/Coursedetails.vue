@@ -87,7 +87,7 @@
                             </div>
                             <v-easy-dialog v-model="simpleDialog">
                                 <div class="flex flex-col">
-                                    <div>Check out our stacked Dialog</div>
+                                    <div>Վճարում կատարե՛ք միայն Ամերիայի բանկային համակարգով։</div>
 
                                     <div>
                                         <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
@@ -734,6 +734,7 @@ export default {
     width: 100%;
     height: 100%;
     cursor: default;
+    background-color: transparent;
 }
 .v-easy-dialog--fullscreen {
     top: 0;
@@ -751,9 +752,15 @@ export default {
     overflow-y: auto;
     position: absolute;
     touch-action: none;
+    background-color: #fff;
+    justify-content: center;
 }
 .v-easy-dialog--content-container:focus {
     outline: none;
+}
+.v-easy-dialog--content-container div{
+    display: flex;
+    align-self: center;
 }
 .v-easy-dialog--persist {
     animation: shake 0.15s;
