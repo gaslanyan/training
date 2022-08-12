@@ -87,7 +87,7 @@
                             </div>
                             <v-easy-dialog v-model="simpleDialog">
                                 <div class="flex flex-col">
-                                    <div>Վճարում կատարե՛ք միայն Ամերիայի բանկային համակարգով։</div>
+                                    <div>Վճարում կատարե՛ք միայն Ամերիայի բանկային համակարգով։ </div>
 
                                     <div>
                                         <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
