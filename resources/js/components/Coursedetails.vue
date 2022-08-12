@@ -734,7 +734,7 @@ export default {
     width: 100%;
     height: 100%;
     cursor: default;
-    background-color: transparent;
+    background-color: transparent!important;
 }
 .v-easy-dialog--fullscreen {
     top: 0;
@@ -752,11 +752,15 @@ export default {
     overflow-y: auto;
     position: absolute;
     touch-action: none;
-    background-color: #fff;
+    background-color: #fff!important;
     justify-content: center;
+    flex-direction: column;
 }
 .v-easy-dialog--content-container:focus {
     outline: none;
+}
+.v-easy-dialog--content-container ~ div{
+    flex-direction: column;
 }
 .v-easy-dialog--content-container div{
     display: flex;
