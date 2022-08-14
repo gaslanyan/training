@@ -8,6 +8,7 @@ use App\Models\Account;
 use App\Models\AccountCourse;
 use App\Models\Courses;
 use App\Models\Page;
+use App\Models\SessionPayment;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -180,8 +181,9 @@ class PageController extends Controller
             if ($_REQUEST['EDP_PRECHECK'] == "YES") {
                 if ($_REQUEST['EDP_REC_ACCOUNT'] == env('EDP_REC_ACCOUNT')) {
                     $bill_no = $_REQUEST['EDP_BILL_NO'];
-
-                    echo("OK");
+                    $s_bill_no = AccountCourse::where('code', $bill_no)->first();
+                    if ($s_bill_no !== null)
+                        echo("OK");
                 }
             }
         }
@@ -196,7 +198,7 @@ class PageController extends Controller
                 $_REQUEST['EDP_BILL_NO'] . ":" .
                 $_REQUEST['EDP_PAYER_ACCOUNT'] . ":" .
                 $_REQUEST['EDP_TRANS_ID'] . ":" .
-                $_REQUEST['EDP_TRANS_DATE'];
+                str_replace("", "/", $_REQUEST['EDP_TRANS_DATE']);
             if (strtoupper($_REQUEST['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
                 Session::put('idram_error_msg', __('messages.payment_field'));
             } else {

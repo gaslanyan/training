@@ -14,7 +14,7 @@ class AccountCourse extends Model
     protected $table = 'accounts_courses';
 
     protected $fillable = [
-        'id', 'course_id', 'random_test', 'account_id', 'count', 'status', 'percent','test', 'rating','comment','paid','payment','reading'
+        'id', 'course_id', 'random_test', 'account_id', 'count', 'status', 'percent','test', 'rating','comment','paid','payment','code','reading'
     ];
     public function course()
     {

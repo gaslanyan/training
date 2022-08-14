@@ -13,7 +13,7 @@ class Courses extends Model implements JWTSubject
     use Notifiable;
 
     protected $fillable = [
-        'id', 'name', 'image', 'specialty_ids', 'status', 'start_date', 'end_date', 'duration', 'credit', 'videos', 'books', 'cost', 'content', 'certificate', 'coordinates'
+        'id', 'name', 'pay_name', 'image', 'specialty_ids', 'status', 'start_date', 'end_date', 'duration', 'credit', 'videos', 'books', 'cost', 'content', 'certificate', 'coordinates'
     ];
 
     /**

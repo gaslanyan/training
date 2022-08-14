@@ -3494,7 +3494,7 @@ li {
 .v-easy-dialog--content-container:focus {
     outline: none;
 }
-.v-easy-dialog--content-container ~ div{
+.v-easy-dialog--content-container:first-child{
     flex-direction: column;
 }
 .v-easy-dialog--content-container div{

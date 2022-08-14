@@ -76,6 +76,19 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="pay_name"
+                                                       class="col-lg-3 col-form-label">{{__('messages.course_pay_name')}}
+                                                    *</label>
+                                                <div class="col-lg-9">
+                                                    <input id="pay_name" type="text" name="pay_name"
+                                                           class="form-control @error('pay_name') is-invalid @enderror"
+                                                           value="{{isset($course) ?  $course->pay_name : old('pay_name')}}">
+                                                    @error('pay_name')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
 
                                                 <div class="col-lg-12 row">
                                                     <label for="special_senior"

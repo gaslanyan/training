@@ -16,6 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("pay_name");
             $table->json("specialty_ids");
             $table->enum("status", array_keys(\App\Models\Courses::getStatus()));
             $table->date("start_date");

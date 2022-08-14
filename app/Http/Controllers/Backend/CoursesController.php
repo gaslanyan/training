@@ -172,6 +172,7 @@ class CoursesController extends Controller
 
         $validator = Validator::make($input, [
             'name' => 'required|min:2|max:190|string|unique:courses',
+            'pay_name' => 'required|min:2|max:190|string',
             'image' => 'nullable|file|mimes:jpg,jpeg,png',
             'specialty_ids' => 'required|array|exists:specialties,id',
             'status' => 'required|in:"active","archive", "delete"',
@@ -247,6 +248,7 @@ class CoursesController extends Controller
             }
 
             $cours['name'] = $request->name;
+            $cours['pay_name'] = $request->pay_name;
             $cours['image'] = $image_name;
 
             $cours['specialty_ids'] = json_encode($request->specialty_ids);
@@ -299,6 +301,7 @@ class CoursesController extends Controller
 
         $validator = Validator::make($input, [
             'name' => sprintf('required|min:2|max:190|string|unique:courses,name,%d', $id),
+            'pay_name' => sprintf('required|min:2|max:190|string|unique:courses,pay_name,%d', $id),
             'image' => 'nullable|file|mimes:jpg,jpeg,png',
             'specialty_ids' => 'required|array|exists:specialties,id',
             'status' => 'required|in:"active","archive", "delete"',
@@ -380,6 +383,7 @@ class CoursesController extends Controller
 
             $id = $request->id;
             $cours['name'] = $request->name;
+            $cours['pay_name'] = $request->pay_name;
             if ($isNewImage)
                 $cours['image'] = $image_name;
 
@@ -466,6 +470,7 @@ class CoursesController extends Controller
         return Excel::download(new CourseExport(),
             sprintf('Courses_%s.xlsx', date('d-m-Y')));
     }
+
     function gdExcelByAccount($id)
     {
         return Excel::download(new CourseAccountExport($id),

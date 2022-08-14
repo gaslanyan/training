@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\SessionPayment;
 use App\Services\AccountCourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -180,7 +181,7 @@ class AccountCourseController extends Controller
             $data["BackURL"] = env('BACK_URL') . request('course_id');
             $data['Username'] = env('PAY_USERNAME');
             $data['Password'] = env('PAY_PASSWORD');
-            $data['Description'] = mb_convert_encoding($info->name, 'UTF-8');
+            $data['Description'] = $info->pay_name;
             $data['Cardholder'] = 'CARD VPOS';
             $data['Currency'] = 'AMD';
             $data['Opaque'] = 'Opaque VPOS';
@@ -208,21 +209,28 @@ class AccountCourseController extends Controller
 
     function paymentIdram()
     {
+        dd("mtav");
         try {
             $info = $this->service->getCourseById(request('course_id'));
+            $code = request('course_id') . "000" . request('account_id') . "000" . rand(1, 2000000000);
 
             $action = env('ACTION');
             $d = 'EDP_LANGUAGE=' . 'am'
                 . '&EDP_AMOUNT=' . '10'
                 . '&EDP_REC_ACCOUNT=' . env('EDP_REC_ACCOUNT')
-                . '&EDP_BILL_NO=' . rand(1, 2000000000)
-                . '&EDP_DESCRIPTION=' . mb_convert_encoding($info->name, 'UTF-8')
+                . '&EDP_BILL_NO=' . $code
+                . '&EDP_DESCRIPTION=' .$info->pay_name
                 . 'SECRET_KEY=' . env('SECRET_KEY');
+
             $server_output = $this->post_curl_request($action, $d, "IDRAM");
 
             preg_match_all('~<a(.*?)href="([^"]+)"(.*?)>~', $server_output, $matches);
             $redirect_uri = env('REDIRECT_URI');
-            $result_uai = str_replace("&amp;", "&", $matches[2][0]);
+            if (!empty($matches)) {
+                $result_uai = str_replace("&amp;", "&", $matches[2][0]);
+                $this->service->updateIdramCode(request('account_id'), request('course_id'), $code);
+
+            }
             $redirect_uri .= $result_uai;
             return response()->json([
                 'access_token' => request('token'),
@@ -279,9 +287,9 @@ class AccountCourseController extends Controller
     function getPaymentIdram()
     {
 
-        $ir = Session::get('idram_request');
+        $ir = $this->service->getField( request('account_id'),request('course_id'), "code");
         $msg = __('messages.payment_success');
-        $code ="00";
+        $code = "00";
 
         if (!empty($ir)) {
             if (request('EDP_BILL_NO') == $ir['EDP_BILL_NO']) {

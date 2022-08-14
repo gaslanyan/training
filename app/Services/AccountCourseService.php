@@ -214,7 +214,7 @@ class AccountCourseService
     public
     function getCourseById($id)
     {
-        $course = Courses::select('id', 'name', 'cost')
+        $course = Courses::select('id', 'name', 'cost','pay_name')
             ->where('id', $id)->first();
         if (!$course)
             throw new ModelNotFoundException('Account not get!');
@@ -280,9 +280,6 @@ class AccountCourseService
         } else {
 
             $u_data['payment'] = \GuzzleHttp\json_encode($data, true);
-//            $u_data['DepositedAmount'] += $data['DepositedAmount'];
-//            $isPayment = ($u_data['DepositedAmount'] == $c_a->cost) ? true : false;
-//            if($isPayment)
             $u_data['paid'] = 1;
             $this->model->update($u_data, $ac->id);
         }
@@ -341,5 +338,15 @@ class AccountCourseService
         if (!$field)
             $field = null;
         return $field;
+    }
+
+    function updateIdramCode($account_id, $course_id, $code)
+    {
+        $isUpdated = false;
+        $id = $this->getField($account_id, $course_id, "id");
+        if (!empty($id)) {
+            $isUpdated = $this->model->update(['code' => $code], $id->id);
+        }
+        return $isUpdated;
     }
 }
