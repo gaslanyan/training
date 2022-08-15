@@ -209,7 +209,7 @@ class AccountCourseController extends Controller
 
     function paymentIdram()
     {
-        dd("mtav");
+
         try {
             $info = $this->service->getCourseById(request('course_id'));
             $code = request('course_id') . "000" . request('account_id') . "000" . rand(1, 2000000000);

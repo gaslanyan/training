@@ -452,8 +452,8 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    console.log(res)
-                    // location.href = res.url;
+                    if(res.url)
+                    location.href = res.url;
                 })
                 .catch(error => {
                     console.log(error);
