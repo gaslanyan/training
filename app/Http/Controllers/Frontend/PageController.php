@@ -180,9 +180,8 @@ class PageController extends Controller
             isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
             if ($_REQUEST['EDP_PRECHECK'] == "YES") {
                 if ($_REQUEST['EDP_REC_ACCOUNT'] == env('EDP_REC_ACCOUNT')) {
-                    $bill_no = $_REQUEST['EDP_BILL_NO'];
-                    $s_bill_no = AccountCourse::where('code', $bill_no)->first();
-                    if ($s_bill_no !== null)
+                    $bill_no = AccountCourse::where('code', $_REQUEST['EDP_BILL_NO'])->first();
+                    if ($bill_no !== null)
                         echo("OK");
                 }
             }
@@ -191,6 +190,7 @@ class PageController extends Controller
         if (isset($_REQUEST['EDP_PAYER_ACCOUNT']) && isset($_REQUEST['EDP_BILL_NO']) &&
             isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])
             && isset($_REQUEST['EDP_TRANS_ID']) && isset($_REQUEST['EDP_CHECKSUM'])) {
+
             $txtToHash =
                 EDP_REC_ACCOUNT . ":" .
                 $_REQUEST['EDP_AMOUNT'] . ":" .
@@ -199,11 +199,19 @@ class PageController extends Controller
                 $_REQUEST['EDP_PAYER_ACCOUNT'] . ":" .
                 $_REQUEST['EDP_TRANS_ID'] . ":" .
                 str_replace("", "/", $_REQUEST['EDP_TRANS_DATE']);
+
             if (strtoupper($_REQUEST['EDP_CHECKSUM']) != strtoupper(md5($txtToHash))) {
-                Session::put('idram_error_msg', __('messages.payment_field'));
+
+                echo("FILL");
+
             } else {
-                Session::put('idram_request', $_REQUEST);
-                echo("OK");
+                $bill_no = AccountCourse::where('code', $_REQUEST['EDP_BILL_NO'])->first();
+
+                if ($bill_no !== null) {
+
+                    AccountCourse::where('code', $_REQUEST['EDP_BILL_NO'])->update(['payment' => \GuzzleHttp\json_encode($_REQUEST)]);
+                    echo("OK");
+                }
             }
         }
     }

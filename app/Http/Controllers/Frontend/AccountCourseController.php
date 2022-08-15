@@ -211,7 +211,8 @@ class AccountCourseController extends Controller
     {
 
         try {
-            $info = $this->service->getCourseById(request('course_id'));
+          $info = $this->service->getCourseById(request('course_id'));
+
             $code = request('course_id') . "000" . request('account_id') . "000" . rand(1, 2000000000);
 
             $action = env('ACTION');
@@ -220,6 +221,7 @@ class AccountCourseController extends Controller
                 . '&EDP_REC_ACCOUNT=' . env('EDP_REC_ACCOUNT')
                 . '&EDP_BILL_NO=' . $code
                 . '&EDP_DESCRIPTION=' .$info->pay_name
+                . '&EDP_REC_NAME=' .$info->pay_name
                 . 'SECRET_KEY=' . env('SECRET_KEY');
 
             $server_output = $this->post_curl_request($action, $d, "IDRAM");
@@ -287,24 +289,22 @@ class AccountCourseController extends Controller
     function getPaymentIdram()
     {
 
-        $ir = $this->service->getField( request('account_id'),request('course_id'), "code");
+        $ir = $this->service->getField( request('account_id'),request('course_id'), "payment");
         $msg = __('messages.payment_success');
         $code = "00";
 
         if (!empty($ir)) {
-            if (request('EDP_BILL_NO') == $ir['EDP_BILL_NO']) {
+           $ir=\GuzzleHttp\json_decode($ir->payment);
+
                 $upload_data = [];
-                $upload_data['PaymentID'] = $ir['EDP_BILL_NO'];
+                $upload_data['PaymentID'] = $ir->EDP_BILL_NO;
 //            $upload_data['ClientName'] = $content['ClientName'];
-                $upload_data['DateTime'] = $ir['EDP_BILL_DATE'];
-                $upload_data['OrderID'] = $ir['EDP_PAYER_ACCOUNT'];
-                $upload_data['Amount'] = $ir['EDP_AMOUNT'];
+                $upload_data['DateTime'] = $ir->EDP_BILL_DATE;
+                $upload_data['OrderID'] = $ir->EDP_PAYER_ACCOUNT;
+                $upload_data['Amount'] = $ir->EDP_AMOUNT;
 
                 $this->service->uploadPayment(request('course_id'), request('account_id'), $upload_data);
-            } else {
-                $msg = $this->getResponseCode('');
-                $code = "";
-            }
+
         } else {
             $msg = $this->getResponseCode('');
         }

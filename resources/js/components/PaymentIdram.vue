@@ -94,7 +94,7 @@ export default {
                     });
 
                     setTimeout(function () {
-                        location.href = "/coursedetails/" + this.$route.params.id;
+                        location.href = "/coursedetails/" + localStorage.getItem('c_id');
                     }, 500);
                 })
                 .catch(error => {

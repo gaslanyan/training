@@ -3482,6 +3482,7 @@ li {
 .v-easy-dialog--content-grow *:first-child {
     flex-grow: 1;
     flex-direction: column;
+    padding: 15px;
 }
 .v-easy-dialog--content-container {
     display: flex;
@@ -3499,6 +3500,9 @@ li {
 .v-easy-dialog--content-container div{
     display: flex;
     align-self: center;
+}
+.v-easy-dialog--content-container div img{
+    height: 50px;
 }
 .v-easy-dialog--persist {
     animation: shake 0.15s;

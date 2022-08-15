@@ -87,7 +87,7 @@
                             </div>
                             <v-easy-dialog v-model="simpleDialog">
                                 <div class="flex flex-col">
-                                    <div>Վճարում կատարե՛ք միայն Ամերիայի բանկային համակարգով։ </div>
+                                    <div>Վճարում կատարե՛ք միայն Ամերիայի բանկային համակարգով։</div>
 
                                     <div>
                                         <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
@@ -213,17 +213,17 @@ import {VEasyDialog} from 'v-easy-dialog'
 
 export default {
     props: {
-        value: { type: Boolean, default: false },
-        width: { type: String, default: '600px' },
-        growContent: { type: Boolean, default: true },
-        maxHeight: { type: String, default: '90%' },
-        fullscreen: { type: Boolean, default: false },
-        backgroundBtnTag: { type: String, default: 'button' },
-        persistent: { type: Boolean, default: false },
-        backdropClass: { type: undefined },
-        backdropStyle: { type: undefined },
-        focusOn: { type: String, default: undefined },
-        mountingTarget: { type: String, default: 'body' }
+        value: {type: Boolean, default: false},
+        width: {type: String, default: '36%'},
+        growContent: {type: Boolean, default: true},
+        maxHeight: {type: String, default: '90%'},
+        fullscreen: {type: Boolean, default: false},
+        backgroundBtnTag: {type: String, default: 'button'},
+        persistent: {type: Boolean, default: false},
+        backdropClass: {type: undefined},
+        backdropStyle: {type: undefined},
+        focusOn: {type: String, default: undefined},
+        mountingTarget: {type: String, default: 'body'}
     },
     data() {
         return {
@@ -452,8 +452,8 @@ export default {
             };
             getPromiseResult(credentials)
                 .then(res => {
-                    if(res.url)
-                    location.href = res.url;
+                    if (res.url)
+                        location.href = res.url;
                 })
                 .catch(error => {
                     console.log(error);
