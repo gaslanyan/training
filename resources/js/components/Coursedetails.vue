@@ -87,8 +87,6 @@
                             </div>
                             <v-easy-dialog v-model="simpleDialog">
                                 <div class="flex flex-col">
-                                    <div>Վճարում կատարե՛ք միայն Ամերիայի բանկային համակարգով։</div>
-
                                     <div>
                                         <img :src="ameriaimg" alt="ameria" @click="payment(datas.id)">
                                     </div>
@@ -97,7 +95,7 @@
                                     </div>
 
                                     <div class="flex justify-end space-x-2">
-                                        <button @click="simpleDialog = false">Close</button>
+                                        <button @click="simpleDialog = false" class="primary-btn">Close</button>
                                     </div>
                                 </div>
                             </v-easy-dialog>
@@ -240,8 +238,8 @@ export default {
             // videoimg: '/css/frontend/img/blog/cat-post/cat-post-3.jpg',
             lock: '/css/frontend/img/lock.png',
             bookimg: '/css/frontend/img/book.jpg',
-            ameriaimg: '/css/frontend/img/ameria.png',
-            idramimg: '/css/frontend/img/idram.png',
+            ameriaimg: '/css/frontend/img/ameria.jpg',
+            idramimg: '/css/frontend/img/idram.jpg',
             lectureimg: '/uploads/images/avatars/',
             docs: [],
             texts: texts,

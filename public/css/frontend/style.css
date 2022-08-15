@@ -3482,7 +3482,6 @@ li {
 .v-easy-dialog--content-grow *:first-child {
     flex-grow: 1;
     flex-direction: column;
-    padding: 15px;
 }
 .v-easy-dialog--content-container {
     display: flex;
@@ -3492,6 +3491,7 @@ li {
     background-color: #fff!important;
     justify-content: center;
     flex-direction: column;
+    padding: 15px;
 }
 .v-easy-dialog--content-container:focus {
     outline: none;
@@ -3502,7 +3502,7 @@ li {
     align-self: center;
 }
 .v-easy-dialog--content-container div img{
-    height: 50px;
+    height: 92px;
 }
 .v-easy-dialog--persist {
     animation: shake 0.15s;

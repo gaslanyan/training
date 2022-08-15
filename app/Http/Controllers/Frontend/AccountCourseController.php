@@ -217,7 +217,7 @@ class AccountCourseController extends Controller
 
             $action = env('ACTION');
             $d = 'EDP_LANGUAGE=' . 'am'
-                . '&EDP_AMOUNT=' . '10'
+                . '&EDP_AMOUNT=' . $info->cost
                 . '&EDP_REC_ACCOUNT=' . env('EDP_REC_ACCOUNT')
                 . '&EDP_BILL_NO=' . $code
                 . '&EDP_DESCRIPTION=' .$info->pay_name

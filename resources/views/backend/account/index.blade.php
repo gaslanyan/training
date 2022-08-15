@@ -59,16 +59,16 @@
                                     <ul class="kt-nav">
                                         <li class="kt-nav__item">
                                             <a
-                                                    href="{{action('Backend\AccountController@gdExcel')}}"
-                                                    class="kt-nav__link">
+                                                href="{{action('Backend\AccountController@gdExcel')}}"
+                                                class="kt-nav__link">
                                                 <i class="kt-nav__link-icon la la-file-excel-o"></i>
                                                 <span class="kt-nav__link-text">{{__('messages.excel')}}</span>
                                             </a>
                                         </li>
                                         <li class="kt-nav__item">
                                             <a
-                                                    href="{{action('Backend\AccountController@gdPDFRole')}}"
-                                                    class="kt-nav__link">
+                                                href="{{action('Backend\AccountController@gdPDFRole')}}"
+                                                class="kt-nav__link">
                                                 <i class="kt-nav__link-icon la la-file-pdf-o"></i>
                                                 <span class="kt-nav__link-text">{{__('messages.PDF')}}</span>
                                             </a>
@@ -117,114 +117,126 @@
                     @if(!$accounts->isEmpty())
                         @foreach($accounts as $key => $account)
                             @if(!empty($account->user))
-                            <tr class="text-center">
-                                <td></td>
-                                <td>
-                                    <input type="checkbox" name="choose_person"
-                                           id="{{$account->id}}">
-                                </td>
-                                <td>
-                                    <img src="/uploads{{  Config::get('constants.AVATAR_PATH_UPLOADED').$account->image_name}}"
-                                         alt="avatar" style="height: 50px"></td>
-                                <td>@if(!empty($account->name)){{$account->name}}@endif
-                                    @if(!empty($account->surname)){{$account->surname}}@endif
-                                    @if(!empty($account->father_name)){{$account->father_name}}@endif
-                                </td>
-
-                                <td>
-                                    @if(!empty($account->user->email_verified_at)) {{$account->user->email}}@endif
-                                </td>
-                                @if(Session::get('role') ==='user')
+                                <tr class="text-center">
+                                    <td></td>
                                     <td>
-                                        <form action="change_status" method="post">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="a_id" value="{{$account->id}}">
-                                            <input class="email" type="checkbox" name="member"
-                                                   value="{{$account->prof->member_of_palace}}"
-                                            @if(!empty($account->prof->member_of_palace == 1))
-                                                {{'checked'}}
-                                                    @endif>
-                                            @if(!empty($account->prof->member_of_palace == 1))
-                                                <p style="display: none">true</p>
-                                            @endif
-                                        </form>
+                                        <input type="checkbox" name="choose_person"
+                                               id="{{$account->id}}">
                                     </td>
-                                <td>
-                                    @if(!empty($account->workplace_name))
-                                        {{$account->workplace_name}}
-                                    @endif
-                                </td>
                                     <td>
-                                        @if(!empty($account->user->status))
-                                            @php
-                                                $class ="";
-                                                if($account->user->status ==="pending")
-                                                    $class = 'btn-info';
-                                                else if($account->user->status ==="removed")
-                                                    $class = 'btn-danger';
-                                            @endphp
+                                        <img
+                                            src="/uploads{{  Config::get('constants.AVATAR_PATH_UPLOADED').$account->image_name}}"
+                                            alt="avatar" style="height: 50px"></td>
+                                    <td>@if(!empty($account->name))
+                                            {{$account->name}}
                                         @endif
-                                        <span
+                                        @if(!empty($account->surname))
+                                            {{$account->surname}}
+                                        @endif
+                                        @if(!empty($account->father_name))
+                                            {{$account->father_name}}
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        @if(!empty($account->user->email_verified_at))
+                                            {{$account->user->email}}
+                                        @endif
+                                    </td>
+                                    @if(Session::get('role') ==='user')
+                                        <td>
+                                            <form action="change_status" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="a_id" value="{{$account->id}}">
+                                                <input class="email" type="checkbox" name="member"
+                                                       value="{{$account->prof->member_of_palace}}"
+                                                @if(!empty($account->prof->member_of_palace == 1))
+                                                    {{'checked'}}
+                                                    @endif>
+                                                @if(!empty($account->prof->member_of_palace == 1))
+                                                    <p style="display: none">true</p>
+                                                @endif
+                                            </form>
+                                        </td>
+                                        <td>
+                                            @if(!empty($account->workplace_name))
+                                                {{$account->workplace_name}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(!empty($account->user->status))
+                                                @php
+                                                    $class ="";
+                                                    if($account->user->status ==="pending")
+                                                        $class = 'btn-info';
+                                                    else if($account->user->status ==="removed")
+                                                        $class = 'btn-danger';
+                                                @endphp
+                                            @endif
+                                            <span
                                                 class="btn {{$class}}">{{__('messages.'.$account->user->status)}}
                                         </span>
-                                    </td>
+                                        </td>
+                                        <td>
+                                            @if(count($account->account_course) >0 )
+                                                <a href="{{action('Backend\AccountController@showPayment', $account->id)}}"
+                                                   class="btn btn-info kt-badge kt-badge--lg"
+                                                   data-toggle="m-tooltip" data-placement="top"
+                                                   data-original-title="{{__('messages.approve_payment')}}">
+                                                    <i class="la la-credit-card"></i>
+                                                </a>
+                                        </td>
+                                    @endif
+                                    @endif
                                     <td>
-                                        <a href="{{action('Backend\AccountController@showPayment', $account->id)}}"
-                                           class="btn btn-info kt-badge kt-badge--lg"
-                                           data-toggle="m-tooltip" data-placement="top"
-                                           data-original-title="{{__('messages.approve_payment')}}">
-                                            <i class="la la-credit-card"></i>
-                                        </a>
-                                    </td>
-                                                                    @endif
-                                <td>
-                                    <div class="row justify-content-end">
-                                        <a href="{{action('Backend\AccountController@show', $account->id)}}"
-                                           class="btn btn-info kt-badge kt-badge--lg"
-                                           data-toggle="m-tooltip" data-placement="top"
-                                           data-original-title="{{__('messages.show')}}">
-                                            <i class="la la-eye"></i>
-                                        </a>
+                                        <div class="row justify-content-end">
+                                            <a href="{{action('Backend\AccountController@show', $account->id)}}"
+                                               class="btn btn-info kt-badge kt-badge--lg"
+                                               data-toggle="m-tooltip" data-placement="top"
+                                               data-original-title="{{__('messages.show')}}">
+                                                <i class="la la-eye"></i>
+                                            </a>
 
-                                        @if(Session::get('role') !=='user')
+                                            {{--                                        @if(Session::get('role') !=='user')--}}
                                             <a href="{{action('Backend\AccountController@edit', $account->id)}}"
                                                class="btn btn-info kt-badge kt-badge--lg"
                                                data-toggle="m-tooltip" data-placement="top"
                                                data-original-title="{{__('messages.edit')}}">
                                                 <i class="la la-edit"></i>
                                             </a>
-                                        @else
-                                            @if(count($account->account_course) >0 )
+
+{{--                                           <?php echo "<pre>"; var_dump($account->account_course[0]['code']);die;?>--}}
+{{--                                            @if(!$account->account_course->code)--}}
                                                 <a href="{{action('Backend\AccountTestController@index', $account->id)}}"
                                                    class="btn btn-success kt-badge kt-badge--lg"
                                                    data-toggle="m-tooltip" data-placement="top"
                                                    data-original-title="{{__('messages.test')}}">
                                                     <i class="la la-newspaper-o"></i>
                                                 </a>
-                                            @endif
-                                        @endif
 
-                                        <form action="{{action('Backend\AccountController@destroy')}}"
-                                              class="_form" method="post">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <input name="removed" type="hidden" value="0">
-                                            <input name="_id" type="hidden" value="{{$account->id}}">
+{{--                                            @endif--}}
 
-                                            <button data-ref="" type="button"
-                                                    data-title="account"
-                                                    class="delete btn btn-danger kt-badge--lg kt-badge  "
-                                                    data-original-title="{{__('messages.delete')}}">
-                                                <i class="la la-trash"></i>
+                                            <form action="{{action('Backend\AccountController@destroy')}}"
+                                                  class="_form" method="post">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <input name="removed" type="hidden" value="0">
+                                                <input name="_id" type="hidden" value="{{$account->id}}">
 
-                                            </button>
-                                            {{--                                                <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>--}}
-                                        </form>
+                                                <button data-ref="" type="button"
+                                                        data-title="account"
+                                                        class="delete btn btn-danger kt-badge--lg kt-badge  "
+                                                        data-original-title="{{__('messages.delete')}}">
+                                                    <i class="la la-trash"></i>
+
+                                                </button>
+                                                {{--                                                <button  data-title="admin"type="button" class="btn sweetalert"> Show me</button>--}}
+                                            </form>
 
 
-                                    </div>
-                                </td>
-                            </tr>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endif
                         @endforeach
                     @endif

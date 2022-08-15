@@ -58,7 +58,7 @@ class AccountService
                 $query->select(['account_id', 'member_of_palace', 'specialty_id']);
             },
             'account_course' => function ($query) {
-                $query->select(['account_id', 'course_id']);
+                $query->select(['account_id', 'course_id', 'code']);
             },
             'prof.spec.type' => function ($query) {
                 $query->select(['id', 'name']);

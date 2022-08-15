@@ -204,11 +204,11 @@ class AccountController extends Controller
         try {
             $this->service->updateAccount($accountRequest, $professionRequest, $userRequest, $id);
 
-            return redirect('backend/account/lecture')->with('success', __('messages.updated'));
+            return redirect('backend/account/'. $this->role)->with('success', __('messages.updated'));
         } catch (\Exception $exception) {
 
             logger()->error($exception);
-            return redirect('backend/account/lecture')->with('error', __('messages.wrong'));
+            return redirect('backend/account/'. $this->role)->with('error', __('messages.wrong'));
         }
     }
 
