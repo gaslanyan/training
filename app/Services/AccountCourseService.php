@@ -49,6 +49,7 @@ class AccountCourseService
                     $test_answers[$index + 1][$i + 1] = true;
             }
         }
+        dd($test_answers);
         $account_answers = [];
         foreach ($model as $index => $item) {
             $i = explode("_", $index);
