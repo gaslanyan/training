@@ -180,7 +180,7 @@ export default {
 
                             // this.$refs.form.style.display = 'none';
                             // this.$refs.msg.innerText = 'none';
-                           // window.location.reload();
+                           window.location.reload();
 
                         })
                         .catch(err => {

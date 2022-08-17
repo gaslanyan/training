@@ -38,24 +38,34 @@ class AccountCourseService
 
     public function getTestResult($id, $account_id, $model)
     {
-
-        $answers = Tests::select('answers')->where('courses_id', $id)
+        $account_test = $this->getField($account_id, $id, 'random_test');
+        $account_test = json_decode($account_test->random_test);
+        $answers = Tests::select('id','answers')->whereIn('id', $account_test)
             ->get();
+
         $test_answers = [];
+        $t_answers = [];
         foreach ($answers as $index => $answer) {
             $ans = json_decode($answer->answers);
-            foreach ($ans as $i => $an) {
-                if (!empty($an->check))
+            $t_answers[$answer->id] =$ans;
+        }
+        foreach ($account_test as $index => $item) {
+            foreach ($t_answers[$item] as $i => $an) {
+                if (isset($an->check) && $an->check ==1)
                     $test_answers[$index + 1][$i + 1] = true;
             }
         }
-        dd($test_answers);
+       
         $account_answers = [];
         foreach ($model as $index => $item) {
-            $i = explode("_", $index);
-            $account_answers[$i[0]][$i[1]] = true;
+
+            $pos = strpos($index, "_");
+            if ($pos !== false) {
+                $i = explode("_", $index);
+                $account_answers[$i[0]][$i[1]] = true;
+            } else
+                $account_answers[$index][$item] = true;
         }
-        var_export(count($account_answers));
 
         $deff = [];
         foreach ($test_answers as $i => $ta) {
@@ -215,7 +225,7 @@ class AccountCourseService
     public
     function getCourseById($id)
     {
-        $course = Courses::select('id', 'name', 'cost','pay_name')
+        $course = Courses::select('id', 'name', 'cost', 'pay_name')
             ->where('id', $id)->first();
         if (!$course)
             throw new ModelNotFoundException('Account not get!');
